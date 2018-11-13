@@ -14,3 +14,12 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
+
+Auth::routes();
+
+Route::group(['middleware' => 'auth'],function(){
+	//only admin can acces here
+	Route::get('/home', 'HomeController@index')->name('home');
+});
+
