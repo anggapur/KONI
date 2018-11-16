@@ -328,6 +328,60 @@
       <!-- sidebar menu: : style can be found in sidebar.less -->
       <ul class="sidebar-menu" data-widget="tree">
         <li class="header">MAIN NAVIGATION</li>
+
+        <li class="treeview">
+          <a href="#">
+            <i class="fa fa-user"></i> <span>User</span>
+          </a>          
+        </li>
+
+        <li class="treeview">
+          <a href="#">
+            <i class="fa fa-users"></i> <span>Atlet</span>            
+          </a>          
+        </li>
+
+        <li class="treeview">
+          <a href="#">
+            <i class="fa fa-soccer-ball-o"></i> <span>Cabang Olahraga</span>            
+          </a>          
+        </li>
+
+        <li class="treeview">
+          <a href="#">
+            <i class="fa fa-"></i> <span>Nomor Pertandingan</span>            
+          </a>          
+        </li>
+
+        <li class="treeview">
+          <a href="#">
+            <i class="fa fa-share"></i> <span>Prestasi Atlet</span>
+          </a>          
+        </li>
+
+        <li class="treeview">
+          <a href="#">
+            <i class="fa fa-crown"></i> <span>Rekor Atlet</span>
+          </a>          
+        </li>
+
+        <li class="treeview">
+          <a href="#">
+            <i class="fa fa-share"></i> <span>Kontingen</span>
+          </a>          
+        </li>
+
+        <li class="treeview">
+          <a href="#">
+            <i class="fa fa-share"></i> <span>Wasit</span>
+          </a>          
+        </li>
+
+        <li class="treeview">
+          <a href="#">
+            <i class="fa fa-share"></i> <span>Event</span>            
+          </a>          
+        </li>
         
         <li class="treeview">
           <a href="#">
