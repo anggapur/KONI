@@ -253,9 +253,12 @@ section.chartSection {
     padding-top: 80px;
 }
 nav.navbar.navbar-expand-lg.navbar-light.bg-light {
-    box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.14);
+    box-shadow: 0 5px 10px 0 rgba(0, 0, 0, 0.14);
     background: #212b5f !important;
     color: #fff !important;
+    position: fixed;
+    width: 100%;
+    z-index: 99999;
 }
 section.chartSection2 {
     background: #fff;
