@@ -11,9 +11,13 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('angga','contohController@index');
+
+
+
+
+Route::get('/','frontController@index');
+Route::get('dataGrafik','frontController@dataGrafik');
 
 Auth::routes();
 
