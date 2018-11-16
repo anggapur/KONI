@@ -254,6 +254,8 @@ section.chartSection {
 }
 nav.navbar.navbar-expand-lg.navbar-light.bg-light {
     box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.14);
+    background: #212b5f !important;
+    color: #fff !important;
 }
 section.chartSection2 {
     background: #fff;
@@ -263,4 +265,11 @@ section.chartSection2 {
 section#prestasiTerbaru {
     padding-top: 80px;
     padding-bottom: 80px;
+}
+a.nav-link {
+    color: #fff !important;
+}
+
+a.navbar-brand {
+    color: #fff !important;
 }
