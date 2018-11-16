@@ -1,20 +1,4 @@
-/*
-SQLyog Community v12.4.3 (64 bit)
-MySQL - 10.1.34-MariaDB : Database - koni
-*********************************************************************
-*/
 
-/*!40101 SET NAMES utf8 */;
-
-/*!40101 SET SQL_MODE=''*/;
-
-/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
-/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
-/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
-/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
-CREATE DATABASE /*!32312 IF NOT EXISTS*/`koni` /*!40100 DEFAULT CHARACTER SET latin1 */;
-
-USE `koni`;
 
 /*Table structure for table `cabang_olahraga` */
 

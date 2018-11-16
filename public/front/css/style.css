@@ -43,7 +43,7 @@ html,body {
 }
 
 section#summary {
-    padding: 50px 0px;
+    padding: 90px 0px 50px 0px;
 }
 
 .boxSummary h5,.boxSummary h6 {
@@ -259,6 +259,7 @@ nav.navbar.navbar-expand-lg.navbar-light.bg-light {
     position: fixed;
     width: 100%;
     z-index: 99999;
+    top:0;
 }
 section.chartSection2 {
     background: #fff;
@@ -275,4 +276,45 @@ a.nav-link {
 
 a.navbar-brand {
     color: #fff !important;
+}
+ul.navbar-nav {
+    margin-left: auto !important;
+}
+
+/*Slider*/
+#slider{
+    background: url('../../upload/slider/sliderBG.jpg');
+    background-size: cover;
+}
+.greetings {
+    position: absolute;
+    top: 50%;
+    /* height: 100%; */
+    color: white;
+    transform: translateY(-50%);
+}
+
+#slider .container {
+    height: 100%;
+}
+
+#slider .row {
+    height: 100%;
+}
+
+section#slider {
+    /*margin-top: 56px;*/
+}
+.sliderImage {
+    height: 100%;
+}
+
+img.sliderImages {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-37%) translateX(-50%);
+    left: 50%;
+}
+.firstNone{
+    display: none;
 }

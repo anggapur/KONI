@@ -13,11 +13,14 @@
 
 Route::get('angga','contohController@index');
 
-
-
-
+// By Angga Purnajiwa
 Route::get('/','frontController@index');
 Route::get('dataGrafik','frontController@dataGrafik');
+Route::get('atlet','frontController@atlet');
+Route::get('prestasi-atlet','frontController@prestasi-atlet');
+Route::get('pelatih','frontController@pelatih');
+Route::get('wasit','frontController@wasit');
+Route::get('event','frontController@event');
 
 Auth::routes();
 

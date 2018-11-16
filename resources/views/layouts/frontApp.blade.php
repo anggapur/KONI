@@ -10,7 +10,7 @@
     <title>{{ config('app.name', 'Laravel') }}</title>
 
     <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}" defer></script>
+    <!-- <script src="{{ asset('js/app.js') }}" defer></script> -->
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="https://fonts.gstatic.com">
@@ -25,6 +25,9 @@
     <link href="https://fonts.googleapis.com/css?family=Roboto:400,900,900i" rel="stylesheet">
 
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+
+     <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 </head>
 <body>
     <!-- Navigation -->
@@ -37,13 +40,22 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav">
                     <li class="nav-item active">
-                        <a class="nav-link" href="#">Beranda <span class="sr-only">(current)</span></a>
+                        <a class="nav-link" href="{{url('')}}">Beranda <span class="sr-only">(current)</span></a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Atlet</a>
+                        <a class="nav-link" href="{{url('atlet')}}">Atlet</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Wasit</a>
+                        <a class="nav-link" href="{{url('prestasi-atlet')}}">Prestasi Atlet</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{url('pelatih')}}">Pelatih</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{url('wasit')}}">Wasit</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{url('event')}}">Event</a>
                     </li>
                 </ul>
             </div>
@@ -152,8 +164,7 @@
         </div>
     </section>
     <!-- JS -->
-    <!-- jQuery -->
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+   
     <!-- Bootstrap -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
