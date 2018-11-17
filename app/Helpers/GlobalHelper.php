@@ -10,6 +10,7 @@ use App\Nomor_Pertandingan;
 use App\Event;
 use App\Prestasi;
 use App\Rekor_Atlet;
+use App\Detail_Atlet;
 
 class GlobalHelper{
 	public static function getCountData(){
@@ -126,5 +127,134 @@ class GlobalHelper{
 										->orderBy('waktu','DESC')
 										->get();
 		return $data;	
+	}
+
+	public static function getPrestasiByGender(){
+		$data = [];
+		$data['laki-laki'] = Prestasi::select('id_prestasi')
+								->leftJoin('master_atlet','id_atlet','=','atlet_id')
+								->where('jenis_kelamin','L')
+								->count();
+		$data['perempuan'] = Prestasi::select('id_prestasi')
+								->leftJoin('master_atlet','id_atlet','=','atlet_id')
+								->where('jenis_kelamin','P')
+								->count();
+		return $data;
+	}
+
+	public static function getPrestasiByCabor(){
+		$data = [];
+		$cabor = Cabang_Olahraga::select('nama_cabor')->get();
+		foreach ($cabor as $cabor) {
+			$data[$cabor->nama_cabor] = Prestasi::select('id_prestasi')
+										->leftJoin('cabang_olahraga','id_cabor','=','cabor_id')
+										->where('nama_cabor',$cabor->nama_cabor)
+										->count();
+		}
+		return $data;
+	}
+
+	public static function getPrestasiByNP(){
+		$data = [];
+		$cabor = Cabang_Olahraga::select('id_cabor','nama_cabor')->get();
+		foreach ($cabor as $cabor) {
+			$np = Nomor_Pertandingan::select('ket_np')->where('cabor_id',$cabor->id_cabor)->get();
+			foreach ($np as $np) {
+				$data[$cabor->nama_cabor][$np->ket_np] =
+						Prestasi::select('id_prestasi')
+							->leftJoin('nomor_pertandingan','id_np','=','np_id')
+							->where('ket_np',$np->ket_np)
+							->where('prestasi.cabor_id',$cabor->id_cabor)
+							->count();
+			}
+		}
+		return $data;
+	}
+
+	public static function getAtletByCabor(){
+		$data = [];
+		$cabor = Cabang_Olahraga::select('nama_cabor')->get();
+		foreach ($cabor as $cabor) {
+			$data[$cabor->nama_cabor] = Master_Atlet::select('id_atlet')
+										->leftJoin('cabang_olahraga','id_cabor','=','cabor_id')
+										->where('nama_cabor',$cabor->nama_cabor)
+										->count();
+		}
+		return $data;	
+	}
+
+	public static function getAtletByNP(){
+		$data = [];
+		$cabor = Cabang_Olahraga::select('id_cabor','nama_cabor')->get();
+		foreach ($cabor as $cabor) {
+			$np = Nomor_Pertandingan::select('ket_np')->where('cabor_id',$cabor->id_cabor)->get();
+			foreach ($np as $np) {
+				$data[$cabor->nama_cabor][$np->ket_np] =
+						Master_Atlet::select('id_atlet')
+							->leftJoin('detail_atlet','id_atlet','=','atlet_id')
+							->leftJoin('nomor_pertandingan','id_np','=','np_id')
+							->where('ket_np',$np->ket_np)
+							->where('master_atlet.cabor_id',$cabor->id_cabor)
+							->count();
+			}
+		}	
+		return $data;
+	}
+
+	public static function getPrestasiByEvent(){
+		$data = [];
+		$event = Event::select('id_event','nama_event')->get();
+		foreach ($event as $event) {
+			$data[$event->nama_event] = Prestasi::select('id_prestasi')
+											->where('event_id',$event->id_event)
+											->count();
+		}
+		return $data;
+	}
+
+	public static function getPrestasiByGenderOnEvent($id_event){
+		$data = [];
+		$data['laki-laki'] = Prestasi::select('id_prestasi')
+								->leftJoin('master_atlet','id_atlet','=','atlet_id')
+								->where('jenis_kelamin','L')
+								->where('event_id',$id_event)
+								->count();
+		$data['perempuan'] = Prestasi::select('id_prestasi')
+								->leftJoin('master_atlet','id_atlet','=','atlet_id')
+								->where('jenis_kelamin','P')
+								->where('event_id',$id_event)
+								->count();
+		return $data;
+	}
+
+	public static function getPrestasiByCaborOnEvent($id_event){
+		$data = [];
+		$cabor = Cabang_Olahraga::select('nama_cabor')->get();
+		foreach ($cabor as $cabor) {
+			$data[$cabor->nama_cabor] = Prestasi::select('id_prestasi')
+										->leftJoin('cabang_olahraga','id_cabor','=','cabor_id')
+										->where('nama_cabor',$cabor->nama_cabor)
+										->where('event_id',$id_event)
+										->count();
+		}
+		return $data;
+	}
+
+	public static function getPrestasiByNPOnEvent($id_event){
+		$data = [];
+		$cabor = Cabang_Olahraga::select('id_cabor','nama_cabor')->get();
+		foreach ($cabor as $cabor) {
+			$np = Nomor_Pertandingan::select('ket_np')->where('cabor_id',$cabor->id_cabor)->get();
+			foreach ($np as $np) {
+				$data[$cabor->nama_cabor][$np->ket_np] =
+						Prestasi::select('id_prestasi')
+							->leftJoin('nomor_pertandingan','id_np','=','np_id')
+							->where('ket_np',$np->ket_np)
+							->where('prestasi.cabor_id',$cabor->id_cabor)
+							->where('event_id',$id_event)
+							->count();
+			}
+		}
+		return $data;
 	}
 }
