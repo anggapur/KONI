@@ -28,7 +28,7 @@
         <div class="container">
             <div class="row">
                 <!-- Atlet -->
-                <div class="col-lg-3 col-md-6">
+                <div class="col-lg-3 col-md-6 col-sm-6">
                     <div class="boxSummary">
                         <div class="separateLeft">
                             <a href="{{url('atlet')}}" class="miniBoxForNumber wow fadeInUp">
@@ -42,7 +42,7 @@
                     </div>
                 </div>
                 <!-- Wasit -->
-                <div class="col-lg-3 col-md-6">
+                <div class="col-lg-3 col-md-6 col-sm-6">
                     <div class="boxSummary">
                         <div class="separateLeft">
                             <a href="{{url('wasit')}}" class="miniBoxForNumber wow fadeInUp">
@@ -56,7 +56,7 @@
                     </div>
                 </div>
                <!-- Pelatih -->
-               <div class="col-lg-3 col-md-6">
+               <div class="col-lg-3 col-md-6 col-sm-6">
                     <div class="boxSummary">
                         <div class="separateLeft">
                             <a href="{{url('pelatih')}}" class="miniBoxForNumber wow fadeInUp">
@@ -70,7 +70,7 @@
                     </div>
                 </div>
                 <!-- Jumlah Semua -->
-                <div class="col-lg-3 col-md-6">
+                <div class="col-lg-3 col-md-6 col-sm-6">
                     <div class="boxSummary">
                         <div class="separateLeft">
                             <div class="miniBoxForNumber wow fadeInUp">
@@ -84,7 +84,7 @@
                     </div>
                 </div>
                 <!-- Jumlah Cabang Olahraga -->
-                <div class="col-lg-3 col-md-6">
+                <div class="col-lg-3 col-md-6 col-sm-6">
                     <div class="boxSummary">
                         <div class="separateLeft">
                             <a href="{{url('cabor')}}" class="miniBoxForNumber wow fadeInUp">
@@ -93,12 +93,12 @@
                         </div>
                         <div class="separateRight">
                             <h6>Jumlah Cabang Olahraga</h6>
-                            <h5>-</h5>
+                            <h5>{{GH::getCountCabor()['jml_cabor']}}</h5>
                         </div>
                     </div>
                 </div>
                 <!-- Jumlah Event -->
-                <div class="col-lg-3 col-md-6">
+                <div class="col-lg-3 col-md-6 col-sm-6">
                     <div class="boxSummary">
                         <div class="separateLeft">
                             <a href="{{url('event')}}" class="miniBoxForNumber wow fadeInUp">
@@ -107,12 +107,12 @@
                         </div>
                         <div class="separateRight">
                             <h6>Jumlah Event</h6>
-                            <h5>-</h5>
+                            <h5>{{GH::getCountEvent()['jml_event']}}</h5>
                         </div>
                     </div>
                 </div>
                <!-- Jumlah Prestasi -->
-               <div class="col-lg-3 col-md-6">
+               <div class="col-lg-3 col-md-6 col-sm-6">
                     <div class="boxSummary">
                         <div class="separateLeft">
                             <a href="{{url('prestasi-atlet')}}" class="miniBoxForNumber wow fadeInUp">
@@ -121,12 +121,12 @@
                         </div>
                         <div class="separateRight">
                             <h6>Prestasi</h6>
-                            <h5>-</h5>
+                            <h5>{{GH::getCountPrestasi()['jml_prestasi']}}</h5>
                         </div>
                     </div>
                 </div>
                 <!-- Rekor -->
-                <div class="col-lg-3 col-md-6">
+                <div class="col-lg-3 col-md-6 col-sm-6">
                     <div class="boxSummary">
                         <div class="separateLeft">
                             <a href="url('rekor')" class="miniBoxForNumber wow fadeInUp">
@@ -135,7 +135,7 @@
                         </div>
                         <div class="separateRight">
                             <h6> Rekor</h6>
-                            <h5>-</h5>
+                            <h5>{{GH::getCountRekor()['jml_rekor']}}</h5>
                         </div>
                     </div>
                 </div>
@@ -146,11 +146,11 @@
     <section id="maps">
         <div class="container">
             <div class="row">
-                <h2 class="titleSection">Sebaran Atlet</h2>
+                <h2 class="titleSection" style="padding-top: 50px;">Sebaran Atlet</h2>
             </div>
             <div class="row">
                 <div class="col-md-12">
-
+                    <div id="gmap" style="width:100%;height:400px;"></div>
                 </div>
             </div>
         </div> 

@@ -34,6 +34,7 @@
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
      <!-- jQuery -->
     <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+
 </head>
 <body>
     <!-- Navigation -->
@@ -75,7 +76,7 @@
                 <h2 class="titleSection">Prestasi Terbaru</h2>
             </div>
             <div class="row">
-                @for($i = 0; $i <= 3; $i ++)
+                @foreach(GH::getPrestasiTerbaru(8)['prestasi_terbaru'] as $val)
                 <div class="col-lg-3 col-md-6 col-sm-6">
                     <div class="cardAtlet">
                         <div class="photoAtlet">
@@ -86,47 +87,22 @@
                                 else
                                     $className = "stretchHeight"; 
                             @endphp 
-                            <img src="{{asset('public/upload/fotoAtlet/atletSilat.jpg')}}" class="{{$className}}">
+                            <img src="{{asset('public/upload/fotoAtlet/'.$val->nama_foto)}}" class="{{$className}}" title="Foto Atlet {{$val->nama_atlet}}">
                         </div>
                         <div class="keteranganAtlet">
-                            <h5>Taufik Hidayat</h5>
-                            <h6>Bulutangkis</h6>
+                            <h5>{{$val->nama_atlet}}</h5>
+                            <h6>{{$val->nama_cabor}}</h6>
                         </div>
                         <div class="keteranganHidden">
                             <div>
-                                <p>Juara 1 POMNAS</p>
-                                <h5>Taufik Hidayat</h5>
-                                <h6>Bulutangkis</h6>
+                                <p>{{$val->nama_prestasi}} <br>{{$val->nama_cabor}} <br>{{$val->ket_np}} <br>{{$val->nama_event}}</p>
+                                <h5>{{$val->nama_atlet}}</h5>
+                                <h6>{{$val->nama_cabor}}</h6>
                             </div>
                         </div>
                     </div>
                 </div>  
-                <div class="col-lg-3 col-md-6 col-sm-6">
-                    <div class="cardAtlet">
-                        <div class="photoAtlet">
-                             @php
-                                list($width, $height) = getimagesize(url('public/upload/fotoAtlet/evanDimas.jpg'));
-                                if($width < $height)
-                                   $className = "stretchWidth"; 
-                                else
-                                    $className = "stretchHeight"; 
-                            @endphp 
-                            <img src="{{asset('public/upload/fotoAtlet/evanDimas.jpg')}}" class="{{$className}}">
-                        </div>
-                        <div class="keteranganAtlet">
-                            <h5>Taufik Hidayat</h5>
-                            <h6>Bulutangkis</h6>
-                        </div>
-                        <div class="keteranganHidden">
-                            <div>
-                                <p>Juara 1 POMNAS</p>
-                                <h5>Taufik Hidayat</h5>
-                                <h6>Bulutangkis</h6>
-                            </div>
-                        </div>
-                    </div>
-                </div> 
-                @endfor 
+                @endforeach 
             </div>
         </div>
     </section>
@@ -190,6 +166,58 @@
     <script>
       new WOW().init();
     </script>
-
+    <!-- JS MAP-->
+    <script src="https://maps.google.com/maps/api/js?sensor=false&libraries=geometry&v=3.22&key=YOUR_API_KEY">
+    </script>
+    <script src="https://maplacejs.com/dist/maplace.min.js"></script>
+    <script type="text/javascript">
+    $(function() {
+        new Maplace({
+            locations: [
+        {
+            lat: 52.1,
+            lon: 11.3,
+            title: 'Title A2',
+            html: [
+                '<h3>Content A2</h3>',
+                '<p>Lorem Ipsum..</p>'
+            ].join(''),
+            zoom: 8
+        },
+        {
+            lat: 51.2,
+            lon: 22.2,
+            title: 'Title B2',
+            html: [
+                '<h3>Content B2</h3>',
+                '<p>Lorem Ipsum..</p>'
+            ].join(''),
+            zoom: 8
+        },
+        {
+            lat: 49.4,
+            lon: 35.9,
+            title: 'Title C2',
+            html: [
+                '<h3>Content C2</h3>',
+                '<p>Lorem Ipsum..</p>'
+            ].join(''),
+            zoom: 4
+        },
+        {
+            lat: 47.8,
+            lon: 15.6,
+            title: 'Title D2',
+            html: [
+                '<h3>Content D2</h3>',
+                '<p>Lorem Ipsum..</p>'
+            ].join(''),
+            zoom: 6
+        }
+    ],
+            controls_on_map: false
+        }).Load();
+    });
+</script>
 </body>
 </html>

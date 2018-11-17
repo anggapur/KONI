@@ -11,7 +11,7 @@
                 </div>         
                 <div class="col-xl-4 col-lg-6 col-md-6 col-sm-12">
                   <h1 class="descRight">
-                    <strong>Persentase Atlet</strong> <br>Berdasarkan <br>Jenis Kelamin
+                    <strong>Persentase Raihan Medali Atlet</strong> <br>Berdasarkan <br>Event
                   </h1>
                 </div>       
             </div>

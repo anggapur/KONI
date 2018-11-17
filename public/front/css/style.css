@@ -135,7 +135,7 @@ h2.titleSection {
     font-style: italic;
 }
 section#maps {
-    height: 400px;
+    min-height: 400px;
 }
 .cardAtlet:hover {
     cursor: pointer;
@@ -377,6 +377,17 @@ div#example_wrapper {
 }
 section.chartSection {
     background: #eee;
+}
+.boxSummary h5, .boxSummary h6 {
+    margin-top: 0px;
+    font-size: 16px;
+}
+
+.boxSummary h5 {
+    font-size: 18px;
+}
+section#summary {
+    background: #fff;
 }
 /*Responsive*/
 @media only screen and (max-width: 768px)

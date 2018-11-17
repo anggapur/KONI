@@ -11,7 +11,7 @@
                 </div>         
                 <div class="col-xl-4 col-lg-6 col-md-6 col-sm-12">
                   <h1 class="descRight">
-                    <strong>Persentase Atlet</strong> <br>Berdasarkan <br>Jenis Kelamin
+                    <strong>Persentase Prestasi Atlet</strong> <br>Berdasarkan <br>Jenis Kelamin
                   </h1>
                 </div>       
             </div>
@@ -23,7 +23,7 @@
             <div class="row justify-content-lg-center">   
                 <div class="col-xl-4 col-lg-6 col-md-6 col-sm-12">
                   <h1 class="descLeft">
-                    <strong>Persentase Atlet</strong> <br>Berdasarkan <br>Jenis Kelamin dan Umur
+                    <strong>Tingkat Prestasi Atlet</strong> <br>Berdasarkan <br> Cabang Olahraga
                   </h1>
                 </div>
                           
