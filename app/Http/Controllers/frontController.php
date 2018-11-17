@@ -4,6 +4,10 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+use Yajra\Datatables\Datatables;
+
+use App\Master_Atlet;
+
 class frontController extends Controller
 {
     //
@@ -42,5 +46,8 @@ class frontController extends Controller
     public function dataGrafik()
     {
     	return view('front.grafik');
+    }
+    public function dataAtlet(){          
+      return Datatables::of(Master_Atlet::query())->make(true);  
     }
 }

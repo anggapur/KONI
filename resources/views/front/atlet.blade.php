@@ -32,6 +32,20 @@
                 </div>  
             </div>
             <div class="row">
+                <div class="col-md-12">
+                    <div class="tableWrapper">
+                        <table class="table" id="table-atlet">
+                            <thead>
+                                <tr>
+                                    <th>Nama Atlet</th>
+                                    <th>ID Cabor</th>
+                                </tr>
+                            </thead>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
               <div class="col-md-12">
                 <div class="tableWrapper">
                   <table id="example" class="ui celled table" style="width:100%">
@@ -578,6 +592,22 @@
       }
 
     </script>
+
+    <script type="text/javascript">
+    $(function() {
+        var oTable = $('#table-atlet').DataTable({
+            processing: true,
+            serverSide: true,
+            ajax: {
+                url: '{{ url("data-atlet") }}'
+            },
+            columns: [
+            {data: 'nama_atlet', name: 'nama_atlet'},
+            {data: 'cabor_id', name: 'cabor_id'},            
+        ],
+        });
+    });
+</script>
 
 
 @endsection

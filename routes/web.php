@@ -26,6 +26,8 @@ Route::get('cabor','frontController@cabor');
 Route::get('cabor','frontController@cabor');
 Route::get('rekor','frontController@rekor');
 
+Route::get('data-atlet','frontController@dataAtlet');
+
 Auth::routes();
 
 Route::group(['middleware' => 'auth'],function(){

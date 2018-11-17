@@ -35,6 +35,9 @@
      <!-- jQuery -->
     <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 
+    <link rel="stylesheet" type="text/css" href="{{asset('public/css/datatables.bootstrap.css')}}">
+    <script type="text/javascript" src="{{asset('public/js/jquery.dataTables.min.js')}}"></script>
+
 </head>
 <body>
     <!-- Navigation -->
