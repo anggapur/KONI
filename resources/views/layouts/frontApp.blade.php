@@ -19,13 +19,19 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
     <!-- Style.css -->
     <link rel="stylesheet" type="text/css" href="{{asset('public/front/css/style.css')}}">
+    <!-- WOW -->
+    <link rel="stylesheet" type="text/css" href="{{asset('public/front/css/animate.css')}}">
     <!-- FonT Awesome -->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
     <!-- FOnt -->
     <link href="https://fonts.googleapis.com/css?family=Roboto:400,900,900i" rel="stylesheet">
-
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+    <!-- Datatables -->
+    <!-- <link href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css" rel="stylesheet"> -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.3.1/semantic.min.css" rel="stylesheet">
+    <link href="https://cdn.datatables.net/1.10.19/css/dataTables.semanticui.min.css" rel="stylesheet">
+    <!-- Google chart -->
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-
      <!-- jQuery -->
     <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 </head>
@@ -33,7 +39,7 @@
     <!-- Navigation -->
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="container">
-            <a class="navbar-brand" href="#">KONI BADUNG</a>
+            <a class="navbar-brand" href="{{url('')}}">KONI BADUNG</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -70,7 +76,7 @@
             </div>
             <div class="row">
                 @for($i = 0; $i <= 3; $i ++)
-                <div class="col-lg-3 col-md-6">
+                <div class="col-lg-3 col-md-6 col-sm-6">
                     <div class="cardAtlet">
                         <div class="photoAtlet">
                              @php
@@ -95,7 +101,7 @@
                         </div>
                     </div>
                 </div>  
-                <div class="col-lg-3 col-md-6">
+                <div class="col-lg-3 col-md-6 col-sm-6">
                     <div class="cardAtlet">
                         <div class="photoAtlet">
                              @php
@@ -132,12 +138,14 @@
                     <h1>KONI <br><b>BADUNG</b></h1>
                 </div>
                 <div class="col-md-4">
-                    <h4>Page</h4>
+                    <h4>Halaman</h4>
                     <ul id="listPage">
                         <li><a href="">Beranda</a></li>
                         <li><a href="">Atlet</a></li>
-                        <li><a href="">Wasit</a></li>
+                        <li><a href="">Prestasi Atlet</a></li>
                         <li><a href="">Pelatih</a></li>
+                        <li><a href="">Wasit</a></li>
+                        <li><a href="">Event</a></li>
                     </ul>
                 </div>
                 <div class="col-md-4">
@@ -168,6 +176,20 @@
     <!-- Bootstrap -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+
+    <!-- Datatable -->
+    <!-- <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+    <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js"></script> -->
+    <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.19/js/dataTables.semanticui.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.3.1/semantic.min.js"></script>
+
+    <!-- WOW -->
+    <script type="text/javascript" src="{{asset('public/front/js/wow.min.js')}}"></script>
+    <script>
+      new WOW().init();
+    </script>
 
 </body>
 </html>

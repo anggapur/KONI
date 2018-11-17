@@ -8,13 +8,13 @@ use App\Kontingen;
 
 class GlobalHelper{
 	public static function getCountData(){
-		$data = [];
+		// $data = [];
 		$data['jml_atlet'] = Master_Atlet::select('id_atlet')->count();
 		$data['jml_wasit'] = Wasit::select('id_wasit')->count();
-		$data['jml_manager'] = Kontingen::select('id_kontingen')->where('id_jabatan','1')->count();
-		$data['jml_pelatih'] = Kontingen::select('id_kontingen')->where('id_jabatan','2')->count();
-		$data['jml_teknisi'] = Kontingen::select('id_kontingen')->where('id_jabatan','3')->count();
-		$data['jml_official'] = Kontingen::select('id_kontingen')->where('id_jabatan','4')->count();
+		$data['jml_manager'] = Kontingen::where('jabatan_id','1')->count();
+		$data['jml_pelatih'] = Kontingen::where('jabatan_id','2')->count();
+		$data['jml_teknisi'] = Kontingen::where('jabatan_id','3')->count();
+		$data['jml_official'] = Kontingen::where('jabatan_id','4')->count();
 		return $data;
 	}
 

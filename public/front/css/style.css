@@ -1,7 +1,7 @@
 html,body {
     height: 100%;
     background: #eeeeee;
-    font-family: 'Roboto', sans-serif;
+    font-family: 'Open Sans', sans-serif;
 }
 
 .boxSummary {
@@ -35,6 +35,7 @@ html,body {
 .boxSummary {
     position: relative;
     margin-bottom: 50px;
+    min-height: 102px !important;
 }
 
 .separateLeft {
@@ -128,7 +129,7 @@ img.stretchWidth {
 }
 h2.titleSection {
     font-weight: 900;
-    margin-bottom: 45px;
+    margin-bottom: 45px !important;
     text-align: center;
     width:100%;
     font-style: italic;
@@ -317,4 +318,82 @@ img.sliderImages {
 }
 .firstNone{
     display: none;
+}
+h1.dataGrafikTitle {
+    /*font-family: 'Roboto' !important;*/
+    font-weight: 600;
+    font-style: italic;
+    text-align: center;
+}
+h1.descRight {
+    font-size: 32px;
+    line-height: 40px;
+    font-weight: 400;
+    letter-spacing: 0;
+}
+
+h1.descRight strong {
+    color: #4285f4;
+    font-weight: inherit;
+}
+h1.descRight {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-80%);
+}
+h1.descLeft {
+    font-size: 32px;
+    line-height: 40px;
+    font-weight: 400;
+    letter-spacing: 0;
+    text-align: right;
+}
+
+h1.descLeft strong {
+    color: #4285f4;
+    font-weight: inherit;
+}
+h1.descLeft {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-80%);
+}
+.tableWrapper {
+    padding: 20px;
+    padding-left: 35px;
+    box-shadow: 0 0px 10px 0 rgba(0, 0, 0, 0.14);
+    border-radius: 10px;
+    margin-top: 60px;
+}
+/*table*/
+div#example_wrapper {
+    position: relative;
+}
+
+.ui.stackable.grid {
+    position: relative;
+    left: 0px;
+    margin-left: 0px !important;
+}
+section.chartSection {
+    background: #eee;
+}
+/*Responsive*/
+@media only screen and (max-width: 768px)
+{
+    h1.descRight , h1.descLeft{
+        
+        position: relative;
+         top: 0;
+        transform: translateY(0%);
+        text-align: center;
+    }
+
+    h1.descRight {
+        padding-top: 50px;
+    }
+
+    h1.descLeft {
+        padding-bottom: 50px;
+    }
 }
