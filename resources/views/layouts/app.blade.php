@@ -9,7 +9,7 @@
   <!-- Bootstrap 3.3.7 -->
   <link rel="stylesheet" href="{{asset('public/adminLTE/bower_components/bootstrap/dist/css/bootstrap.min.css')}}">
   <!-- Font Awesome -->
-  <link rel="stylesheet" href="{{asset('public/adminLTE/bower_components/font-awesome/css/font-awesome.min.css')}}">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
   <!-- Ionicons -->
   <link rel="stylesheet" href="{{asset('public/adminLTE/bower_components/Ionicons/css/ionicons.min.css')}}">
   <!-- Theme style -->
@@ -337,49 +337,49 @@
 
         <li class="treeview">
           <a href="#">
-            <i class="fa fa-users"></i> <span>Atlet</span>            
+            <i class="fa fa-running"></i> <span>Atlet</span>            
           </a>          
         </li>
 
         <li class="treeview">
           <a href="#">
-            <i class="fa fa-soccer-ball-o"></i> <span>Cabang Olahraga</span>            
+            <i class="fa fa-code-branch"></i> <span>Cabang Olahraga</span>            
           </a>          
         </li>
 
         <li class="treeview">
           <a href="#">
-            <i class="fa fa-"></i> <span>Nomor Pertandingan</span>            
+            <i class="fa fa-cogs"></i> <span>Nomor Pertandingan</span>            
           </a>          
         </li>
 
         <li class="treeview">
           <a href="#">
-            <i class="fa fa-share"></i> <span>Prestasi Atlet</span>
+            <i class="fa fa-trophy"></i> <span>Prestasi Atlet</span>
           </a>          
         </li>
 
         <li class="treeview">
           <a href="#">
-            <i class="fa fa-crown"></i> <span>Rekor Atlet</span>
+            <i class="fa fa-medal"></i> <span>Rekor Atlet</span>
           </a>          
         </li>
 
         <li class="treeview">
           <a href="#">
-            <i class="fa fa-share"></i> <span>Kontingen</span>
+            <i class="fa fa-users"></i> <span>Kontingen</span>
           </a>          
         </li>
 
         <li class="treeview">
           <a href="#">
-            <i class="fa fa-share"></i> <span>Wasit</span>
+            <i class="fa fa-flag-checkered"></i> <span>Wasit</span>
           </a>          
         </li>
 
         <li class="treeview">
           <a href="#">
-            <i class="fa fa-share"></i> <span>Event</span>            
+            <i class="fa fa-calendar-alt"></i> <span>Event</span>            
           </a>          
         </li>
         

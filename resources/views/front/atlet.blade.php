@@ -532,8 +532,8 @@
       function drawChart() {
         var data = google.visualization.arrayToDataTable([
           ['Jenis Kelamin', 'Jumlah'],
-          ['Laki - Laki',    {{GH::getCountGender('atlet')['laki-laki']}}],
-          ['Perempuan',      {{GH::getCountGender('atlet')['perempuan']}}]
+          ['Laki - Laki',    "{{GH::getCountGender('atlet')['laki-laki']}}"],
+          ['Perempuan',      "{{GH::getCountGender('atlet')['perempuan']}}"]
         ]);
 
         var options = {

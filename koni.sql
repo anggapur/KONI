@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 17, 2018 at 11:33 AM
+-- Generation Time: Nov 17, 2018 at 02:42 PM
 -- Server version: 10.1.34-MariaDB
 -- PHP Version: 7.2.8
 
@@ -117,7 +117,7 @@ CREATE TABLE `foto` (
 --
 
 INSERT INTO `foto` (`id_foto`, `nama_foto`, `ukuran_foto`, `tipe_foto`) VALUES
-(1, '1', 1, '1');
+(1, 'atletSilat.jpg', 1, '1');
 
 -- --------------------------------------------------------
 
