@@ -8,7 +8,11 @@ use GH;
 class IsengController extends Controller
 {
     public function index(){
-    	$data = GH::getCountGender('atlet');
-    	return view('welcome',['data' => $data]);
+    	$data = GH::getCountEvent();
+    	$data += GH::getCountPrestasi();
+    	$data += GH::getCountRekor();
+    	$data += GH::getPrestasiTerbaru(8);
+    	dd($data);
+    	return view('home',['data' => $data]);
     }
 }

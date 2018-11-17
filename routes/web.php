@@ -13,7 +13,7 @@
 
 Route::get('angga','contohController@index');
 
-
+//Route::get('alit', 'isengController@index');
 
 
 Route::get('/','frontController@index');
