@@ -47,7 +47,9 @@ class frontController extends Controller
     {
     	return view('front.grafik');
     }
-    public function dataAtlet(){          
-      return Datatables::of(Master_Atlet::query())->make(true);  
+    public function dataAtlet(){    
+        $q = Master_Atlet::leftJoin('cabang_olahraga','cabor_id','=','id_cabor')
+        ->select('nama_atlet','cabang_olahraga.nama_cabor');      
+      return Datatables::of($q)->make(true);  
     }
 }
