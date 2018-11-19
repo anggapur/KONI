@@ -11,6 +11,26 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+Route::get('angga','contohController@index');
+
+// By Angga Purnajiwa
+//Route::get('alit', 'isengController@index');
+Route::get('/','frontController@index');
+Route::get('dataGrafik','frontController@dataGrafik');
+Route::get('atlet','frontController@atlet');
+Route::get('prestasi-atlet','frontController@prestasiAtlet');
+Route::get('pelatih','frontController@pelatih');
+Route::get('wasit','frontController@wasit');
+Route::get('event','frontController@event');
+Route::get('cabor','frontController@cabor');
+Route::get('cabor','frontController@cabor');
+Route::get('rekor','frontController@rekor');
+
+Route::get('data-atlet','frontController@dataAtlet');
+
+Auth::routes();
+
+Route::group(['middleware' => 'auth'],function(){
+	//only admin can acces here
+	Route::get('/home', 'HomeController@index')->name('home');
 });
