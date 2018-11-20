@@ -44,7 +44,7 @@ html,body {
 }
 
 section#summary {
-    padding: 90px 0px 50px 0px;
+    padding: 90px 0px 0px 0px;
 }
 
 .boxSummary h5,.boxSummary h6 {
@@ -180,7 +180,7 @@ ul#location li {
 }
 
 footer {
-    background: #212b5f;
+    background: #b12424;
     color: #fff;
     padding: 40px 0px;
 }
@@ -255,7 +255,7 @@ section.chartSection {
 }
 nav.navbar.navbar-expand-lg.navbar-light.bg-light {
     box-shadow: 0 5px 10px 0 rgba(0, 0, 0, 0.14);
-    background: #212b5f !important;
+    background: #b12424 !important;
     color: #fff !important;
     position: fixed;
     width: 100%;
@@ -286,6 +286,7 @@ ul.navbar-nav {
 #slider{
     background: url('../../upload/slider/sliderBG.jpg');
     background-size: cover;
+    background-position: center center;
 }
 .greetings {
     position: absolute;
@@ -388,6 +389,11 @@ section.chartSection {
 }
 section#summary {
     background: #fff;
+}
+
+section#maps {
+    background: white;
+    padding-bottom: 80px;
 }
 /*Responsive*/
 @media only screen and (max-width: 768px)

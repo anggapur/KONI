@@ -23,7 +23,7 @@
             <div class="row justify-content-lg-center">   
                 <div class="col-xl-4 col-lg-6 col-md-6 col-sm-12">
                   <h1 class="descLeft">
-                    <strong>Persentase Atlet</strong> <br>Berdasarkan <br>Jenis Kelamin dan Umur
+                    <strong>Tingkat Prestasi Atlet</strong> <br>Pada Event Kejuaraan <br>
                   </h1>
                 </div>
                           
@@ -550,23 +550,34 @@
         chart.draw(data, options);
       }
 
+      //caret ke 2
+      var dataAjax;
+      $.ajax({
+        method : 'POST',
+        data : {
+          'name' :'getPrestasiByEvent',
+          '_token' : '{{csrf_token()}}'
+        },
+        url : '{{url("getApiData")}}',
+        success : function(data)
+        { 
+          dataAjax = data;
+          dataAjax.unshift(['Event','Jumlah Prestasi']);
+        }
+
+      })
       google.charts.load('current', {'packages':['bar']});
       google.charts.setOnLoadCallback(drawChart2);
 
       function drawChart2() {
-        var data = google.visualization.arrayToDataTable([
-          ['Jenis Kelamin', 'Anak', 'Remaja', 'Dewasa'],
-          ['Perempuan', 1000, 400, 200],
-          ['Laki-Laki', 1170, 460, 250]
-         
-        ]);
+        var data = google.visualization.arrayToDataTable(dataAjax);
 
-        var options = {
+        var optionss = {
           chart: {
             // title: 'Company Performance',
             // subtitle: 'Sales, Expenses, and Profit: 2014-2017',
                 backgroundColor: 'transparent',
-              title: 'test',
+              title: '',
               is3D: true,
 
           }
@@ -574,7 +585,7 @@
 
         var chart = new google.charts.Bar(document.getElementById('piechart_3d_2'));
 
-        chart.draw(data, google.charts.Bar.convertOptions(options));
+        chart.draw(data, google.charts.Bar.convertOptions(optionss));
       }
 
     </script>

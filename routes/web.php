@@ -13,7 +13,7 @@
 
 Route::get('angga','contohController@index');
 
-// By Angga Purnajiwa
+// Route By Angga Purnajiwa
 //Route::get('alit', 'isengController@index');
 Route::get('/','frontController@index');
 Route::get('dataGrafik','frontController@dataGrafik');
@@ -27,6 +27,8 @@ Route::get('cabor','frontController@cabor');
 Route::get('rekor','frontController@rekor');
 
 Route::get('data-atlet','frontController@dataAtlet');
+
+Route::post('getApiData','frontController@getApiData');
 
 Auth::routes();
 

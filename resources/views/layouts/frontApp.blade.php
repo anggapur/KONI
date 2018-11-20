@@ -172,7 +172,7 @@
     <!-- JS MAP-->
     <script src="https://maps.google.com/maps/api/js?sensor=false&libraries=geometry&v=3.22&key=YOUR_API_KEY">
     </script>
-    <script src="https://maplacejs.com/dist/maplace.min.js"></script>
+    <!-- <script src="https://maplacejs.com/dist/maplace.min.js"></script>
     <script type="text/javascript">
     $(function() {
         new Maplace({
@@ -221,6 +221,6 @@
             controls_on_map: false
         }).Load();
     });
-</script>
+</script> -->
 </body>
 </html>

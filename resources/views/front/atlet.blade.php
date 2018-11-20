@@ -18,6 +18,7 @@
         </div>      
     </section>
 
+
     <section class="chartSection2">
         <div class="container">
             <div class="row justify-content-lg-center">   
@@ -59,8 +60,8 @@
       function drawChart() {
         var data = google.visualization.arrayToDataTable([
           ['Jenis Kelamin', 'Jumlah'],
-          ['Laki - Laki',    "{{GH::getCountGender('atlet')['laki-laki']}}"],
-          ['Perempuan',      "{{GH::getCountGender('atlet')['perempuan']}}"]
+          ['Laki - Laki',{{GH::getCountGender('atlet')['laki-laki']}}],
+          ['Perempuan',{{GH::getCountGender('atlet')['perempuan']}}]
         ]);
 
         var options = {
@@ -77,23 +78,34 @@
         chart.draw(data, options);
       }
 
+      //var dataAjax;
+      $.ajax({
+        method : 'POST',
+        data : {
+          'name' :'getAtletByJenisKelaminAndUmur',
+          '_token' : '{{csrf_token()}}'
+        },
+        url : '{{url("getApiData")}}',
+        success : function(data)
+        { 
+          console.log(data);
+          dataAjax = data;
+          dataAjax.unshift(['Jenis Kelamin', 'Anak', 'Remaja', 'Dewasa']);
+        }
+
+      })
       google.charts.load('current', {'packages':['bar']});
       google.charts.setOnLoadCallback(drawChart2);
 
       function drawChart2() {
-        var data = google.visualization.arrayToDataTable([
-          ['Jenis Kelamin', 'Anak', 'Remaja', 'Dewasa'],
-          ['Perempuan', 1000, 400, 200],
-          ['Laki-Laki', 1170, 460, 250]
-         
-        ]);
+        var data = google.visualization.arrayToDataTable(dataAjax);
 
         var options = {
           chart: {
             // title: 'Company Performance',
             // subtitle: 'Sales, Expenses, and Profit: 2014-2017',
                 backgroundColor: 'transparent',
-              title: 'test',
+              title: '',
               is3D: true,
 
           }
