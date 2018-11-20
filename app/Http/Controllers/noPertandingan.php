@@ -4,8 +4,11 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Nomor_Pertandingan;
-class HomeController extends Controller
+
+class noPertandingan extends Controller
+
 {
+	
     /**
      * Create a new controller instance.
      *
@@ -22,11 +25,11 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        return view('noPertandingan',$data);
     }
     public function simpan(Request $request)
     {
-        $data['id_cabor'] = $request->id_cabor;
+        $data['cabor_id'] = $request->cabor_id;
         $data['ket_np'] = $request->ket_np;
         $query = Nomor_Pertandingan::create($data);
         if($query)
@@ -40,4 +43,7 @@ class HomeController extends Controller
 
     }
 }
+
+
+
 

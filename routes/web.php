@@ -10,7 +10,7 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-
+Route::get('nomorPertandingan','contohController@index');
 Route::get('/', function () {
     return view('welcome');
 });
@@ -19,5 +19,6 @@ Auth::routes();
 
 Route::group(['middleware' => 'auth'],function(){
 	//only admin can acces here
-	Route::get('/home', 'HomeController@index')->name('home');
+	Route::get('/nomorPertandingan', 'noPertandinganController@index')->name('nomorPertandingan');
+	Route::post('saveNomorPertandingan','noPertandinganController@simpan');
 });
