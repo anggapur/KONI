@@ -33,4 +33,16 @@ Auth::routes();
 Route::group(['middleware' => 'auth'],function(){
 	//only admin can acces here
 	Route::get('/home', 'HomeController@index')->name('home');
+
+	//Kontingen
+	Route::get('/kontingen','KontingenController@index')->name('kontingen');
+	Route::get('/tambah-kontingen','KontingenController@tambah');
+	Route::get('/edit-kontingen/{id}','KontingenController@edit')->name('kontingen-edit');
+	Route::get('data-kontingen','KontingenController@dataKontingen');
+	Route::post('/add-kontingen','KontingenController@add');
+	Route::post('/get-data-kontingen','KontingenController@getData');
+	Route::post('/delete-data-kontingen','KontingenController@hapus');
+	Route::post('/update-kontingen','KontingenController@update');
+
+
 });

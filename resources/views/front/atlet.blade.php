@@ -116,11 +116,11 @@
             },
             columns: [
             {data: 'nama_atlet', name: 'nama_atlet'},
-            {data: 'nama_cabor', name: 'cabang_olahraga.nama_cabor'},            
+            {data: 'nama_cabor', name: 'cabang_olahraga.nama_cabor'},
         ],
         });
     });
 </script>
 
 
-@endsection
+@endsection 

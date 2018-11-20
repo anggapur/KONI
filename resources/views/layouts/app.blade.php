@@ -3,7 +3,13 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="csrf-token" content="{{ csrf_token() }}">
   <title>{{ config('app.name', 'Laravel') }}</title>
+  <!-- jQuery 3 -->
+  <script src="{{asset('public/adminLTE/bower_components/jquery/dist/jquery.min.js')}}"></script>
+  <link rel="stylesheet" type="text/css" href="{{asset('public/css/datatables.bootstrap.css')}}">
+  <script type="text/javascript" src="{{asset('public/js/jquery.dataTables.min.js')}}"></script>
+
   <!-- Tell the browser to be responsive to screen width -->
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
   <!-- Bootstrap 3.3.7 -->
@@ -36,7 +42,7 @@
   <![endif]-->
 
   <!-- Google Font -->
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">  
 </head>
 <body class="hold-transition skin-blue sidebar-mini">
 <div class="wrapper">
@@ -329,61 +335,65 @@
       <ul class="sidebar-menu" data-widget="tree">
         <li class="header">MAIN NAVIGATION</li>
 
-        <li class="treeview">
+        <li>
           <a href="#">
             <i class="fa fa-user"></i> <span>User</span>
           </a>          
         </li>
 
-        <li class="treeview">
+        <li>
           <a href="#">
             <i class="fa fa-running"></i> <span>Atlet</span>            
           </a>          
         </li>
 
-        <li class="treeview">
+        <li>
           <a href="#">
             <i class="fa fa-code-branch"></i> <span>Cabang Olahraga</span>            
           </a>          
         </li>
 
-        <li class="treeview">
+        <li>
           <a href="#">
             <i class="fa fa-cogs"></i> <span>Nomor Pertandingan</span>            
           </a>          
         </li>
 
-        <li class="treeview">
+        <li>
           <a href="#">
             <i class="fa fa-trophy"></i> <span>Prestasi Atlet</span>
           </a>          
         </li>
 
-        <li class="treeview">
+        <li>
           <a href="#">
             <i class="fa fa-medal"></i> <span>Rekor Atlet</span>
           </a>          
         </li>
 
-        <li class="treeview">
-          <a href="#">
+        <li class="@if(isset($data['active']))
+        {
+          @if($data['active'] == 'Kontingen') {{ 'active' }} @endif
+        }
+        @endif">
+          <a href="{{ URL('/kontingen') }}">
             <i class="fa fa-users"></i> <span>Kontingen</span>
           </a>          
         </li>
 
-        <li class="treeview">
+        <li>
           <a href="#">
             <i class="fa fa-flag-checkered"></i> <span>Wasit</span>
           </a>          
         </li>
 
-        <li class="treeview">
+        <li>
           <a href="#">
             <i class="fa fa-calendar-alt"></i> <span>Event</span>            
           </a>          
         </li>
         
-        <li class="treeview">
+        <li>
           <a href="#">
             <i class="fa fa-share"></i> <span>Multilevel</span>
             <span class="pull-right-container">
@@ -428,12 +438,11 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
-        Dashboard
-        <small>Control panel</small>
+        {{ $data['page'] }}        
       </h1>
       <ol class="breadcrumb">
-        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-        <li class="active">Dashboard</li>
+        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>        
+        <li class="active">{{ $data['page'] }}</li>
       </ol>
     </section>
 
@@ -644,8 +653,6 @@
 </div>
 <!-- ./wrapper -->
 
-<!-- jQuery 3 -->
-<script src="{{asset('public/adminLTE/bower_components/jquery/dist/jquery.min.js')}}"></script>
 <!-- jQuery UI 1.11.4 -->
 <script src="{{asset('public/adminLTE/bower_components/jquery-ui/jquery-ui.min.js')}}"></script>
 <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
