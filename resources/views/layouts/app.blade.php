@@ -9,13 +9,14 @@
   <script src="{{asset('public/adminLTE/bower_components/jquery/dist/jquery.min.js')}}"></script>
   <link rel="stylesheet" type="text/css" href="{{asset('public/css/datatables.bootstrap.css')}}">
   <script type="text/javascript" src="{{asset('public/js/jquery.dataTables.min.js')}}"></script>
-
   <!-- Tell the browser to be responsive to screen width -->
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
   <!-- Bootstrap 3.3.7 -->
   <link rel="stylesheet" href="{{asset('public/adminLTE/bower_components/bootstrap/dist/css/bootstrap.min.css')}}">
   <!-- Font Awesome -->
+
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+
   <!-- Ionicons -->
   <link rel="stylesheet" href="{{asset('public/adminLTE/bower_components/Ionicons/css/ionicons.min.css')}}">
   <!-- Theme style -->
@@ -34,6 +35,8 @@
   <!-- bootstrap wysihtml5 - text editor -->
   <link rel="stylesheet" href="{{asset('public/adminLTE/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css')}}">
 
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
   <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
   <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
   <!--[if lt IE 9]>
@@ -42,14 +45,16 @@
   <![endif]-->
 
   <!-- Google Font -->
+
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">  
 </head>
 <body class="hold-transition skin-blue sidebar-mini">
 <div class="wrapper">
 
   <header class="main-header">
-    <!-- Logo -->
+ 
     <a href="{{ URL('/home') }}" class="logo">
+
       <!-- mini logo for sidebar mini 50x50 pixels -->
       <span class="logo-mini"><b>A</b>LT</span>
       <!-- logo for regular state and mobile devices -->
@@ -335,6 +340,7 @@
       <ul class="sidebar-menu" data-widget="tree">
         <li class="header">MAIN NAVIGATION</li>
 
+
         <li>
           <a href="#">
             <i class="fa fa-user"></i> <span>User</span>
@@ -438,11 +444,13 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
+
         {{ $data['page'] }}        
       </h1>
       <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>        
         <li class="active">{{ $data['page'] }}</li>
+
       </ol>
     </section>
 
@@ -652,6 +660,7 @@
   <div class="control-sidebar-bg"></div>
 </div>
 <!-- ./wrapper -->
+
 
 <!-- jQuery UI 1.11.4 -->
 <script src="{{asset('public/adminLTE/bower_components/jquery-ui/jquery-ui.min.js')}}"></script>

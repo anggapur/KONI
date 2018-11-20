@@ -13,6 +13,7 @@
 
 Route::get('angga','contohController@index');
 
+
 // Route By Angga Purnajiwa
 //Route::get('alit', 'isengController@index');
 Route::get('/','frontController@index');
@@ -30,11 +31,15 @@ Route::get('data-atlet','frontController@dataAtlet');
 
 Route::post('getApiData','frontController@getApiData');
 
+
+
+
 Auth::routes();
 
 Route::group(['middleware' => 'auth'],function(){
 	//only admin can acces here
 	Route::get('/home', 'HomeController@index')->name('home');
+
 
 	//Kontingen
 	Route::get('/kontingen','KontingenController@index')->name('kontingen');
@@ -46,5 +51,11 @@ Route::group(['middleware' => 'auth'],function(){
 	Route::post('/delete-data-kontingen','KontingenController@hapus');
 	Route::post('/update-kontingen','KontingenController@update');
 
-
+	Route::get('/admin','adminController@index')->name('admin');
+	//yg dikiri link
+	Route::post('/insert','adminController@admin');
+	Route::get('/admin/view','adminController@tampil')->name('view');
+	Route::get('/admin/{id_user}','adminController@edit');
+	Route::post('/admin/update/{id_user}','adminController@update');
+	Route::get('/admin/hapus/{id_user}','adminController@hapus');
 });

@@ -14,4 +14,5 @@ class Cabang_Olahraga extends Model
 	{
 		return $this->hasMany('App\Master_Atlet','cabor_id','id_cabor');
 	}
+
 }

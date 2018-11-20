@@ -3,7 +3,11 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
+<<<<<<< HEAD
 -- Generation Time: Nov 17, 2018 at 02:42 PM
+=======
+-- Generation Time: Nov 12, 2018 at 02:06 PM
+>>>>>>> 41ef5a1c08f83eaee56f68c1ff49dca8d84b8980
 -- Server version: 10.1.34-MariaDB
 -- PHP Version: 7.2.8
 
@@ -25,6 +29,7 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
+<<<<<<< HEAD
 -- Table structure for table `cabang_olahraga`
 --
 
@@ -43,6 +48,28 @@ INSERT INTO `cabang_olahraga` (`id_cabor`, `nama_cabor`) VALUES
 (3, 'RENANG'),
 (4, 'LARI'),
 (5, 'ANGKAT BEBAN');
+=======
+-- Table structure for table `admin`
+--
+
+CREATE TABLE `admin` (
+  `id_admin` int(11) NOT NULL,
+  `username` varchar(20) NOT NULL,
+  `password` varchar(255) NOT NULL,
+  `level` tinyint(1) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `cabang_olahraga`
+--
+
+CREATE TABLE `cabang_olahraga` (
+  `id_cabor` int(11) NOT NULL,
+  `nama_cabor` varchar(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+>>>>>>> 41ef5a1c08f83eaee56f68c1ff49dca8d84b8980
 
 -- --------------------------------------------------------
 
@@ -52,6 +79,7 @@ INSERT INTO `cabang_olahraga` (`id_cabor`, `nama_cabor`) VALUES
 
 CREATE TABLE `detail_atlet` (
   `id_detail` int(11) NOT NULL,
+<<<<<<< HEAD
   `atlet_id` int(11) DEFAULT NULL,
   `np_id` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -74,6 +102,12 @@ INSERT INTO `detail_atlet` (`id_detail`, `atlet_id`, `np_id`) VALUES
 (11, 6, 11),
 (12, 6, 12);
 
+=======
+  `id_atlet` int(11) DEFAULT NULL,
+  `id_np` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+>>>>>>> 41ef5a1c08f83eaee56f68c1ff49dca8d84b8980
 -- --------------------------------------------------------
 
 --
@@ -88,6 +122,7 @@ CREATE TABLE `event` (
   `tgl_selesai` date DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+<<<<<<< HEAD
 --
 -- Dumping data for table `event`
 --
@@ -99,6 +134,8 @@ INSERT INTO `event` (`id_event`, `nama_event`, `lokasi`, `tgl_mulai`, `tgl_seles
 (4, 'PON 2018', 'TABANAN', '2018-08-08', '2015-10-10'),
 (5, 'PON 2019', 'DENPASAR', '2019-08-08', '2015-10-10');
 
+=======
+>>>>>>> 41ef5a1c08f83eaee56f68c1ff49dca8d84b8980
 -- --------------------------------------------------------
 
 --
@@ -112,6 +149,7 @@ CREATE TABLE `foto` (
   `tipe_foto` varchar(20) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+<<<<<<< HEAD
 --
 -- Dumping data for table `foto`
 --
@@ -119,6 +157,8 @@ CREATE TABLE `foto` (
 INSERT INTO `foto` (`id_foto`, `nama_foto`, `ukuran_foto`, `tipe_foto`) VALUES
 (1, 'atletSilat.jpg', 1, '1');
 
+=======
+>>>>>>> 41ef5a1c08f83eaee56f68c1ff49dca8d84b8980
 -- --------------------------------------------------------
 
 --
@@ -130,6 +170,7 @@ CREATE TABLE `jabatan` (
   `nama_jabatan` varchar(20) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+<<<<<<< HEAD
 --
 -- Dumping data for table `jabatan`
 --
@@ -141,6 +182,8 @@ INSERT INTO `jabatan` (`id_jabatan`, `nama_jabatan`) VALUES
 (4, 'OFFICIAL'),
 (5, 'MEDIS');
 
+=======
+>>>>>>> 41ef5a1c08f83eaee56f68c1ff49dca8d84b8980
 -- --------------------------------------------------------
 
 --
@@ -152,6 +195,7 @@ CREATE TABLE `kabupaten` (
   `nama_kabupaten` varchar(20) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+<<<<<<< HEAD
 --
 -- Dumping data for table `kabupaten`
 --
@@ -161,6 +205,8 @@ INSERT INTO `kabupaten` (`id_kabupaten`, `nama_kabupaten`) VALUES
 (2, 'DENPASAR'),
 (3, 'GIANYAR');
 
+=======
+>>>>>>> 41ef5a1c08f83eaee56f68c1ff49dca8d84b8980
 -- --------------------------------------------------------
 
 --
@@ -175,6 +221,7 @@ CREATE TABLE `kontingen` (
   `tempat_lahir` varchar(50) DEFAULT NULL,
   `tgl_lahir` date DEFAULT NULL,
   `alamat` varchar(100) DEFAULT NULL,
+<<<<<<< HEAD
   `jabatan_id` int(11) DEFAULT NULL,
   `kabupaten_id` int(11) DEFAULT NULL,
   `foto_id` int(11) DEFAULT NULL
@@ -194,6 +241,13 @@ INSERT INTO `kontingen` (`id_kontingen`, `nama_kontingen`, `no_kartu_tanda_anggo
 (7, 'Gyarados', '1608561007', 'L', 'DENPASAR', '1998-01-01', 'Jln. di Denpasar', 1, 1, 1),
 (8, 'Huntail', '1608561008', 'L', 'DENPASAR', '1998-01-01', 'Jln. di Denpasar', 1, 1, 1);
 
+=======
+  `id_jabatan` int(11) DEFAULT NULL,
+  `id_kabupaten` int(11) DEFAULT NULL,
+  `id_foto` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+>>>>>>> 41ef5a1c08f83eaee56f68c1ff49dca8d84b8980
 -- --------------------------------------------------------
 
 --
@@ -203,7 +257,11 @@ INSERT INTO `kontingen` (`id_kontingen`, `nama_kontingen`, `no_kartu_tanda_anggo
 CREATE TABLE `master_atlet` (
   `id_atlet` int(11) NOT NULL,
   `nama_atlet` varchar(100) NOT NULL,
+<<<<<<< HEAD
   `cabor_id` int(11) NOT NULL,
+=======
+  `id_cabor` int(11) NOT NULL,
+>>>>>>> 41ef5a1c08f83eaee56f68c1ff49dca8d84b8980
   `no_kartu_tanda_anggota` char(10) NOT NULL,
   `jenis_kelamin` varchar(1) NOT NULL,
   `tempat_lahir` varchar(50) NOT NULL,
@@ -211,6 +269,7 @@ CREATE TABLE `master_atlet` (
   `alamat` varchar(50) NOT NULL,
   `tinggi` int(11) NOT NULL,
   `berat` int(11) NOT NULL,
+<<<<<<< HEAD
   `kabupaten_id` int(11) DEFAULT NULL,
   `foto_id` int(11) DEFAULT NULL,
   `tgl_jadi_atlet` date NOT NULL,
@@ -230,6 +289,12 @@ INSERT INTO `master_atlet` (`id_atlet`, `nama_atlet`, `cabor_id`, `no_kartu_tand
 (5, 'Afif Ngehek', 4, '1808561005', 'L', 'Rumah Sakit', '1998-05-11', 'Badung', 165, 60, 1, 1, '0000-00-00', NULL, 0),
 (6, 'Deri Korlap', 5, '1808561006', 'L', 'Rumah Sakit', '1997-04-18', 'Bangli', 169, 80, 1, 1, '0000-00-00', NULL, 0);
 
+=======
+  `id_kabupaten` int(11) DEFAULT NULL,
+  `id_foto` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+>>>>>>> 41ef5a1c08f83eaee56f68c1ff49dca8d84b8980
 -- --------------------------------------------------------
 
 --
@@ -245,6 +310,7 @@ CREATE TABLE `migrations` (
 -- --------------------------------------------------------
 
 --
+<<<<<<< HEAD
 -- Table structure for table `nomor_pertandingan`
 --
 
@@ -272,6 +338,17 @@ INSERT INTO `nomor_pertandingan` (`id_np`, `cabor_id`, `ket_np`) VALUES
 (11, 5, '200KG'),
 (12, 5, '250KG');
 
+=======
+-- Table structure for table `nomor_pertadingan`
+--
+
+CREATE TABLE `nomor_pertadingan` (
+  `id_np` int(11) NOT NULL,
+  `id_cabor` int(11) NOT NULL,
+  `ket_np` varchar(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+>>>>>>> 41ef5a1c08f83eaee56f68c1ff49dca8d84b8980
 -- --------------------------------------------------------
 
 --
@@ -280,15 +357,24 @@ INSERT INTO `nomor_pertandingan` (`id_np`, `cabor_id`, `ket_np`) VALUES
 
 CREATE TABLE `prestasi` (
   `id_prestasi` int(11) NOT NULL,
+<<<<<<< HEAD
   `atlet_id` int(11) NOT NULL,
   `nama_prestasi` varchar(50) NOT NULL,
   `cabor_id` int(11) NOT NULL,
   `np_Id` int(11) NOT NULL,
   `event_id` int(11) NOT NULL,
+=======
+  `id_atlet` int(11) NOT NULL,
+  `nama_prestasi` varchar(50) NOT NULL,
+  `id_cabor` int(11) NOT NULL,
+  `id_np` int(11) NOT NULL,
+  `id_event` int(11) NOT NULL,
+>>>>>>> 41ef5a1c08f83eaee56f68c1ff49dca8d84b8980
   `waktu` date NOT NULL,
   `create_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+<<<<<<< HEAD
 --
 -- Dumping data for table `prestasi`
 --
@@ -305,6 +391,8 @@ INSERT INTO `prestasi` (`id_prestasi`, `atlet_id`, `nama_prestasi`, `cabor_id`, 
 (11, 6, 'MEDALI PERUNGGU', 5, 12, 3, '2018-12-24', '0000-00-00 00:00:00'),
 (12, 1, 'JUARA 1', 1, 1, 1, '2018-12-12', '0000-00-00 00:00:00');
 
+=======
+>>>>>>> 41ef5a1c08f83eaee56f68c1ff49dca8d84b8980
 -- --------------------------------------------------------
 
 --
@@ -313,15 +401,24 @@ INSERT INTO `prestasi` (`id_prestasi`, `atlet_id`, `nama_prestasi`, `cabor_id`, 
 
 CREATE TABLE `rekor_atlet` (
   `id_rekor` int(11) NOT NULL,
+<<<<<<< HEAD
   `atlet_id` int(11) DEFAULT NULL,
   `keterangan_rekor` varchar(50) DEFAULT NULL,
   `cabor_id` int(11) DEFAULT NULL,
   `np_Id` int(11) DEFAULT NULL,
   `event_id` int(11) DEFAULT NULL,
+=======
+  `id_atlet` int(11) DEFAULT NULL,
+  `keterangan_rekor` varchar(50) DEFAULT NULL,
+  `id_cabor` int(11) DEFAULT NULL,
+  `id_np` int(11) DEFAULT NULL,
+  `id_event` int(11) DEFAULT NULL,
+>>>>>>> 41ef5a1c08f83eaee56f68c1ff49dca8d84b8980
   `waktu` date DEFAULT NULL,
   `create_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+<<<<<<< HEAD
 --
 -- Dumping data for table `rekor_atlet`
 --
@@ -336,6 +433,8 @@ INSERT INTO `rekor_atlet` (`id_rekor`, `atlet_id`, `keterangan_rekor`, `cabor_id
 (7, 5, '24 detik', 4, 7, 2, '2018-12-12', '0000-00-00 00:00:00'),
 (8, 6, '280.56 KG', 5, 12, 3, '2018-12-12', '0000-00-00 00:00:00');
 
+=======
+>>>>>>> 41ef5a1c08f83eaee56f68c1ff49dca8d84b8980
 -- --------------------------------------------------------
 
 --
@@ -353,6 +452,7 @@ CREATE TABLE `users` (
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+<<<<<<< HEAD
 --
 -- Dumping data for table `users`
 --
@@ -362,6 +462,8 @@ INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `password`, `re
 (2, 'alit', 'alitindrawan71@gmail.com', NULL, '$2y$10$iLXGMx6UmYa1W1ZXRhXpjuA1gSAE.zmHJKTbqhfK8m.1JBxtErCsW', NULL, '2018-11-13 02:36:54', '2018-11-13 02:36:54'),
 (3, 'alit', 'alitindrawan71@gmail.com', NULL, '$2y$10$S.DZ3g1nclMII/lWKWa/SOnZhnref88O8zv1qkMuragQ4.oidkZIa', NULL, '2018-11-13 02:36:54', '2018-11-13 02:36:54');
 
+=======
+>>>>>>> 41ef5a1c08f83eaee56f68c1ff49dca8d84b8980
 -- --------------------------------------------------------
 
 --
@@ -376,6 +478,7 @@ CREATE TABLE `wasit` (
   `tempat_lahir` varchar(50) DEFAULT NULL,
   `tgl_lahir` date DEFAULT NULL,
   `alamat` varchar(50) DEFAULT NULL,
+<<<<<<< HEAD
   `kabupaten_id` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -393,6 +496,20 @@ INSERT INTO `wasit` (`id_wasit`, `nama_wasit`, `no_kartu_anggota`, `jenis_kelami
 --
 -- Indexes for dumped tables
 --
+=======
+  `id_kabupaten` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Indexes for dumped tables
+--
+
+--
+-- Indexes for table `admin`
+--
+ALTER TABLE `admin`
+  ADD PRIMARY KEY (`id_admin`);
+>>>>>>> 41ef5a1c08f83eaee56f68c1ff49dca8d84b8980
 
 --
 -- Indexes for table `cabang_olahraga`
@@ -405,8 +522,13 @@ ALTER TABLE `cabang_olahraga`
 --
 ALTER TABLE `detail_atlet`
   ADD PRIMARY KEY (`id_detail`),
+<<<<<<< HEAD
   ADD KEY `id_atlet` (`atlet_id`),
   ADD KEY `id_np` (`np_id`);
+=======
+  ADD KEY `id_atlet` (`id_atlet`),
+  ADD KEY `id_np` (`id_np`);
+>>>>>>> 41ef5a1c08f83eaee56f68c1ff49dca8d84b8980
 
 --
 -- Indexes for table `event`
@@ -437,18 +559,30 @@ ALTER TABLE `kabupaten`
 --
 ALTER TABLE `kontingen`
   ADD PRIMARY KEY (`id_kontingen`),
+<<<<<<< HEAD
   ADD KEY `id_jabatan` (`jabatan_id`),
   ADD KEY `id_kabupaten` (`kabupaten_id`),
   ADD KEY `id_foto` (`foto_id`);
+=======
+  ADD KEY `id_jabatan` (`id_jabatan`),
+  ADD KEY `id_kabupaten` (`id_kabupaten`),
+  ADD KEY `id_foto` (`id_foto`);
+>>>>>>> 41ef5a1c08f83eaee56f68c1ff49dca8d84b8980
 
 --
 -- Indexes for table `master_atlet`
 --
 ALTER TABLE `master_atlet`
   ADD PRIMARY KEY (`id_atlet`),
+<<<<<<< HEAD
   ADD KEY `id_cabor` (`cabor_id`),
   ADD KEY `id_kabupaten` (`kabupaten_id`),
   ADD KEY `id_foto` (`foto_id`);
+=======
+  ADD KEY `id_cabor` (`id_cabor`),
+  ADD KEY `id_kabupaten` (`id_kabupaten`),
+  ADD KEY `id_foto` (`id_foto`);
+>>>>>>> 41ef5a1c08f83eaee56f68c1ff49dca8d84b8980
 
 --
 -- Indexes for table `migrations`
@@ -457,31 +591,53 @@ ALTER TABLE `migrations`
   ADD PRIMARY KEY (`id`);
 
 --
+<<<<<<< HEAD
 -- Indexes for table `nomor_pertandingan`
 --
 ALTER TABLE `nomor_pertandingan`
   ADD PRIMARY KEY (`id_np`),
   ADD KEY `id_cabor` (`cabor_id`);
+=======
+-- Indexes for table `nomor_pertadingan`
+--
+ALTER TABLE `nomor_pertadingan`
+  ADD PRIMARY KEY (`id_np`),
+  ADD KEY `id_cabor` (`id_cabor`);
+>>>>>>> 41ef5a1c08f83eaee56f68c1ff49dca8d84b8980
 
 --
 -- Indexes for table `prestasi`
 --
 ALTER TABLE `prestasi`
   ADD PRIMARY KEY (`id_prestasi`),
+<<<<<<< HEAD
   ADD KEY `id_atlet` (`atlet_id`,`cabor_id`,`np_Id`,`event_id`),
   ADD KEY `id_cabor` (`cabor_id`),
   ADD KEY `id_np` (`np_Id`),
   ADD KEY `id_event` (`event_id`);
+=======
+  ADD KEY `id_atlet` (`id_atlet`,`id_cabor`,`id_np`,`id_event`),
+  ADD KEY `id_cabor` (`id_cabor`),
+  ADD KEY `id_np` (`id_np`),
+  ADD KEY `id_event` (`id_event`);
+>>>>>>> 41ef5a1c08f83eaee56f68c1ff49dca8d84b8980
 
 --
 -- Indexes for table `rekor_atlet`
 --
 ALTER TABLE `rekor_atlet`
   ADD PRIMARY KEY (`id_rekor`),
+<<<<<<< HEAD
   ADD KEY `id_atlet` (`atlet_id`),
   ADD KEY `id_cabor` (`cabor_id`),
   ADD KEY `id_np` (`np_Id`),
   ADD KEY `id_event` (`event_id`);
+=======
+  ADD KEY `id_atlet` (`id_atlet`),
+  ADD KEY `id_cabor` (`id_cabor`),
+  ADD KEY `id_np` (`id_np`),
+  ADD KEY `id_event` (`id_event`);
+>>>>>>> 41ef5a1c08f83eaee56f68c1ff49dca8d84b8980
 
 --
 -- Indexes for table `users`
@@ -494,59 +650,104 @@ ALTER TABLE `users`
 --
 ALTER TABLE `wasit`
   ADD PRIMARY KEY (`id_wasit`),
+<<<<<<< HEAD
   ADD KEY `id_kabupaten` (`kabupaten_id`);
+=======
+  ADD KEY `id_kabupaten` (`id_kabupaten`);
+>>>>>>> 41ef5a1c08f83eaee56f68c1ff49dca8d84b8980
 
 --
 -- AUTO_INCREMENT for dumped tables
 --
 
 --
+<<<<<<< HEAD
 -- AUTO_INCREMENT for table `cabang_olahraga`
 --
 ALTER TABLE `cabang_olahraga`
   MODIFY `id_cabor` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+=======
+-- AUTO_INCREMENT for table `admin`
+--
+ALTER TABLE `admin`
+  MODIFY `id_admin` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `cabang_olahraga`
+--
+ALTER TABLE `cabang_olahraga`
+  MODIFY `id_cabor` int(11) NOT NULL AUTO_INCREMENT;
+>>>>>>> 41ef5a1c08f83eaee56f68c1ff49dca8d84b8980
 
 --
 -- AUTO_INCREMENT for table `detail_atlet`
 --
 ALTER TABLE `detail_atlet`
+<<<<<<< HEAD
   MODIFY `id_detail` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+=======
+  MODIFY `id_detail` int(11) NOT NULL AUTO_INCREMENT;
+>>>>>>> 41ef5a1c08f83eaee56f68c1ff49dca8d84b8980
 
 --
 -- AUTO_INCREMENT for table `event`
 --
 ALTER TABLE `event`
+<<<<<<< HEAD
   MODIFY `id_event` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+=======
+  MODIFY `id_event` int(11) NOT NULL AUTO_INCREMENT;
+>>>>>>> 41ef5a1c08f83eaee56f68c1ff49dca8d84b8980
 
 --
 -- AUTO_INCREMENT for table `foto`
 --
 ALTER TABLE `foto`
+<<<<<<< HEAD
   MODIFY `id_foto` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+=======
+  MODIFY `id_foto` int(11) NOT NULL AUTO_INCREMENT;
+>>>>>>> 41ef5a1c08f83eaee56f68c1ff49dca8d84b8980
 
 --
 -- AUTO_INCREMENT for table `jabatan`
 --
 ALTER TABLE `jabatan`
+<<<<<<< HEAD
   MODIFY `id_jabatan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+=======
+  MODIFY `id_jabatan` int(11) NOT NULL AUTO_INCREMENT;
+>>>>>>> 41ef5a1c08f83eaee56f68c1ff49dca8d84b8980
 
 --
 -- AUTO_INCREMENT for table `kabupaten`
 --
 ALTER TABLE `kabupaten`
+<<<<<<< HEAD
   MODIFY `id_kabupaten` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+=======
+  MODIFY `id_kabupaten` int(11) NOT NULL AUTO_INCREMENT;
+>>>>>>> 41ef5a1c08f83eaee56f68c1ff49dca8d84b8980
 
 --
 -- AUTO_INCREMENT for table `kontingen`
 --
 ALTER TABLE `kontingen`
+<<<<<<< HEAD
   MODIFY `id_kontingen` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+=======
+  MODIFY `id_kontingen` int(11) NOT NULL AUTO_INCREMENT;
+>>>>>>> 41ef5a1c08f83eaee56f68c1ff49dca8d84b8980
 
 --
 -- AUTO_INCREMENT for table `master_atlet`
 --
 ALTER TABLE `master_atlet`
+<<<<<<< HEAD
   MODIFY `id_atlet` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+=======
+  MODIFY `id_atlet` int(11) NOT NULL AUTO_INCREMENT;
+>>>>>>> 41ef5a1c08f83eaee56f68c1ff49dca8d84b8980
 
 --
 -- AUTO_INCREMENT for table `migrations`
@@ -555,34 +756,57 @@ ALTER TABLE `migrations`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
+<<<<<<< HEAD
 -- AUTO_INCREMENT for table `nomor_pertandingan`
 --
 ALTER TABLE `nomor_pertandingan`
   MODIFY `id_np` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+=======
+-- AUTO_INCREMENT for table `nomor_pertadingan`
+--
+ALTER TABLE `nomor_pertadingan`
+  MODIFY `id_np` int(11) NOT NULL AUTO_INCREMENT;
+>>>>>>> 41ef5a1c08f83eaee56f68c1ff49dca8d84b8980
 
 --
 -- AUTO_INCREMENT for table `prestasi`
 --
 ALTER TABLE `prestasi`
+<<<<<<< HEAD
   MODIFY `id_prestasi` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+=======
+  MODIFY `id_prestasi` int(11) NOT NULL AUTO_INCREMENT;
+>>>>>>> 41ef5a1c08f83eaee56f68c1ff49dca8d84b8980
 
 --
 -- AUTO_INCREMENT for table `rekor_atlet`
 --
 ALTER TABLE `rekor_atlet`
+<<<<<<< HEAD
   MODIFY `id_rekor` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+=======
+  MODIFY `id_rekor` int(11) NOT NULL AUTO_INCREMENT;
+>>>>>>> 41ef5a1c08f83eaee56f68c1ff49dca8d84b8980
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
+<<<<<<< HEAD
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+=======
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+>>>>>>> 41ef5a1c08f83eaee56f68c1ff49dca8d84b8980
 
 --
 -- AUTO_INCREMENT for table `wasit`
 --
 ALTER TABLE `wasit`
+<<<<<<< HEAD
   MODIFY `id_wasit` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+=======
+  MODIFY `id_wasit` int(11) NOT NULL AUTO_INCREMENT;
+>>>>>>> 41ef5a1c08f83eaee56f68c1ff49dca8d84b8980
 
 --
 -- Constraints for dumped tables
@@ -592,21 +816,33 @@ ALTER TABLE `wasit`
 -- Constraints for table `detail_atlet`
 --
 ALTER TABLE `detail_atlet`
+<<<<<<< HEAD
   ADD CONSTRAINT `detail_atlet_ibfk_1` FOREIGN KEY (`atlet_id`) REFERENCES `master_atlet` (`id_atlet`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `detail_atlet_ibfk_2` FOREIGN KEY (`np_id`) REFERENCES `nomor_pertandingan` (`id_np`) ON DELETE CASCADE ON UPDATE CASCADE;
+=======
+  ADD CONSTRAINT `detail_atlet_ibfk_1` FOREIGN KEY (`id_atlet`) REFERENCES `master_atlet` (`id_atlet`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `detail_atlet_ibfk_2` FOREIGN KEY (`id_np`) REFERENCES `nomor_pertadingan` (`id_np`) ON DELETE CASCADE ON UPDATE CASCADE;
+>>>>>>> 41ef5a1c08f83eaee56f68c1ff49dca8d84b8980
 
 --
 -- Constraints for table `kontingen`
 --
 ALTER TABLE `kontingen`
+<<<<<<< HEAD
   ADD CONSTRAINT `kontingen_ibfk_1` FOREIGN KEY (`jabatan_id`) REFERENCES `jabatan` (`id_jabatan`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `kontingen_ibfk_2` FOREIGN KEY (`kabupaten_id`) REFERENCES `kabupaten` (`id_kabupaten`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `kontingen_ibfk_3` FOREIGN KEY (`foto_id`) REFERENCES `foto` (`id_foto`) ON DELETE CASCADE ON UPDATE CASCADE;
+=======
+  ADD CONSTRAINT `kontingen_ibfk_1` FOREIGN KEY (`id_jabatan`) REFERENCES `jabatan` (`id_jabatan`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `kontingen_ibfk_2` FOREIGN KEY (`id_kabupaten`) REFERENCES `kabupaten` (`id_kabupaten`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `kontingen_ibfk_3` FOREIGN KEY (`id_foto`) REFERENCES `foto` (`id_foto`) ON DELETE CASCADE ON UPDATE CASCADE;
+>>>>>>> 41ef5a1c08f83eaee56f68c1ff49dca8d84b8980
 
 --
 -- Constraints for table `master_atlet`
 --
 ALTER TABLE `master_atlet`
+<<<<<<< HEAD
   ADD CONSTRAINT `master_atlet_ibfk_1` FOREIGN KEY (`cabor_id`) REFERENCES `cabang_olahraga` (`id_cabor`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `master_atlet_ibfk_2` FOREIGN KEY (`kabupaten_id`) REFERENCES `kabupaten` (`id_kabupaten`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `master_atlet_ibfk_3` FOREIGN KEY (`foto_id`) REFERENCES `foto` (`id_foto`) ON DELETE CASCADE ON UPDATE CASCADE;
@@ -616,30 +852,59 @@ ALTER TABLE `master_atlet`
 --
 ALTER TABLE `nomor_pertandingan`
   ADD CONSTRAINT `nomor_pertandingan_ibfk_1` FOREIGN KEY (`cabor_id`) REFERENCES `cabang_olahraga` (`id_cabor`) ON DELETE CASCADE ON UPDATE CASCADE;
+=======
+  ADD CONSTRAINT `master_atlet_ibfk_1` FOREIGN KEY (`id_cabor`) REFERENCES `cabang_olahraga` (`id_cabor`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `master_atlet_ibfk_2` FOREIGN KEY (`id_kabupaten`) REFERENCES `kabupaten` (`id_kabupaten`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `master_atlet_ibfk_3` FOREIGN KEY (`id_foto`) REFERENCES `foto` (`id_foto`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `nomor_pertadingan`
+--
+ALTER TABLE `nomor_pertadingan`
+  ADD CONSTRAINT `nomor_pertadingan_ibfk_1` FOREIGN KEY (`id_cabor`) REFERENCES `cabang_olahraga` (`id_cabor`) ON DELETE CASCADE ON UPDATE CASCADE;
+>>>>>>> 41ef5a1c08f83eaee56f68c1ff49dca8d84b8980
 
 --
 -- Constraints for table `prestasi`
 --
 ALTER TABLE `prestasi`
+<<<<<<< HEAD
   ADD CONSTRAINT `prestasi_ibfk_1` FOREIGN KEY (`atlet_id`) REFERENCES `master_atlet` (`id_atlet`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `prestasi_ibfk_2` FOREIGN KEY (`cabor_id`) REFERENCES `cabang_olahraga` (`id_cabor`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `prestasi_ibfk_3` FOREIGN KEY (`np_Id`) REFERENCES `nomor_pertandingan` (`id_np`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `prestasi_ibfk_4` FOREIGN KEY (`event_id`) REFERENCES `event` (`id_event`) ON DELETE CASCADE ON UPDATE CASCADE;
+=======
+  ADD CONSTRAINT `prestasi_ibfk_1` FOREIGN KEY (`id_atlet`) REFERENCES `master_atlet` (`id_atlet`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `prestasi_ibfk_2` FOREIGN KEY (`id_cabor`) REFERENCES `cabang_olahraga` (`id_cabor`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `prestasi_ibfk_3` FOREIGN KEY (`id_np`) REFERENCES `nomor_pertadingan` (`id_np`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `prestasi_ibfk_4` FOREIGN KEY (`id_event`) REFERENCES `event` (`id_event`) ON DELETE CASCADE ON UPDATE CASCADE;
+>>>>>>> 41ef5a1c08f83eaee56f68c1ff49dca8d84b8980
 
 --
 -- Constraints for table `rekor_atlet`
 --
 ALTER TABLE `rekor_atlet`
+<<<<<<< HEAD
   ADD CONSTRAINT `rekor_atlet_ibfk_1` FOREIGN KEY (`atlet_id`) REFERENCES `master_atlet` (`id_atlet`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `rekor_atlet_ibfk_2` FOREIGN KEY (`cabor_id`) REFERENCES `cabang_olahraga` (`id_cabor`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `rekor_atlet_ibfk_3` FOREIGN KEY (`np_Id`) REFERENCES `nomor_pertandingan` (`id_np`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `rekor_atlet_ibfk_4` FOREIGN KEY (`event_id`) REFERENCES `event` (`id_event`) ON DELETE CASCADE ON UPDATE CASCADE;
+=======
+  ADD CONSTRAINT `rekor_atlet_ibfk_1` FOREIGN KEY (`id_atlet`) REFERENCES `master_atlet` (`id_atlet`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `rekor_atlet_ibfk_2` FOREIGN KEY (`id_cabor`) REFERENCES `cabang_olahraga` (`id_cabor`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `rekor_atlet_ibfk_3` FOREIGN KEY (`id_np`) REFERENCES `nomor_pertadingan` (`id_np`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `rekor_atlet_ibfk_4` FOREIGN KEY (`id_event`) REFERENCES `event` (`id_event`) ON DELETE CASCADE ON UPDATE CASCADE;
+>>>>>>> 41ef5a1c08f83eaee56f68c1ff49dca8d84b8980
 
 --
 -- Constraints for table `wasit`
 --
 ALTER TABLE `wasit`
+<<<<<<< HEAD
   ADD CONSTRAINT `wasit_ibfk_1` FOREIGN KEY (`kabupaten_id`) REFERENCES `kabupaten` (`id_kabupaten`) ON DELETE CASCADE ON UPDATE CASCADE;
+=======
+  ADD CONSTRAINT `wasit_ibfk_1` FOREIGN KEY (`id_kabupaten`) REFERENCES `kabupaten` (`id_kabupaten`) ON DELETE CASCADE ON UPDATE CASCADE;
+>>>>>>> 41ef5a1c08f83eaee56f68c1ff49dca8d84b8980
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
