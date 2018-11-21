@@ -8,9 +8,11 @@ use Yajra\Datatables\Datatables;
 
 use App\Master_Atlet;
 use App\Prestasi;
+use App\Wasit;
 use GH;
 use App\Cabang_Olahraga;
 use App\Event;
+use App\Kontingen;
 use Response;
 use DB;
 use Carbon;
@@ -93,6 +95,18 @@ class frontController extends Controller
             ->make(true);
     }
 
+    public function dataPelatih()
+    {
+        $q = Kontingen::select('*')->leftJoin('cabang_olahraga','id_cabor','=','cabor_id')->where('jabatan_id',2)->get();
+        return Datatables::of($q)->make(true);
+    }
+
+    public function dataWasit()
+    {
+        $q = Wasit::select('*')->leftJoin('cabang_olahraga','id_cabor','=','cabor_id')->get();
+        return Datatables::of($q)->make(true);
+    }    
+
     public function getApiData(Request $request)
     {
         if($request->name == "getPrestasiByCabor")
@@ -110,9 +124,47 @@ class frontController extends Controller
             $data['sumAllData'] = $count;
             return $data;
         }
+        else if($request->name == "getPelatihByCabor")
+        {
+            $data = [];
+            $count = 0;
+            foreach(GH::getPelatihByCabor() as $key => $val)
+            {
+                $datas[0] = $key;
+                $datas[1] = $val;
+                array_push($data, $datas);
+                $count+=$val;
+            }
+            $data['data'] = $data;
+            $data['sumAllData'] = $count;
+            return $data;
+        }
+        else if($request->name == "getWasitByCabor")
+        {
+            $data = [];
+            $count = 0;
+            foreach(GH::getWasitByCabor() as $key => $val)
+            {
+                $datas[0] = $key;
+                $datas[1] = $val;
+                array_push($data, $datas);
+                $count+=$val;
+            }
+            $data['data'] = $data;
+            $data['sumAllData'] = $count;
+            return $data;
+        }
         else if($request->name == "getAtletByJenisKelaminAndUmur")
         {
             return GH::getAtletByJenisKelaminAndUmur();
+        }
+        else if($request->name == "getPelatihByJenisKelaminAndUmur")
+        {
+            return GH::getPelatihByJenisKelaminAndUmur();
+        }
+        else if($request->name == "getWasitByJenisKelaminAndUmur")
+        {
+            return GH::getWasitByJenisKelaminAndUmur();
         }
         else if($request->name == "getAtletByCabor")
         {

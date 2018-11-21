@@ -14,7 +14,7 @@
 	                            <thead>
 	                                <tr>
 	                                    <th>Nama Kontingen</th>
-	                                    <!--<th>Cabang Olahraga</th> -->
+	                                   	<th>Cabang Olahraga</th>
 	                                    <th>Jabatan</th>
 	                                    <th>Aksi</th>
 	                                </tr>
@@ -90,6 +90,7 @@
             },
             columns: [
             {data: 'nama_kontingen', name: 'nama_kontingen'},
+            {data: 'nama_cabor', name: 'nama_cabor'},
             {data: 'nama_jabatan', name: 'jabatan'},
             {data: 'aksi', name: 'aksi'},
         ],
@@ -122,7 +123,7 @@
 	            	$('#tempat_lahir').val(data.tempat_lahir);
 	            	$('#tgl_lahir').val(data.tgl_lahir);
 	            	$('#alamat').val(data.alamat);
-	            	$('#jabatan').val(data.nama_jabatan);
+	            	$('#jabatan').val(data.nama_jabatan);	            	
 	            	$('#viewModal').modal('show');
 				}
 			});

@@ -8,27 +8,94 @@
 		    	<h3 class="box-title">Tambah Data Kontingen</h3>
 		    	<form method="post" action="{{URL('/add-kontingen')}}">
 		    		<input type="hidden" name="_token" value="{{ csrf_token() }}">
-		    		<label>Nama</label>
-						<input class="form-control" type="text" name="nama" required>
-					<label>No Kartu Tanda Anggota</label>
-						<input id="nkta" class="form-control" type="text" name="nkta" required minlength="0" maxlength="10" onkeyup="return validation()">
-					<label>Jenis Kelamin</label><br>					
-						<input value="L" type="radio" name="jenis_kelamin" required> Laki-Laki <br>
-						<input value="P" type="radio" name="jenis_kelamin" required> Perempuan <br>				
-					<label>Tempat Lahir</label>
-						<input class="form-control" type="text" name="tempat_lahir" required><br>
-					<label>Tanggal Lahir</label>
-						<input class="form-control" type="date" name="tgl_lahir" required><br>
-					<label>Alamat</label>
-						<textarea class="form-control" name="alamat" required></textarea><br>
-					<label>Jabatan</label>
-						<select class="form-control" type="text" name="jabatan" required>
+
+		    		<div class="form-group">
+		                <label>Nama</label>
+		                <div class="input-group date">
+		                  <div class="input-group-addon">
+		                    <i class="fa fa-user"></i>
+		                  </div>
+		                  <input class="form-control" type="text" name="nama" required>
+		                </div>		                
+		             </div>
+
+		             <div class="form-group">
+		                <label>No Kartu Tanda Anggota</label>
+		                <div class="input-group date">
+		                  <div class="input-group-addon">
+		                    <i class="fa fa-book"></i>
+		                  </div>
+		                  <input id="nkta" class="form-control" type="text" name="nkta" required minlength="0" maxlength="10" onkeyup="return validation()">
+		                </div>		                
+		             </div>
+
+		            <div class="form-group">
+						<label>Jenis Kelamin</label><br>					
+							<input class="minimal" value="L" type="radio" name="jenis_kelamin" required> Laki-Laki <br>
+							<input class="minimal" value="P" type="radio" name="jenis_kelamin" required> Perempuan <br>
+					</div>
+
+					<div class="form-group">
+		                <label>Tempat Lahir</label>
+		                <div class="input-group date">
+		                  <div class="input-group-addon">
+		                    <i class="fa fa-home"></i>
+		                  </div>
+		                  <input class="form-control" type="text" name="tempat_lahir" required><br>
+		                </div>		                
+		             </div>
+						
+					<div class="form-group">
+		                <label>Tanggal Lahir</label>
+		                <div class="input-group date">
+		                  <div class="input-group-addon">
+		                    <i class="fa fa-calendar"></i>
+		                  </div>
+		                  <input type="text" class="form-control pull-right" id="datepicker" name="tgl_lahir">
+		                </div>		                
+		             </div>
+
+		             <div class="form-group">
+		                <label>Alamat</label>
+		                <div class="input-group date">
+		                  <div class="input-group-addon">
+		                    <i class="fa fa-home"></i>
+		                  </div>
+		                  <textarea class="form-control" name="alamat" required></textarea>
+		                </div>		                
+		             </div>
+
+		             <div class="form-group">
+		                <label>Cabang Olahraga</label>
+		                <div class="input-group date">
+		                  <div class="input-group-addon">
+		                    <i class="fa fa-code-branch"></i>
+		                  </div>
+		                  <select class="form-control select2" type="text" name="cabor_id" required>
+							<option value="" selected disabled hidden>Pilih cabor</option>
+							@foreach($cabor as $data)
+								<option value="{{$data->id_cabor}}">{{$data->nama_cabor}}</option>
+							@endforeach
+						</select>
+		                </div>		                
+		             </div>
+
+		             <div class="form-group">
+		                <label>Jabatan</label>
+		                <div class="input-group date">
+		                  <div class="input-group-addon">
+		                    <i class="fa fa-user-tie"></i>
+		                  </div>
+		                  <select class="form-control select2" type="text" name="jabatan" required>
 							<option value="" selected disabled hidden>Pilih jabatan</option>
-							@foreach($data['jabatan'] as $data)
+							@foreach($jabatan as $data)
 								<option value="{{$data->id_jabatan}}">{{$data->nama_jabatan}}</option>
 							@endforeach
-						</select><br>
-					<input id="submit" class="btn btn-primary" type="submit" name="submit" value="Simpan">					
+						</select>
+		                </div>		                
+		             </div>
+
+					<input id="submit" class="btn btn-primary" type="submit" name="submit" value="Simpan">	
 					<input class="btn btn-warning" type="reset" name="reset" value="Reset">
 		    	</form>
 		    </div>

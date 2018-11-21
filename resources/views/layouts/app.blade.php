@@ -16,6 +16,12 @@
   <link rel="stylesheet" href="{{asset('public/adminLTE/bower_components/bootstrap/dist/css/bootstrap.min.css')}}">
   <!-- Font Awesome -->
 
+  <link rel="stylesheet" href="{{asset('public/adminLTE/plugins/iCheck/all.css')}}">
+
+  <link rel="stylesheet" href="{{asset('public/adminLTE/bower_components/select2/dist/css/select2.min.css')}}">
+
+  <script src="{{asset('public/adminLTE/bower_components/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js')}}"></script>
+
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
 
   <!-- Ionicons -->
@@ -700,3 +706,25 @@
 <script src="{{asset('public/adminLTE/dist/js/demo.js')}}"></script>
 </body>
 </html>
+
+<script type="text/javascript">
+  $('#datepicker').datepicker({
+        autoclose: true,
+        format: 'yyyy-mm-dd'
+  });
+
+  $('input[type="checkbox"].minimal, input[type="radio"].minimal').iCheck({
+    checkboxClass: 'icheckbox_minimal-blue',
+    radioClass   : 'iradio_minimal-blue'
+  });
+  $('input[type="checkbox"].minimal-red, input[type="radio"].minimal-red').iCheck({
+    checkboxClass: 'icheckbox_minimal-red',
+    radioClass   : 'iradio_minimal-red'
+  }); 
+  $('input[type="checkbox"].flat-red, input[type="radio"].flat-red').iCheck({
+    checkboxClass: 'icheckbox_flat-green',
+    radioClass   : 'iradio_flat-green'
+  });
+
+  $('.select2').select2();
+</script>

@@ -36,6 +36,8 @@ Route::get('atlet/{id}/{nama}','frontController@detailAtlet');
 Route::get('data-atlet','frontController@dataAtlet');
 Route::get('data-prestasi','frontController@dataPrestasi');
 Route::get('data-event','frontController@dataEvent');
+Route::get('data-pelatih','frontController@dataPelatih');
+Route::get('data-wasit','frontController@dataWasit');
 
 Route::post('getApiData','frontController@getApiData');
 

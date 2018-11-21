@@ -34,6 +34,7 @@ class KontingenController extends Controller
     	$data->jabatan_id				= $Request->jabatan;
     	$data->kabupaten_id				= 1;
     	$data->foto_id					= 1;
+        $data->cabor_id                 = $Request->cabor_id;
     	$data->save();
 
     	return redirect()->route('kontingen');
@@ -42,9 +43,10 @@ class KontingenController extends Controller
     public function tambah(){
         $data = [];
     	$data['jabatan'] = Jabatan::select('*')->get();
+        $data['cabor'] = Cabang_Olahraga::select('*')->get();
     	$data['active'] = 'Kontingen';
     	$data['page'] = 'Tambah Kontingen';
-    	return view('kontingen.tambah-kontingen', ['data' => $data] );
+    	return view('kontingen.tambah-kontingen',$data);
     }
 
     public function edit($id){
@@ -54,19 +56,21 @@ class KontingenController extends Controller
             ->where('id_kontingen',$id)
             ->first();
 
+        $data['cabor'] = Cabang_Olahraga::select('*')->get();
         $data['jabatan'] = Jabatan::select('*')->get();
 
         $data['active'] = 'Kontingen';
         $data['page'] = 'Edit Kontingen';
 
-        return view('kontingen.edit-kontingen', ['data' => $data] );   
+        return view('kontingen.edit-kontingen',$data );   
     }
 
     public function dataKontingen(){    	
 
-        $data = Kontingen::select('nama_kontingen','jabatan.nama_jabatan','id_kontingen')
+        $data = Kontingen::select('nama_kontingen','jabatan.nama_jabatan','id_kontingen','nama_cabor')
+            ->leftJoin('cabang_olahraga','cabor_id','=','id_cabor')
 	        ->leftJoin('jabatan','jabatan_id','=','jabatan.id_jabatan')
-	        ->get();
+	        ->get();        
 
 
 	        
@@ -106,8 +110,9 @@ class KontingenController extends Controller
                 'jenis_kelamin'            => $Request->jenis_kelamin,
                 'tempat_lahir'             => $Request->tempat_lahir,
                 'tgl_lahir'                => $Request->tgl_lahir,
-                'alamat'                   => $Request->alamat,
-                'jabatan_id'               => $Request->jabatan
+                'alamat'                   => $Request->alamat,                
+                'jabatan_id'               => $Request->jabatan,
+                'cabor_id'                 => $Request->cabor_id
     
                 ]);
 
