@@ -7,8 +7,10 @@ use Illuminate\Http\Request;
 use Yajra\Datatables\Datatables;
 
 use App\Master_Atlet;
+use App\Prestasi;
 use GH;
 use App\Cabang_Olahraga;
+use App\Event;
 use Response;
 use DB;
 use Carbon;
@@ -56,8 +58,39 @@ class frontController extends Controller
     }
     public function dataAtlet(){    
         $q = Master_Atlet::leftJoin('cabang_olahraga','cabor_id','=','id_cabor')
-        ->select('nama_atlet','cabang_olahraga.nama_cabor');      
-      return Datatables::of($q)->make(true);  
+        ->select('id_atlet','nama_atlet','cabang_olahraga.nama_cabor');      
+      return Datatables::of($q)
+            ->editColumn('nama_atlet', function($user) {
+                    return '<a href="'.url('atlet').'/'.$user->id_atlet.'/'.GH::normalize($user->nama_atlet).'">' . $user->nama_atlet . '</a>';
+                })
+            ->make(true);  
+    }      
+    public function dataPrestasi()
+    {
+        $q = Prestasi::leftJoin('master_atlet','master_atlet.id_atlet','=','prestasi.atlet_id')
+                ->leftJoin('cabang_olahraga','cabang_olahraga.id_cabor','=','prestasi.cabor_id')
+                ->leftJoin('nomor_pertandingan','nomor_pertandingan.id_np','=','prestasi.np_id')
+                ->leftJoin('event','event.id_event','=','prestasi.event_id');
+        return Datatables::of($q)
+                ->editColumn('nama_atlet', function($user) {
+                    return '<a href="'.url('atlet').'/'.$user->id_atlet.'/'.GH::normalize($user->nama_atlet).'">' . $user->nama_atlet . '</a>';
+                })
+                ->make(true);
+    } 
+    public function dataEvent()
+    {
+        $q = Event::all();
+        return Datatables::of($q)
+        ->editColumn('nama_event', function($user) {
+                    return '<a href="'.url('event').'/'.$user->id_event.'/'.GH::normalize($user->nama_event).'">' . $user->nama_event . '</a>';
+                })
+            ->addColumn('berlangsung', function($user) {
+                    return Carbon\Carbon::parse($user->tgl_mulai)->format('d M Y')." - ".Carbon\Carbon::parse($user->tgl_akhir)->format('d M Y');
+                })
+            ->addColumn('total_prestasi', function($user) {
+                    return $user->getPrestasi->count();
+                })
+            ->make(true);
     }
 
     public function getApiData(Request $request)
@@ -107,6 +140,26 @@ class frontController extends Controller
             }
             return $data;
         }
+    }
+
+    public function detailAtlet($id,$nama)
+    {
+        $query = Master_Atlet::where('id_atlet',$id);
+        //cari apakah ada yang id sekian
+        if($query->get()->count() <=0)
+            return redirect('404');
+        //kalau lolos
+        $data['dataAtlet'] = $query
+                            ->leftJoin('foto','id_foto','foto_id')
+                            ->leftJoin('cabang_olahraga','id_cabor','cabor_id')
+                            ->with(['getPrestasi' => function($q){
+                                $q->leftJoin('cabang_olahraga','cabang_olahraga.id_cabor','=','prestasi.cabor_id');
+                                $q->leftJoin('event','event.id_event','=','prestasi.event_id');
+                                $q->leftJoin('nomor_pertandingan','nomor_pertandingan.id_np','=','prestasi.np_id');
+                            }])
+                            ->first();
+        return view('front.detailAtlet',$data);
+
     }
 }
 

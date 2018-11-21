@@ -270,6 +270,7 @@ section.chartSection2 {
 section#prestasiTerbaru {
     padding-top: 80px;
     padding-bottom: 80px;
+    background: #eeeeee;
 }
 a.nav-link {
     color: #fff !important;
@@ -394,6 +395,45 @@ section#summary {
 section#maps {
     background: white;
     padding-bottom: 80px;
+}
+img.stretchWidth.detailAtlet {
+    border-radius: 6px;
+}
+h1.titleDetailAtlet {
+    font-size: 22px;
+    line-height: 40px;
+    font-weight: 400;
+    letter-spacing: 0;
+}
+h2.titleDetailAtlet {
+    font-size: 17px;
+    line-height: 40px;
+    font-weight: 400;
+    letter-spacing: 0;
+    color: #9e9c9c;
+    margin-bottom: -6px;
+}
+.cardAtlet.cardDetailAtlet {
+    margin: 0;
+}
+h1.titleDetailAtlet {
+    margin-top: 8px;
+    margin-bottom: 0px;
+}
+.bgWhite
+{
+    background: white !important;
+}
+h2.titleDetailAtlet {
+    margin-top: -5px;
+}
+
+.tableWrapper.tableDetailAtlet {
+    margin-top: 0px;
+}
+.titleDaftarPrestasi{
+    text-align: center;
+    padding-bottom: 20px;
 }
 /*Responsive*/
 @media only screen and (max-width: 768px)
