@@ -11,6 +11,12 @@
 |
 */
 
+Route::get('nomorPertandingan','contohController@index');
+Route::get('/', function () {
+    return view('welcome');
+});
+=======
+
 Route::get('angga','contohController@index');
 
 
@@ -36,10 +42,15 @@ Route::post('getApiData','frontController@getApiData');
 
 
 
+
 Auth::routes();
 
 Route::group(['middleware' => 'auth'],function(){
 	//only admin can acces here
+
+	Route::get('/nomorPertandingan', 'noPertandinganController@index')->name('nomorPertandingan');
+	Route::post('saveNomorPertandingan','noPertandinganController@simpan');
+
 	Route::get('/home', 'HomeController@index')->name('home');
 
 
@@ -60,4 +71,5 @@ Route::group(['middleware' => 'auth'],function(){
 	Route::get('/admin/{id_user}','adminController@edit');
 	Route::post('/admin/update/{id_user}','adminController@update');
 	Route::get('/admin/hapus/{id_user}','adminController@hapus');
+
 });

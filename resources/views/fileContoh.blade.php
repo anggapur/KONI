@@ -1,6 +1,7 @@
 @extends('layouts.app')
 @section('content')
 <!-- Main content -->
+
     <section class="content">
       
               <!-- general form elements -->

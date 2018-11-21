@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
+use App\Nomor_Pertandingan;
 class HomeController extends Controller
 {
     /**
@@ -22,12 +22,28 @@ class HomeController extends Controller
      */
     public function index()
     {
-<<<<<<< HEAD
+
         $data = [];
         $data['page'] = 'Dashboard';
         return view('home',['data' => $data]);
 =======
         return view('home');
->>>>>>> 41ef5a1c08f83eaee56f68c1ff49dca8d84b8980
+
+    }
+    public function simpan(Request $request)
+    {
+        $data['id_cabor'] = $request->id_cabor;
+        $data['ket_np'] = $request->ket_np;
+        $query = Nomor_Pertandingan::create($data);
+        if($query)
+        {
+            return "Berhasil";
+        }
+        else
+        {
+            return "Sukses";
+        }
+
     }
 }
+
