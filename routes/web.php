@@ -50,6 +50,7 @@ Route::group(['middleware' => 'auth'],function(){
 	Route::post('/get-data-kontingen','KontingenController@getData');
 	Route::post('/delete-data-kontingen','KontingenController@hapus');
 	Route::post('/update-kontingen','KontingenController@update');
+	Route::post('/cek-no-kartu-anggota','KontingenController@cekKartu');
 
 	Route::get('/admin','adminController@index')->name('admin');
 	//yg dikiri link

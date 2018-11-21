@@ -44,7 +44,7 @@
 			<label>No Kartu Tanda Anggota</label>
 				<input class="form-control" type="text" id="nkta" disabled>
 			<label>Jenis Kelamin</label>
-				<input class="form-control" type="text" id="jenis_kelamin" disabled>				
+				<input class="form-control" type="text" id="jenis_kelamin" disabled>
 			<label>Tempat Lahir</label>
 				<input class="form-control" type="text" id="tempat_lahir" disabled><br>
 			<label>Tanggal Lahir</label>

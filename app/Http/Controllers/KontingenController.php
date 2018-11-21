@@ -113,4 +113,14 @@ class KontingenController extends Controller
 
         return redirect()->route('kontingen');  
     }
+
+    public function cekKartu(Request $Request){
+        $data = Kontingen::select('id_kontingen')->where('no_kartu_tanda_anggota',$Request->no)->count();
+        if($data > 0){
+            echo "false";
+        }
+        else{
+            echo "true";
+        }
+    }
 }
