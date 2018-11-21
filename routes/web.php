@@ -15,7 +15,7 @@ Route::get('nomorPertandingan','contohController@index');
 Route::get('/', function () {
     return view('welcome');
 });
-=======
+
 
 Route::get('angga','contohController@index');
 
