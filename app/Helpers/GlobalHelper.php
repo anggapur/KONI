@@ -117,7 +117,7 @@ class GlobalHelper{
 
 	public static function getPrestasiTerbaru($jml){
 		$data = [];
-		$data['prestasi_terbaru'] = Prestasi::select('nama_atlet','nama_prestasi','nama_cabor','ket_np','waktu','nama_foto','nama_event')
+		$data['prestasi_terbaru'] = Prestasi::select('id_atlet','nama_atlet','nama_prestasi','nama_cabor','ket_np','waktu','nama_foto','nama_event')
 										->leftJoin('cabang_olahraga','id_cabor','=','cabor_id')
 										->leftJoin('master_atlet','id_atlet','=','atlet_id')
 										->leftJoin('foto','id_foto','=','foto_id')
@@ -294,6 +294,17 @@ class GlobalHelper{
         array_push($data, $datas);
         
         return $data;
+	}
+	public static function normalize($param)
+	{
+		//digunakan untuk membuat huruf ke kecil dan menghilangkan spasi
+		$param = strtolower($param);
+		$param = str_replace(" ","-",$param);
+		return $param;
+	}
+	public static function getImages($url,$image)
+	{
+		return $url."/".$image;
 	}
 }
 

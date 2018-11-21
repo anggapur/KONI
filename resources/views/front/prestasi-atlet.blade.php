@@ -31,7 +31,22 @@
                      <div id="piechart_3d_2" class="chart"></div>
                 </div>  
             </div>
-             
+             <div class="row">
+                <div class="col-md-12">
+                    <div class="tableWrapper">
+                        <table class="table" id="table-atlet">
+                            <thead>
+                                <tr>
+                                    <th>Prestasi</th>
+                                    <th>Nama Atlet</th>
+                                    <th>Cabang Olahraga</th>
+                                    <th>Event</th>
+                                </tr>
+                            </thead>
+                        </table>
+                    </div>
+                </div>
+            </div>
         </div>      
     </section>
 
@@ -104,6 +119,24 @@
         chart.draw(data, google.charts.Bar.convertOptions(optionss));
       }
     </script>
+
+    <script type="text/javascript">
+    $(function() {
+        var oTable = $('#table-atlet').DataTable({
+            processing: true,
+            serverSide: true,
+            ajax: {
+                url: '{{ url("data-prestasi") }}'
+            },
+            columns: [
+            {data: 'nama_prestasi', name: 'nama_prestasi'},
+            {data: 'nama_atlet', name: 'nama_atlet'},
+            {data: 'nama_cabor', name: 'cabang_olahraga.nama_cabor'},
+            {data: 'nama_event', name: 'nama_event'},
+        ],
+        });
+    });
+</script>
 
 
 @endsection
