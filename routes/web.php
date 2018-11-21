@@ -10,15 +10,64 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
+<<<<<<< HEAD
 Route::get('nomorPertandingan','contohController@index');
 Route::get('/', function () {
     return view('welcome');
 });
+=======
+
+Route::get('angga','contohController@index');
+
+
+// Route By Angga Purnajiwa
+//Route::get('alit', 'isengController@index');
+Route::get('/','frontController@index');
+Route::get('dataGrafik','frontController@dataGrafik');
+Route::get('atlet','frontController@atlet');
+Route::get('prestasi-atlet','frontController@prestasiAtlet');
+Route::get('pelatih','frontController@pelatih');
+Route::get('wasit','frontController@wasit');
+Route::get('event','frontController@event');
+Route::get('cabor','frontController@cabor');
+Route::get('cabor','frontController@cabor');
+Route::get('rekor','frontController@rekor');
+
+Route::get('data-atlet','frontController@dataAtlet');
+
+Route::post('getApiData','frontController@getApiData');
+
+
+
+>>>>>>> a7ae8677415d2f7a1eba76c79759551d026d2a37
 
 Auth::routes();
 
 Route::group(['middleware' => 'auth'],function(){
 	//only admin can acces here
+
 	Route::get('/nomorPertandingan', 'noPertandinganController@index')->name('nomorPertandingan');
 	Route::post('saveNomorPertandingan','noPertandinganController@simpan');
+
+	Route::get('/home', 'HomeController@index')->name('home');
+
+
+	//Kontingen
+	Route::get('/kontingen','KontingenController@index')->name('kontingen');
+	Route::get('/tambah-kontingen','KontingenController@tambah');
+	Route::get('/edit-kontingen/{id}','KontingenController@edit')->name('kontingen-edit');
+	Route::get('data-kontingen','KontingenController@dataKontingen');
+	Route::post('/add-kontingen','KontingenController@add');
+	Route::post('/get-data-kontingen','KontingenController@getData');
+	Route::post('/delete-data-kontingen','KontingenController@hapus');
+	Route::post('/update-kontingen','KontingenController@update');
+
+	Route::get('/admin','adminController@index')->name('admin');
+	//yg dikiri link
+	Route::post('/insert','adminController@admin');
+	Route::get('/admin/view','adminController@tampil')->name('view');
+	Route::get('/admin/{id_user}','adminController@edit');
+	Route::post('/admin/update/{id_user}','adminController@update');
+	Route::get('/admin/hapus/{id_user}','adminController@hapus');
+>>>>>>> a7ae8677415d2f7a1eba76c79759551d026d2a37
 });

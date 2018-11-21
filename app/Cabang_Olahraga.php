@@ -9,4 +9,10 @@ class Cabang_Olahraga extends Model
     protected $table = "cabang_olahraga";
 	protected $primaryKey = 'id_cabor';
 	public $timestamps = false;
+
+	public function getAtlet()
+	{
+		return $this->hasMany('App\Master_Atlet','cabor_id','id_cabor');
+	}
+
 }

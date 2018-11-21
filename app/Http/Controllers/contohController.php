@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+
 use App\Cabang_Olahraga;
 class contohController extends Controller
 {
@@ -13,5 +14,4 @@ class contohController extends Controller
     	// return $query;
     	return view("noPertandingan",$data);
     	
-    }
 }
