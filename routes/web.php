@@ -10,7 +10,7 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-<<<<<<< HEAD
+
 Route::get('nomorPertandingan','contohController@index');
 Route::get('/', function () {
     return view('welcome');
@@ -39,7 +39,7 @@ Route::post('getApiData','frontController@getApiData');
 
 
 
->>>>>>> a7ae8677415d2f7a1eba76c79759551d026d2a37
+
 
 Auth::routes();
 
@@ -69,5 +69,5 @@ Route::group(['middleware' => 'auth'],function(){
 	Route::get('/admin/{id_user}','adminController@edit');
 	Route::post('/admin/update/{id_user}','adminController@update');
 	Route::get('/admin/hapus/{id_user}','adminController@hapus');
->>>>>>> a7ae8677415d2f7a1eba76c79759551d026d2a37
+
 });
