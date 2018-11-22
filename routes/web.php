@@ -82,4 +82,9 @@ Route::group(['middleware' => 'auth'],function(){
 	Route::post('/admin/update/{id_user}','adminController@update');
 	Route::get('/admin/hapus/{id_user}','adminController@hapus');
 
+	//Angga Pur CRUD rentang Umur'
+	Route::group(['prefix' => 'administrator'],function(){
+		Route::resource('rentangUmur','rentangUmurController');
+	});
+
 });
