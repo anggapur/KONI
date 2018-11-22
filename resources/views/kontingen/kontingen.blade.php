@@ -1,7 +1,21 @@
 @extends('layouts.app')
 @section('content')
 <!-- Main content -->
+
     <section class="content">
+		@if(session('status'))
+			@if(session('status') == 'success')
+			<div class="alert alert-success alert-dismissible">
+		    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+		    <h4><i class="icon fa fa-check"></i> Data berhasil ditambahkan</h4>
+			</div>
+		@elseif(session('status') == 'edited')
+			<div class="alert alert-success alert-dismissible">
+		    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+		    <h4><i class="icon fa fa-check"></i> Data berhasil diubah</h4>
+			</div>
+			@endif
+		@endif
 		<div class="box box-primary">
 		    <div class="box-header with-border">
 		    	<h3 class="box-title">Tambah Data Kontingen</h3>
@@ -9,19 +23,7 @@
 		    	<div class="row">
 		    		<div class="col-md-12">			    		
 		    			<br>
-			    		@if(session('status'))
-			    			@if(session('status') == 'success')
-		                	<div class="alert alert-success alert-dismissible">
-			                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-			                <h4><i class="icon fa fa-check"></i> Data berhasil ditambahkan</h4>
-			            	</div>
-			            @elseif(session('status') == 'edited')
-			            	<div class="alert alert-success alert-dismissible">
-			                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-			                <h4><i class="icon fa fa-check"></i> Data berhasil diubah</h4>
-			            	</div>
-			            	@endif
-			            @endif
+			    		
 
 	                	<center><h2>Data Kontingen</h2></center>
 	                    <div class="tableWrapper">
@@ -128,7 +130,10 @@
 	      $.ajax({
 	            type: "POST",
 	            url: "{{URL('/get-data-kontingen')}}",
-	            data: dataString,
+	            data: {
+	            	'id' : id,
+	            	'_token' : '{{csrf_token()}}',
+	            },
 	            cache: false,
 	            success: function(data){
 	            	data = JSON.parse(data);
@@ -167,7 +172,10 @@
 	      $.ajax({
 	            type: "POST",
 	            url: "{{URL('/delete-data-kontingen')}}",
-	            data: dataString,
+	            data: {
+	            	'id' : id,
+	            	'_token' : '{{csrf_token()}}',
+	            },
 	            cache: false,
 	            success: function(data){
 	            	if(data == 'success'){

@@ -90,7 +90,7 @@
         success : function(data)
         { 
           dataAjax = data.data;
-          dataAjax.unshift(['Cabang Olahraga',data.sumAllData+' atlet']);
+          dataAjax.unshift(['Cabang Olahraga',data.sumAllData+' pelatih']);
         }
 
       })

@@ -38,10 +38,16 @@ Route::get('data-prestasi','frontController@dataPrestasi');
 Route::get('data-event','frontController@dataEvent');
 Route::get('data-pelatih','frontController@dataPelatih');
 Route::get('data-wasit','frontController@dataWasit');
-
 Route::post('getApiData','frontController@getApiData');
-
-
+// Cabor Detail
+Route::get('cabor/{id}/{nama}','frontController@detailCabor');
+Route::get('data-atlet-di-cabor/{id_cabor}','frontController@dataAtletDiCabor');
+Route::get('data-pelatih-di-cabor/{id_cabor}','frontController@dataPelatihDiCabor');
+Route::get('data-wasit-di-cabor/{id_cabor}','frontController@dataWasitDiCabor');
+Route::get('data-np-di-cabor/{id_cabor}','frontController@dataNPDiCabor');
+//evennt detail
+Route::get('event/{id}/{nama}','frontController@detailEvent');
+Route::get('data-prestasi-di-event/{id_event}','frontController@dataPrestasiDiEvent');
 
 
 

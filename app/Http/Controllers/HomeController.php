@@ -23,9 +23,8 @@ class HomeController extends Controller
     public function index()
     {
 
-        $data = [];
         $data['page'] = 'Dashboard';
-        return view('home',['data' => $data]);
+        return view('home',$data);
         //return view('home');
         //return view('home');
 
