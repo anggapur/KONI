@@ -5,11 +5,13 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="csrf_token" content="{{ csrf_token() }}">
   <title>{{ config('app.name', 'Laravel') }}</title>
-  <!-- jQuery 3 -->
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+ 
   
-  <link rel="stylesheet" type="text/css" href="{{asset('public/css/datatables.bootstrap.css')}}">
-  <script type="text/javascript" src="{{asset('public/js/jquery.dataTables.min.js')}}"></script>
+  <!-- Datatables -->
+  <!-- <link href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css" rel="stylesheet"> -->
+  
+  <!-- <link rel="stylesheet" type="text/css" href="{{asset('public/css/datatables.bootstrap.css')}}">
+  <script type="text/javascript" src="{{asset('public/js/jquery.dataTables.min.js')}}"></script> -->
   <!-- Tell the browser to be responsive to screen width -->
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
   <!-- Bootstrap 3.3.7 -->
@@ -43,7 +45,13 @@
   <link rel="stylesheet" href="{{asset('public/adminLTE/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css')}}">
 
   
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.3.1/semantic.min.css" rel="stylesheet">
+  <link href="https://cdn.datatables.net/1.10.19/css/dataTables.semanticui.min.css" rel="stylesheet">
 
+  <!-- Style admin Custom -->
+  <link rel="stylesheet" href="{{asset('public/css/styleAdmin.css')}}">
+   <!-- jQuery 3 -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
   <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
   <!--[if lt IE 9]>
@@ -55,7 +63,7 @@
 
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">  
 </head>
-<body class="hold-transition skin-blue sidebar-mini">
+<body class="hold-transition skin-blue sidebar-mini adminPart">
 <div class="wrapper">
 
   <header class="main-header">
@@ -708,10 +716,11 @@
 <script src="{{asset('public/adminLTE/dist/js/pages/dashboard.js')}}"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="{{asset('public/adminLTE/dist/js/demo.js')}}"></script>
-</body>
-</html>
+  <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+  <script src="https://cdn.datatables.net/1.10.19/js/dataTables.semanticui.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.3.1/semantic.min.js"></script>
 
-<script type="text/javascript">
+  <script type="text/javascript">
   $('#datepicker').datepicker({
         autoclose: true,
         format: 'yyyy-mm-dd'
@@ -732,3 +741,6 @@
 
   // $('.select2').select2();
 </script>
+</body>
+</html>
+
