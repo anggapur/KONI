@@ -34,9 +34,12 @@ class KontingenController extends Controller
     	$data->kabupaten_id				= 1;
     	$data->foto_id					= 1;
         $data->cabor_id                 = $Request->cabor_id;
-    	$data->save();
+    	$save = $data->save();
         
-    	return redirect()->route('kontingen')->with('status', 'success');
+        if($save)
+            return redirect()->route('kontingen')->with('status', 'success');
+        else
+            return redirect()->route('kontingen')->with('status', 'failed add');
     }
 
     public function tambah(){
@@ -126,5 +129,9 @@ class KontingenController extends Controller
         else{
             echo "true";
         }
+    }
+
+    public function msg($msg){
+        return redirect()->route('kontingen')->with('status',$msg);
     }
 }
