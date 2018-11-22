@@ -36,30 +36,32 @@
 			</div>
 			@endif
 		@endif
-		<div class="box box-primary">
-		    <div class="box-header with-border">
-		    	<h3 class="box-title">Tambah Data Kontingen</h3>
-		    	<a href="{{ URL('/tambah-kontingen') }}"><button class="btn btn-success"><i class="fa fa-plus"></i></button></a>
-		    	<div class="row">
-		    		<div class="col-md-12">			    		
-		    			<br>
-			    		
+		  	          
+	    <div class="row">
+	       	<div class="col-xs-12">      	
+				<div class="box box-primary">
+				    <div class="box-header with-border">
+				    	<h3 class="box-title">Tambah Data Kontingen</h3>				    
+				    	<a href="{{ URL('/tambah-kontingen') }}"><button class="btn btn-success"><i class="fa fa-plus"></i></button></a>
+				    </div>
+				    	<div class="box-body">
 
-	                	<center><h2>Data Kontingen</h2></center>
-	                    <div class="tableWrapper">
-	                        <table class="table" id="table-kontingen">
-	                            <thead>
-	                                <tr>
-	                                    <th>Nama Kontingen</th>
-	                                   	<th>Cabang Olahraga</th>
-	                                    <th>Jabatan</th>
-	                                    <th>Aksi</th>
-	                                </tr>
-	                            </thead>	                            
-	                        </table>
-	                    </div>
-                   	</div>
+		                	<center><h2>Data Kontingen</h2></center>
+		                    <div class="tableWrapper">
+		                        <table class="table" id="table-kontingen">
+		                            <thead>
+		                                <tr>
+		                                    <th>Nama Kontingen</th>
+		                                   	<th>Cabang Olahraga</th>
+		                                    <th>Jabatan</th>
+		                                    <th>Aksi</th>
+		                                </tr>
+		                            </thead>	                            
+		                        </table>
+		                    </div>
 
+		                
+	                </div>
 	        	</div>
 	        </div>		  
 		</div>

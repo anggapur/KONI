@@ -3,9 +3,9 @@
 <!-- Main content -->
     <section class="content">
     	<div class="box box-primary">
-		    <div class="box-header with-border">
-		    	<div></div>
-		    	<h3 class="box-title">Tambah Data Kontingen</h3>
+		    <div class="box-header with-border">		    	
+		    	<h3 class="box-title">Edit Data Kontingen</h3></div>
+		    	<div class="box-body">
 		    	<form method="post" action="{{URL('update-kontingen')}}">
 		    		<input type="hidden" name="id" value="{{ $id_kontingen }}">
 		    		<input type="hidden" name="_token" value="{{ csrf_token() }}">
