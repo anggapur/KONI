@@ -50,8 +50,8 @@ Auth::routes();
 Route::group(['middleware' => 'auth'],function(){
 	//only admin can acces here
 
-	Route::get('/nomorPertandingan', 'noPertandinganController@index')->name('nomorPertandingan');
-	Route::post('saveNomorPertandingan','noPertandinganController@simpan');
+	Route::get('/nomorPertandingan', 'noPertandingan@index')->name('nomorPertandingan');
+	Route::post('saveNomorPertandingan','noPertandingan@simpan');
 
 	Route::get('/home', 'HomeController@index')->name('home');
 
@@ -60,7 +60,7 @@ Route::group(['middleware' => 'auth'],function(){
 	Route::get('/kontingen','KontingenController@index')->name('kontingen');
 	Route::get('/tambah-kontingen','KontingenController@tambah');
 	Route::get('/edit-kontingen/{id}','KontingenController@edit')->name('kontingen-edit');
-	Route::get('data-kontingen','KontingenController@dataKontingen');
+	Route::get('/data-kontingen','KontingenController@dataKontingen');
 	Route::post('/add-kontingen','KontingenController@add');
 	Route::post('/get-data-kontingen','KontingenController@getData');
 	Route::post('/delete-data-kontingen','KontingenController@hapus');

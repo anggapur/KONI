@@ -1,4 +1,4 @@
-@extends('layouts.app')	
+@extends('layouts.app')
 @section('content')
 <!-- Main content -->
     <section class="content">
@@ -6,8 +6,23 @@
 		    <div class="box-header with-border">
 		    	<h3 class="box-title">Tambah Data Kontingen</h3>
 		    	<a href="{{ URL('/tambah-kontingen') }}"><button class="btn btn-success"><li class="fa fa-plus"></li></button></a>
-		    	<div class="row">		    		
-	                <div class="col-md-12">
+		    	<div class="row">
+		    		<div class="col-md-12">			    		
+		    			<br>
+			    		@if(session('status'))
+			    			@if(session('status') == 'success')
+		                	<div class="alert alert-success alert-dismissible">
+			                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+			                <h4><i class="icon fa fa-check"></i> Data berhasil ditambahkan</h4>
+			            	</div>
+			            @elseif(session('status') == 'edited')
+			            	<div class="alert alert-success alert-dismissible">
+			                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+			                <h4><i class="icon fa fa-check"></i> Data berhasil diubah</h4>
+			            	</div>
+			            	@endif
+			            @endif
+
 	                	<center><h2>Data Kontingen</h2></center>
 	                    <div class="tableWrapper">
 	                        <table class="table" id="table-kontingen">
@@ -21,10 +36,11 @@
 	                            </thead>	                            
 	                        </table>
 	                    </div>
-	                </div>
-	            </div>
-		    </div>
-		</div>		
+                   	</div>
+
+	        	</div>
+	        </div>		  
+		</div>
     </section>
 
     <!-- Modal -->
@@ -123,7 +139,7 @@
 	            	$('#tempat_lahir').val(data.tempat_lahir);
 	            	$('#tgl_lahir').val(data.tgl_lahir);
 	            	$('#alamat').val(data.alamat);
-	            	$('#jabatan').val(data.nama_jabatan);	            	
+	            	$('#jabatan').val(data.nama_jabatan);
 	            	$('#viewModal').modal('show');
 				}
 			});
@@ -133,7 +149,7 @@
 	<script type="text/javascript">
 		function hapus(nama,id){
 			$('#body-nama-kontingen').html("<p> Yakin menghapus data "+nama+" ? </p>");
-			$('#hapus-button').html("<button type='button' class='btn btn-danger' onclick='del("+id+")'>Hapus</button>")
+			$('#hapus-button').html("<button type='button' class='btn btn-danger' onclick='del("+id+")'>Hapus</button>");
 			$('#delModal').modal('show');
 		}
 	</script>

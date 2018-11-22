@@ -13,11 +13,10 @@ use App\Jabatan;
 class KontingenController extends Controller
 {   
     public function index()
-    {
-    	$data = [];
+    {    	
     	$data['active'] = 'Kontingen';
     	$data['page'] = 'Kontingen';
-    	return view('kontingen.kontingen', ['data' => $data]);
+    	return view('kontingen.kontingen', $data);
     }
 
     public function add(Request $Request){
@@ -36,8 +35,8 @@ class KontingenController extends Controller
     	$data->foto_id					= 1;
         $data->cabor_id                 = $Request->cabor_id;
     	$data->save();
-
-    	return redirect()->route('kontingen');
+        
+    	return redirect()->route('kontingen')->with('status', 'success');
     }
 
     public function tambah(){
@@ -116,7 +115,7 @@ class KontingenController extends Controller
     
                 ]);
 
-        return redirect()->route('kontingen');  
+        return redirect()->route('kontingen')->with('status','edited');
     }
 
     public function cekKartu(Request $Request){

@@ -90,7 +90,7 @@
                   <li><!-- start message -->
                     <a href="#">
                       <div class="pull-left">
-                        <img src="dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
+                        <img src="{{asset('public/adminLTE/dist/img/user2-160x160.jpg')}}" class="img-circle" alt="User Image">
                       </div>
                       <h4>
                         Support Team
@@ -103,7 +103,7 @@
                   <li>
                     <a href="#">
                       <div class="pull-left">
-                        <img src="dist/img/user3-128x128.jpg" class="img-circle" alt="User Image">
+                        <img src="{{asset('public/adminLTE/dist/img/user3-128x128.jpg')}}" class="img-circle" alt="User Image">
                       </div>
                       <h4>
                         AdminLTE Design Team
@@ -115,7 +115,7 @@
                   <li>
                     <a href="#">
                       <div class="pull-left">
-                        <img src="dist/img/user4-128x128.jpg" class="img-circle" alt="User Image">
+                        <img src="{{asset('public/adminLTE/dist/img/user4-128x128.jpg')}}" class="img-circle" alt="User Image">
                       </div>
                       <h4>
                         Developers
@@ -127,7 +127,7 @@
                   <li>
                     <a href="#">
                       <div class="pull-left">
-                        <img src="dist/img/user3-128x128.jpg" class="img-circle" alt="User Image">
+                        <img src="{{asset('public/adminLTE/dist/img/user3-128x128.jpg')}}" class="img-circle" alt="User Image">
                       </div>
                       <h4>
                         Sales Department
@@ -139,7 +139,7 @@
                   <li>
                     <a href="#">
                       <div class="pull-left">
-                        <img src="dist/img/user4-128x128.jpg" class="img-circle" alt="User Image">
+                        <img src="{{asset('public/adminLTE/dist/img/user4-128x128.jpg')}}" class="img-circle" alt="User Image">
                       </div>
                       <h4>
                         Reviewers
@@ -360,8 +360,12 @@
           </a>          
         </li>
 
-        <li>
-          <a href="#">
+        <li class="@if(isset($active))
+        {
+          @if($active == 'Cabang Olahraga') {{ 'active' }} @endif
+        }
+        @endif">
+          <a href="{{URL('/nomorPertandingan')}}">
             <i class="fa fa-code-branch"></i> <span>Cabang Olahraga</span>            
           </a>          
         </li>
@@ -384,9 +388,9 @@
           </a>          
         </li>
 
-        <li class="@if(isset($data['active']))
+        <li class="@if(isset($active))
         {
-          @if($data['active'] == 'Kontingen') {{ 'active' }} @endif
+          @if($active == 'Kontingen') {{ 'active' }} @endif
         }
         @endif">
           <a href="{{ URL('/kontingen') }}">
@@ -452,11 +456,11 @@
     <section class="content-header">
       <h1>
 
-        {{ $data['page'] }}        
+        {{ $page }}
       </h1>
       <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>        
-        <li class="active">{{ $data['page'] }}</li>
+        <li class="active">{{ $page }}</li>
 
       </ol>
     </section>
@@ -681,7 +685,7 @@
 <script src="{{asset('public/adminLTE/bower_components/raphael/raphael.min.js')}}"></script>
 <script src="{{asset('public/adminLTE/bower_components/morris.js/morris.min.js')}}"></script>
 <!-- Sparkline -->
-<script src="bower_components/jquery-sparkline/dist/jquery.sparkline.min.js"></script>
+<script src="{{asset('public/adminLTE/bower_components/jquery-sparkline/dist/jquery.sparkline.min.js')}}"></script>
 <!-- jvectormap -->
 <script src="{{asset('public/adminLTE/plugins/jvectormap/jquery-jvectormap-1.2.2.min.js')}}"></script>
 <script src="{{asset('public/adminLTE/plugins/jvectormap/jquery-jvectormap-world-mill-en.js')}}"></script>
@@ -713,18 +717,18 @@
         format: 'yyyy-mm-dd'
   });
 
-  $('input[type="checkbox"].minimal, input[type="radio"].minimal').iCheck({
-    checkboxClass: 'icheckbox_minimal-blue',
-    radioClass   : 'iradio_minimal-blue'
-  });
-  $('input[type="checkbox"].minimal-red, input[type="radio"].minimal-red').iCheck({
-    checkboxClass: 'icheckbox_minimal-red',
-    radioClass   : 'iradio_minimal-red'
-  }); 
-  $('input[type="checkbox"].flat-red, input[type="radio"].flat-red').iCheck({
-    checkboxClass: 'icheckbox_flat-green',
-    radioClass   : 'iradio_flat-green'
-  });
+  // $('input[type="checkbox"].minimal, input[type="radio"].minimal').iCheck({
+  //   checkboxClass: 'icheckbox_minimal-blue',
+  //   radioClass   : 'iradio_minimal-blue'
+  // });
+  // $('input[type="checkbox"].minimal-red, input[type="radio"].minimal-red').iCheck({
+  //   checkboxClass: 'icheckbox_minimal-red',
+  //   radioClass   : 'iradio_minimal-red'
+  // }); 
+  // $('input[type="checkbox"].flat-red, input[type="radio"].flat-red').iCheck({
+  //   checkboxClass: 'icheckbox_flat-green',
+  //   radioClass   : 'iradio_flat-green'
+  // });
 
-  $('.select2').select2();
+  // $('.select2').select2();
 </script>

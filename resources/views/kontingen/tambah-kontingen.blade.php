@@ -19,14 +19,15 @@
 		                </div>		                
 		             </div>
 
-		             <div class="form-group">
+		             <div id="nkta_error" class="form-group">
 		                <label>No Kartu Tanda Anggota</label>
 		                <div class="input-group date">
 		                  <div class="input-group-addon">
 		                    <i class="fa fa-book"></i>
 		                  </div>
-		                  <input id="nkta" class="form-control" type="text" name="nkta" required minlength="0" maxlength="10" onkeyup="return validation()">
-		                </div>		                
+		                  <input id="nkta" class="form-control" type="text" name="nkta" required minlength="0" maxlength="10" onkeyup="return validation()">		                  
+		                </div>
+		                <span id="error" class="help-block" style="display: none;">No Kartu Tanda Anggota sudah terdaftar</span>
 		             </div>
 
 		            <div class="form-group">
@@ -120,10 +121,16 @@
 			   		data: dataString,
 			   		cache: false,
 			   		success: function(html){		   			
-			   			if(html == 'false'){
-				   			alert("No Kartu Tanda Anggota sudah digunakan, silahkan cek kembali No Kartu Tanda Anggota yang anda inputkan");
+			   			if(html == 'false'){				   			
 				   			$('#nkta').focus();
-				   		}				   		
+				   			$('#nkta_error').addClass(' has-error');
+				   			$('#error').show();
+				   			$('#submit').prop('disabled',true);
+				   		}else{
+				   			$('#nkta_error').removeClass(' has-error');
+				   			$('#error').hide();
+				   			$('#submit').prop('disabled',false);
+				   		}
 			   		} 
 				});
 			}		

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Nomor_Pertandingan;
+use App\Cabang_Olahraga;
 
 class noPertandingan extends Controller
 
@@ -25,6 +26,9 @@ class noPertandingan extends Controller
      */
     public function index()
     {
+        $data['listCabangOlahraga'] = Cabang_Olahraga::select('*')->get();
+        $data['page'] = "Cabang Olahraga";        
+        $data['active'] = "Cabang Olahraga";
         return view('noPertandingan',$data);
     }
     public function simpan(Request $request)
