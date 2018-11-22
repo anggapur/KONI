@@ -80,8 +80,8 @@
             },
             columns: [
             {data: 'jenis_umur', name: 'jenis_umur'},
-            {data: 'rentang', name: 'rentang'},
-            {data: 'aksi', name: 'aksi'},
+            {data: 'rentang', name: 'umur_awal'},
+            {data: 'aksi', name:'umur_akhir'},
         ],
         });
     });
