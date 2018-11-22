@@ -7,32 +7,32 @@
 			@if(session('status') == 'success')
 			<div class="alert alert-success alert-dismissible">
 		    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-		    <h4><i class="icon fa fa-check"></i> Data berhasil ditambahkan</h4>
+		    <h4><i class="fa fa-check"></i> Data berhasil ditambahkan</h4>
 			</div>
 			@elseif(session('status') == 'edited')
 			<div class="alert alert-success alert-dismissible">
 		    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-		    <h4><i class="icon fa fa-check"></i> Data berhasil diubah</h4>
+		    <h4><i class="fa fa-check"></i> Data berhasil diubah</h4>
 			</div>
 			@elseif(session('status') == 'deleted')
 			<div class="alert alert-success alert-dismissible">
 		    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-		    <h4><i class="icon fa fa-check"></i> Data berhasil dihapus</h4>
+		    <h4><i class="fa fa-check"></i> Data berhasil dihapus</h4>
 			</div>
 			@elseif(session('status') == 'failed add')
 			<div class="alert alert-danger alert-dismissible">
 		    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-		    <h4><i class="icon fa fa-check"></i> Gagal menambah data</h4>		    
+		    <h4><i class="fa fa-times"></i> Gagal menambah data</h4>		    
 			</div>
 			@elseif(session('status') == 'failed edit')
-			<div class="alert alert-denger alert-dismissible">
+			<div class="alert alert-danger alert-dismissible">
 		    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-		    <h4><i class="icon fa fa-check"></i> Gagal mengubah data</h4>
+		    <h4><i class="fa fa-times"></i> Gagal mengubah data</h4>
 			</div>
 			@elseif(session('status') == 'failed delete')
 			<div class="alert alert-danger alert-dismissible">
 		    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-		    <h4><i class="icon fa fa-check"></i> Gagal menghapus data</h4>
+		    <h4><i class="fa fa-times"></i> Gagal menghapus data</h4>
 			</div>
 			@endif
 		@endif
