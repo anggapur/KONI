@@ -340,9 +340,8 @@
       <ul class="sidebar-menu" data-widget="tree">
         <li class="header">MAIN NAVIGATION</li>
 
-
-        <li>
-          <a href="#">
+        <li class="active">
+          <a href="{{ URL('/admin/view') }}">
             <i class="fa fa-user"></i> <span>User</span>
           </a>          
         </li>

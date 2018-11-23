@@ -51,8 +51,9 @@ Route::group(['middleware' => 'auth'],function(){
 	Route::post('/delete-data-kontingen','KontingenController@hapus');
 	Route::post('/update-kontingen','KontingenController@update');
 
-	Route::get('/admin','adminController@index')->name('admin');
-	//yg dikiri link
+	//User
+	Route::get('/admin','adminController@index')->name('view');
+	Route::get('/admin/tambah','adminController@formTambah')->name('admin');
 	Route::post('/insert','adminController@admin');
 	Route::get('/admin/view','adminController@tampil')->name('view');
 	Route::get('/admin/{id_user}','adminController@edit');

@@ -8,17 +8,17 @@
       @endif
 
       @if(session('status')=='1')
-      	<script>alert('Email Udah Ada Mas')</script>
+        <div class="alert alert-danger alert-dismissible">Email Udah Ada Mas!</div>
       @endif	
 	  
       @if(session('status')=='2')
-      	<script>alert('Password Kurang Mas')</script>
-	  @endif
+        <div class="alert alert-danger alert-dismissible">Password Kurang Mas!</div>
+	    @endif
 
-	  @if(session('status')=='3')
-      	<script>alert('Konfirmasi Password Salah Mas')</script>
+    @if(session('status')=='3')
+        <div class="alert alert-danger alert-dismissible">Konfirmasi Password Tidak Sama Mas!</div>
       @endif
-
+      
 	  @if(session('status')=='4')
       	<script>alert('Ga Ada Koneksi Internet Mas')</script>
       @endif
@@ -37,7 +37,7 @@
                   <input name="name" type="text" class="form-control" id="name" placeholder="Nama" required>
                 </div>
                 <div class="form-group">
-                  <label for="email">email</label>
+                  <label for="email">Email</label>
                   <input name="email" type="email" class="form-control" id="email" placeholder="email@email.com" required>
                 </div>
                 <div class="form-group">

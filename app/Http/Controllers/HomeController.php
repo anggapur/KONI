@@ -22,12 +22,8 @@ class HomeController extends Controller
      */
     public function index()
     {
-<<<<<<< HEAD
         $data = [];
         $data['page'] = 'Dashboard';
         return view('home',['data' => $data]);
-=======
-        return view('home');
->>>>>>> 41ef5a1c08f83eaee56f68c1ff49dca8d84b8980
     }
 }
