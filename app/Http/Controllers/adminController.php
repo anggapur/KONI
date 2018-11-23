@@ -58,8 +58,9 @@ class adminController extends Controller
 
     public function hapus($id_user){
         $user = User::where('id',$id_user)->first();
+        $status = 7;
         if($user->delete()){
-            return Redirect()->route('view')->with('success','1');
+            return Redirect()->route('view')->with('status',$status);
         }
     }
 
