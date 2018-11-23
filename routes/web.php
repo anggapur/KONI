@@ -11,6 +11,7 @@
 |
 */
 
+
 Route::get('nomorPertandingan','contohController@index');
 Route::get('/', function () {
     return view('welcome');
@@ -18,6 +19,7 @@ Route::get('/', function () {
 
 
 Route::get('angga','contohController@index');
+
 
 
 // Route By Angga Purnajiwa
@@ -61,7 +63,6 @@ Route::group(['middleware' => 'auth'],function(){
 
 	Route::get('/home', 'HomeController@index')->name('home');
 
-
 	//Kontingen
 	Route::get('/kontingen','KontingenController@index')->name('kontingen');
 	Route::get('/tambah-kontingen','KontingenController@tambah');
@@ -74,8 +75,9 @@ Route::group(['middleware' => 'auth'],function(){
 	Route::post('/cek-no-kartu-anggota','KontingenController@cekKartu');
 	Route::get('/kontingen/{msg}','KontingenController@msg');
 
-	Route::get('/admin','adminController@index')->name('admin');
-	//yg dikiri link
+	//User
+	Route::get('/admin','adminController@index')->name('view');
+	Route::get('/admin/tambah','adminController@formTambah')->name('admin');
 	Route::post('/insert','adminController@admin');
 	Route::get('/admin/view','adminController@tampil')->name('view');
 	Route::get('/admin/{id_user}','adminController@edit');
@@ -89,5 +91,8 @@ Route::group(['middleware' => 'auth'],function(){
 
 		Route::resource('importData','importDataController');
 	});
+
+	Route::get('noPertandingan','noPertandingan@index');
+	Route::post('addNoPertandingan','noPertandingan@simpan');
 
 });

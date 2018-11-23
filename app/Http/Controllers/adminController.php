@@ -10,6 +10,7 @@ use Hash;
 class adminController extends Controller
 {
     //
+
     public function index(){
         $data['page'] = "Manajemen Admin";
     	return view('admin.admin',$data);
@@ -18,12 +19,22 @@ class adminController extends Controller
     public function tampil(){
         //User diambil dari providers, tampil=nama function)
         $post = User::all();
+
+        $data['page'] = 'Data User';
+        return view('admin.view',['tampil'=>$post,'data'=>$data]);
+
         return view('admin.view',['tampil'=>$post,'page'=>'Manajemen Admin']);
+
     }
 
     public function edit($id){
         $user = User::where('id',$id)->first(); //select
+
+        $data['page'] = 'Edit User';
+        return view('admin.edit',['user'=>$user,'data'=>$data]);
+
         return view('admin.edit',['user'=>$user,'page'=>'Manajemen Admin']);
+
     }
 
     public function update(Request $request, $id_user){
@@ -80,18 +91,23 @@ class adminController extends Controller
                 }
             }
             else{
-                $status = '2';
+                    $status = '2';
             }
         }
 
         if($status == '0'){
             if(!$data->save()) {
-                $status = 4;
+                $status = '4';
             }
         }
 
-        return Redirect('/admin/view')->with('status',$status);
+        $data['page'] = 'Tambah User';
+        if($status == 0)
+            return Redirect('admin/view')->with(['status' => $status,'data' => $data]);
+        else
+            return Redirect()->back()->with(['status' => $status,'data' => $data]);
 	}
+
 	public function hashSSHA($password) {
 
         $salt = sha1(rand());
@@ -105,5 +121,10 @@ class adminController extends Controller
         $hash = base64_encode(sha1($password . $salt, true) . $salt);
 
         return $hash;
+    }
+    public function formTambah()
+    {
+        $data['page'] = "Tambah User";
+        return view('admin.formTambah',['data'=> $data]);
     }
 }

@@ -2,40 +2,35 @@
 @section('content')
 <!-- Main content -->
     <section class="content">
-      
 
-      @if(session('status')=='5')
-        <script>alert('Berhasil Diedit Mas')</script>
+      @if(session('status')=='0')
+        <div class="alert alert-success">Data Berhasil Ditambah!</div>
+      @endif
+
+      @if(session('status')=='1')
+        <div class="alert alert-danger alert-dismissible">Email Sudah Ada!</div>
+      @endif  
+    
+      @if(session('status')=='2')
+        <div class="alert alert-danger alert-dismissible">Password Setidaknya 6 karakter!</div>
+      @endif
+
+    @if(session('status')=='3')
+        <div class="alert alert-danger alert-dismissible">Konfirmasi Password Tidak Sama!</div>
+      @endif
+
+    @if(session('status')=='4')
+        <div class="alert alert-danger alert-dismissible">Tidak Ada Koneksi Internet!')</div>
+      @endif
+    
+    @if(session('status')=='5')
+        <div class="alert alert-success">Data Berhasil Diedit!</div>
       @endif
 
       @if(session('status')=='6')
         <script>alert('DC Ada Mas')</script>
       @endif  
 
-      @if(session('success')==1)  
-        <script>alert('Udah Dihapus Mas')</script>
-      @endif
-
-      @if(session('status')=='0')
-        <script>alert('Sudah Benar Mas')</script>
-      @endif
-
-      @if(session('status')=='1')
-        <script>alert('Email Udah Ada Mas')</script>
-      @endif  
-    
-      @if(session('status')=='2')
-        <script>alert('Password Kurang Mas')</script>
-    @endif
-
-    @if(session('status')=='3')
-        <script>alert('Konfirmasi Password Salah Mas')</script>
-      @endif
-
-    @if(session('status')=='4')
-        <script>alert('Ga Ada Koneksi Internet Mas')</script>
-      @endif
-    
       <div class="box">
             <div class="box-header">
               <h3 class="box-title">Data User</h3>
@@ -70,14 +65,11 @@
                 <td>{{ $value->created_at }}</td>
                 <td>{{ $value->updated_at }}</td>
                 <td>
-                  <a href="#" class="show-modal btn btn-info btn-sm" data-id="{{$value->id}}" data-title="{{$value->title}}" data-body="{{$value->body}}">
-                    <i class="glyphicon glyphicon-eye-open"></i>
-                  </a>
                   <a href="{{url('/admin/'.$value->id)}}" class="edit-modal btn btn-warning btn-sm" data-id="{{$value->id}}" data-title="{{$value->title}}" data-body="{{$value->body}}">
-                    <i class="glyphicon glyphicon-pencil"></i>
+                    <i class="glyphicon glyphicon-pencil"></i>Edit
                   </a>
                   <a href="{{url('/admin/hapus/'.$value->id)}}" class="delete-modal btn btn-danger btn-sm" data-id="{{$value->id}}" type="submit">
-                    <i class="glyphicon glyphicon-trash"></i>
+                    <i class="glyphicon glyphicon-trash"></i>Hapus
                   </a>  
                 </td>
               </tr>
@@ -89,7 +81,7 @@
             <script>
              $(document).on('click','.delete-modal',function(e){
               var id = $(this).val();
-              if(confirm("Anda Yakin Mau Hapus Mas ?"))
+              if(confirm("Anda Yakin Mau Hapus ?"))
               {
                 $.ajax({
 
@@ -97,7 +89,7 @@
               }
               else
               {
-                alert('Batal Hapus Mas?');
+                alert('Batal Hapus ?');
                 return false;
               }
              })
