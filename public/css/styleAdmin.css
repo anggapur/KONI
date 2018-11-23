@@ -10,3 +10,6 @@
 .wrapper {
     overflow: hidden !important;
 }
+section.content-header {
+    min-height: 41px;
+}
