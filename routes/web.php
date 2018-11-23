@@ -79,6 +79,16 @@ Route::group(['middleware' => 'auth'],function(){
 	Route::post('/cek-no-kartu-anggota','KontingenController@cekKartu');
 	Route::get('/kontingen/{msg}','KontingenController@msg');
 
+	//Prestasi
+	Route::get('/prestasi','PrestasiController@index')->name('Prestasi');
+	Route::get('/editPrestasi/{$id}','PrestasiController@edit')->name('editPrestasi');
+	Route::get('/get-data-prestasi','PrestasiController@getData');
+	Route::get('/addPrestasi','PrestasiController@tambah');
+
+	Route::post('/get-detail-prestasi','PrestasiController@getDetail');
+	Route::post('/getNP','PrestasiController@getNP');
+	Route::post('/getAtlet','PrestasiController@getAtlet');
+
 	//User
 	Route::get('/admin','adminController@index')->name('view');
 	Route::get('/admin/tambah','adminController@formTambah')->name('admin');

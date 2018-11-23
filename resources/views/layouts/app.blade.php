@@ -375,8 +375,12 @@
           </a>          
         </li>
 
-        <li>
-          <a href="#">
+        <li class="@if(isset($active))
+        {
+          @if($active == 'Prestasi') {{ 'active' }} @endif
+        }
+        @endif">
+          <a href="{{url('/prestasi')}}">
             <i class="fa fa-trophy"></i> <span>Prestasi Atlet</span>
           </a>          
         </li>
