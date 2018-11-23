@@ -27,6 +27,11 @@
         <div class="alert alert-success">Data Berhasil Diedit!</div>
       @endif
 
+    
+    @if(session('status')=='7')
+        <div class="alert alert-success">Data Berhasil Dihapus!</div>
+      @endif
+
       @if(session('status')=='6')
         <script>alert('DC Ada Mas')</script>
       @endif  
