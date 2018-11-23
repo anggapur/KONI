@@ -14,7 +14,7 @@
                   <label>Cabang Olahraga</label>
                   <select class="form-control" name="cabor_id">
                   @foreach($listCabangOlahraga as $val)
-                    <option value="{{$val->cabor_id}}">{{$val->nama_cabor}}</option>
+                    <option value="{{$val->id_cabor}}">{{$val->nama_cabor}}</option>
                   @endforeach
                   </select>
                 </div>

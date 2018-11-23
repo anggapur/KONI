@@ -9,7 +9,7 @@ use App\Cabang_Olahraga;
 use Yajra\Datatables\Datatables;
 
 
-class noPertandingan extends Controller
+class noPertandinganController extends Controller
 
 {
 	
@@ -37,7 +37,7 @@ class noPertandingan extends Controller
         $data['listCabangOlahraga'] = Cabang_Olahraga::select('*')->get();
         $data['page'] = "Nomor Pertandingan";        
         $data['active'] = "Nomor Pertandingan";
-        return view('noPertandingan',$data);
+        return view('nomor_pertandingan.noPertandingan',$data);
 
     }
     public function simpan(Request $request)
@@ -62,21 +62,21 @@ class noPertandingan extends Controller
     {
         $data['page'] = "Nomor Pertandingan";        
         $data['active'] = "Nomor Pertandingan";
-        return view('tampilNoPertandingan',$data);
+        return view('nomor_pertandingan.tampilNoPertandingan',$data);
 
     }
     public function getdata()
     {
          $data = Nomor_Pertandingan::select('nama_cabor','ket_np','id_np')
             ->leftJoin('cabang_olahraga','cabor_id','=','id_cabor')
-            ->get();        
+            ->get();
 
             
 
       return Datatables::of($data)
       ->addColumn('aksi', function($data){
         return "
-            <a href=".route('edit-noPertandingan',$data->id_np)."><button class='btn btn-xs btn-primary'> <i class='fa fa-edit'> </i> Edit  </button> </a>
+            <a href=".route('editNoPertandingan',$data->id_np)."><button class='btn btn-xs btn-primary'> <i class='fa fa-edit'> </i> Edit  </button> </a>
             <button onclick='hapus(\"".$data->ket_np."\",".$data->id_np.")' class='btn btn-xs btn-danger'> <i class='fa fa-trash'> </i> Hapus  </button>";
       })
 
@@ -87,7 +87,7 @@ class noPertandingan extends Controller
         $data['listCabangOlahraga'] = Cabang_Olahraga::select('*')->get();
         $data['page'] = "Nomor Pertandingan";        
         $data['active'] = "Nomor Pertandingan";
-        return view('noPertandingan',$data);
+        return view('nomor_pertandingan.noPertandingan',$data);
     }
     public function editNoPertandingan($id)
     {
@@ -96,7 +96,7 @@ class noPertandingan extends Controller
         $data['page'] = "Nomor Pertandingan";        
         $data['active'] = "Nomor Pertandingan";
        //    dd($data);
-        return view('editNoPertandingan',$data);
+        return view('nomor_pertandingan.editNoPertandingan',$data);
     }
     public function update(Request $request)
     {
@@ -108,9 +108,8 @@ class noPertandingan extends Controller
             'cabor_id' => $data['cabor_id'],
             'ket_np'=>$data['ket_np']
             ]);
-        if($update){
-            return redirect()->route('nomorPertandingan')->with('status','edited');
-        }
+
+        return redirect()->route('nomorPertandingan')->with('status','edited');            
     }
 }
 

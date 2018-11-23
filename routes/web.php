@@ -58,8 +58,12 @@ Auth::routes();
 Route::group(['middleware' => 'auth'],function(){
 	//only admin can acces here
 
-	Route::get('/nomorPertandingan', 'noPertandingan@index')->name('nomorPertandingan');
-	Route::post('saveNomorPertandingan','noPertandingan@simpan');
+	Route::get('/tampilNoPertandingan','noPertandinganController@tampil')->name('nomorPertandingan');
+	Route::get('/editNoPertandingan/{id}','noPertandinganController@editNoPertandingan')->name('editNoPertandingan');
+	Route::get('/nomorPertandingan', 'noPertandinganController@index');
+	Route::post('saveNomorPertandingan','noPertandinganController@simpan');
+	Route::get('/data-np','noPertandinganController@getData');
+	Route::post('/updateNomorPertandingan','noPertandinganController@update');
 
 	Route::get('/home', 'HomeController@index')->name('home');
 
@@ -90,8 +94,4 @@ Route::group(['middleware' => 'auth'],function(){
 		Route::resource('rentangUmur','rentangUmurController');
 
 	});
-
-	Route::get('noPertandingan','noPertandingan@index');
-	Route::post('addNoPertandingan','noPertandingan@simpan');
-
 });

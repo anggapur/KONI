@@ -14,7 +14,8 @@
   <link rel="stylesheet" href="{{asset('public/adminLTE/bower_components/Ionicons/css/ionicons.min.css')}}">
   <!-- Theme style -->
   <link rel="stylesheet" href="{{asset('public/adminLTE/dist/css/AdminLTE.min.css')}}">
-  <!-- AdminLTE Skins. Choose a skin from the css/skins
+  <!-- AdminLTE Skins. Choose a skin fr
+  om the css/skins
        folder instead of downloading all of them to reduce the load. -->
   <link rel="stylesheet" href="{{asset('public/adminLTE/dist/css/skins/_all-skins.min.css')}}">
   <!-- Morris chart -->
@@ -369,7 +370,7 @@
           @if($active == 'Nomor Pertandingan') {{ 'active' }} @endif
         }
         @endif">
-          <a href="{{URL('/nomorPertandingan')}}">
+          <a href="{{URL('/tampilNoPertandingan')}}">
             <i class="fa fa-cogs"></i> <span>Nomor Pertandingan</span>            
           </a>          
         </li>
