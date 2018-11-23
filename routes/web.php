@@ -11,6 +11,7 @@
 |
 */
 
+
 Route::get('nomorPertandingan','contohController@index');
 Route::get('/', function () {
     return view('welcome');
@@ -18,6 +19,7 @@ Route::get('/', function () {
 
 
 Route::get('angga','contohController@index');
+
 
 
 // Route By Angga Purnajiwa
@@ -61,7 +63,6 @@ Route::group(['middleware' => 'auth'],function(){
 
 	Route::get('/home', 'HomeController@index')->name('home');
 
-
 	//Kontingen
 	Route::get('/kontingen','KontingenController@index')->name('kontingen');
 	Route::get('/tambah-kontingen','KontingenController@tambah');
@@ -89,5 +90,8 @@ Route::group(['middleware' => 'auth'],function(){
 		Route::resource('rentangUmur','rentangUmurController');
 
 	});
+
+	Route::get('noPertandingan','noPertandingan@index');
+	Route::post('addNoPertandingan','noPertandingan@simpan');
 
 });
