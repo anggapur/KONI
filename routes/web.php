@@ -93,5 +93,6 @@ Route::group(['middleware' => 'auth'],function(){
 		Route::get('rentangUmur/getData','rentangUmurController@getData');
 		Route::resource('rentangUmur','rentangUmurController');
 
+		Route::resource('importData','importDataController');
 	});
 });
