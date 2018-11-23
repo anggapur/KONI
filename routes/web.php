@@ -25,7 +25,8 @@ Route::get('event','frontController@event');
 Route::get('cabor','frontController@cabor');
 Route::get('cabor','frontController@cabor');
 Route::get('rekor','frontController@rekor');
-
+Route::get('manajemenWasit','wasitController@index');
+Route::post('simpanWasit','wasitController@simpan');
 Route::get('data-atlet','frontController@dataAtlet');
 
 Auth::routes();
