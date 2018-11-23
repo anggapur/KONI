@@ -81,7 +81,7 @@
             <script>
              $(document).on('click','.delete-modal',function(e){
               var id = $(this).val();
-              if(confirm("Anda Yakin Mau Hapus Mas ?"))
+              if(confirm("Anda Yakin Mau Hapus ?"))
               {
                 $.ajax({
 
@@ -89,7 +89,7 @@
               }
               else
               {
-                alert('Batal Hapus Mas?');
+                alert('Batal Hapus ?');
                 return false;
               }
              })
