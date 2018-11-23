@@ -27,8 +27,8 @@ class noPertandingan extends Controller
     public function index()
     {
         $data['listCabangOlahraga'] = Cabang_Olahraga::select('*')->get();
-        $data['page'] = "Cabang Olahraga";        
-        $data['active'] = "Cabang Olahraga";
+        $data['page'] = "Nomor Pertandingan";        
+        $data['active'] = "Nomor Pertandingan";
         return view('noPertandingan',$data);
     }
     public function simpan(Request $request)
