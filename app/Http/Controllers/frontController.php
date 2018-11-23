@@ -16,6 +16,7 @@ use App\Kontingen;
 use Response;
 use DB;
 use Carbon;
+use App\rentangUmur;
 use App\Nomor_Pertandingan;
 class frontController extends Controller
 {
@@ -174,7 +175,10 @@ class frontController extends Controller
         }
         else if($request->name == "getAtletByJenisKelaminAndUmur")
         {
-            return GH::getAtletByJenisKelaminAndUmur();
+            $data['dataGrafik'] = GH::getAtletByJenisKelaminAndUmur();
+            $data['dataJudul'] = rentangUmur::orderBy('umur_awal','ASC')->pluck('jenis_umur')->toArray();
+            array_unshift($data['dataJudul'],'Jenis Kelamin');
+            return $data;
         }
         else if($request->name == "getPelatihByJenisKelaminAndUmur")
         {

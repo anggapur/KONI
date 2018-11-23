@@ -11,6 +11,7 @@ use App\Event;
 use App\Prestasi;
 use App\Rekor_Atlet;
 use App\Detail_Atlet;
+use App\rentangUmur;
 
 class GlobalHelper{
 	public static function getCountData(){
@@ -280,17 +281,26 @@ class GlobalHelper{
 
 	public static function getAtletByJenisKelaminAndUmur()
 	{
+		$i = 0;
 		$query = Master_Atlet::select('*',DB::raw('(year(curdate())-year(tgl_lahir)) as age'))->get();
+		$queryData = rentangUmur::orderBy('umur_awal','ASC')->get();
         $data = [];
-        $datas[0] = "Perempuan";
-        $datas[1] = collect($query)->where('age','<=',10)->where('jenis_kelamin','P')->count(); //Perempuan,anak
-        $datas[2] = collect($query)->where('age','>',10)->where('age','<=',17)->where('jenis_kelamin','P')->count(); //Perempuan,remaja
-        $datas[3] = collect($query)->where('age','>',17)->where('jenis_kelamin','P')->count(); //Perempuan,dewasa
+
+        $datas[$i++] = "Perempuan";
+        foreach ($queryData as $key => $value) {
+        	$datas[$i++] = collect($query)->where('age','>=',$value->umur_awal)
+        					->where('age','<=',$value->umur_akhir)
+        					->where('jenis_kelamin','P')->count();
+        }
         array_push($data, $datas);
-        $datas[0] = "Laki - Laki";
-        $datas[1] = collect($query)->where('age','<=',10)->where('jenis_kelamin','L')->count();//laki,anak
-        $datas[2] = collect($query)->where('age','>',10)->where('age','<=',17)->where('jenis_kelamin','L')->count();//laki,remaja
-        $datas[3] = collect($query)->where('age','>',17)->where('jenis_kelamin','L')->count();//laki,dewasa
+        
+        $i = 0;
+        $datas[$i++] = "Laki - Laki";
+        foreach ($queryData as $key => $value) {
+        	$datas[$i++] = collect($query)->where('age','>=',$value->umur_awal)
+        					->where('age','<=',$value->umur_akhir)
+        					->where('jenis_kelamin','L')->count();
+        }
         array_push($data, $datas);
         
         return $data;

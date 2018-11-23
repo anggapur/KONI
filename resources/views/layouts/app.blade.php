@@ -412,7 +412,12 @@
         </li>
         <li>
           <a href="{{url('administrator/rentangUmur')}}">
-            <i class="fa fa-calendar-alt"></i> <span>Rentang Umur</span>            
+            <i class="fa fa-bars"></i> <span>Rentang Umur</span>            
+          </a>          
+        </li>
+        <li>
+          <a href="{{url('administrator/importData')}}">
+            <i class="fa fa-file-import"></i> <span>Impor data</span>            
           </a>          
         </li>
         

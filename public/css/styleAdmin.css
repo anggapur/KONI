@@ -6,3 +6,7 @@
 .adminPart .tableWrapper {
     padding: 10px 20px;
 }
+
+.wrapper {
+    overflow: hidden !important;
+}

@@ -89,8 +89,8 @@
         success : function(data)
         { 
           console.log(data);
-          dataAjax = data;
-          dataAjax.unshift(['Jenis Kelamin', 'Anak', 'Remaja', 'Dewasa']);
+          dataAjax = data.dataGrafik;
+          dataAjax.unshift(data.dataJudul);
         }
 
       })
