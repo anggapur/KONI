@@ -84,7 +84,9 @@ Route::group(['middleware' => 'auth'],function(){
 
 	//Angga Pur CRUD rentang Umur'
 	Route::group(['prefix' => 'administrator'],function(){
+		Route::get('rentangUmur/getData','rentangUmurController@getData');
 		Route::resource('rentangUmur','rentangUmurController');
+
 	});
 
 });

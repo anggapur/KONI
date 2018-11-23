@@ -409,7 +409,7 @@
           </a>          
         </li>
         <li>
-          <a href="{{url('rentangUmur')}}">
+          <a href="{{url('administrator/rentangUmur')}}">
             <i class="fa fa-calendar-alt"></i> <span>Rentang Umur</span>            
           </a>          
         </li>

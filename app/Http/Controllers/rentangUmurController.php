@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
+use App\rentangUmur;
+use Validator;
+use Datatables;
 class rentangUmurController extends Controller
 {
     /**
@@ -27,7 +29,8 @@ class rentangUmurController extends Controller
      */
     public function create()
     {
-        //
+        $data['page'] = $this->page;
+        return view($this->viewFolder.".create",$data);
     }
 
     /**
@@ -38,7 +41,21 @@ class rentangUmurController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = $request->except('_token');
+
+        $ruleValidasi = [
+            'jenis_umur' => 'required',
+            'umur_awal' => 'required|numeric',
+            'umur_akhir' => 'required|numeric',
+        ];
+        $pesanErrorCustom = [
+            'required' => 'Kolom :attribute Harus diiisi.',
+            'numeric' => 'Kolom :attribute Harus bernilai angka',
+        ];
+        $request->validate($ruleValidasi,$pesanErrorCustom);
+        $query = rentangUmur::create($data);
+        if($query)
+            return redirect('administrator/rentangUmur')->with(['status'=>'success' , 'message' => 'Berhasil Tambah Data Rentang Umur']);
     }
 
     /**
@@ -61,6 +78,9 @@ class rentangUmurController extends Controller
     public function edit($id)
     {
         //
+        $data['page'] = $this->page;
+        $data['dataRentangUmur'] = rentangUmur::where('id',$id)->first();
+        return view($this->viewFolder.".edit",$data);
     }
 
     /**
@@ -73,6 +93,21 @@ class rentangUmurController extends Controller
     public function update(Request $request, $id)
     {
         //
+        $data = $request->except('_token','_method');
+
+        $ruleValidasi = [
+            'jenis_umur' => 'required',
+            'umur_awal' => 'required|numeric',
+            'umur_akhir' => 'required|numeric',
+        ];
+        $pesanErrorCustom = [
+            'required' => 'Kolom :attribute Harus diiisi.',
+            'numeric' => 'Kolom :attribute Harus bernilai angka',
+        ];
+        $request->validate($ruleValidasi,$pesanErrorCustom);
+        $query = rentangUmur::where('id',$id)->update($data);
+        if($query)
+            return redirect('administrator/rentangUmur')->with(['status'=>'success' , 'message' => 'Berhasil Update Data Rentang Umur']);
     }
 
     /**
@@ -84,5 +119,24 @@ class rentangUmurController extends Controller
     public function destroy($id)
     {
         //
+        $query = rentangUmur::where('id',$id)->delete();
+        if($query)
+            return redirect('administrator/rentangUmur')->with(['status'=>'success' , 'message' => 'Berhasil <b>Hapus</b> Data Rentang Umur']);
+
+    }
+    public function getData()
+    {
+        $q = rentangUmur::select('*');
+        return Datatables::of($q)
+                 ->addColumn('rentang', function($user) {
+                    return $user->umur_awal." - ".$user->umur_akhir." tahun";
+                })
+                 ->addColumn('aksi', function($user) {
+                    // <button class='btn btn-warning btn-xs'><i class='fa fa-eye'> </i> View</button>
+                    return "
+                            <a href='".route('rentangUmur.edit',$user->id)."' class='btn btn-primary btn-xs'><i class='fa fa-edit'> </i> Edit</a>
+                            <button onclick='hapus(`".$user->jenis_umur."`,`".$user->id."`)' class='btn btn-danger btn-xs'><i class='fa fa-trash'> </i> Delete</button>";
+                })
+                ->make(true);
     }
 }
