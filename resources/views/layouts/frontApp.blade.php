@@ -81,10 +81,12 @@
             <div class="row">
                 @foreach(GH::getPrestasiTerbaru(8)['prestasi_terbaru'] as $val)
                 <div class="col-lg-3 col-md-6 col-sm-6">
+                    <a href="{{url('atlet/'.$val->id_atlet)}}/{{GH::normalize($val->nama_atlet)}}">
                     <div class="cardAtlet">
                         <div class="photoAtlet">
                              @php
-                                list($width, $height) = getimagesize(url('public/upload/fotoAtlet/atletSilat.jpg'));
+                                $namaFoto = GH::getImages(asset('public/upload/fotoAtlet'),$val->nama_foto);
+                                list($width, $height) = getimagesize($namaFoto);
                                 if($width < $height)
                                    $className = "stretchWidth"; 
                                 else
@@ -104,6 +106,7 @@
                             </div>
                         </div>
                     </div>
+                    </a>
                 </div>  
                 @endforeach 
             </div>

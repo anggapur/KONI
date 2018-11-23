@@ -11,17 +11,30 @@ class adminController extends Controller
 {
     //
 
+    public function index(){
+        $data['page'] = "Manajemen Admin";
+    	return view('admin.admin',$data);
+    }
+
     public function tampil(){
         //User diambil dari providers, tampil=nama function)
         $post = User::all();
+
         $data['page'] = 'Data User';
         return view('admin.view',['tampil'=>$post,'data'=>$data]);
+
+        return view('admin.view',['tampil'=>$post,'page'=>'Manajemen Admin']);
+
     }
 
     public function edit($id){
         $user = User::where('id',$id)->first(); //select
+
         $data['page'] = 'Edit User';
         return view('admin.edit',['user'=>$user,'data'=>$data]);
+
+        return view('admin.edit',['user'=>$user,'page'=>'Manajemen Admin']);
+
     }
 
     public function update(Request $request, $id_user){

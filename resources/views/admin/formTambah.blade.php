@@ -4,23 +4,23 @@
     <section class="content">
       
 	  @if(session('status')=='0')
-      	<script>alert('Sudah Benar Mas')</script>
+        <div class="alert alert-success">Data Berhasil Ditambah!</div>
       @endif
 
       @if(session('status')=='1')
-        <div class="alert alert-danger alert-dismissible">Email Udah Ada Mas!</div>
-      @endif	
-	  
+        <div class="alert alert-danger alert-dismissible">Email Sudah Ada!</div>
+      @endif  
+    
       @if(session('status')=='2')
-        <div class="alert alert-danger alert-dismissible">Password Kurang Mas!</div>
-	    @endif
+        <div class="alert alert-danger alert-dismissible">Password Setidaknya 6 karakter!</div>
+      @endif
 
-    @if(session('status')=='3')
-        <div class="alert alert-danger alert-dismissible">Konfirmasi Password Tidak Sama Mas!</div>
+      @if(session('status')=='3')
+        <div class="alert alert-danger alert-dismissible">Konfirmasi Password Tidak Sama!</div>
       @endif
       
-	  @if(session('status')=='4')
-      	<script>alert('Ga Ada Koneksi Internet Mas')</script>
+	    @if(session('status')=='4')
+        <div class="alert alert-danger alert-dismissible">Tidak Ada Koneksi Internet!')</div>
       @endif
 
       <div class="box box-primary">
