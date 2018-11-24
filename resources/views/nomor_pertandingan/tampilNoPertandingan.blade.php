@@ -42,11 +42,11 @@ s		    <h4><i class="fa fa-times"></i> Gagal menghapus data</h4>
 				<div class="box box-primary">
 				    <div class="box-header with-border">
 				    	<h3 class="box-title">Tambah Data Nomor Pertandingan</h3>				    
-				    	<a href="{{ URL('/nomorPertandingan') }}"><button class="btn btn-success"><i class="fa fa-plus"></i></button></a>
+				    	<a href="{{ URL('/nomorPertandingan') }}"><button class="btn btn-success btn-sm"><i class="fa fa-plus"></i> Tambah Data</button></a>
 				    </div>
 				    	<div class="box-body">
 
-		                	<center><h2>Data Nomor Pertandingan</h2></center>
+		                	<!-- <center><h2>Data Nomor Pertandingan</h2></center> -->
 		                    <div class="tableWrapper">
 		                        <table class="table" id="table-np">
 		                            <thead>

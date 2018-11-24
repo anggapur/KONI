@@ -365,21 +365,13 @@
           </a>          
         </li>
 
-        <li class="@if(isset($active))
-        {
-          @if($active == 'Nomor Pertandingan') {{ 'active' }} @endif
-        }
-        @endif">
+        <li class="{{GH::segment(1,['nomorPertandingan','editNoPertandingan','tampilNoPertandingan'])}}">
           <a href="{{URL('/tampilNoPertandingan')}}">
             <i class="fa fa-cogs"></i> <span>Nomor Pertandingan</span>            
           </a>          
         </li>
 
-        <li class="@if(isset($active))
-        {
-          @if($active == 'Prestasi') {{ 'active' }} @endif
-        }
-        @endif">
+        <li class="{{GH::segment(1,['prestasi','addPrestasi','editPrestasi'])}}">
           <a href="{{url('/prestasi')}}">
             <i class="fa fa-trophy"></i> <span>Prestasi Atlet</span>
           </a>          

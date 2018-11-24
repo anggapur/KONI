@@ -81,7 +81,7 @@ Route::group(['middleware' => 'auth'],function(){
 
 	//Prestasi
 	Route::get('/prestasi','PrestasiController@index')->name('Prestasi');
-	Route::get('/editPrestasi/{$id}','PrestasiController@edit')->name('editPrestasi');
+	Route::get('/editPrestasi/{id}','PrestasiController@edit')->name('editPrestasi');
 	Route::get('/get-data-prestasi','PrestasiController@getData');
 	Route::get('/addPrestasi','PrestasiController@tambah');
 
