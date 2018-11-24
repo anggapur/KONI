@@ -4,7 +4,7 @@
     <section class="content">
     	<div class="box box-primary">
 		    <div class="box-header with-border">		    	
-		    	<h3 class="box-title">Edit Data Kontingen</h3></div>
+		    	<h3 class="box-title">Edit Data Prestasi</h3></div>
 		    	<div class="box-body">
 		    	<form method="post" action="{{URL('/editPrestasi')}}">
 		    		<input type="hidden" name="id_prestasi" value="{{$prestasi->id_prestasi}}">

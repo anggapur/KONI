@@ -41,8 +41,8 @@ s		    <h4><i class="fa fa-times"></i> Gagal menghapus data</h4>
 	       	<div class="col-xs-12">      	
 				<div class="box box-primary">
 				    <div class="box-header with-border">
-				    	<h3 class="box-title">Tambah Data Prestasi</h3>
-				    	<a href="{{ URL('/tambahPrestasi') }}"><button class="btn btn-success btn-sm"><i class="fa fa-plus"></i>Tambah Data</button></a>
+				    	<h3 class="box-title">Tambah Data Rekor</h3>
+				    	<a href="{{ URL('/tambahRekor') }}"><button class="btn btn-success btn-sm"><i class="fa fa-plus"></i>Tambah Data</button></a>
 				    </div>
 				    	<div class="box-body">
 
@@ -54,7 +54,7 @@ s		    <h4><i class="fa fa-times"></i> Gagal menghapus data</h4>
 		                                	<th>Nama Atlet</th>
 		                                   	<th>Cabang Olahraga</th>
 		                                   	<th>Nomor Pertandingan</th>
-		                                   	<th>Prestasi</th>
+		                                   	<th>Keterangan Rekor</th>
 		                                    <th>Aksi</th>
 		                                </tr>
 		                            </thead>	                            
@@ -75,15 +75,15 @@ s		    <h4><i class="fa fa-times"></i> Gagal menghapus data</h4>
 	    <div class="modal-content">
 	      <div class="modal-header">
 	        <button type="button" class="close" data-dismiss="modal">&times;</button>
-	        <h4 class="modal-title">Data Prestasi</h4>
+	        <h4 class="modal-title">Data Rekor</h4>
 	      </div>
 	      <div class="modal-body">
 	      	<label>ID</label>
 				<input class="form-control" type="text" id="id" disabled>
 	        <label>Nama Atlet</label>
 				<input class="form-control" type="text" id="nama" disabled>
-			<label>Nama Prestasi</label>
-				<input class="form-control" type="text" id="prestasi" disabled>
+			<label>Keterangan Rekor</label>
+				<input class="form-control" type="text" id="rekor" disabled>
 			<label>Cabang Olahraga</label>
 				<input class="form-control" type="text" id="cabor" disabled>
 			<label>Nomor Pertandingan</label>
@@ -126,13 +126,13 @@ s		    <h4><i class="fa fa-times"></i> Gagal menghapus data</h4>
             processing: true,
             serverSide: true,
             ajax: {
-                url: '{{ url("/get-data-prestasi") }}'
+                url: '{{ url("/get-data-rekor") }}'
             },
             columns: [
             {data: 'nama_atlet', name: 'nama_atlet'},
             {data: 'nama_cabor', name: 'nama_cabor'},
             {data: 'ket_np', name: 'ket_np'},
-            {data: 'nama_prestasi', name: 'nama_prestasi'},
+            {data: 'keterangan_rekor', name: 'keterangan_rekor'},
             {data: 'aksi', name: 'aksi'},
         ],
         });
@@ -152,7 +152,7 @@ s		    <h4><i class="fa fa-times"></i> Gagal menghapus data</h4>
 
 	      $.ajax({
 	            type: "POST",
-	            url: "{{URL('/get-detail-prestasi')}}",
+	            url: "{{URL('/get-detail-rekor')}}",
 	            data: {
 	            	'id' : id,
 	            	'_token' : '{{csrf_token()}}',
@@ -160,9 +160,9 @@ s		    <h4><i class="fa fa-times"></i> Gagal menghapus data</h4>
 	            cache: false,
 	            success: function(data){
 	            	data = JSON.parse(data);
-	            	$('#id').val(data.id_prestasi);
+	            	$('#id').val(data.id_rekor);
 	            	$('#nama').val(data.nama_atlet);
-	            	$('#prestasi').val(data.nama_prestasi);
+	            	$('#rekor').val(data.keterangan_rekor);
 	            	$('#cabor').val(data.nama_cabor);
 	            	$('#np').val(data.ket_np);
 	            	$('#event').val(data.nama_event);
@@ -175,7 +175,7 @@ s		    <h4><i class="fa fa-times"></i> Gagal menghapus data</h4>
 
 	<script type="text/javascript">
 		function hapus(nama,id){
-			$('#body-nama').html("<p> Yakin menghapus data Prestasi "+nama+" ? </p>");
+			$('#body-nama').html("<p> Yakin menghapus data Rekor "+nama+" ? </p>");
 			$('#hapus-button').html("<button type='button' class='btn btn-danger' onclick='del("+id+")'>Hapus</button>");
 			$('#delModal').modal('show');
 		}
@@ -193,7 +193,7 @@ s		    <h4><i class="fa fa-times"></i> Gagal menghapus data</h4>
 
 	      $.ajax({
 	            type: "POST",
-	            url: "{{URL('/delete-data-prestasi')}}",
+	            url: "{{URL('/delete-data-rekor')}}",
 	            data: {
 	            	'id' : id,
 	            	'_token' : '{{csrf_token()}}',
@@ -202,7 +202,7 @@ s		    <h4><i class="fa fa-times"></i> Gagal menghapus data</h4>
 	            success: function(data){
 	            	if(data == 'success'){
 	            		//location.reload();
-	            		window.location.replace("{{ url('prestasi/deleted') }}");
+	            		window.location.replace("{{ url('rekor/deleted') }}");
 	            	}
 				}
 				//error: function()

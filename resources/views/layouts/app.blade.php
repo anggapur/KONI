@@ -378,9 +378,10 @@
         </li>
 
         <li>
-          <a href="#">
+          <li class="{{GH::segment(1,['rekor-atlet','addRekor','editRekor'])}}">
+          <a href="{{ URL('/rekor-atlet') }}">
             <i class="fa fa-medal"></i> <span>Rekor Atlet</span>
-          </a>          
+          </a>
         </li>
 
         <li class="{{GH::segment(1,['kontingen','tambah-kontingen','edit-kontingen'])}}">

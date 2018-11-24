@@ -4,18 +4,18 @@
     <section class="content">
     	<div class="box box-primary">
 		    <div class="box-header with-border">		    	
-		    	<h3 class="box-title">Tambah Data Prestasi</h3></div>
+		    	<h3 class="box-title">Tambah Data Rekor</h3></div>
 		    	<div class="box-body">
-		    	<form method="post" action="{{URL('/addPrestasi')}}">
+		    	<form method="post" action="{{URL('/addRekor')}}">
 		    		<input type="hidden" name="_token" value="{{ csrf_token() }}">
 
 		    		<div class="form-group">
-		                <label>Nama Prestasi</label>
+		                <label>Keterangan Rekor</label>
 		                <div class="input-group date">
 		                  <div class="input-group-addon">
 		                    <i class="fa fa-trophy"></i>
 		                  </div>
-		                  <input class="form-control" type="text" name="nama_prestasi" required>
+		                  <input class="form-control" type="text" name="ket_rekor" required>
 		                </div>		                
 		             </div>
 						
