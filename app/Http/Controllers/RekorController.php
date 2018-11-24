@@ -112,7 +112,7 @@ class RekorController extends Controller
     }
 
     public function getRekor(Request $Request){
-    	$data = Rekor_Atlet::select('natcasesort(array)ama_atlet','keterangan_rekor','ket_np','nama_cabor','id_rekor','waktu','nama_event')
+    	$data = Rekor_Atlet::select('nama_atlet','keterangan_rekor','ket_np','nama_cabor','id_rekor','waktu','nama_event')
     		->leftJoin('cabang_olahraga','id_cabor','=','cabor_id')
     		->leftJoin('master_atlet','id_atlet','=','atlet_id') 
     		->leftJoin('nomor_pertandingan','id_np','=','np_id')

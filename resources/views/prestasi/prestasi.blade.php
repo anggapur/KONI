@@ -54,7 +54,8 @@ s		    <h4><i class="fa fa-times"></i> Gagal menghapus data</h4>
 		                                	<th>Nama Atlet</th>
 		                                   	<th>Cabang Olahraga</th>
 		                                   	<th>Nomor Pertandingan</th>
-		                                   	<th>Prestasi</th>
+		                                   	<th>Juara</th>
+		                                   	<th>Medali</th>
 		                                    <th>Aksi</th>
 		                                </tr>
 		                            </thead>	                            
@@ -77,17 +78,19 @@ s		    <h4><i class="fa fa-times"></i> Gagal menghapus data</h4>
 	        <button type="button" class="close" data-dismiss="modal">&times;</button>
 	        <h4 class="modal-title">Data Prestasi</h4>
 	      </div>
-	      <div class="modal-body">
-	      	<label>ID</label>
-				<input class="form-control" type="text" id="id" disabled>
+	      <div class="modal-body">	      	
 	        <label>Nama Atlet</label>
 				<input class="form-control" type="text" id="nama" disabled>
-			<label>Nama Prestasi</label>
-				<input class="form-control" type="text" id="prestasi" disabled>
+			<label>Juara</label>
+				<input class="form-control" type="text" id="juara" disabled>
+			<label>Medali</label>
+				<input class="form-control" type="text" id="medali" disabled>
 			<label>Cabang Olahraga</label>
 				<input class="form-control" type="text" id="cabor" disabled>
 			<label>Nomor Pertandingan</label>
 				<input class="form-control" type="text" id="np" disabled>
+			<label>Tingkat</label>
+				<input class="form-control" type="text" id="tingkat" disabled>
 			<label>Event</label>
 				<input class="form-control" type="text" id="event" disabled>
 			<label>Waktu</label>
@@ -132,7 +135,8 @@ s		    <h4><i class="fa fa-times"></i> Gagal menghapus data</h4>
             {data: 'nama_atlet', name: 'nama_atlet'},
             {data: 'nama_cabor', name: 'nama_cabor'},
             {data: 'ket_np', name: 'ket_np'},
-            {data: 'nama_prestasi', name: 'nama_prestasi'},
+            {data: 'ket_juara', name: 'ket_juara'},
+            {data: 'nama_medali', name: 'nama_medali'},
             {data: 'aksi', name: 'aksi'},
         ],
         });
@@ -140,7 +144,7 @@ s		    <h4><i class="fa fa-times"></i> Gagal menghapus data</h4>
 	</script>
 
 	<script type="text/javascript">
-		function view(id){
+		function view(id){			
 
 			$.ajaxSetup({
 			    headers: {
@@ -159,12 +163,13 @@ s		    <h4><i class="fa fa-times"></i> Gagal menghapus data</h4>
 	            },
 	            cache: false,
 	            success: function(data){
-	            	data = JSON.parse(data);
-	            	$('#id').val(data.id_prestasi);
+	            	data = JSON.parse(data);	            	
 	            	$('#nama').val(data.nama_atlet);
-	            	$('#prestasi').val(data.nama_prestasi);
+	            	$('#juara').val(data.ket_juara);
+	            	$('#medali').val(data.nama_medali);
 	            	$('#cabor').val(data.nama_cabor);
 	            	$('#np').val(data.ket_np);
+	            	$('#tingkat').val(data.nama_tingkat);
 	            	$('#event').val(data.nama_event);
 	            	$('#waktu').val(data.waktu);
 	            	$('#viewModal').modal('show');
@@ -188,7 +193,7 @@ s		    <h4><i class="fa fa-times"></i> Gagal menghapus data</h4>
 			        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
 			    }
 			});
-			
+				
 	      var dataString = "id="+id;
 
 	      $.ajax({

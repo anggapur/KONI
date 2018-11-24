@@ -10,12 +10,32 @@
 		    		<input type="hidden" name="_token" value="{{ csrf_token() }}">
 
 		    		<div class="form-group">
-		                <label>Nama Prestasi</label>
+		                <label>Juara</label>
 		                <div class="input-group date">
 		                  <div class="input-group-addon">
 		                    <i class="fa fa-trophy"></i>
 		                  </div>
-		                  <input class="form-control" type="text" name="nama_prestasi" required>
+		                  <select class="form-control" name="juara">
+		                  	<option disabled selected hidden >Pilih juara</option>
+		                  	@foreach($juara as $juara):
+		                  		<option value="{{$juara->id_juara}}">{{$juara->ket_juara}}</option>
+		                  	@endforeach
+		                  </select>
+		                </div>		                
+		             </div>
+
+		             <div class="form-group">
+		                <label>Medali</label>
+		                <div class="input-group date">
+		                  <div class="input-group-addon">
+		                    <i class="fa fa-medal"></i>
+		                  </div>
+		                  <select class="form-control" name="medali">
+		                  	<option disabled selected hidden >Pilih medali</option>		                  	
+		                  	@foreach($medali as $medali)
+		                  		<option value="{{ $medali->id_medali }}"> {{ $medali->nama_medali }} </option>
+		                  	@endforeach
+		                  </select>
 		                </div>		                
 		             </div>
 						
@@ -60,16 +80,28 @@
 		             </div>
 
 		             <div class="form-group">
+		                <label>Tingkat Event</label>
+		                <div class="input-group date">
+		                  <div class="input-group-addon">
+		                    <i class="fa fa-code-branch"></i>
+		                  </div>
+		                  <select class="form-control" name="tingkat" onchange="update_event(this.value)">
+		                  	<option disabled selected hidden >Pilih tingkat event</option>
+		                  	@foreach($tingkat_event as $tevent):
+		                  		<option value="{{$tevent->id_tingkat}}">{{$tevent->nama_tingkat}}</option>
+		                  	@endforeach
+		                  </select>
+		                </div>		                
+		             </div>
+
+		             <div class="form-group">
 		                <label>Event</label>
 		                <div class="input-group date">
 		                  <div class="input-group-addon">
 		                    <i class="fa fa-code-branch"></i>
 		                  </div>
-		                  <select class="form-control" name="event">
-		                  	<option disabled selected hidden >Pilih event</option>
-		                  	@foreach($event as $event):
-		                  		<option value="{{$event->id_event}}">{{$event->nama_event}}</option>
-		                  	@endforeach
+		                  <select class="form-control" name="event" id="event">
+		                  	<option disabled selected hidden >Pilih event</option>		                  	
 		                  </select>
 		                </div>		                
 		             </div>
@@ -151,7 +183,37 @@
 	            	$("#atlet").html(text);
 	            	
 				}
-			});    		
+			});
+    	} 
+
+    	function update_event(id){
+    		$.ajaxSetup({
+			    headers: {
+			        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+			    }
+			});
+
+	      var dataString = "id="+id;
+
+	      $.ajax({
+	            type: "POST",
+	            url: "{{URL('/getEvent')}}",
+	            data: {
+	            	'id' : id,
+	            	'_token' : '{{csrf_token()}}',
+	            },
+	            cache: false,
+	            success: function(data){
+	            	data = JSON.parse(data);
+	            	console.log(data);
+	            	var text = "<option disabled selected hidden >Pilih Event</option>";
+	            	for(var i=0;i<data.length;i++){
+	            		text += "<option value='"+data[i].id_event+"'> "+data[i].nama_event+" </option>";
+	            	}
+	            	$("#event").html(text);
+	            	
+				}
+			});	
     	}
     </script>
 

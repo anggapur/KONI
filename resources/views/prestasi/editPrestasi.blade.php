@@ -11,12 +11,39 @@
 		    		<input type="hidden" name="_token" value="{{ csrf_token() }}">
 
 		    		<div class="form-group">
-		                <label>Nama Prestasi</label>
+		                <label>Juara</label>
 		                <div class="input-group date">
 		                  <div class="input-group-addon">
 		                    <i class="fa fa-trophy"></i>
 		                  </div>
-		                  <input class="form-control" type="text" name="nama_prestasi" required value="{{$prestasi->nama_prestasi}}">
+		                  <select class="form-control" name="juara">		                  	
+		                  	@foreach($juara as $juara)
+		                  		<option value="{{$juara->id_juara}}"
+		                  			@if($juara->id_juara == $prestasi->juara_id)
+		                  				{{ "selected" }}
+		                  			@endif
+		                  			>{{$juara->ket_juara}}</option>
+		                  	@endforeach
+		                  </select>
+		                </div>		                
+		             </div>
+
+		             <div class="form-group">
+		                <label>Medali</label>
+		                <div class="input-group date">
+		                  <div class="input-group-addon">
+		                    <i class="fa fa-medal"></i>
+		                  </div>
+		                  <select class="form-control" name="medali">
+		                  	<option disabled selected hidden >Pilih medali</option>		                  	
+		                  	@foreach($medali as $medali)
+		                  		<option value="{{ $medali->id_medali }}"
+		                  			@if($medali->id_medali == $prestasi->medali_id)
+		                  				{{ "selected" }}
+		                  			@endif
+		                  			> {{ $medali->nama_medali }} </option>
+		                  	@endforeach
+		                  </select>
 		                </div>		                
 		             </div>
 						
@@ -70,6 +97,25 @@
 		                  				{{ "selected" }}
 		                  			@endif
 		                  		>{{$atlet->nama_atlet}}</option>
+		                  	@endforeach
+		                  </select>
+		                </div>		                
+		             </div>
+
+		             <div class="form-group">
+		                <label>Tingkat Event</label>
+		                <div class="input-group date">
+		                  <div class="input-group-addon">
+		                    <i class="fa fa-code-branch"></i>
+		                  </div>
+		                  <select class="form-control" name="tingkat" onchange="update_event(this.value)">
+		                  	<option disabled selected hidden >Pilih tingkat event</option>
+		                  	@foreach($tingkat_event as $tevent)
+		                  		<option value="{{$tevent->id_tingkat}}"
+		                  		@if($prestasi->tingkat_id == $tevent->id_tingkat)
+		                  			{{ "selected" }}
+		                  		@endif
+		                  			>{{$tevent->nama_tingkat}}</option>
 		                  	@endforeach
 		                  </select>
 		                </div>		                

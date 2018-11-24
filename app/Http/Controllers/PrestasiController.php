@@ -12,6 +12,9 @@ use App\Cabang_Olahraga;
 use App\Nomor_Pertandingan;
 use App\Event;
 use App\Detail_Atlet;
+use App\Juara;
+use App\Medali;
+use App\Tingkat_Event;
 
 class PrestasiController extends Controller
 {
@@ -23,10 +26,12 @@ class PrestasiController extends Controller
     }
 
     public function getData(){
-    	$data = Prestasi::select('nama_atlet','nama_prestasi','ket_np','nama_cabor','id_prestasi')
+    	$data = Prestasi::select('nama_atlet','ket_juara','ket_np','nama_cabor','id_prestasi','nama_medali')
     		->leftJoin('cabang_olahraga','id_cabor','=','cabor_id')
     		->leftJoin('master_atlet','id_atlet','=','atlet_id')    		
-    		->leftJoin('nomor_pertandingan','id_np','=','np_id')    		
+    		->leftJoin('nomor_pertandingan','id_np','=','np_id')
+            ->leftJoin('juara','juara_id','=','id_juara')
+            ->leftJoin('medali','medali_id','=','id_medali')            
 	        ->get();
 
 
@@ -43,11 +48,14 @@ class PrestasiController extends Controller
     }
 
     public function getDetail(Request $Request){
-    	$data = Prestasi::select('nama_atlet','nama_prestasi','ket_np','nama_cabor','id_prestasi','waktu','nama_event')
+    	$data = Prestasi::select('nama_atlet','ket_juara','ket_np','nama_cabor','id_prestasi','waktu','nama_event','nama_tingkat','nama_medali')
+            ->leftJoin('medali','medali_id','=','id_medali')            
+            ->leftJoin('juara','juara_id','=','id_juara')
     		->leftJoin('cabang_olahraga','id_cabor','=','cabor_id')
     		->leftJoin('master_atlet','id_atlet','=','atlet_id') 
     		->leftJoin('nomor_pertandingan','id_np','=','np_id')
     		->leftJoin('event','id_event','=','event_id')
+            ->leftJoin('tingkat_event','id_tingkat','=','tingkat_id')
     		->where('id_prestasi',$Request->id)
 	        ->first();
 
@@ -58,10 +66,16 @@ class PrestasiController extends Controller
     	$data['page'] = "Tambah Prestasi";
     	$data['active'] = "Prestasi";
 
+        $data['juara'] = Juara::select('*')->get();
+
+        $data['medali'] = Medali::select('*')->get();
+
     	$data['cabor'] = Cabang_Olahraga::select('nama_cabor','id_cabor')->get();
 
     	$data['atlet'] = Master_Atlet::select('nama_atlet','id_atlet')
     						->get();
+
+        $data['tingkat_event'] = Tingkat_Event::select('*')->get();
 
         $data['event'] = Event::select('id_event','nama_event')->get();
 
@@ -72,7 +86,17 @@ class PrestasiController extends Controller
     	$data['page'] = "Edit Prestasi";
     	$data['active'] = "Prestasi";
 
-        $data['prestasi'] = Prestasi::select('*')->where('id_prestasi',$id)->first();
+        $data['prestasi'] = Prestasi::select('*')
+                        ->leftJoin('event','event_id','=','id_event')
+                        ->leftJoin('Tingkat_Event','id_tingkat','=','tingkat_id')
+                        ->where('id_prestasi',$id)
+                        ->first();
+
+        $data['juara'] = Juara::select('*')->get();
+
+        $data['tingkat_event'] = Tingkat_Event::select('*')->get();
+
+        $data['medali'] = Medali::select('*')->get();
 
         $data['cabor'] = Cabang_Olahraga::select('nama_cabor','id_cabor')->get();
 
@@ -85,7 +109,7 @@ class PrestasiController extends Controller
         $data['np']    = Nomor_Pertandingan::select('id_np','ket_np')->where('cabor_id',$data['prestasi']->cabor_id)->get();
         
 
-        //dd($data['prestasi']);
+        //dd($data['medali']);
 
         return view('Prestasi.editPrestasi',$data);
     }
@@ -106,13 +130,22 @@ class PrestasiController extends Controller
         echo json_encode($data);
     }
 
+    public function getEvent(Request $Request){
+        $data = Event::select('id_event','nama_event')            
+            ->where('tingkat_id',$Request->id)
+            ->get();
+
+        echo json_encode($data);
+    }
+
     public function addPrestasi(Request $Request){
         $data  = new Prestasi();
         $data->id_prestasi      = null;
         $data->atlet_id         = $Request->atlet;
-        $data->nama_prestasi    = $Request->nama_prestasi;
+        $data->juara_id         = $Request->juara;
+        $data->medali_id        = $Request->medali;
         $data->cabor_id         = $Request->cabor;
-        $data->np_id            = $Request->np;
+        $data->np_id            = $Request->np;        
         $data->event_id         = $Request->event;
         $data->waktu            = $Request->waktu;
         $save = $data->save();
@@ -128,7 +161,8 @@ class PrestasiController extends Controller
         $data  = Prestasi::select('*')            
             ->where('id_prestasi',$Request->id_prestasi)
             ->update([
-                'nama_prestasi'            => $Request->nama_prestasi,                
+                'juara_id'                 => $Request->juara,
+                'medali_id'                => $Request->medali,
                 'cabor_id'                 => $Request->cabor,
                 'np_id'                    => $Request->np,
                 'atlet_id'                 => $Request->atlet,

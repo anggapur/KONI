@@ -92,6 +92,7 @@ Route::group(['middleware' => 'auth'],function(){
 	Route::post('/addPrestasi','PrestasiController@addPrestasi');
 	Route::post('/editPrestasi','PrestasiController@update');
 	Route::post('/delete-data-prestasi','PrestasiController@delete');
+	Route::post('/getEvent','PrestasiController@getEvent');
 
 	//Rekor	
 	Route::get('/rekor-atlet','RekorController@index')->name('tampilRekor');
