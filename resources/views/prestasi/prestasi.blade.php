@@ -101,6 +101,25 @@ s		    <h4><i class="fa fa-times"></i> Gagal menghapus data</h4>
 	  </div>
 	</div>
 
+	<!-- Modal -->
+	<div id="delModal" class="modal fade" role="dialog">
+	  <div class="modal-dialog">
+	    <!-- Modal content-->
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        <button type="button" class="close" data-dismiss="modal">&times;</button>
+	        <h4 class="modal-title">Hapus Data</h4>
+	      </div>
+	      <div id="body-nama" class="modal-body">
+	      	
+	      </div>
+	      <div id="hapus-button" class="modal-footer">
+	        
+	      </div>
+	    </div>
+	  </div>
+	</div>
+
     <script type="text/javascript">
 	    $(function() {
         var oTable = $('#table-np').DataTable({
@@ -151,6 +170,43 @@ s		    <h4><i class="fa fa-times"></i> Gagal menghapus data</h4>
 	            	$('#viewModal').modal('show');
 				}
 			});
+		}
+	</script>
+
+	<script type="text/javascript">
+		function hapus(nama,id){
+			$('#body-nama').html("<p> Yakin menghapus data Prestasi "+nama+" ? </p>");
+			$('#hapus-button').html("<button type='button' class='btn btn-danger' onclick='del("+id+")'>Hapus</button>");
+			$('#delModal').modal('show');
+		}
+	</script>
+
+	<script type="text/javascript">
+		function del(id){
+			$.ajaxSetup({
+			    headers: {
+			        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+			    }
+			});
+			
+	      var dataString = "id="+id;
+
+	      $.ajax({
+	            type: "POST",
+	            url: "{{URL('/delete-data-prestasi')}}",
+	            data: {
+	            	'id' : id,
+	            	'_token' : '{{csrf_token()}}',
+	            },
+	            cache: false,
+	            success: function(data){
+	            	if(data == 'success'){
+	            		//location.reload();
+	            		window.location.replace("{{ url('prestasi/deleted') }}");
+	            	}
+				}
+				//error: function()
+			});	
 		}
 	</script>
 	

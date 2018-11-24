@@ -84,10 +84,14 @@ Route::group(['middleware' => 'auth'],function(){
 	Route::get('/editPrestasi/{id}','PrestasiController@edit')->name('editPrestasi');
 	Route::get('/get-data-prestasi','PrestasiController@getData');
 	Route::get('/addPrestasi','PrestasiController@tambah');
+	Route::get('/prestasi/{msg}','PrestasiController@msg');
 
 	Route::post('/get-detail-prestasi','PrestasiController@getDetail');
 	Route::post('/getNP','PrestasiController@getNP');
 	Route::post('/getAtlet','PrestasiController@getAtlet');
+	Route::post('/addPrestasi','PrestasiController@addPrestasi');
+	Route::post('/editPrestasi','PrestasiController@update');
+	Route::post('/delete-data-prestasi','PrestasiController@delete');
 
 	//User
 	Route::get('/admin','adminController@index')->name('view');
