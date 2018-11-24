@@ -346,7 +346,7 @@
       <ul class="sidebar-menu" data-widget="tree">
         <li class="header">MAIN NAVIGATION</li>
 
-        <li class="active">
+        <li class="{{GH::segment(1,['admin'])}}">
           <a href="{{ URL('/admin/view') }}">
             <i class="fa fa-user"></i> <span>User</span>
           </a>          
@@ -386,11 +386,7 @@
           </a>          
         </li>
 
-        <li class="@if(isset($active))
-        {
-          @if($active == 'Kontingen') {{ 'active' }} @endif
-        }
-        @endif">
+        <li class="{{GH::segment(1,['kontingen','tambah-kontingen','edit-kontingen'])}}">
           <a href="{{ URL('/kontingen') }}">
             <i class="fa fa-users"></i> <span>Kontingen</span>
           </a>          
@@ -407,12 +403,12 @@
             <i class="fa fa-calendar-alt"></i> <span>Event</span>            
           </a>          
         </li>
-        <li>
-          <a href="{{url('administrator/rentangUmur')}}">
+        <li class="{{GH::segment(2,['rentangUmur'])}}">
+          <a  href="{{url('administrator/rentangUmur')}}">
             <i class="fa fa-bars"></i> <span>Rentang Umur</span>            
           </a>          
         </li>
-        <li>
+        <li class="{{GH::segment(2,['importData'])}}">
           <a href="{{url('administrator/importData')}}">
             <i class="fa fa-file-import"></i> <span>Impor data</span>            
           </a>          
@@ -466,7 +462,8 @@
         {{$page}}
       </h1>
       <ol class="breadcrumb">
-        <li><a href="#"><i class="fa fa-home"></i> Home</a></li>        
+        <li><a href="#"><i class="fa fa-home"></i>Administrator</a></li>        
+        <li>{{$page}}</a></li>        
 
       </ol>
     </section>

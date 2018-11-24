@@ -42,11 +42,11 @@
 				<div class="box box-primary">
 				    <div class="box-header with-border">
 				    	<h3 class="box-title">Tambah Data Kontingen</h3>				    
-				    	<a href="{{ URL('/tambah-kontingen') }}"><button class="btn btn-success"><i class="fa fa-plus"></i></button></a>
+				    	<a href="{{ URL('/tambah-kontingen') }}"><button class="btn btn-success btn-sm"><i class="fa fa-plus"></i> Tambah Data</button></a>
 				    </div>
 				    	<div class="box-body">
 
-		                	<center><h2>Data Kontingen</h2></center>
+		                	<!-- <center><h2>Data Kontingen</h2></center> -->
 		                    <div class="tableWrapper">
 		                        <table class="table" id="table-kontingen">
 		                            <thead>
