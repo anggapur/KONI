@@ -131,5 +131,6 @@ Route::group(['middleware' => 'auth'],function(){
 	Route::get('tampilWasit', 'wasitController@tampildata');
 	Route::get('wasit/{id}/edit','wasitController@editdata');
 	Route::post('updateWasit','wasitController@update');
-
+	Route::get('hapusWasit/{id}','wasitController@hapusData');
+	Route::post('get-data-wasit','wasitController@getData');
 });

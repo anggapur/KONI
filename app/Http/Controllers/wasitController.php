@@ -34,11 +34,13 @@ class wasitController extends Controller
     }
     public function tampilData()
     {
+    	$data['page'] = "wasit";
     	$data['Wasit']= Wasit::leftJoin('cabang_olahraga','wasit.cabor_id','=','cabang_olahraga.id_cabor')->get();
     	return view('wasit.tampilData',$data);
     }
     public function editdata($id)
     {
+    	$data['page'] = "wasit";
     	$data['datakabupaten'] = Kabupaten::all();
     	$data['Wasit']= Wasit::where('id_wasit',$id)->first();
     	return view('wasit.editwasit',$data);
@@ -54,9 +56,23 @@ class wasitController extends Controller
     	$data['alamat'] = $request->alamat;
     	$data['kabupaten_id'] = $request->kabupaten_id;
     	$query = Wasit::where('id_wasit', $request->id_wasit)->update($data);
-    	if($query)
+    	//return $request->all();
+    	//if($query)
     		return redirect('tampilWasit')->with(['status' => 'success' , 'message' => 'Berhasil Update Data']);
+    	//else
+    	//	echo "Gagal";
+    }
+    public function hapusData($id)
+    {
+    	$query= Wasit::where('id_wasit',$id)->delete();
+    	if($query)
+    		return redirect('tampilWasit')->with(['status' => 'success' , 'message' => 'Berhasil Hapus Data']);
     	else
     		echo "Gagal";
+    }
+    public function getData(Request $request)
+    {
+    	$query = Wasit::where('id_wasit', $request->id)->first();
+    	return $query;
     }
 }

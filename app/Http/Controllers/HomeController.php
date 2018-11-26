@@ -29,7 +29,7 @@ class HomeController extends Controller
 
         $data = [];
         $data['page'] = 'Dashboard';
-        return view('home',['data' => $data]);
+       // return view('home',['data' => $data]);
 
         $data['page'] = 'Dashboard';
         $data['countAtlet'] = Master_Atlet::get()->count();

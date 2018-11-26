@@ -391,7 +391,7 @@
         </li>
 
         <li>
-          <a href="#">
+          <a href="{{URL('tampilWasit')}}">
             <i class="fa fa-flag-checkered"></i> <span>Wasit</span>
           </a>          
         </li>
