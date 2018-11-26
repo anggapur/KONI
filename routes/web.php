@@ -86,6 +86,18 @@ Route::group(['middleware' => 'auth'],function(){
 	Route::post('/cek-no-kartu-anggota','KontingenController@cekKartu');
 	Route::get('/kontingen/{msg}','KontingenController@msg');
 
+	//Cabor
+	Route::get('/IndexCabor','CabangOlahraga@index')->name('Cabor');
+	Route::get('/tambah-kontingen','KontingenController@tambah');
+	Route::get('/edit-kontingen/{id}','KontingenController@edit')->name('kontingen-edit');
+	Route::get('/data-kontingen','KontingenController@dataKontingen');
+	Route::post('/add-kontingen','KontingenController@add');
+	Route::post('/get-data-kontingen','KontingenController@getData');
+	Route::post('/delete-data-kontingen','KontingenController@hapus');
+	Route::post('/update-kontingen','KontingenController@update');
+	Route::post('/cek-no-kartu-anggota','KontingenController@cekKartu');
+	Route::get('/kontingen/{msg}','KontingenController@msg');
+
 	//Prestasi
 	Route::get('/prestasi','PrestasiController@index')->name('Prestasi');
 	Route::get('/editPrestasi/{id}','PrestasiController@edit')->name('editPrestasi');
