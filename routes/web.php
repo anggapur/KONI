@@ -64,6 +64,7 @@ Route::group(['middleware' => 'auth'],function(){
 	Route::post('saveNomorPertandingan','noPertandinganController@simpan');
 	Route::get('/data-np','noPertandinganController@getData');
 	Route::post('/updateNomorPertandingan','noPertandinganController@update');
+	Route::get('kejuaraan','kejuaraanController@index');
 
 	Route::get('/home', 'HomeController@index')->name('home');
 
