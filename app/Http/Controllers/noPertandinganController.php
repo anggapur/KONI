@@ -77,7 +77,7 @@ class noPertandinganController extends Controller
       ->addColumn('aksi', function($data){
         return "
             <a href=".route('editNoPertandingan',$data->id_np)."><button class='btn btn-xs btn-primary'> <i class='fa fa-edit'> </i> Edit  </button> </a>
-            <button onclick='hapus(\"".$data->ket_np."\",".$data->id_np.")' class='btn btn-xs btn-danger'> <i class='fa fa-trash'> </i> Hapus  </button>";
+            <a href=".url('hapusNoPertandingan/'.$data->id_np)."<button class='btn btn-xs btn-danger'> <i class='fa fa-trash'> </i> Hapus  </button></a>";
       })
 
       ->make(true);
@@ -110,6 +110,14 @@ class noPertandinganController extends Controller
             ]);
 
         return redirect()->route('nomorPertandingan')->with('status','edited');            
+    }
+    public function hapus($id)
+    {
+        $query=Nomor_Pertandingan::where('id_np',$id)->delete();
+        if($query)
+            return redirect('tampilNoPertandingan')->with('status','deleted');
+        else
+            echo "gagal";
     }
 }
 

@@ -64,7 +64,15 @@ Route::group(['middleware' => 'auth'],function(){
 	Route::post('saveNomorPertandingan','noPertandinganController@simpan');
 	Route::get('/data-np','noPertandinganController@getData');
 	Route::post('/updateNomorPertandingan','noPertandinganController@update');
-	Route::get('kejuaraan','kejuaraanController@index');
+	Route::get('hapusNoPertandingan/{id}','noPertandinganController@hapus');
+	
+	Route::get('kejuaraan','kejuaraanController@index')->name('kejuaraan');
+	Route::post('simpanEvent','kejuaraanController@simpan');
+	Route::get('/tampilEvent','kejuaraanController@tampil')->name('kejuaraan');
+	Route::get('data-eventPertandingan','kejuaraanController@getData');
+	Route::get('editEvent/{id}','kejuaraanController@edit')->name('editEvent');
+	Route::post('updateEvent','kejuaraanController@update');
+	Route::get('hapusEvent/{id}','kejuaraanController@hapus');
 
 	Route::get('/home', 'HomeController@index')->name('home');
 
