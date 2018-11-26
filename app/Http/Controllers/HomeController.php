@@ -26,6 +26,11 @@ class HomeController extends Controller
      */
     public function index()
     {
+
+        $data = [];
+        $data['page'] = 'Dashboard';
+       // return view('home',['data' => $data]);
+
         $data['page'] = 'Dashboard';
         $data['countAtlet'] = Master_Atlet::get()->count();
         $data['countCabor'] = Cabang_Olahraga::get()->count();
@@ -49,6 +54,7 @@ class HomeController extends Controller
         {
             return "Sukses";
         }
+
     }
 }
 

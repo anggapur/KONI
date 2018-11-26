@@ -34,7 +34,9 @@ Route::get('event','frontController@event');
 Route::get('cabor','frontController@cabor');
 Route::get('cabor','frontController@cabor');
 Route::get('rekor','frontController@rekor');
+
 Route::get('atlet/{id}/{nama}','frontController@detailAtlet');
+
 Route::get('data-atlet','frontController@dataAtlet');
 Route::get('data-prestasi','frontController@dataPrestasi');
 Route::get('data-event','frontController@dataEvent');
@@ -131,4 +133,13 @@ Route::group(['middleware' => 'auth'],function(){
 
 		Route::resource('importData','importDataController');
 	});
+
+
+	Route::get('manajemenWasit','wasitController@index');
+	Route::post('simpanWasit','wasitController@simpan');
+	Route::get('tampilWasit', 'wasitController@tampildata');
+	Route::get('wasit/{id}/edit','wasitController@editdata');
+	Route::post('updateWasit','wasitController@update');
+	Route::get('hapusWasit/{id}','wasitController@hapusData');
+	Route::post('get-data-wasit','wasitController@getData');
 });
