@@ -100,7 +100,7 @@
                         </div>
                         <div class="keteranganHidden">
                             <div>
-                                <p>{{$val->nama_prestasi}} <br>{{$val->nama_cabor}} <br>{{$val->ket_np}} <br>{{$val->nama_event}}</p>
+                                <p>{{$val->ket_juara}} <br>{{$val->nama_cabor}} <br>{{$val->ket_np}} <br>{{$val->nama_event}}</p>
                                 <h5>{{$val->nama_atlet}}</h5>
                                 <h6>{{$val->nama_cabor}}</h6>
                             </div>
