@@ -12,8 +12,18 @@ use App\Prestasi;
 use App\Rekor_Atlet;
 use App\Detail_Atlet;
 use App\rentangUmur;
+use Request;
 
 class GlobalHelper{
+
+	public static function segment($i,$word) {
+            
+      if (in_array(Request::segment($i),$word))
+      	return "active";
+      else
+      	return "boom";
+    }
+
 	public static function getCountData(){
 		// $data = [];
 		$data['jml_atlet'] = Master_Atlet::select('id_atlet')->count();

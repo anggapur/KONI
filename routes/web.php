@@ -80,6 +80,33 @@ Route::group(['middleware' => 'auth'],function(){
 	Route::post('/cek-no-kartu-anggota','KontingenController@cekKartu');
 	Route::get('/kontingen/{msg}','KontingenController@msg');
 
+	//Prestasi
+	Route::get('/prestasi','PrestasiController@index')->name('Prestasi');
+	Route::get('/editPrestasi/{id}','PrestasiController@edit')->name('editPrestasi');
+	Route::get('/get-data-prestasi','PrestasiController@getData');
+	Route::get('/tambahPrestasi','PrestasiController@tambah');
+	Route::get('/prestasi/{msg}','PrestasiController@msg');
+
+	Route::post('/get-detail-prestasi','PrestasiController@getDetail');
+	Route::post('/getNP','PrestasiController@getNP');
+	Route::post('/getAtlet','PrestasiController@getAtlet');
+	Route::post('/addPrestasi','PrestasiController@addPrestasi');
+	Route::post('/editPrestasi','PrestasiController@update');
+	Route::post('/delete-data-prestasi','PrestasiController@delete');
+	Route::post('/getEvent','PrestasiController@getEvent');
+
+	//Rekor	
+	Route::get('/rekor-atlet','RekorController@index')->name('tampilRekor');
+	Route::get('/get-data-rekor','RekorController@getData');
+	Route::get('/editRekor/{id}','RekorController@edit')->name('editRekor');
+	Route::get('/tambahRekor','RekorController@tambah');
+	Route::get('/rekor/{msg}','RekorController@msg');
+
+	Route::post('/get-detail-rekor','RekorController@getRekor');
+	Route::post('/addRekor','RekorController@add');
+	Route::post('/updateRekor','RekorController@update');
+	Route::post('/delete-data-rekor','RekorController@delete');
+
 	//User
 	Route::get('/admin','adminController@index')->name('view');
 	Route::get('/admin/tambah','adminController@formTambah')->name('admin');
