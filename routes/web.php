@@ -34,7 +34,9 @@ Route::get('event','frontController@event');
 Route::get('cabor','frontController@cabor');
 Route::get('cabor','frontController@cabor');
 Route::get('rekor','frontController@rekor');
+
 Route::get('atlet/{id}/{nama}','frontController@detailAtlet');
+
 Route::get('data-atlet','frontController@dataAtlet');
 Route::get('data-prestasi','frontController@dataPrestasi');
 Route::get('data-event','frontController@dataEvent');
@@ -64,6 +66,15 @@ Route::group(['middleware' => 'auth'],function(){
 	Route::post('saveNomorPertandingan','noPertandinganController@simpan');
 	Route::get('/data-np','noPertandinganController@getData');
 	Route::post('/updateNomorPertandingan','noPertandinganController@update');
+	Route::get('hapusNoPertandingan/{id}','noPertandinganController@hapus');
+	
+	Route::get('kejuaraan','kejuaraanController@index')->name('kejuaraan');
+	Route::post('simpanEvent','kejuaraanController@simpan');
+	Route::get('/tampilEvent','kejuaraanController@tampil')->name('kejuaraan');
+	Route::get('data-eventPertandingan','kejuaraanController@getData');
+	Route::get('editEvent/{id}','kejuaraanController@edit')->name('editEvent');
+	Route::post('updateEvent','kejuaraanController@update');
+	Route::get('hapusEvent/{id}','kejuaraanController@hapus');
 
 	Route::get('/home', 'HomeController@index')->name('home');
 
@@ -122,4 +133,13 @@ Route::group(['middleware' => 'auth'],function(){
 
 		Route::resource('importData','importDataController');
 	});
+
+
+	Route::get('manajemenWasit','wasitController@index');
+	Route::post('simpanWasit','wasitController@simpan');
+	Route::get('tampilWasit', 'wasitController@tampildata');
+	Route::get('wasit/{id}/edit','wasitController@editdata');
+	Route::post('updateWasit','wasitController@update');
+	Route::get('hapusWasit/{id}','wasitController@hapusData');
+	Route::post('get-data-wasit','wasitController@getData');
 });
