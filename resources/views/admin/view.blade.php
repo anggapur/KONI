@@ -27,6 +27,11 @@
         <div class="alert alert-success">Data Berhasil Diedit!</div>
       @endif
 
+    
+    @if(session('status')=='7')
+        <div class="alert alert-success">Data Berhasil Dihapus!</div>
+      @endif
+
       @if(session('status')=='6')
         <script>alert('DC Ada Mas')</script>
       @endif  
@@ -34,6 +39,10 @@
       <div class="box">
             <div class="box-header">
               <h3 class="box-title">Data User</h3>
+              <!-- link bisa, url = link ,route = name, asset = file -->
+                  <a href="{{route('admin')}}" class="create-modal btn btn-success btn-sm">
+                    <i class="glyphicon glyphicon-plus"></i>Tambah Data
+                  </a>
             </div>
             <!-- /.box-header -->
             <div class="box-body">
@@ -47,10 +56,7 @@
                   <th>Created At</th>
                   <th>Updated At</th>
                   <th>Aksi</th>
-                  <!-- link bisa, url = link ,route = name, asset = file -->
-                  <a href="{{route('admin')}}" class="create-modal btn btn-success btn-sm">
-                    <i class="glyphicon glyphicon-plus"></i>Tambah Data
-                  </a>
+                  
                 </tr>
                 <br>
                 <br>
@@ -65,11 +71,11 @@
                 <td>{{ $value->created_at }}</td>
                 <td>{{ $value->updated_at }}</td>
                 <td>
-                  <a href="{{url('/admin/'.$value->id)}}" class="edit-modal btn btn-warning btn-sm" data-id="{{$value->id}}" data-title="{{$value->title}}" data-body="{{$value->body}}">
-                    <i class="glyphicon glyphicon-pencil"></i>Edit
+                  <a href="{{url('/admin/'.$value->id)}}" class="edit-modal btn btn-warning btn-xs" data-id="{{$value->id}}" data-title="{{$value->title}}" data-body="{{$value->body}}">
+                    <i class="glyphicon glyphicon-pencil"></i> Edit
                   </a>
-                  <a href="{{url('/admin/hapus/'.$value->id)}}" class="delete-modal btn btn-danger btn-sm" data-id="{{$value->id}}" type="submit">
-                    <i class="glyphicon glyphicon-trash"></i>Hapus
+                  <a href="{{url('/admin/hapus/'.$value->id)}}" class="delete-modal btn btn-danger btn-xs" data-id="{{$value->id}}" type="submit">
+                    <i class="glyphicon glyphicon-trash"></i> Hapus
                   </a>  
                 </td>
               </tr>
