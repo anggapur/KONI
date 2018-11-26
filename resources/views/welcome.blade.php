@@ -67,7 +67,11 @@
 
             <div class="content">
                 <div class="title m-b-md">
-                    Halaman Utama Disini
+                    Halo Broo
+                </div>
+
+                <div class="title m-b-md">
+                    Disini Halaman Utama
                 </div>
 
             </div>

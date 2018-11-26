@@ -3,9 +3,9 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="csrf_token" content="{{ csrf_token() }}">
   <title>{{ config('app.name', 'Laravel') }}</title>
-  <!-- Tell the browser to be responsive to screen width -->
-  <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+  
   <!-- Bootstrap 3.3.7 -->
   <link rel="stylesheet" href="{{asset('public/adminLTE/bower_components/bootstrap/dist/css/bootstrap.min.css')}}">
   <!-- Font Awesome -->
@@ -14,7 +14,8 @@
   <link rel="stylesheet" href="{{asset('public/adminLTE/bower_components/Ionicons/css/ionicons.min.css')}}">
   <!-- Theme style -->
   <link rel="stylesheet" href="{{asset('public/adminLTE/dist/css/AdminLTE.min.css')}}">
-  <!-- AdminLTE Skins. Choose a skin from the css/skins
+  <!-- AdminLTE Skins. Choose a skin fr
+  om the css/skins
        folder instead of downloading all of them to reduce the load. -->
   <link rel="stylesheet" href="{{asset('public/adminLTE/dist/css/skins/_all-skins.min.css')}}">
   <!-- Morris chart -->
@@ -28,6 +29,19 @@
   <!-- bootstrap wysihtml5 - text editor -->
   <link rel="stylesheet" href="{{asset('public/adminLTE/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css')}}">
 
+  <!-- DataTables -->
+  <link rel="stylesheet" href="{{asset('public/adminLTE/bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css')}}">
+ 
+  <!-- Tell the browser to be responsive to screen width -->
+  <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+   <!-- FonT Awesome -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+
+
+  <!-- Style admin Custom -->
+  <link rel="stylesheet" href="{{asset('public/css/styleAdmin.css')}}">
+   <!-- jQuery 3 -->
+ 
   <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
   <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
   <!--[if lt IE 9]>
@@ -36,18 +50,24 @@
   <![endif]-->
 
   <!-- Google Font -->
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
+
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">  
+
+
+<!-- jQuery 3 -->
+<script src="{{asset('public/adminLTE/bower_components/jquery/dist/jquery.min.js')}}"></script>
 </head>
-<body class="hold-transition skin-blue sidebar-mini">
+<body class="hold-transition skin-blue sidebar-mini adminPart">
 <div class="wrapper">
 
   <header class="main-header">
-    <!-- Logo -->
-    <a href="index2.html" class="logo">
+ 
+    <a href="{{ URL('/home') }}" class="logo">
+
       <!-- mini logo for sidebar mini 50x50 pixels -->
-      <span class="logo-mini"><b>A</b>LT</span>
+      <span class="logo-mini"><b>K</b>oni</span>
       <!-- logo for regular state and mobile devices -->
-      <span class="logo-lg"><b>Admin</b>LTE</span>
+      <span class="logo-lg"><b>Koni</b>Badung</span>
     </a>
     <!-- Header Navbar: style can be found in header.less -->
     <nav class="navbar navbar-static-top">
@@ -57,22 +77,20 @@
       </a>
 
       <div class="navbar-custom-menu">
-        <ul class="nav navbar-nav">
-          <!-- Messages: style can be found in dropdown.less-->
-          <li class="dropdown messages-menu">
+        <ul class="nav navbar-nav">        
+          <!-- <li class="dropdown messages-menu">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
               <i class="fa fa-envelope-o"></i>
               <span class="label label-success">4</span>
             </a>
             <ul class="dropdown-menu">
               <li class="header">You have 4 messages</li>
-              <li>
-                <!-- inner menu: contains the actual data -->
+              <li>                
                 <ul class="menu">
-                  <li><!-- start message -->
+                  <li>
                     <a href="#">
                       <div class="pull-left">
-                        <img src="dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
+                        <img src="{{asset('public/adminLTE/dist/img/user2-160x160.jpg')}}" class="img-circle" alt="User Image">
                       </div>
                       <h4>
                         Support Team
@@ -81,11 +99,11 @@
                       <p>Why not buy a new awesome theme?</p>
                     </a>
                   </li>
-                  <!-- end message -->
+                  
                   <li>
                     <a href="#">
                       <div class="pull-left">
-                        <img src="dist/img/user3-128x128.jpg" class="img-circle" alt="User Image">
+                        <img src="{{asset('public/adminLTE/dist/img/user3-128x128.jpg')}}" class="img-circle" alt="User Image">
                       </div>
                       <h4>
                         AdminLTE Design Team
@@ -97,7 +115,7 @@
                   <li>
                     <a href="#">
                       <div class="pull-left">
-                        <img src="dist/img/user4-128x128.jpg" class="img-circle" alt="User Image">
+                        <img src="{{asset('public/adminLTE/dist/img/user4-128x128.jpg')}}" class="img-circle" alt="User Image">
                       </div>
                       <h4>
                         Developers
@@ -109,7 +127,7 @@
                   <li>
                     <a href="#">
                       <div class="pull-left">
-                        <img src="dist/img/user3-128x128.jpg" class="img-circle" alt="User Image">
+                        <img src="{{asset('public/adminLTE/dist/img/user3-128x128.jpg')}}" class="img-circle" alt="User Image">
                       </div>
                       <h4>
                         Sales Department
@@ -121,7 +139,7 @@
                   <li>
                     <a href="#">
                       <div class="pull-left">
-                        <img src="dist/img/user4-128x128.jpg" class="img-circle" alt="User Image">
+                        <img src="{{asset('public/adminLTE/dist/img/user4-128x128.jpg')}}" class="img-circle" alt="User Image">
                       </div>
                       <h4>
                         Reviewers
@@ -135,7 +153,7 @@
               <li class="footer"><a href="#">See All Messages</a></li>
             </ul>
           </li>
-          <!-- Notifications: style can be found in dropdown.less -->
+          
           <li class="dropdown notifications-menu">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
               <i class="fa fa-bell-o"></i>
@@ -144,7 +162,7 @@
             <ul class="dropdown-menu">
               <li class="header">You have 10 notifications</li>
               <li>
-                <!-- inner menu: contains the actual data -->
+                
                 <ul class="menu">
                   <li>
                     <a href="#">
@@ -177,7 +195,7 @@
               <li class="footer"><a href="#">View all</a></li>
             </ul>
           </li>
-          <!-- Tasks: style can be found in dropdown.less -->
+          
           <li class="dropdown tasks-menu">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
               <i class="fa fa-flag-o"></i>
@@ -186,9 +204,9 @@
             <ul class="dropdown-menu">
               <li class="header">You have 9 tasks</li>
               <li>
-                <!-- inner menu: contains the actual data -->
+                
                 <ul class="menu">
-                  <li><!-- Task item -->
+                  <li>
                     <a href="#">
                       <h3>
                         Design some buttons
@@ -202,8 +220,8 @@
                       </div>
                     </a>
                   </li>
-                  <!-- end task item -->
-                  <li><!-- Task item -->
+                  
+                  <li>
                     <a href="#">
                       <h3>
                         Create a nice theme
@@ -217,8 +235,8 @@
                       </div>
                     </a>
                   </li>
-                  <!-- end task item -->
-                  <li><!-- Task item -->
+
+                  <li>
                     <a href="#">
                       <h3>
                         Some task I need to do
@@ -232,8 +250,8 @@
                       </div>
                     </a>
                   </li>
-                  <!-- end task item -->
-                  <li><!-- Task item -->
+                  
+                  <li>
                     <a href="#">
                       <h3>
                         Make beautiful transitions
@@ -247,14 +265,14 @@
                       </div>
                     </a>
                   </li>
-                  <!-- end task item -->
+                  
                 </ul>
               </li>
               <li class="footer">
                 <a href="#">View all tasks</a>
               </li>
             </ul>
-          </li>
+          </li> -->
           <!-- User Account: style can be found in dropdown.less -->
           <li class="dropdown user user-menu">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
@@ -328,8 +346,73 @@
       <!-- sidebar menu: : style can be found in sidebar.less -->
       <ul class="sidebar-menu" data-widget="tree">
         <li class="header">MAIN NAVIGATION</li>
+
+        <li class="{{GH::segment(1,['admin'])}}">
+          <a href="{{ URL('/admin/view') }}">
+            <i class="fa fa-user"></i> <span>User</span>
+          </a>          
+        </li>
+
+        <li>
+          <a href="#">
+            <i class="fa fa-running"></i> <span>Atlet</span>            
+          </a>          
+        </li>
+
+        <li>
+          <a href="#">
+            <i class="fa fa-code-branch"></i> <span>Cabang Olahraga</span>            
+          </a>          
+        </li>
+
+        <li class="{{GH::segment(1,['nomorPertandingan','editNoPertandingan','tampilNoPertandingan'])}}">
+          <a href="{{URL('/tampilNoPertandingan')}}">
+            <i class="fa fa-cogs"></i> <span>Nomor Pertandingan</span>            
+          </a>          
+        </li>
+
+        <li class="{{GH::segment(1,['prestasi','addPrestasi','editPrestasi'])}}">
+          <a href="{{url('/prestasi')}}">
+            <i class="fa fa-trophy"></i> <span>Prestasi Atlet</span>
+          </a>          
+        </li>
+
+        <li>
+          <li class="{{GH::segment(1,['rekor-atlet','addRekor','editRekor'])}}">
+          <a href="{{ URL('/rekor-atlet') }}">
+            <i class="fa fa-medal"></i> <span>Rekor Atlet</span>
+          </a>
+        </li>
+
+        <li class="{{GH::segment(1,['kontingen','tambah-kontingen','edit-kontingen'])}}">
+          <a href="{{ URL('/kontingen') }}">
+            <i class="fa fa-users"></i> <span>Kontingen</span>
+          </a>          
+        </li>
+
+        <li>
+          <a href="{{URL('tampilWasit')}}">
+            <i class="fa fa-flag-checkered"></i> <span>Wasit</span>
+          </a>          
+        </li>
+
+        <li>
+          <a href="#">
+            <i class="fa fa-calendar-alt"></i> <span>Event</span>            
+          </a>          
+        </li>
+        <li class="{{GH::segment(2,['rentangUmur'])}}">
+          <a  href="{{url('administrator/rentangUmur')}}">
+            <i class="fa fa-bars"></i> <span>Rentang Umur</span>            
+          </a>          
+        </li>
+        <li class="{{GH::segment(2,['importData'])}}">
+          <a href="{{url('administrator/importData')}}">
+            <i class="fa fa-file-import"></i> <span>Impor data</span>            
+          </a>          
+        </li>
         
-        <li class="treeview">
+        <li>
           <a href="#">
             <i class="fa fa-share"></i> <span>Multilevel</span>
             <span class="pull-right-container">
@@ -374,12 +457,12 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
-        Dashboard
-        <small>Control panel</small>
+        {{$page}}
       </h1>
       <ol class="breadcrumb">
-        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-        <li class="active">Dashboard</li>
+        <li><a href="#"><i class="fa fa-home"></i>Administrator</a></li>        
+        <li>{{$page}}</a></li>        
+
       </ol>
     </section>
 
@@ -590,8 +673,6 @@
 </div>
 <!-- ./wrapper -->
 
-<!-- jQuery 3 -->
-<script src="{{asset('public/adminLTE/bower_components/jquery/dist/jquery.min.js')}}"></script>
 <!-- jQuery UI 1.11.4 -->
 <script src="{{asset('public/adminLTE/bower_components/jquery-ui/jquery-ui.min.js')}}"></script>
 <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
@@ -603,8 +684,8 @@
 <!-- Morris.js charts -->
 <script src="{{asset('public/adminLTE/bower_components/raphael/raphael.min.js')}}"></script>
 <script src="{{asset('public/adminLTE/bower_components/morris.js/morris.min.js')}}"></script>
-<!-- Sparkline -->
-<script src="bower_components/jquery-sparkline/dist/jquery.sparkline.min.js"></script>
+<!-- Sparklin{{asset('public/adm')}}inLTE/e -->
+<script src="{{asset('public/adminLTE/bower_components/jquery-sparkline/dist/jquery.sparkline.min.js')}}"></script>
 <!-- jvectormap -->
 <script src="{{asset('public/adminLTE/plugins/jvectormap/jquery-jvectormap-1.2.2.min.js')}}"></script>
 <script src="{{asset('public/adminLTE/plugins/jvectormap/jquery-jvectormap-world-mill-en.js')}}"></script>
@@ -627,5 +708,17 @@
 <script src="{{asset('public/adminLTE/dist/js/pages/dashboard.js')}}"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="{{asset('public/adminLTE/dist/js/demo.js')}}"></script>
+<!-- DataTables -->
+<script src="{{asset('public/adminLTE/bower_components/datatables.net/js/jquery.dataTables.min.js')}}"></script>
+<script src="{{asset('public/adminLTE/bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js')}}"></script>
+
+<script type="text/javascript">
+  $('#datepicker').datepicker({
+      autoclose: true,
+      format: 'yyyy-mm-dd'
+    });
+</script>
+
 </body>
 </html>
+
