@@ -146,11 +146,11 @@
     <section id="maps">
         <div class="container">
             <div class="row">
-                <h2 class="titleSection" style="padding-top: 50px;">Sebaran Atlet</h2>
+                <h2 class="titleSection" style="padding-top: 50px;">Sebaran Atlet Berdasarkan Cabang Olahraga</h2>
             </div>
             <div class="row">
                 <div class="col-md-12">
-                    <div id="gmap" style="width:100%;height:400px;"></div>
+                    <div id="piechart_3d_2" class="chart"></div>
                 </div>
             </div>
         </div> 
@@ -169,5 +169,44 @@
                 $('.sliderImages:nth-child('+iterationSlider+')').fadeIn();
             }, 3000);
         });
+
+
+        //caret ke 2
+      var dataAjax;
+      $.ajax({
+        method : 'POST',
+        data : {
+          'name' :'getAtletByCabor',
+          '_token' : '{{csrf_token()}}'
+        },
+        url : '{{url("getApiData")}}',
+        success : function(data)
+        { 
+          dataAjax = data.data;
+          dataAjax.unshift(['Cabang Olahraga',data.countAtlet+' atlet']);
+        }
+
+      })
+      google.charts.load('current', {'packages':['bar']});
+      google.charts.setOnLoadCallback(drawChart2);
+
+      function drawChart2() {
+        var data = google.visualization.arrayToDataTable(dataAjax);
+
+        var optionss = {
+          chart: {
+            // title: 'Company Performance',
+            // subtitle: 'Sales, Expenses, and Profit: 2014-2017',
+                backgroundColor: 'transparent',
+              title: '',
+              is3D: true,
+
+          }
+        };
+
+        var chart = new google.charts.Bar(document.getElementById('piechart_3d_2'));
+
+        chart.draw(data, google.charts.Bar.convertOptions(optionss));
+      }
     </script>
 @endsection

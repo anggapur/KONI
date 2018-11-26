@@ -1,0 +1,8 @@
+.adminPart table {
+    width: 100% !important;
+    /* padding: 100px !important; */
+}
+
+.adminPart .tableWrapper {
+    padding: 10px 20px;
+}

@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
+use App\Nomor_Pertandingan;
 class HomeController extends Controller
 {
     /**
@@ -21,7 +21,11 @@ class HomeController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {        
-        return view('home');
+    {
+
+        $data = [];
+        $data['page'] = 'Dashboard';
+        return view('home',['data' => $data]);
     }
 }
+

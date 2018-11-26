@@ -81,10 +81,12 @@
             <div class="row">
                 @foreach(GH::getPrestasiTerbaru(8)['prestasi_terbaru'] as $val)
                 <div class="col-lg-3 col-md-6 col-sm-6">
+                    <a href="{{url('atlet/'.$val->id_atlet)}}/{{GH::normalize($val->nama_atlet)}}">
                     <div class="cardAtlet">
                         <div class="photoAtlet">
                              @php
-                                list($width, $height) = getimagesize(url('public/upload/fotoAtlet/atletSilat.jpg'));
+                                $namaFoto = GH::getImages(asset('public/upload/fotoAtlet'),$val->nama_foto);
+                                list($width, $height) = getimagesize($namaFoto);
                                 if($width < $height)
                                    $className = "stretchWidth"; 
                                 else
@@ -104,6 +106,7 @@
                             </div>
                         </div>
                     </div>
+                    </a>
                 </div>  
                 @endforeach 
             </div>
@@ -172,7 +175,7 @@
     <!-- JS MAP-->
     <script src="https://maps.google.com/maps/api/js?sensor=false&libraries=geometry&v=3.22&key=YOUR_API_KEY">
     </script>
-    <script src="https://maplacejs.com/dist/maplace.min.js"></script>
+    <!-- <script src="https://maplacejs.com/dist/maplace.min.js"></script>
     <script type="text/javascript">
     $(function() {
         new Maplace({
@@ -221,6 +224,6 @@
             controls_on_map: false
         }).Load();
     });
-</script>
+</script> -->
 </body>
 </html>

@@ -11,9 +11,16 @@
 |
 */
 
+Route::get('nomorPertandingan','contohController@index');
+Route::get('/', function () {
+    return view('welcome');
+});
+
+
 Route::get('angga','contohController@index');
 
-// By Angga Purnajiwa
+
+// Route By Angga Purnajiwa
 //Route::get('alit', 'isengController@index');
 Route::get('/','frontController@index');
 Route::get('dataGrafik','frontController@dataGrafik');
@@ -25,13 +32,70 @@ Route::get('event','frontController@event');
 Route::get('cabor','frontController@cabor');
 Route::get('cabor','frontController@cabor');
 Route::get('rekor','frontController@rekor');
-Route::get('manajemenWasit','wasitController@index');
-Route::post('simpanWasit','wasitController@simpan');
+
+Route::get('atlet/{id}/{nama}','frontController@detailAtlet');
+
 Route::get('data-atlet','frontController@dataAtlet');
+Route::get('data-prestasi','frontController@dataPrestasi');
+Route::get('data-event','frontController@dataEvent');
+Route::get('data-pelatih','frontController@dataPelatih');
+Route::get('data-wasit','frontController@dataWasit');
+Route::post('getApiData','frontController@getApiData');
+// Cabor Detail
+Route::get('cabor/{id}/{nama}','frontController@detailCabor');
+Route::get('data-atlet-di-cabor/{id_cabor}','frontController@dataAtletDiCabor');
+Route::get('data-pelatih-di-cabor/{id_cabor}','frontController@dataPelatihDiCabor');
+Route::get('data-wasit-di-cabor/{id_cabor}','frontController@dataWasitDiCabor');
+Route::get('data-np-di-cabor/{id_cabor}','frontController@dataNPDiCabor');
+//evennt detail
+Route::get('event/{id}/{nama}','frontController@detailEvent');
+Route::get('data-prestasi-di-event/{id_event}','frontController@dataPrestasiDiEvent');
+
+
 
 Auth::routes();
 
 Route::group(['middleware' => 'auth'],function(){
 	//only admin can acces here
+
+	Route::get('/nomorPertandingan', 'noPertandingan@index')->name('nomorPertandingan');
+	Route::post('saveNomorPertandingan','noPertandingan@simpan');
+
 	Route::get('/home', 'HomeController@index')->name('home');
+
+
+	//Kontingen
+	Route::get('/kontingen','KontingenController@index')->name('kontingen');
+	Route::get('/tambah-kontingen','KontingenController@tambah');
+	Route::get('/edit-kontingen/{id}','KontingenController@edit')->name('kontingen-edit');
+	Route::get('/data-kontingen','KontingenController@dataKontingen');
+	Route::post('/add-kontingen','KontingenController@add');
+	Route::post('/get-data-kontingen','KontingenController@getData');
+	Route::post('/delete-data-kontingen','KontingenController@hapus');
+	Route::post('/update-kontingen','KontingenController@update');
+	Route::post('/cek-no-kartu-anggota','KontingenController@cekKartu');
+	Route::get('/kontingen/{msg}','KontingenController@msg');
+
+	//User
+	Route::get('/admin','adminController@index')->name('view');
+	Route::get('/admin/tambah','adminController@formTambah')->name('admin');
+	Route::post('/insert','adminController@admin');
+	Route::get('/admin/view','adminController@tampil')->name('view');
+	Route::get('/admin/{id_user}','adminController@edit');
+	Route::post('/admin/update/{id_user}','adminController@update');
+	Route::get('/admin/hapus/{id_user}','adminController@hapus');
+
+	//Angga Pur CRUD rentang Umur'
+	Route::group(['prefix' => 'administrator'],function(){
+		Route::get('rentangUmur/getData','rentangUmurController@getData');
+		Route::resource('rentangUmur','rentangUmurController');
+
+	});
+
+	Route::get('manajemenWasit','wasitController@index');
+	Route::post('simpanWasit','wasitController@simpan');
+	Route::get('tampilWasit', 'wasitController@tampildata');
+	Route::get('wasit/{id}/edit','wasitController@editdata');
+	Route::post('updateWasit','wasitController@update');
+
 });

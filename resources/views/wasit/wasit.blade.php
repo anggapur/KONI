@@ -2,10 +2,6 @@
 @section('content')
 <!-- Main content -->
     <section class="content">
-    	@extends('layouts.app')
-@section('content')
-<!-- Main content -->
-    <section class="content">
       
       <!-- general form elements -->
           <div class="box box-primary">
@@ -50,6 +46,14 @@
                 		@endforeach
                 	</select>
                 </div>
+                <div class="form-group">
+                	<label for="cabor_id"> Cabang Olahraga</label>
+                	<select class="form-control" name="cabor_id">
+                		@foreach($cabang_olahraga as $val)
+                		<option value="{{$val->id_cabor}}">{{$val->nama_cabor}}</option>
+                		@endforeach
+                	</select>
+                </div>
               </div>
               <!-- /.box-body -->
 
@@ -59,9 +63,6 @@
             </form>
           </div>
           <!-- /.box -->
-    </section>
-    <!-- /.content -->
-@endsection
     </section>
     <!-- /.content -->
 @endsection

@@ -44,7 +44,7 @@ html,body {
 }
 
 section#summary {
-    padding: 90px 0px 50px 0px;
+    padding: 90px 0px 0px 0px;
 }
 
 .boxSummary h5,.boxSummary h6 {
@@ -180,7 +180,7 @@ ul#location li {
 }
 
 footer {
-    background: #212b5f;
+    background: #b12424;
     color: #fff;
     padding: 40px 0px;
 }
@@ -255,7 +255,7 @@ section.chartSection {
 }
 nav.navbar.navbar-expand-lg.navbar-light.bg-light {
     box-shadow: 0 5px 10px 0 rgba(0, 0, 0, 0.14);
-    background: #212b5f !important;
+    background: #b12424 !important;
     color: #fff !important;
     position: fixed;
     width: 100%;
@@ -270,6 +270,7 @@ section.chartSection2 {
 section#prestasiTerbaru {
     padding-top: 80px;
     padding-bottom: 80px;
+    background: #eeeeee;
 }
 a.nav-link {
     color: #fff !important;
@@ -286,6 +287,7 @@ ul.navbar-nav {
 #slider{
     background: url('../../upload/slider/sliderBG.jpg');
     background-size: cover;
+    background-position: center center;
 }
 .greetings {
     position: absolute;
@@ -361,7 +363,7 @@ h1.descLeft {
 .tableWrapper {
     padding: 20px;
     padding-left: 35px;
-    box-shadow: 0 0px 10px 0 rgba(0, 0, 0, 0.14);
+    box-shadow: 0 0px 10px 0 rgba(0, 0, 0, 0.20);
     border-radius: 10px;
     margin-top: 60px;
 }
@@ -388,6 +390,50 @@ section.chartSection {
 }
 section#summary {
     background: #fff;
+}
+
+section#maps {
+    background: white;
+    padding-bottom: 80px;
+}
+img.stretchWidth.detailAtlet {
+    border-radius: 6px;
+}
+h1.titleDetailAtlet {
+    font-size: 22px;
+    line-height: 40px;
+    font-weight: 400;
+    letter-spacing: 0;
+}
+h2.titleDetailAtlet {
+    font-size: 17px;
+    line-height: 40px;
+    font-weight: 400;
+    letter-spacing: 0;
+    color: #9e9c9c;
+    margin-bottom: -6px;
+}
+.cardAtlet.cardDetailAtlet {
+    margin: 0;
+}
+h1.titleDetailAtlet {
+    margin-top: 8px;
+    margin-bottom: 0px;
+}
+.bgWhite
+{
+    background: white !important;
+}
+h2.titleDetailAtlet {
+    margin-top: -5px;
+}
+
+.tableWrapper.tableDetailAtlet {
+    margin-top: 0px;
+}
+.titleDaftarPrestasi{
+    text-align: center;
+    padding-bottom: 20px;
 }
 /*Responsive*/
 @media only screen and (max-width: 768px)

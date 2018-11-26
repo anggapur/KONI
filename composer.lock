@@ -1073,6 +1073,7 @@
             "time": "2018-09-04T19:00:09+00:00"
         },
         {
+
             "name": "monolog/monolog",
             "version": "1.24.0",
             "source": {
@@ -2561,6 +2562,7 @@
             "time": "2018-09-30T16:36:12+00:00"
         },
         {
+
             "name": "symfony/process",
             "version": "v4.1.7",
             "source": {

@@ -117,7 +117,7 @@ class GlobalHelper{
 
 	public static function getPrestasiTerbaru($jml){
 		$data = [];
-		$data['prestasi_terbaru'] = Prestasi::select('nama_atlet','nama_prestasi','nama_cabor','ket_np','waktu','nama_foto','nama_event')
+		$data['prestasi_terbaru'] = Prestasi::select('id_atlet','nama_atlet','nama_prestasi','nama_cabor','ket_np','waktu','nama_foto','nama_event')
 										->leftJoin('cabang_olahraga','id_cabor','=','cabor_id')
 										->leftJoin('master_atlet','id_atlet','=','atlet_id')
 										->leftJoin('foto','id_foto','=','foto_id')
@@ -257,4 +257,116 @@ class GlobalHelper{
 		}
 		return $data;
 	}
+
+	public static function getAtletByJenisKelaminAndUmurandCabor()
+	{
+		$query = Cabang_Olahraga::with(['getAtlet' => function($q){
+            $q->select('*',DB::raw('(year(curdate())-year(tgl_lahir)) as age'));
+        }])->get();
+
+        $data = [];
+        foreach ($query as $key => $value) {
+            $datas[0] = $value->nama_cabor;
+            $datas[1] = collect($value->getAtlet)->where('age','<=',10)->where('jenis_kelamin','P')->count(); //Perempuan,anak
+            $datas[2] = collect($value->getAtlet)->where('age','>',10)->where('age','<=',17)->where('jenis_kelamin','P')->count(); //Perempuan,remaja
+            $datas[3] = collect($value->getAtlet)->where('age','>',17)->where('jenis_kelamin','P')->count(); //Perempuan,dewasa
+            $datas[4] = collect($value->getAtlet)->where('age','<=',10)->where('jenis_kelamin','L')->count();//laki,anak
+            $datas[5] = collect($value->getAtlet)->where('age','>',10)->where('age','<=',17)->where('jenis_kelamin','L')->count();//laki,remaja
+            $datas[6] = collect($value->getAtlet)->where('age','>',17)->where('jenis_kelamin','L')->count();//laki,dewasa
+            array_push($data, $datas);
+        }
+        return $data;
+	}
+
+	public static function getAtletByJenisKelaminAndUmur()
+	{
+		$query = Master_Atlet::select('*',DB::raw('(year(curdate())-year(tgl_lahir)) as age'))->get();
+        $data = [];
+        $datas[0] = "Perempuan";
+        $datas[1] = collect($query)->where('age','<=',10)->where('jenis_kelamin','P')->count(); //Perempuan,anak
+        $datas[2] = collect($query)->where('age','>',10)->where('age','<=',17)->where('jenis_kelamin','P')->count(); //Perempuan,remaja
+        $datas[3] = collect($query)->where('age','>',17)->where('jenis_kelamin','P')->count(); //Perempuan,dewasa
+        array_push($data, $datas);
+        $datas[0] = "Laki - Laki";
+        $datas[1] = collect($query)->where('age','<=',10)->where('jenis_kelamin','L')->count();//laki,anak
+        $datas[2] = collect($query)->where('age','>',10)->where('age','<=',17)->where('jenis_kelamin','L')->count();//laki,remaja
+        $datas[3] = collect($query)->where('age','>',17)->where('jenis_kelamin','L')->count();//laki,dewasa
+        array_push($data, $datas);
+        
+        return $data;
+	}
+
+	public static function getWasitByJenisKelaminAndUmur()
+	{
+		$query = Wasit::select('*',DB::raw('(year(curdate())-year(tgl_lahir)) as age'))->get();
+        $data = [];
+        $datas[0] = "Perempuan";
+        $datas[1] = collect($query)->where('age','<=',10)->where('jenis_kelamin','P')->count(); //Perempuan,anak
+        $datas[2] = collect($query)->where('age','>',10)->where('age','<=',17)->where('jenis_kelamin','P')->count(); //Perempuan,remaja
+        $datas[3] = collect($query)->where('age','>',17)->where('jenis_kelamin','P')->count(); //Perempuan,dewasa
+        array_push($data, $datas);
+        $datas[0] = "Laki - Laki";
+        $datas[1] = collect($query)->where('age','<=',10)->where('jenis_kelamin','L')->count();//laki,anak
+        $datas[2] = collect($query)->where('age','>',10)->where('age','<=',17)->where('jenis_kelamin','L')->count();//laki,remaja
+        $datas[3] = collect($query)->where('age','>',17)->where('jenis_kelamin','L')->count();//laki,dewasa
+        array_push($data, $datas);
+        
+        return $data;
+	}
+
+	public static function getPelatihByJenisKelaminAndUmur()
+	{
+		$query = Kontingen::select('*',DB::raw('(year(curdate())-year(tgl_lahir)) as age'))->where('jabatan_id',2)->get();
+        $data = [];
+        $datas[0] = "Perempuan";
+        $datas[1] = collect($query)->where('age','<=',10)->where('jenis_kelamin','P')->count(); //Perempuan,anak
+        $datas[2] = collect($query)->where('age','>',10)->where('age','<=',17)->where('jenis_kelamin','P')->count(); //Perempuan,remaja
+        $datas[3] = collect($query)->where('age','>',17)->where('jenis_kelamin','P')->count(); //Perempuan,dewasa
+        array_push($data, $datas);
+        $datas[0] = "Laki - Laki";
+        $datas[1] = collect($query)->where('age','<=',10)->where('jenis_kelamin','L')->count();//laki,anak
+        $datas[2] = collect($query)->where('age','>',10)->where('age','<=',17)->where('jenis_kelamin','L')->count();//laki,remaja
+        $datas[3] = collect($query)->where('age','>',17)->where('jenis_kelamin','L')->count();//laki,dewasa
+        array_push($data, $datas);
+        
+        return $data;
+	}
+
+	public static function getPelatihByCabor(){
+		$data = [];
+		$cabor = Cabang_Olahraga::select('nama_cabor')->get();
+		foreach ($cabor as $cabor) {
+			$data[$cabor->nama_cabor] = Kontingen::select('id_atlet')
+										->leftJoin('cabang_olahraga','id_cabor','=','cabor_id')
+										->where('jabatan_id',2)
+										->where('nama_cabor',$cabor->nama_cabor)
+										->count();
+		}
+		return $data;	
+	}
+
+	public static function getWasitByCabor(){
+		$data = [];
+		$cabor = Cabang_Olahraga::select('nama_cabor')->get();
+		foreach ($cabor as $cabor) {
+			$data[$cabor->nama_cabor] = Wasit::select('id_prestasi')
+										->leftJoin('cabang_olahraga','id_cabor','=','cabor_id')
+										->where('nama_cabor',$cabor->nama_cabor)
+										->count();
+		}
+		return $data;
+	}
+
+	public static function normalize($param)
+	{
+		//digunakan untuk membuat huruf ke kecil dan menghilangkan spasi
+		$param = strtolower($param);
+		$param = str_replace(" ","-",$param);
+		return $param;
+	}
+	public static function getImages($url,$image)
+	{
+		return $url."/".$image;
+	}
 }
+

@@ -9,9 +9,11 @@ class IsengController extends Controller
 {
     public function index(){
     	    	
-    	
-    	$data = GH::getPrestasiByNPOnEvent(3);
-    	dd($data);
-    	return view('home',['data' => $data]);
+    	$data = [];    	
+    	$data['page'] = 'Kontingen';
+    	//$data = GH::getPrestasiByNPOnEvent(3);
+    	//dd($data);
+    	//return view('home',['data' => $data]);
+    	return view('fileContoh',['data' => $data]);
     }
 }
