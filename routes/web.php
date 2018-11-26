@@ -88,15 +88,13 @@ Route::group(['middleware' => 'auth'],function(){
 
 	//Cabor
 	Route::get('/IndexCabor','CabangOlahraga@index')->name('Cabor');
-	Route::get('/tambah-kontingen','KontingenController@tambah');
-	Route::get('/edit-kontingen/{id}','KontingenController@edit')->name('kontingen-edit');
-	Route::get('/data-kontingen','KontingenController@dataKontingen');
-	Route::post('/add-kontingen','KontingenController@add');
-	Route::post('/get-data-kontingen','KontingenController@getData');
-	Route::post('/delete-data-kontingen','KontingenController@hapus');
-	Route::post('/update-kontingen','KontingenController@update');
-	Route::post('/cek-no-kartu-anggota','KontingenController@cekKartu');
-	Route::get('/kontingen/{msg}','KontingenController@msg');
+	Route::get('/tambah','CabangOlahraga@tambahcabor');
+	Route::get('edit-cabor/{id}','CabangOlahraga@edit_Cabor')->name('edit-cabor');
+	Route::get('/data-cabor','CabangOlahraga@dataCabor');
+	Route::post('/add-cabor','CabangOlahraga@add');
+	Route::post('/delete-data-cabor','CabangOlahraga@hapus');
+	Route::post('/hasiledit-cabor','CabangOlahraga@hasil_editcabor');
+	Route::get('/CabangOlahraga/{msg}','CabangOlahraga@msg');
 
 	//Prestasi
 	Route::get('/prestasi','PrestasiController@index')->name('Prestasi');
