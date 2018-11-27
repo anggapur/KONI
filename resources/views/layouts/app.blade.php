@@ -360,7 +360,7 @@
         </li>
 
         <li>
-          <a href="#">
+          <a href="{{URL('/IndexCabor')}}">
             <i class="fa fa-code-branch"></i> <span>Cabang Olahraga</span>            
           </a>          
         </li>

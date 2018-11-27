@@ -12,10 +12,7 @@
 */
 
 
-Route::get('nomorPertandingan','contohController@index');
-Route::get('/', function () {
-    return view('welcome');
-});
+
 
 
 Route::get('angga','contohController@index');
@@ -54,7 +51,6 @@ Route::get('event/{id}/{nama}','frontController@detailEvent');
 Route::get('data-prestasi-di-event/{id_event}','frontController@dataPrestasiDiEvent');
 
 
-
 Auth::routes();
 
 Route::group(['middleware' => 'auth'],function(){
@@ -89,6 +85,16 @@ Route::group(['middleware' => 'auth'],function(){
 	Route::post('/update-kontingen','KontingenController@update');
 	Route::post('/cek-no-kartu-anggota','KontingenController@cekKartu');
 	Route::get('/kontingen/{msg}','KontingenController@msg');
+
+	//Cabor
+	Route::get('/IndexCabor','CabangOlahraga@index')->name('Cabor');
+	Route::get('/tambah','CabangOlahraga@tambahcabor');
+	Route::get('edit-cabor/{id}','CabangOlahraga@edit_Cabor')->name('edit-cabor');
+	Route::get('/data-cabor','CabangOlahraga@dataCabor');
+	Route::post('/add-cabor','CabangOlahraga@add');
+	Route::post('/delete-data-cabor','CabangOlahraga@hapus');
+	Route::post('/hasiledit-cabor','CabangOlahraga@hasil_editcabor');
+	Route::get('/CabangOlahraga/{msg}','CabangOlahraga@msg');
 
 	//Prestasi
 	Route::get('/prestasi','PrestasiController@index')->name('Prestasi');
@@ -143,3 +149,4 @@ Route::group(['middleware' => 'auth'],function(){
 	Route::get('hapusWasit/{id}','wasitController@hapusData');
 	Route::post('get-data-wasit','wasitController@getData');
 });
+
