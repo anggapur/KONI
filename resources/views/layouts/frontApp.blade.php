@@ -79,6 +79,7 @@
                 <h2 class="titleSection">Prestasi Terbaru</h2>
             </div>
             <div class="row">
+                
                 @foreach(GH::getPrestasiTerbaru(8)['prestasi_terbaru'] as $val)
                 <div class="col-lg-3 col-md-6 col-sm-6">
                     <a href="{{url('atlet/'.$val->id_atlet)}}/{{GH::normalize($val->nama_atlet)}}">
@@ -100,7 +101,7 @@
                         </div>
                         <div class="keteranganHidden">
                             <div>
-                                <p>{{$val->nama_prestasi}} <br>{{$val->nama_cabor}} <br>{{$val->ket_np}} <br>{{$val->nama_event}}</p>
+                                <p>{{$val->ket_juara}} <br>{{$val->nama_cabor}} <br>{{$val->ket_np}} <br>{{$val->nama_event}}</p>
                                 <h5>{{$val->nama_atlet}}</h5>
                                 <h6>{{$val->nama_cabor}}</h6>
                             </div>

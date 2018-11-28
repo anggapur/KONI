@@ -137,6 +137,11 @@ Route::group(['middleware' => 'auth'],function(){
 		Route::get('rentangUmur/getData','rentangUmurController@getData');
 		Route::resource('rentangUmur','rentangUmurController');
 
+		Route::get('dataMedali/getData','medaliController@getData');
+		Route::resource('medali','medaliController');
+
+		Route::get('dataJuara/getData','juaraController@getData');
+		Route::resource('juara','juaraController');
 		Route::resource('importData','importDataController');
 	});
 
