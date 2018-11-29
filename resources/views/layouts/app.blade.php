@@ -29,6 +29,8 @@
   <!-- bootstrap wysihtml5 - text editor -->
   <link rel="stylesheet" href="{{asset('public/adminLTE/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css')}}">
 
+  <link rel="stylesheet" href="{{asset('public/adminLTE/plugins/iCheck/alls.css')}}">
+
   <!-- DataTables -->
   <link rel="stylesheet" href="{{asset('public/adminLTE/bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css')}}">
  
@@ -353,13 +355,13 @@
           </a>          
         </li>
 
-        <li>
+        <li class="">
           <a href="#">
             <i class="fa fa-running"></i> <span>Atlet</span>            
           </a>          
         </li>
 
-        <li>
+        <li class="{{GH::segment(1,['IndexCabor','tambahCabor','edit-cabor'])}}">
           <a href="{{URL('/IndexCabor')}}">
             <i class="fa fa-code-branch"></i> <span>Cabang Olahraga</span>            
           </a>          
@@ -390,14 +392,14 @@
           </a>          
         </li>
 
-        <li>
+        <li class="{{GH::segment(1,['tampilWasit','manajemenWasit','wasit'])}}">
           <a href="{{URL('tampilWasit')}}">
             <i class="fa fa-flag-checkered"></i> <span>Wasit</span>
           </a>          
         </li>
 
-        <li>
-          <a href="#">
+        <li class="{{GH::segment(1,['tampilEvent','tambahEvent','editEvent'])}}">
+          <a href="{{url('/tampilEvent')}}">
             <i class="fa fa-calendar-alt"></i> <span>Event</span>            
           </a>          
         </li>
@@ -714,7 +716,21 @@
 
 <script type="text/javascript">
   $('#datepicker').datepicker({
-      autoclose: true,
+      autoclose: true,      
+      format: 'yyyy-mm-dd'
+    });
+</script>
+
+<script type="text/javascript">
+  $('#datepicker_mulai').datepicker({      
+      autoclose: true,      
+      format: 'yyyy-mm-dd'      
+    });
+</script>
+
+<script type="text/javascript">
+  $('#datepicker_selesai').datepicker({
+      autoclose: true,      
       format: 'yyyy-mm-dd'
     });
 </script>

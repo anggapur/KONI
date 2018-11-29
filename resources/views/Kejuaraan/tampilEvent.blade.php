@@ -40,7 +40,7 @@ s       <h4><i class="fa fa-times"></i> Gagal menghapus data</h4>
         <div class="box box-primary">
             <div class="box-header with-border">
               <h3 class="box-title">Tambah Data Event</h3>           
-              <a href="{{ URL('/kejuaraan') }}"><button class="btn btn-success btn-sm"><i class="fa fa-plus"></i> Tambah Data</button></a>
+              <a href="{{ URL('/tambahEvent') }}"><button class="btn btn-success btn-sm"><i class="fa fa-plus"></i> Tambah Data</button></a>
             </div>
               <div class="box-body">
 
@@ -50,6 +50,7 @@ s       <h4><i class="fa fa-times"></i> Gagal menghapus data</h4>
                                 <thead>
                                     <tr>                      
                                         <th>Nama Event</th>
+                                        <th>Tingkat</th>
                                         <th>Lokasi</th>
                                         <th>Tanggal Mulai</th>
                                         <th>Tanggal Selesai</th>
@@ -78,6 +79,7 @@ s       <h4><i class="fa fa-times"></i> Gagal menghapus data</h4>
             },
             columns: [           
             {data: 'nama_event', name: 'nama_event'},
+            {data: 'nama_tingkat', name: 'nama_tingkat'},
             {data: 'lokasi', name: 'lokasi'},
             {data: 'tgl_mulai', name: 'tgl_mulai'},
             {data: 'tgl_selesai', name: 'tgl_selesai'},

@@ -13,6 +13,22 @@
                   <label>Nama Kejuaraan</label>
                   <input type="text" class="form-control" name="nama_event" placeholder="Enter ..." value="{{$data_event->nama_event}}">
                 </div>
+                <div class="form-group">
+                  <label>Tingkat Event</label>
+                  <div class="input-group">
+                  <div class="input-group-addon">
+                    <i class="fa fa-star"></i>
+                  </div>
+                  <select class="form-control" name="tingkat_event">
+                      <option hidden selected required>Pilih Tingkat Event</option>
+                      @foreach($tingkat as $tingkat)
+                        <option value="{{$tingkat->id_tingkat}}" 
+                          @if($tingkat->id_tingkat == $data_event->tingkat_id) {{ "selected" }} @endif
+                          >{{$tingkat->nama_tingkat}}</option>
+                      @endforeach
+                  </select>
+                </div>
+              </div>
     <div class="form-group">
                   <label>Lokasi</label>
                   <input type="text" class="form-control" name="lokasi" placeholder="Enter ..." value="{{$data_event->lokasi}}">

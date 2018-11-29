@@ -8,7 +8,7 @@ class Event extends Model
 {
     protected $table = "event";
 	protected $primaryKey = 'id_event';
-	protected $fillable = ['nama_event','lokasi','tgl_mulai','tgl_selesai'];
+	protected $fillable = ['nama_event','tingkat_id','lokasi','tgl_mulai','tgl_selesai'];
 	public $timestamps = false;
 
 	public function getPrestasi()
