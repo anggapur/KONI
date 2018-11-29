@@ -413,6 +413,16 @@
             <i class="fa fa-file-import"></i> <span>Impor data</span>            
           </a>          
         </li>
+        <li class="{{GH::segment(2,['medali'])}}">
+          <a href="{{url('administrator/medali')}}">
+           <i class="fa fa-trophy"></i> <span>Medali</span>            
+          </a>          
+        </li>
+        <li class="{{GH::segment(2,['juara'])}}">
+          <a href="{{url('administrator/juara')}}">
+            <i class="fa fa-medal"></i> <span>Juara</span>            
+          </a>          
+        </li>
         
         <li>
           <a href="#">
