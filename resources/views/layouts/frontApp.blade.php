@@ -7,7 +7,8 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <!-- <title>{{ config('app.name', 'KONI BADUNG') }}</title> -->
+    <title>KONI BADUNG</title>
 
     <!-- Scripts -->
     <!-- <script src="{{ asset('js/app.js') }}" defer></script> -->
@@ -84,7 +85,8 @@
                     <div class="cardAtlet">
                         <div class="photoAtlet">
                              @php
-                                list($width, $height) = getimagesize(url('public/upload/fotoAtlet/atletSilat.jpg'));
+                                //list($width, $height) = getimagesize(url('public/upload/fotoAtlet/atletSilat.jpg'));
+                                list($width, $height) = getimagesize('public/upload/fotoAtlet/atletSilat.jpg');
                                 if($width < $height)
                                    $className = "stretchWidth"; 
                                 else
