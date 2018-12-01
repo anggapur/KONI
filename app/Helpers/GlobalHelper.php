@@ -135,7 +135,6 @@ class GlobalHelper{
 										->leftJoin('foto','id_foto','=','foto_id')
 										->leftJoin('nomor_pertandingan','id_np','=','np_id')
 										->leftJoin('event','id_event','=','event_id')
-										->leftJoin('juara','id_juara','=','juara_id')
 										->leftJoin('medali','id_medali','=','medali_id')
 										->limit($jml)
 										->orderBy('waktu','DESC')
