@@ -6,6 +6,7 @@
           <div class="box-header with-border">
             <h3 class="box-title">Kejuaraan</h3>
             </div>
+            <div class="box-body">
             <form method="POST" action="{{url('simpanEvent')}}">
             {{csrf_field()}}
     <div class="form-group">
@@ -115,7 +116,8 @@
               </div>
               </div>
               <button type="submit" class="btn btn-primary">Simpan</button>
-      </form>      
+      </form>
+    </div>
     </section>
     
     <script>

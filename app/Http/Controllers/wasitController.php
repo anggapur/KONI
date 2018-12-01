@@ -24,7 +24,8 @@ class wasitController extends Controller
     	$data['tempat_lahir'] = $request->tempat_lahir;
     	$data['tgl_lahir'] = $request->tgl_lahir;
     	$data['alamat'] = $request->alamat;
-    	$data['kabupaten_id'] = $request->kabupaten_id;
+    	//$data['kabupaten_id'] = $request->kabupaten_id;
+        $data['kabupaten_id'] = 1;
     	$data['cabor_id'] = $request->cabor_id;
     	$query = Wasit::create($data);
     	if($query)
@@ -43,6 +44,7 @@ class wasitController extends Controller
     {
     	$data['page'] = "wasit";
     	$data['datakabupaten'] = Kabupaten::all();
+        $data['cabang_olahraga'] = Cabang_Olahraga::all();
     	$data['Wasit']= Wasit::where('id_wasit',$id)->first();
     	return view('wasit.editwasit',$data);
     }
@@ -73,7 +75,7 @@ class wasitController extends Controller
     }
     public function getData(Request $request)
     {
-    	$query = Wasit::where('id_wasit', $request->id)->first();
+    	$query = Wasit::where('id_wasit', $request->id)->leftJoin('Cabang_Olahraga','id_cabor','=','cabor_id')->first();
     	return $query;
     }
 }

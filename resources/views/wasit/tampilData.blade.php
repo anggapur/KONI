@@ -74,9 +74,11 @@
 			<label>Tempat Lahir</label>
 				<input class="form-control" type="text" id="tempat_lahir" disabled><br>
 			<label>Tanggal Lahir</label>
-				<input class="form-control" type="date" id="tgl_lahir" disabled><br>
+				<input class="form-control" type="text" id="tgl_lahir" disabled><br>			
 			<label>Alamat</label>
 				<textarea class="form-control" id="alamat" disabled></textarea><br>
+			<label>Cabang Olahraga</label>
+				<input class="form-control" type="text" id="cabor" disabled="">
 
 	      </div>
 	      <div class="modal-footer">
@@ -109,6 +111,7 @@
 	            	$('#tempat_lahir').val(data.tempat_lahir);
 	            	$('#tgl_lahir').val(data.tgl_lahir);
 	            	$('#alamat').val(data.alamat);
+	            	$('#cabor').val(data.nama_cabor);
 	            	$('#viewModal').modal('show');
 				}
 			});

@@ -378,14 +378,14 @@
           </a>          
         </li>
 
-        <li class="{{GH::segment(1,['prestasi','addPrestasi','editPrestasi'])}}">
+        <li class="{{GH::segment(1,['prestasi','addPrestasi','editPrestasi','tambahPrestasi'])}}">
           <a href="{{url('/prestasi')}}">
             <i class="fa fa-trophy"></i> <span>Prestasi Atlet</span>
           </a>          
         </li>
 
         <li>
-          <li class="{{GH::segment(1,['rekor-atlet','addRekor','editRekor'])}}">
+          <li class="{{GH::segment(1,['rekor-atlet','addRekor','editRekor','tambahRekor'])}}">
           <a href="{{ URL('/rekor-atlet') }}">
             <i class="fa fa-medal"></i> <span>Rekor Atlet</span>
           </a>

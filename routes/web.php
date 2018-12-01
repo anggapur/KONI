@@ -56,6 +56,7 @@ Auth::routes();
 Route::group(['middleware' => 'auth'],function(){
 	//only admin can acces here
 
+	//Nomor Pertandingan
 	Route::get('/tampilNoPertandingan','noPertandinganController@tampil')->name('nomorPertandingan');
 	Route::get('/editNoPertandingan/{id}','noPertandinganController@editNoPertandingan')->name('editNoPertandingan');
 	Route::get('/nomorPertandingan', 'noPertandinganController@index');
