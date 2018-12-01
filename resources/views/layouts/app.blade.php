@@ -5,6 +5,8 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="csrf_token" content="{{ csrf_token() }}">
   <title>{{ config('app.name', 'Laravel') }}</title>
+  <!-- slider -->
+  <link rel="stylesheet" type="text/css" href="{{asset('public/adminLTE/dist/css/slider.css')}}">
   
   <!-- Bootstrap 3.3.7 -->
   <link rel="stylesheet" href="{{asset('public/adminLTE/bower_components/bootstrap/dist/css/bootstrap.min.css')}}">
@@ -28,6 +30,11 @@
   <link rel="stylesheet" href="{{asset('public/adminLTE/bower_components/bootstrap-daterangepicker/daterangepicker.css')}}">
   <!-- bootstrap wysihtml5 - text editor -->
   <link rel="stylesheet" href="{{asset('public/adminLTE/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css')}}">
+
+  <link rel="stylesheet" href="{{asset('public/adminLTE/plugins/iCheck/alls.css')}}">
+
+  <!-- Bootstrap time Picker -->
+  <link rel="stylesheet" href="{{asset('public/adminLTE/plugins/timepicker/bootstrap-timepicker.min.css')}}">
 
   <!-- DataTables -->
   <link rel="stylesheet" href="{{asset('public/adminLTE/bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css')}}">
@@ -353,13 +360,13 @@
           </a>          
         </li>
 
-        <li>
+        <li class="">
           <a href="#">
             <i class="fa fa-running"></i> <span>Atlet</span>            
           </a>          
         </li>
 
-        <li>
+        <li class="{{GH::segment(1,['IndexCabor','tambahCabor','edit-cabor'])}}">
           <a href="{{URL('/IndexCabor')}}">
             <i class="fa fa-code-branch"></i> <span>Cabang Olahraga</span>            
           </a>          
@@ -390,14 +397,14 @@
           </a>          
         </li>
 
-        <li>
+        <li class="{{GH::segment(1,['tampilWasit','manajemenWasit','wasit'])}}">
           <a href="{{URL('tampilWasit')}}">
             <i class="fa fa-flag-checkered"></i> <span>Wasit</span>
           </a>          
         </li>
 
-        <li>
-          <a href="#">
+        <li class="{{GH::segment(1,['tampilEvent','tambahEvent','editEvent'])}}">
+          <a href="{{url('/tampilEvent')}}">
             <i class="fa fa-calendar-alt"></i> <span>Event</span>            
           </a>          
         </li>
@@ -710,6 +717,8 @@
 <script src="{{asset('public/adminLTE/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js')}}"></script>
 <!-- Slimscroll -->
 <script src="{{asset('public/adminLTE/bower_components/jquery-slimscroll/jquery.slimscroll.min.js')}}"></script>
+<!-- Timepicker -->
+<script src="{{asset('public/adminLTE/plugins/timepicker/bootstrap-timepicker.min.js')}}"></script>
 <!-- FastClick -->
 <script src="{{asset('public/adminLTE/bower_components/fastclick/lib/fastclick.js')}}"></script>
 <!-- AdminLTE App -->
@@ -724,10 +733,37 @@
 
 <script type="text/javascript">
   $('#datepicker').datepicker({
-      autoclose: true,
+      autoclose: true,      
       format: 'yyyy-mm-dd'
     });
+
+  $('#datepicker_mulai').datepicker({      
+      autoclose: true,      
+      format: 'yyyy-mm-dd'      
+    });
+
+  $('#datepicker_selesai').datepicker({
+      autoclose: true,      
+      format: 'yyyy-mm-dd'
+    });
+
+  $('.datepicker').datepicker({
+      autoclose: true,      
+      format: 'yyyy-mm-dd'
+    });
+
+  //Timepicker
+    $('.timepicker').timepicker({
+      showInputs: false,
+      minuteStep: 1,
+      defaultTime: false,      
+      showMeridian: false,
+      useCurrent: false
+
+    });
+
 </script>
+
 
 </body>
 </html>

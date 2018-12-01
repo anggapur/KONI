@@ -2,33 +2,36 @@
 @section('content')
 <!-- Main content -->
     <section class="content">
-        <div class="box box-warning">
+      <div class="box box-warning">
           <div class="box-header with-border">
             <h3 class="box-title">Kejuaraan</h3>
             </div>
-            <form method="POST" action="{{url('simpanEvent')}}">
+            <form method="POST" action="{{url('updateEvent')}}">
+            <input type="hidden" name="id_event" value="{{ $data_event->id_event }}">
             {{csrf_field()}}
     <div class="form-group">
                   <label>Nama Kejuaraan</label>
-                  <input type="text" class="form-control" name="nama_event" placeholder="Enter ...">
+                  <input type="text" class="form-control" name="nama_event" placeholder="Enter ..." value="{{$data_event->nama_event}}">
                 </div>
-            <div class="form-group">
-              <label>Tingkat Event</label>
-              <div class="input-group">
-                <div class="input-group-addon">
-                  <i class="fa fa-star"></i>
+                <div class="form-group">
+                  <label>Tingkat Event</label>
+                  <div class="input-group">
+                  <div class="input-group-addon">
+                    <i class="fa fa-star"></i>
+                  </div>
+                  <select class="form-control" name="tingkat_event">
+                      <option hidden selected required>Pilih Tingkat Event</option>
+                      @foreach($tingkat as $tingkat)
+                        <option value="{{$tingkat->id_tingkat}}" 
+                          @if($tingkat->id_tingkat == $data_event->tingkat_id) {{ "selected" }} @endif
+                          >{{$tingkat->nama_tingkat}}</option>
+                      @endforeach
+                  </select>
                 </div>
-              <select class="form-control" name="tingkat_event">
-                <option hidden selected required>Pilih Tingkat Event</option>
-                @foreach($tingkat as $tingkat)
-                  <option value="{{$tingkat->id_tingkat}}">{{$tingkat->nama_tingkat}}</option>
-                @endforeach
-              </select>      
               </div>
-            </div>
     <div class="form-group">
                   <label>Lokasi</label>
-                  <input type="text" class="form-control" name="lokasi" placeholder="Enter ...">
+                  <input type="text" class="form-control" name="lokasi" placeholder="Enter ..." value="{{$data_event->lokasi}}">
                 </div>
      <div class="form-group">
                 <label>Tanggal Mulai</label>
@@ -36,7 +39,7 @@
                   <div class="input-group-addon">
                     <i class="fa fa-calendar"></i>
                   </div>
-                  <input type="text" class="form-control pull-right" name="tanggal_mulai" id="datepicker_mulai" autocomplete="off">
+                  <input type="text" class="form-control pull-right" name="tanggal_mulai" id="datepicker" value="{{$data_event->tgl_mulai}}">
                 </div>
                 <!-- /.input group -->
               </div>
@@ -46,8 +49,8 @@
                   <div class="input-group-addon">
                     <i class="fa fa-calendar"></i>
                   </div>
-                  <input type="text" class="form-control pull-right" name="tanggal_selesai" id="datepicker_selesai" autocomplete="off">
-                </div>                
+                  <input type="text" class="form-control pull-right" name="tanggal_selesai" id="datepicker" value="{{$data_event->tgl_selesai}}">
+                </div>
                 <!-- /.input group -->
               </div>
               <div class="form-group">      
@@ -65,59 +68,76 @@
                     <td>Eksebisi</td>
                   </tr>                  
                   <?php $i=0; ?>
-                  @foreach($cabor as $cabor)
+                  @foreach($cabor as $cabor)                  
                   <tr style="text-align: center;">  
+                    <input type="hidden" name="id_detail[]" value="{{$cabor->id_detail}}">
                     <input type="hidden" name="id_cabor[]" value="{{$cabor->id_cabor}}">
-                    <input id="cabor<?php  echo $i; ?>" type="hidden" name="cabor[]" value="off" disabled>
-                    <td><label class="switch"><input type="checkbox" name="cabor[]" onchange="disable(this,<?php  echo $i; ?>)" checked><div class="slider round"></div></label></td>
+                    <input id="cabor<?php  echo $i; ?>" type="hidden" name="cabor[]" value="off"
+                    @if($cabor->toDetailEvent != null)
+                      {{ "disabled" }}
+                      @endif
+                    >
+                    <td><label class="switch"><input type="checkbox" name="cabor[]" onchange="disable(this,<?php  echo $i; ?>)" @if($cabor->toDetailEvent != null)
+                      {{"checked"}}
+                      @endif
+
+                      ><div class="slider round"></div></label></td>
                     <td style="min-width: 100px">{{$cabor->nama_cabor}}</td>
                     <td style="min-width: 150px">
                       <div class="input-group date">
                         <div class="input-group-addon">
                           <i class="fa fa-calendar"></i>
                         </div>
-                      <input class="form-control datepicker" type="text" name="tgl_mulai[]>"></div>
+                      <input class="form-control datepicker" type="text" name="tgl_mulai[]>" value="{{($cabor->toDetailEvent == null) ? '' : $cabor->toDetailEvent->tgl_mulai}}"></div>
                     </td>
                     <td style="min-width: 150px">
                       <div class="input-group date">
                         <div class="input-group-addon">
                           <i class="fa fa-calendar"></i>
                         </div>
-                      <input class="form-control datepicker" type="text" name="tgl_selesai[]"></div>
+                      <input class="form-control datepicker" type="text" name="tgl_selesai[]" value="{{($cabor->toDetailEvent == null) ? '' : $cabor->toDetailEvent->tgl_selesai}}"></div>
                     </td>
                     <td style="min-width: 150px">
                       <div class="input-group date">
                         <div class="input-group-addon">
                           <i class="fa fa-home"></i>
                         </div>
-                      <input class="form-control" type="text" name="tempat[]"></div>
+                      <input class="form-control" type="text" name="tempat[]" value="{{($cabor->toDetailEvent == null) ? '' : $cabor->toDetailEvent->tempat_pertandingan}}"></div>
                     </td>
                     <td style="min-width: 150px">
                       <div class="input-group date">
                         <div class="input-group-addon">
                           <i class="fa fa-clock"></i>
                         </div>
-                      <input class="form-control timepicker" type="text" name="wkt_mulai[]"></div>
+                      <input class="form-control timepicker" type="text" name="wkt_mulai[]" value="{{($cabor->toDetailEvent == null) ? '' : $cabor->toDetailEvent->waktu_mulai}}"></div>
                     </td>
                     <td style="min-width: 150px">
                       <div class="input-group date">
                         <div class="input-group-addon">
                           <i class="fa fa-clock"></i>
                         </div>
-                      <input class="form-control timepicker" type="text" name="wkt_selesai[]"></div>
+                      <input class="form-control timepicker" type="text" name="wkt_selesai[]" value="{{($cabor->toDetailEvent == null) ? '' : $cabor->toDetailEvent->tgl_selesai}}"></div>
                     </td>
-                    <input id="eksebisi<?php  echo $i; ?>" type="hidden" name="eksebisi[]" value="off">
-                    <td><label class="switch"><input type="checkbox" name="eksebisi[]" onchange="eksebisi(this,<?php echo $i; ?>)"><div class="slider round"></div></label></td>
+                    <input id="eksebisi<?php  echo $i; ?>" type="hidden" name="eksebisi[]" value="off"
+                    @if($cabor->toDetailEvent != null)
+                    @if($cabor->toDetailEvent->status_cabor == 'Eksibisi') {{'disabled'}} @endif
+                    @endif
+                    >
+                    <td><label class="switch"><input type="checkbox" name="eksebisi[]" onchange="eksebisi(this,<?php echo $i; ?>)" 
+                      @if($cabor->toDetailEvent != null)
+                      @if($cabor->toDetailEvent->status_cabor == 'Eksibisi') {{'checked'}} @endif
+                      @endif
+                      ><div class="slider round"></div></label></td>
                   </tr>
                   <?php  $i++; ?>    
                   @endforeach
                 </table>                
               </div>
               </div>
+     
               <button type="submit" class="btn btn-primary">Simpan</button>
-      </form>      
+      </form>
     </section>
-    
     <script>
       function disable(input,i){        
         form = document.getElementById('cabor'+i);

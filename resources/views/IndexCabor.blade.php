@@ -40,7 +40,7 @@
         <div class="box box-primary">
             <div class="box-header with-border">
               <h3 class="box-title">Tambah Data Cabang Olahraga</h3>            
-              <a href="{{ URL('/tambah') }}"><button class="btn btn-success btn-sm"><i class="fa fa-plus"></i> Tambah Data</button></a>
+              <a href="{{ URL('/tambahCabor') }}"><button class="btn btn-success btn-sm"><i class="fa fa-plus"></i> Tambah Data</button></a>
             </div>
               <div class="box-body">
 

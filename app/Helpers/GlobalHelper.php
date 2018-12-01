@@ -129,6 +129,7 @@ class GlobalHelper{
 	public static function getPrestasiTerbaru($jml){
 		$data = [];
 		$data['prestasi_terbaru'] = Prestasi::select('id_atlet','nama_atlet','ket_juara','nama_cabor','ket_np','waktu','nama_foto','nama_event')
+										->leftJoin('juara','id_juara','=','juara_id')
 										->leftJoin('cabang_olahraga','id_cabor','=','cabor_id')
 										->leftJoin('master_atlet','id_atlet','=','atlet_id')
 										->leftJoin('foto','id_foto','=','foto_id')
