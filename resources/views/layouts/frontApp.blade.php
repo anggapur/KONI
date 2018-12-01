@@ -7,7 +7,8 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <!-- <title>{{ config('app.name', 'KONI BADUNG') }}</title> -->
+    <title>KONI BADUNG</title>
 
     <!-- Scripts -->
     <!-- <script src="{{ asset('js/app.js') }}" defer></script> -->
@@ -79,15 +80,13 @@
                 <h2 class="titleSection">Prestasi Terbaru</h2>
             </div>
             <div class="row">
-                
                 @foreach(GH::getPrestasiTerbaru(8)['prestasi_terbaru'] as $val)
                 <div class="col-lg-3 col-md-6 col-sm-6">
-                    <a href="{{url('atlet/'.$val->id_atlet)}}/{{GH::normalize($val->nama_atlet)}}">
                     <div class="cardAtlet">
                         <div class="photoAtlet">
                              @php
-                                $namaFoto = GH::getImages(asset('public/upload/fotoAtlet'),$val->nama_foto);
-                                list($width, $height) = getimagesize($namaFoto);
+                                //list($width, $height) = getimagesize(url('public/upload/fotoAtlet/atletSilat.jpg'));
+                                list($width, $height) = getimagesize('public/upload/fotoAtlet/atletSilat.jpg');
                                 if($width < $height)
                                    $className = "stretchWidth"; 
                                 else
@@ -101,13 +100,12 @@
                         </div>
                         <div class="keteranganHidden">
                             <div>
-                                <p>{{$val->ket_juara}} <br>{{$val->nama_cabor}} <br>{{$val->ket_np}} <br>{{$val->nama_event}}</p>
+                                <p>{{$val->nama_prestasi}} <br>{{$val->nama_cabor}} <br>{{$val->ket_np}} <br>{{$val->nama_event}}</p>
                                 <h5>{{$val->nama_atlet}}</h5>
                                 <h6>{{$val->nama_cabor}}</h6>
                             </div>
                         </div>
                     </div>
-                    </a>
                 </div>  
                 @endforeach 
             </div>
