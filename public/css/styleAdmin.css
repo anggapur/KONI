@@ -1,0 +1,15 @@
+.adminPart table {
+    width: 100% !important;
+    /* padding: 100px !important; */
+}
+
+.adminPart .tableWrapper {
+    padding: 10px 20px;
+}
+
+.wrapper {
+    overflow: hidden !important;
+}
+section.content-header {
+    min-height: 41px;
+}

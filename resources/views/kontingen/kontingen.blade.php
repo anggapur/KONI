@@ -1,30 +1,70 @@
-@extends('layouts.app')	
+@extends('layouts.app')
 @section('content')
 <!-- Main content -->
+
     <section class="content">
-		<div class="box box-primary">
-		    <div class="box-header with-border">
-		    	<h3 class="box-title">Tambah Data Kontingen</h3>
-		    	<a href="{{ URL('/tambah-kontingen') }}"><button class="btn btn-success"><li class="fa fa-plus"></li></button></a>
-		    	<div class="row">		    		
-	                <div class="col-md-12">
-	                	<center><h2>Data Kontingen</h2></center>
-	                    <div class="tableWrapper">
-	                        <table class="table" id="table-kontingen">
-	                            <thead>
-	                                <tr>
-	                                    <th>Nama Kontingen</th>
-	                                    <!--<th>Cabang Olahraga</th> -->
-	                                    <th>Jabatan</th>
-	                                    <th>Aksi</th>
-	                                </tr>
-	                            </thead>	                            
-	                        </table>
-	                    </div>
+		@if(session('status'))
+			@if(session('status') == 'success')
+			<div class="alert alert-success alert-dismissible">
+		    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+		    <h4><i class="fa fa-check"></i> Data berhasil ditambahkan</h4>
+			</div>
+			@elseif(session('status') == 'edited')
+			<div class="alert alert-success alert-dismissible">
+		    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+		    <h4><i class="fa fa-check"></i> Data berhasil diubah</h4>
+			</div>
+			@elseif(session('status') == 'deleted')
+			<div class="alert alert-success alert-dismissible">
+		    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+		    <h4><i class="fa fa-check"></i> Data berhasil dihapus</h4>
+			</div>
+			@elseif(session('status') == 'failed add')
+			<div class="alert alert-danger alert-dismissible">
+		    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+		    <h4><i class="fa fa-times"></i> Gagal menambah data</h4>		    
+			</div>
+			@elseif(session('status') == 'failed edit')
+			<div class="alert alert-danger alert-dismissible">
+		    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+		    <h4><i class="fa fa-times"></i> Gagal mengubah data</h4>
+			</div>
+			@elseif(session('status') == 'failed delete')
+			<div class="alert alert-danger alert-dismissible">
+		    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+		    <h4><i class="fa fa-times"></i> Gagal menghapus data</h4>
+			</div>
+			@endif
+		@endif
+		  	          
+	    <div class="row">
+	       	<div class="col-xs-12">      	
+				<div class="box box-primary">
+				    <div class="box-header with-border">
+				    	<h3 class="box-title">Tambah Data Kontingen</h3>				    
+				    	<a href="{{ URL('/tambah-kontingen') }}"><button class="btn btn-success btn-sm"><i class="fa fa-plus"></i> Tambah Data</button></a>
+				    </div>
+				    	<div class="box-body">
+
+		                	<!-- <center><h2>Data Kontingen</h2></center> -->
+		                    <div class="tableWrapper">
+		                        <table class="table" id="table-kontingen">
+		                            <thead>
+		                                <tr>
+		                                    <th>Nama Kontingen</th>
+		                                   	<th>Cabang Olahraga</th>
+		                                    <th>Jabatan</th>
+		                                    <th>Aksi</th>
+		                                </tr>
+		                            </thead>	                            
+		                        </table>
+		                    </div>
+
+		                
 	                </div>
-	            </div>
-		    </div>
-		</div>		
+	        	</div>
+	        </div>		  
+		</div>
     </section>
 
     <!-- Modal -->
@@ -44,7 +84,7 @@
 			<label>No Kartu Tanda Anggota</label>
 				<input class="form-control" type="text" id="nkta" disabled>
 			<label>Jenis Kelamin</label>
-				<input class="form-control" type="text" id="jenis_kelamin" disabled>				
+				<input class="form-control" type="text" id="jenis_kelamin" disabled>
 			<label>Tempat Lahir</label>
 				<input class="form-control" type="text" id="tempat_lahir" disabled><br>
 			<label>Tanggal Lahir</label>
@@ -90,6 +130,7 @@
             },
             columns: [
             {data: 'nama_kontingen', name: 'nama_kontingen'},
+            {data: 'nama_cabor', name: 'nama_cabor'},
             {data: 'nama_jabatan', name: 'jabatan'},
             {data: 'aksi', name: 'aksi'},
         ],
@@ -111,7 +152,10 @@
 	      $.ajax({
 	            type: "POST",
 	            url: "{{URL('/get-data-kontingen')}}",
-	            data: dataString,
+	            data: {
+	            	'id' : id,
+	            	'_token' : '{{csrf_token()}}',
+	            },
 	            cache: false,
 	            success: function(data){
 	            	data = JSON.parse(data);
@@ -132,7 +176,7 @@
 	<script type="text/javascript">
 		function hapus(nama,id){
 			$('#body-nama-kontingen').html("<p> Yakin menghapus data "+nama+" ? </p>");
-			$('#hapus-button').html("<button type='button' class='btn btn-danger' onclick='del("+id+")'>Hapus</button>")
+			$('#hapus-button').html("<button type='button' class='btn btn-danger' onclick='del("+id+")'>Hapus</button>");
 			$('#delModal').modal('show');
 		}
 	</script>
@@ -150,13 +194,18 @@
 	      $.ajax({
 	            type: "POST",
 	            url: "{{URL('/delete-data-kontingen')}}",
-	            data: dataString,
+	            data: {
+	            	'id' : id,
+	            	'_token' : '{{csrf_token()}}',
+	            },
 	            cache: false,
 	            success: function(data){
 	            	if(data == 'success'){
-	            		location.reload();
+	            		//location.reload();
+	            		window.location.replace("{{ url('kontingen/deleted') }}");
 	            	}
 				}
+				//error: function()
 			});	
 		}
 	</script>
