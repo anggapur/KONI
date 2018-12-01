@@ -72,6 +72,7 @@ Route::group(['middleware' => 'auth'],function(){
 	Route::get('editEvent/{id}','kejuaraanController@edit')->name('editEvent');
 	Route::post('updateEvent','kejuaraanController@update');
 	Route::get('hapusEvent/{id}','kejuaraanController@hapus');	
+	Route::post('/get-data-event','kejuaraanController@getDataEvent');
 
 	Route::get('/home', 'HomeController@index')->name('home');
 
