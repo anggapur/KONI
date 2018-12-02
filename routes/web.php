@@ -77,6 +77,16 @@ Route::group(['middleware' => 'auth'],function(){
 
 	Route::get('/home', 'HomeController@index')->name('home');
 
+	//Data Atlet
+	Route::post('saveDataAtlet','atletController@simpan');
+	Route::get('add_atlet','atletController@add_atlet')->name('add_atlet');
+	Route::get('view_atlet','atletController@view_atlet')->name('view_atlet');
+	Route::get('/data-atlet','atletController@getData');
+	Route::post('/get-data-atlet','atletController@getDataAtlet');
+	Route::get('/edit_atlet/{id}','atletController@edit_atlet')->name('edit_atlet');
+	Route::post('/update_atlet','atletController@update_atlet');
+	Route::get('hapus_atlet/{id}','atletController@hapus_atlet');
+
 	//Kontingen
 	Route::get('/kontingen','KontingenController@index')->name('kontingen');
 	Route::get('/tambah-kontingen','KontingenController@tambah');
