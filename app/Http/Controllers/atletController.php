@@ -44,7 +44,7 @@ class atletController extends Controller
         $data = Master_Atlet::select('nama_atlet','nama_cabor','no_kartu_tanda_anggota','jenis_kelamin','tempat_lahir','tgl_lahir','alamat','tinggi','berat','nama_kabupaten','tgl_jadi_atlet','tgl_pensiun','status','id_atlet')
         	->leftJoin('cabang_olahraga','cabor_id','=','id_cabor')
             ->leftJoin('kabupaten','id_kabupaten','=','kabupaten_id')
-            ->get();
+            ->get();        
       	return Datatables::of($data)
       		->addColumn('aksi', function($data){
         return "
@@ -70,7 +70,8 @@ class atletController extends Controller
         echo json_encode($data);
     }
     public function simpan(Request $request)
-    {
+    {        
+        //dd($request);
    		DB::beginTransaction();
    		try{
             $statement = DB::select("SHOW TABLE STATUS LIKE 'foto'");
@@ -90,22 +91,31 @@ class atletController extends Controller
             $data['foto_id'] = $foto->id_foto;
    			$data['nama_atlet'] = $request->nama_atlet;
 	        $data['cabor_id'] = $request->cabor_id;
-	        $data['no_kartu_tanda_anggota'] = $request->no_kartu_tanda_anggota;
+	        $data['no_kartu_tanda_anggota'] = $request->nkta;
 	        $data['jenis_kelamin'] = $request->jenis_kelamin;
 	        $data['tempat_lahir'] = $request->tempat_lahir;
 	        $data['tgl_lahir'] = $request->tgl_lahir;
 	        $data['alamat'] = $request->alamat;
 	        $data['tinggi'] = $request->tinggi;
 	        $data['berat'] = $request->berat;
-	        $data['kabupaten_id'] = $request->kabupaten_id;
+	        //$data['kabupaten_id'] = $request->kabupaten_id;
+            $data['kabupaten_id'] = 1;
 	        $data['tgl_jadi_atlet'] = $request->tgl_jadi_atlet;
-	        $data['tgl_pensiun'] = $request->tgl_pensiun;
-	   		$data['status'] = $request->status;
-            //detail_atlet
+            $data['status'] = $request->status;
+            if($request->status == 0)
+	            $data['tgl_pensiun'] = $request->tgl_pensiun;
+            else
+                $data['tgl_pensiun'] = null;
+            //detail_atlet            
    			$master_atlet = Master_Atlet::create($data);
-   			$data_master['atlet_id'] = $master_atlet->id_atlet;
-   			$data_master['np_id'] = $request->np_id;
-   			$detail_atlet = Detail_Atlet::create($data_master);
+
+            for ($i=0; $i < count($request->np_id); $i++) {
+                $data_master['atlet_id'] = $master_atlet->id_atlet;
+                $data_master['np_id'] = (int)$request->np_id[$i];
+                //dd($data_master);
+                $detail_atlet = Detail_Atlet::create($data_master);
+                //dd($data_master);
+            }
    			DB::commit();
             return redirect()->route('view_atlet')->with('status','success');
    		}catch (\Exception $e) {
