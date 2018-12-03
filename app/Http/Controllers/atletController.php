@@ -252,15 +252,15 @@ class atletController extends Controller
     {
         DB::beginTransaction();
         try{   
-            $data=Master_Atlet::select('id_atlet','nama_atlet','cabor_id','no_kartu_tanda_anggota','jenis_kelamin','tempat_lahir','tgl_lahir','alamat','tinggi','berat','kabupaten_id','foto_id','tgl_jadi_atlet','tgl_pensiun','status','nama_foto','np_id','id_detail','id_foto','nama_foto')
-            ->leftJoin('foto','foto_id','=','id_foto')
-            ->leftJoin('detail_atlet','atlet_id','=','id_atlet')
-            ->where ('id_atlet',$id)
-            ->first();
-            File::delete('public/upload/fotoAtlet/'.$data->nama_foto);
+            // $data=Master_Atlet::select('id_atlet','nama_atlet','cabor_id','no_kartu_tanda_anggota','jenis_kelamin','tempat_lahir','tgl_lahir','alamat','tinggi','berat','kabupaten_id','foto_id','tgl_jadi_atlet','tgl_pensiun','status','nama_foto','np_id','id_detail','id_foto','nama_foto')
+            // ->leftJoin('foto','foto_id','=','id_foto')
+            // ->leftJoin('detail_atlet','atlet_id','=','id_atlet')
+            // ->where ('id_atlet',$id)
+            // ->first();
+            // File::delete('public/upload/fotoAtlet/'.$data->nama_foto);
             $query_master=Master_Atlet::where('id_atlet',$id)->delete();
-            $query_detail=Detail_Atlet::where('id_detail',$data->id_detail)->delete();
-            $query_foto=Foto::where('id_foto',$data->id_foto)->delete();
+            $query_detail=Detail_Atlet::where('atlet_id',$id)->delete();
+            // $query_foto=Foto::where('id_foto',$data->id_foto)->delete();
             DB::commit();
             return redirect('view_atlet')->with('status','deleted');
         }catch(\Exception $e) {
