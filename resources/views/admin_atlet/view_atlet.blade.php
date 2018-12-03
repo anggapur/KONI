@@ -110,16 +110,15 @@
             <hr>
             <b>Berat Badan</b>
             <p id="berat"> kg </p>
-            <hr>
-            <b>Kabupaten</b>
-            <p id="kabupaten"></p>
-            <hr>
+            <hr>                        
             <b>Tanggal Jadi Atlet</b>
             <p id="tgl_jadi_atlet"></p>
-            <hr>
-            <b>Tanggal Pensiun</b>
-            <p id="tgl_pensiun"></p>
-            <hr>
+            <hr>            
+            <div id="tgl_pensi" style="display: none;">
+                <b>Tanggal Pensiun</b>
+                <p id="tgl_pensiun"></p>
+                <hr>
+            </div>
             <b>Status</b>
             <p id="status"></p> 
           </div>
@@ -175,6 +174,7 @@
                 cache: false,
                 success: function(data){
                     data = JSON.parse(data);
+                    $('#tgl_pensi').hide();
                     $("#nama_atlet").text(data.nama_atlet);
                     $("#cabor").text(data.nama_cabor);
                     $("#no_kartu").text(data.no_kartu_tanda_anggota);
@@ -186,7 +186,10 @@
                     $("#berat").text(data.berat);
                     $("#kabupaten").text(data.nama_kabupaten);
                     $("#tgl_jadi_atlet").text(data.tgl_jadi_atlet);
-                    $("#tgl_pensiun").text(data.tgl_pensiun);
+                    if(data.status != 'Aktif'){
+                        $("#tgl_pensiun").text(data.tgl_pensiun);
+                        $('#tgl_pensi').show();
+                    }
                     $("#status").text(data.status);
                     $("#images").html("<img src='public/upload/fotoAtlet/"+data.nama_foto+"' style='max-width:300px;max-height:300px;margin-bottom:10px;'/> ");
                 }

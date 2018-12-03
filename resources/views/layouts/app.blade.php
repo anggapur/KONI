@@ -38,6 +38,8 @@
 
   <!-- DataTables -->
   <link rel="stylesheet" href="{{asset('public/adminLTE/bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css')}}">
+
+  <link rel="stylesheet" href="{{asset('public/adminLTE/bower_components/select2/dist/css/select2.min.css')}}">
  
   <!-- Tell the browser to be responsive to screen width -->
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
@@ -731,7 +733,14 @@
 <script src="{{asset('public/adminLTE/bower_components/datatables.net/js/jquery.dataTables.min.js')}}"></script>
 <script src="{{asset('public/adminLTE/bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js')}}"></script>
 
+<script src="{{asset('public/adminLTE/bower_components/select2/dist/js/select2.full.min.js')}}"></script>
+
+
 <script type="text/javascript">
+  $(function () {
+    //Initialize Select2 Elements
+    $('.select2').select2()
+    })
   $('#datepicker').datepicker({
       autoclose: true,      
       format: 'yyyy-mm-dd'
