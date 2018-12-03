@@ -60,8 +60,7 @@
                                         <th>No Kartu</th>
                                         <th>JK</th>
                                         <th>Tmp Lahir</th>
-                                        <th>Tgl Lahir</th>
-                                        <th>Kabupaten</th>
+                                        <th>Tgl Lahir</th>                                        
                                         <th>Status</th>
                                         <th>Aksi</th>
                                     </tr>
@@ -144,8 +143,7 @@
             {data: 'no_kartu_tanda_anggota', name: 'no_kartu_tanda_anggota'},
             {data: 'jenis_kelamin', name: 'jenis_kelamin'},
             {data: 'tempat_lahir', name: 'tempat_lahir'},
-            {data: 'tgl_lahir', name: 'tgl_lahir'},
-            {data: 'nama_kabupaten', name: 'nama_kabupaten'},
+            {data: 'tgl_lahir', name: 'tgl_lahir'},            
             {data: 'status', name: 'status'},
             {data: 'aksi', name: 'aksi'},
         ],

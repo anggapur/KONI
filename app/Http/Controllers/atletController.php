@@ -41,10 +41,15 @@ class atletController extends Controller
     }
     public function getData()
     {
-        $data = Master_Atlet::select('nama_atlet','nama_cabor','no_kartu_tanda_anggota','jenis_kelamin','tempat_lahir','tgl_lahir','alamat','tinggi','berat','nama_kabupaten','tgl_jadi_atlet','tgl_pensiun','status','id_atlet')
+        $data = Master_Atlet::select('nama_atlet','nama_cabor','no_kartu_tanda_anggota','jenis_kelamin','tempat_lahir','tgl_lahir','alamat','tinggi','berat','tgl_jadi_atlet','tgl_pensiun','status','id_atlet')
         	->leftJoin('cabang_olahraga','cabor_id','=','id_cabor')
-            ->leftJoin('kabupaten','id_kabupaten','=','kabupaten_id')
-            ->get();        
+            ->get();
+        for($i=0;$i<count($data);$i++){
+            if($data[$i]->status == 1)
+                $data[$i]->status = 'Aktif';
+            else
+                $data[$i]->status = 'Tidak Aktif';
+        }
       	return Datatables::of($data)
       		->addColumn('aksi', function($data){
         return "
@@ -132,7 +137,20 @@ class atletController extends Controller
             ->leftJoin('detail_atlet','atlet_id','=','id_atlet')
             ->where ('id_atlet',$id)
             ->first();
-        $data['listNoPertandingan']=Nomor_Pertandingan::select('*')->get();
+
+        $data['atletNP'] = detail_atlet::select('np_id')->where('atlet_id',$id)->get();    
+
+
+        $data['atletNP1'] = [];
+        $i =0 ;
+        foreach ($data['atletNP'] as $key) {
+            $data['atletNP1'][$i] = $key->np_id;
+            $i++;
+        }        
+
+        //dd($data['atletNP1']);
+
+        $data['listNoPertandingan'] = Nomor_Pertandingan::select('*')->where('cabor_id',$data['data_atlet']->cabor_id)->get();
         $data['page'] = "Atlet";        
         $data['active'] = "Atlet";
     	return View('admin_atlet.edit_atlet',$data);
@@ -154,9 +172,12 @@ class atletController extends Controller
             $data['alamat'] = $request->alamat;
             $data['tinggi'] = $request->tinggi;
             $data['berat'] = $request->berat;
-            $data['kabupaten_id'] = $request->kabupaten_id;
+            // $data['kabupaten_id'] = $request->kabupaten_id;
             $data['tgl_jadi_atlet'] = $request->tgl_jadi_atlet;
-            $data['tgl_pensiun'] = $request->tgl_pensiun;
+            if($request->status == 1)
+                $data['tgl_pensiun'] = $request->tgl_pensiun;
+            else
+                $data['tgl_pensiun'] = null;
             $data['status'] = $request->status;
             $data['np_id'] = $request->np_id;
             $update=Master_Atlet::select('*')->where('id_atlet',$request->id_atlet)
@@ -170,15 +191,37 @@ class atletController extends Controller
                 'alamat' => $data['alamat'],
                 'tinggi' => $data['tinggi'],
                 'berat' => $data['berat'],
-                'kabupaten_id' => $data['kabupaten_id'],
+                // 'kabupaten_id' => $data['kabupaten_id'],
                 'tgl_jadi_atlet' => $data['tgl_jadi_atlet'],
                 'tgl_pensiun' => $data['tgl_pensiun'],
                 'status' => $data['status']
                 ]);
-            $update_detail = Detail_Atlet::select('*')->where('id_detail',$request->id_detail)
-            ->update([
-                'np_id' => $data['np_id']
-            ]);
+
+            $atletNP = Detail_Atlet::select('np_id')->where('atlet_id',$request->id_atlet)->get();
+            //dd($request->np_id);
+            //dd($atletNP);
+            for ($i=0; $i < count($request->np_id) ; $i++) { 
+                for ($j=0; $j < count($atletNP); $j++) { 
+                    if($request->np_id[$i] == $atletNP[$j]->np_id){
+                        $atletNP[$j]->np_id = null;
+                        //$request->np_id[$i] = null;
+                    }else{
+                        $data_master['atlet_id'] = $request->id_atlet;
+                        $data_master['np_id'] = $request->np_id[$i];
+                        //dd($data_master);
+                        $detail_atlet = Detail_Atlet::create($data_master);
+                    }
+                }
+            }
+
+            //dd($request->np_id);
+
+            for ($j=0; $j < count($atletNP); $j++){
+                if($atletNP[$j]->np_id != null){
+                    $detail = Detail_Atlet::select('*')->where('atlet_id',$request->id_atlet)->where('np_id',$atletNP[$j]->np_id)->delete();
+                    //dd($detail);
+                }
+            }            
 
             if($request->file('gambar') == ""){} 
             else

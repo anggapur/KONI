@@ -14,7 +14,7 @@
                             <input type="hidden" class="form-control" name="id_atlet" value="{{ $data_atlet->id_atlet }}">
                             <input type="hidden" class="form-control" name="id_detail" value="{{ $data_atlet->id_detail }}">
                             <input type="hidden" class="form-control" name="id_foto" value="{{ $data_atlet->id_foto }}">
-                            <input type="text" class="form-control" name="nama_foto" value="{{ $data_atlet->nama_foto }}">
+                            <input type="hidden" class="form-control" name="nama_foto" value="{{ $data_atlet->nama_foto }}">
     						<!-- Nama atlet -->
     						<div class="form-group">
                   				<label>Nama Atlet</label>
@@ -23,7 +23,7 @@
                 			<!-- Cabang olahraga -->
                 			<div class="form-group">
                 				<label>Cabang Olahraga</label>
-                				<select class="form-control" name="cabor_id">
+                				<select class="form-control" name="cabor_id" onchange="update_np(this.value)">
                                     @foreach($listCabangOlahraga as $val)
                                         <option value="{{$val->id_cabor}}"
                                         @if($data_atlet->cabor_id == $val->id_cabor):
@@ -34,10 +34,29 @@
                                     @endforeach
                   				</select>
                 			</div>
+
+                            <div class="form-group">
+                                <label>No Pertandingan</label>
+                                <select class="form-control select2" name="np_id[]" id="np" multiple="multiple" data-placeholder="Pilih nomor pertandingan">
+                                    @foreach($listNoPertandingan as $np)
+                                        <option value="{{ $np->id_np }}" 
+                                            @if( in_array($np->id_np,$atletNP1) )
+                                                {{ "selected" }}
+                                            @endif
+
+                                        > {{ $np->ket_np }} </option>
+                                    @endforeach
+                                </select>
+                            </div>
+
+                            <div id="tambah-np" style="display: none;" class="form-group">
+                                <a target="_blank" href="{{url('/nomorPertandingan')}}"><button type="button" class="btn btn-success"> <i class="fa fa-plus"></i> Tambah data nomor pertandingan </button></a>
+                            </div>
                 			<!-- No kartu tanda peserta -->
-                			<div class="form-group">
+                			<div id="nkta_error" class="form-group">
                 				<label>No Kartu Tanda Peserta</label>
                 				<input type="text" class="form-control" name="no_kartu_tanda_anggota" placeholder="Masukkan nomor kartu tanda peserta" value="{{ $data_atlet->no_kartu_tanda_anggota }}">
+                                <span id="error" class="help-block" style="display: none;">No Kartu Tanda Anggota sudah terdaftar</span>
                 			</div>
                 			<!-- Jenis kelamin -->
                 			<div class="form-group">
@@ -47,7 +66,7 @@
                                     <label>
                                         <input type="radio" value="P" name="jenis_kelamin" checked>
                                         Perempuan
-                                    </label>
+                                    </label> <br>
                                     <label>
                                         <input type="radio" value="L" name="jenis_kelamin">
                                         Laki-laki
@@ -57,7 +76,7 @@
                                     <label>
                                         <input type="radio" value="P" name="jenis_kelamin">
                                         Perempuan
-                                    </label>
+                                    </label> <br>
                                     <label>
                                         <input type="radio" value="L" name="jenis_kelamin" checked>
                                         Laki-laki
@@ -76,7 +95,7 @@
     							<div class="col-md-5">
     								<div class="form-group">
                 						<label>Tanggal Lahir</label>
-                						<input type="text" class="form-control" name="tgl_lahir" value="{{ $data_atlet->tgl_lahir }}">
+                						<input type="text" class="form-control datepicker" name="tgl_lahir" value="{{ $data_atlet->tgl_lahir }}">
                 					</div>
     							</div>
     						</div>	
@@ -107,7 +126,7 @@
                 				</div>
                 			</div>
                 			<!-- Kabupaten-->
-                			<div class="form-group">
+                			<!-- <div class="form-group">
                 				<label>Kabupaten</label>
                 				<select class="form-control" name="kabupaten_id">
                                     @foreach($listKabupaten as $val)
@@ -119,45 +138,39 @@
                                         {{$val->nama_kabupaten}}</option>
                                     @endforeach
                   				</select>
-                  			</div>
+                  			</div> -->
                   			<!-- Tanggal Jadi, Tanggal Pensiun, dan Status-->
                 			<div class="row">
                 				<div class="col-md-3">
                 					<div class="form-group">
                 						<label>Tanggal Jadi Atlet</label>
-                						<input type="text" class="form-control" name="tgl_jadi_atlet" value="{{ $data_atlet->tgl_jadi_atlet }}">
+                						<input type="text" class="form-control datepicker" name="tgl_jadi_atlet" value="{{ $data_atlet->tgl_jadi_atlet }}">
                 					</div>
                 				</div>
-                				<div class="col-md-3">
-                					<div class="form-group">
-                						<label>Tanggal Pensiun</label>
-                						<input type="text" class="form-control" name="tgl_pensiun" value="{{ $data_atlet->tgl_pensiun }}">
-                					</div>
-                				</div>
-                				<div class="col-md-2">
-                					<div class="form-group">
-                						<label>Status</label>
-                						<select class="form-control" name="status">
-                    						<option value="1">Aktif</option>
-                    						<option value="0">Tidak Aktif</option>
-                  						</select>
-                					</div>
-                				</div>
-                                <div class="col-md-4">
+                                <div class="col-md-2">
                                     <div class="form-group">
-                                        <label>No Pertandingan</label>
-                                        <select class="form-control" name="np_id">
-                                           @foreach($listNoPertandingan as $val)
-                                                <option value="{{$val->id_np}}"
-                                                @if($data_atlet->np_id == $val->id_np):
-                                                {{ "selected" }}
-                                                @endif
-                                                >
-                                                {{$val->ket_np}}</option>
-                                            @endforeach
+                                        <label>Status</label>
+                                        <select class="form-control" name="status" onchange="pensiun(this)">
+                                        @if($data_atlet->status == 1)
+                                            <option value="1" selected>Aktif</option>
+                                            <option value="0">Tidak Aktif</option>
+                                        @else
+                                            <option value="1">Aktif</option>
+                                            <option value="0" selected>Tidak Aktif</option>
+                                        @endif
                                         </select>
                                     </div>
                                 </div>
+                				<div class="col-md-3">                                
+                					<div class="form-group" id="tgl_pensi" style="
+                                    @if($data_atlet->status == 1)
+                                        {{ "display:none" }}
+                                    @endif
+                                    ">
+                						<label>Tanggal Pensiun</label>
+                						<input type="text" class="form-control datepicker" name="tgl_pensiun" value="{{ $data_atlet->tgl_pensiun }}" placeholder="Masukkan tanggal pensiun">
+                					</div>
+                				</div>                                
                 			</div>
                   			<!-- Foto -->
                   			<div class="form-group">
@@ -211,5 +224,81 @@
         readURL(this);
     });
 
+</script>
+<script type="text/javascript">
+    function pensiun(form){        
+        if(form.value == 1){
+            $('#tgl_pensi').hide();
+            $('#form_pensi').prop('disabled',true);
+        }
+        else{
+            $('#tgl_pensi').show();
+            $('#form_pensi').prop('disabled',false);
+        }
+    }
+</script>
+<script type="text/javascript">
+    function validation(){
+
+        var status = 0;
+        var nkta = $('#nkta').val();            
+        if(nkta.length == 10){              
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf_token"]').attr('content')
+                }
+            });
+            dataString = "no="+nkta;
+            $.ajax({
+                type: "POST",
+                url: "{{URL('/cek-no-kartu-anggota')}}",
+                data: dataString,
+                cache: false,
+                success: function(html){                    
+                    if(html == 'false'){                            
+                        $('#nkta').focus();
+                        $('#nkta_error').addClass(' has-error');
+                        $('#error').show();
+                        $('#submit').prop('disabled',true);
+                    }else{
+                        $('#nkta_error').removeClass(' has-error');
+                        $('#error').hide();
+                        $('#submit').prop('disabled',false);
+                    }
+                } 
+            });
+        }       
+    }
+</script>
+
+<script type="text/javascript">    
+    function update_np(id){
+        $("#np").html("<option value='' disabled selected hidden> Loading </option>");
+      $.ajax({
+            type: "POST",
+            url: "{{URL('/getNP')}}",
+            data: {
+                'id' : id,
+                '_token' : '{{csrf_token()}}',
+            },
+            cache: false,
+            success: function(data){
+                data = JSON.parse(data);
+                
+                if(data.length > 0){
+                    var text ='';
+                    for(var i=0;i<data.length;i++){
+                        text += "<option value="+data[i].id_np+"> "+data[i].ket_np+" </option>";
+                        $('#tambah-np').hide();
+                    }
+                }
+                else{
+                    text += "<option value='' disabled> Tidak ada data Nomor Pertandingan pada Cabang Olahraga ini </option>";
+                    $('#tambah-np').show();
+                }
+                $("#np").html(text);
+            }
+        });         
+    }
 </script>
 @endsection
