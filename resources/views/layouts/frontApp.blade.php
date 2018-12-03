@@ -86,13 +86,13 @@
                         <div class="photoAtlet">
                              @php
                                 //list($width, $height) = getimagesize(url('public/upload/fotoAtlet/atletSilat.jpg'));
-                                //list($width, $height) = getimagesize('public/upload/fotoAtlet/atletSilat.jpg');
-                                //if($width < $height)
-                                ///   $className = "stretchWidth"; 
-                                //else
-                                //   $className = "stretchHeight"; 
+                                list($width, $height) = getimagesize('public/upload/fotoAtlet/atletSilat.jpg');
+                                if($width < $height)
+                                   $className = "stretchWidth"; 
+                                else
+                                   $className = "stretchHeight"; 
                             @endphp 
-                            <img src="{{asset('public/upload/fotoAtlet/'.$val->nama_foto)}}" class="{{$className}}" title="Foto Atlet {{$val->nama_atlet}}">
+                            <!-- <img src="{{asset('public/upload/fotoAtlet/'.$val->nama_foto)}}" class="{{$className}}" title="Foto Atlet {{$val->nama_atlet}}"> -->
                         </div>
                         <div class="keteranganAtlet">
                             <h5>{{$val->nama_atlet}}</h5>
