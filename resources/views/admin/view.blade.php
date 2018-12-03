@@ -93,8 +93,7 @@
                 })
               }
               else
-              {
-                alert('Batal Hapus ?');
+              {1
                 return false;
               }
              })
