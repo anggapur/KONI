@@ -25,7 +25,8 @@ class atletController extends Controller
     }
     public function add_atlet()
     {
-    	$data['listKabupaten'] = kabupaten::select('*')->get();
+        $data['listKabupaten'] = Kabupaten::select('*')->get();
+        // tes
     	$data['listCabangOlahraga'] = Cabang_Olahraga::select('*')->get();
         $data['listNoPertandingan'] = Nomor_Pertandingan::select('*')->get();
         $data['page'] = "Atlet";        
