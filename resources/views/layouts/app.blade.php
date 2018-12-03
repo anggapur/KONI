@@ -5,6 +5,8 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="csrf_token" content="{{ csrf_token() }}">
   <title>{{ config('app.name', 'Laravel') }}</title>
+  <!-- slider -->
+  <link rel="stylesheet" type="text/css" href="{{asset('public/adminLTE/dist/css/slider.css')}}">
   
   <!-- Bootstrap 3.3.7 -->
   <link rel="stylesheet" href="{{asset('public/adminLTE/bower_components/bootstrap/dist/css/bootstrap.min.css')}}">
@@ -14,7 +16,8 @@
   <link rel="stylesheet" href="{{asset('public/adminLTE/bower_components/Ionicons/css/ionicons.min.css')}}">
   <!-- Theme style -->
   <link rel="stylesheet" href="{{asset('public/adminLTE/dist/css/AdminLTE.min.css')}}">
-  <!-- AdminLTE Skins. Choose a skin from the css/skins
+  <!-- AdminLTE Skins. Choose a skin fr
+  om the css/skins
        folder instead of downloading all of them to reduce the load. -->
   <link rel="stylesheet" href="{{asset('public/adminLTE/dist/css/skins/_all-skins.min.css')}}">
   <!-- Morris chart -->
@@ -28,8 +31,15 @@
   <!-- bootstrap wysihtml5 - text editor -->
   <link rel="stylesheet" href="{{asset('public/adminLTE/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css')}}">
 
+  <link rel="stylesheet" href="{{asset('public/adminLTE/plugins/iCheck/alls.css')}}">
+
+  <!-- Bootstrap time Picker -->
+  <link rel="stylesheet" href="{{asset('public/adminLTE/plugins/timepicker/bootstrap-timepicker.min.css')}}">
+
   <!-- DataTables -->
   <link rel="stylesheet" href="{{asset('public/adminLTE/bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css')}}">
+
+  <link rel="stylesheet" href="{{asset('public/adminLTE/bower_components/select2/dist/css/select2.min.css')}}">
  
   <!-- Tell the browser to be responsive to screen width -->
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
@@ -64,9 +74,9 @@
     <a href="{{ URL('/home') }}" class="logo">
 
       <!-- mini logo for sidebar mini 50x50 pixels -->
-      <span class="logo-mini"><b>A</b>LT</span>
+      <span class="logo-mini"><b>K</b>oni</span>
       <!-- logo for regular state and mobile devices -->
-      <span class="logo-lg"><b>Admin</b>LTE</span>
+      <span class="logo-lg"><b>Koni</b>Badung</span>
     </a>
     <!-- Header Navbar: style can be found in header.less -->
     <nav class="navbar navbar-static-top">
@@ -346,70 +356,78 @@
       <ul class="sidebar-menu" data-widget="tree">
         <li class="header">MAIN NAVIGATION</li>
 
-        <li class="active">
+        <li class="{{GH::segment(1,['admin'])}}">
           <a href="{{ URL('/admin/view') }}">
             <i class="fa fa-user"></i> <span>User</span>
           </a>          
         </li>
 
-        <li>
-          <a href="#">
+        <li class="{{GH::segment(1,['view_atlet','add_atlet','edit_atlet'])}}">
+          <a href="{{url('view_atlet')}}">
             <i class="fa fa-running"></i> <span>Atlet</span>            
           </a>          
         </li>
 
-        <li>
-          <a href="#">
+        <li class="{{GH::segment(1,['IndexCabor','tambahCabor','edit-cabor'])}}">
+          <a href="{{URL('/IndexCabor')}}">
             <i class="fa fa-code-branch"></i> <span>Cabang Olahraga</span>            
           </a>          
         </li>
 
-        <li class="@if(isset($active))
-        {
-          @if($active == 'Nomor Pertandingan') {{ 'active' }} @endif
-        }
-        @endif">
-          <a href="{{URL('/nomorPertandingan')}}">
+        <li class="{{GH::segment(1,['nomorPertandingan','editNoPertandingan','tampilNoPertandingan'])}}">
+          <a href="{{URL('/tampilNoPertandingan')}}">
             <i class="fa fa-cogs"></i> <span>Nomor Pertandingan</span>            
           </a>          
         </li>
 
-        <li>
-          <a href="#">
+        <li class="{{GH::segment(1,['prestasi','addPrestasi','editPrestasi','tambahPrestasi'])}}">
+          <a href="{{url('/prestasi')}}">
             <i class="fa fa-trophy"></i> <span>Prestasi Atlet</span>
           </a>          
         </li>
 
         <li>
-          <a href="#">
+          <li class="{{GH::segment(1,['rekor-atlet','addRekor','editRekor','tambahRekor'])}}">
+          <a href="{{ URL('/rekor-atlet') }}">
             <i class="fa fa-medal"></i> <span>Rekor Atlet</span>
-          </a>          
+          </a>
         </li>
 
-        <li class="@if(isset($active))
-        {
-          @if($active == 'Kontingen') {{ 'active' }} @endif
-        }
-        @endif">
+        <li class="{{GH::segment(1,['kontingen','tambah-kontingen','edit-kontingen'])}}">
           <a href="{{ URL('/kontingen') }}">
             <i class="fa fa-users"></i> <span>Kontingen</span>
           </a>          
         </li>
 
-        <li>
-          <a href="#">
+        <li class="{{GH::segment(1,['tampilWasit','manajemenWasit','wasit'])}}">
+          <a href="{{URL('tampilWasit')}}">
             <i class="fa fa-flag-checkered"></i> <span>Wasit</span>
           </a>          
         </li>
 
-        <li>
-          <a href="#">
+        <li class="{{GH::segment(1,['tampilEvent','tambahEvent','editEvent'])}}">
+          <a href="{{url('/tampilEvent')}}">
             <i class="fa fa-calendar-alt"></i> <span>Event</span>            
           </a>          
         </li>
-        <li>
-          <a href="{{url('administrator/rentangUmur')}}">
-            <i class="fa fa-calendar-alt"></i> <span>Rentang Umur</span>            
+        <li class="{{GH::segment(2,['rentangUmur'])}}">
+          <a  href="{{url('administrator/rentangUmur')}}">
+            <i class="fa fa-bars"></i> <span>Rentang Umur</span>            
+          </a>          
+        </li>
+        <li class="{{GH::segment(2,['importData'])}}">
+          <a href="{{url('administrator/importData')}}">
+            <i class="fa fa-file-import"></i> <span>Impor data</span>            
+          </a>          
+        </li>
+        <li class="{{GH::segment(2,['medali'])}}">
+          <a href="{{url('administrator/medali')}}">
+           <i class="fa fa-trophy"></i> <span>Medali</span>            
+          </a>          
+        </li>
+        <li class="{{GH::segment(2,['juara'])}}">
+          <a href="{{url('administrator/juara')}}">
+            <i class="fa fa-medal"></i> <span>Juara</span>            
           </a>          
         </li>
         
@@ -458,10 +476,11 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
-
+        {{$page}}
       </h1>
       <ol class="breadcrumb">
-        <li><a href="#"><i class="fa fa-home"></i> Home</a></li>        
+        <li><a href="#"><i class="fa fa-home"></i>Administrator</a></li>        
+        <li>{{$page}}</a></li>        
 
       </ol>
     </section>
@@ -700,6 +719,8 @@
 <script src="{{asset('public/adminLTE/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js')}}"></script>
 <!-- Slimscroll -->
 <script src="{{asset('public/adminLTE/bower_components/jquery-slimscroll/jquery.slimscroll.min.js')}}"></script>
+<!-- Timepicker -->
+<script src="{{asset('public/adminLTE/plugins/timepicker/bootstrap-timepicker.min.js')}}"></script>
 <!-- FastClick -->
 <script src="{{asset('public/adminLTE/bower_components/fastclick/lib/fastclick.js')}}"></script>
 <!-- AdminLTE App -->
@@ -711,6 +732,48 @@
 <!-- DataTables -->
 <script src="{{asset('public/adminLTE/bower_components/datatables.net/js/jquery.dataTables.min.js')}}"></script>
 <script src="{{asset('public/adminLTE/bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js')}}"></script>
+
+<script src="{{asset('public/adminLTE/bower_components/select2/dist/js/select2.full.min.js')}}"></script>
+
+
+<script type="text/javascript">
+  $(function () {
+    //Initialize Select2 Elements
+    $('.select2').select2()
+    })
+  $('#datepicker').datepicker({
+      autoclose: true,      
+      format: 'yyyy-mm-dd'
+    });
+
+  $('#datepicker_mulai').datepicker({      
+      autoclose: true,      
+      format: 'yyyy-mm-dd'      
+    });
+
+  $('#datepicker_selesai').datepicker({
+      autoclose: true,      
+      format: 'yyyy-mm-dd'
+    });
+
+  $('.datepicker').datepicker({
+      autoclose: true,      
+      format: 'yyyy-mm-dd'
+    });
+
+  //Timepicker
+    $('.timepicker').timepicker({
+      showInputs: false,
+      minuteStep: 1,
+      defaultTime: false,      
+      showMeridian: false,
+      useCurrent: false
+
+    });
+
+</script>
+
+
 </body>
 </html>
 

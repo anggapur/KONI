@@ -123,13 +123,14 @@
     <script type="text/javascript">
     $(function() {
         var oTable = $('#table-atlet').DataTable({
+           "ordering": false,
             processing: true,
             serverSide: true,
             ajax: {
                 url: '{{ url("data-prestasi") }}'
             },
             columns: [
-            {data: 'nama_prestasi', name: 'nama_prestasi'},
+            {data: 'ket_juara_medali', name: 'ket_juara_medali'},
             {data: 'nama_atlet', name: 'nama_atlet'},
             {data: 'nama_cabor', name: 'cabang_olahraga.nama_cabor'},
             {data: 'nama_event', name: 'nama_event'},

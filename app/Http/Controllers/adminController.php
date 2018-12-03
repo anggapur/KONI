@@ -21,9 +21,9 @@ class adminController extends Controller
         $post = User::all();
 
         $data['page'] = 'Data User';
-        return view('admin.view',['tampil'=>$post,'data'=>$data]);
+        return view('admin.view',['tampil'=>$post,'page'=>$data['page']]);
 
-        return view('admin.view',['tampil'=>$post,'page'=>'Manajemen Admin']);
+        // return view('admin.view',['tampil'=>$post,'page'=>'Manajemen Admin']);
 
     }
 
@@ -31,9 +31,9 @@ class adminController extends Controller
         $user = User::where('id',$id)->first(); //select
 
         $data['page'] = 'Edit User';
-        return view('admin.edit',['user'=>$user,'data'=>$data]);
+        return view('admin.edit',['user'=>$user,'page'=>$data['page']]);
 
-        return view('admin.edit',['user'=>$user,'page'=>'Manajemen Admin']);
+        // return view('admin.edit',['user'=>$user,'page'=>'Manajemen Admin']);
 
     }
 
@@ -126,6 +126,6 @@ class adminController extends Controller
     public function formTambah()
     {
         $data['page'] = "Tambah User";
-        return view('admin.formTambah',['data'=> $data]);
+        return view('admin.formTambah',$data);
     }
 }

@@ -64,7 +64,6 @@
         </style>
     </head>
     <body>
-       
 
             <div class="content">
                 <div class="title m-b-md">
@@ -75,7 +74,6 @@
                     Disini Halaman Utama
                 </div>
 
-              
             </div>
         </div>
     </body>

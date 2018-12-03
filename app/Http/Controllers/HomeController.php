@@ -4,6 +4,10 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Nomor_Pertandingan;
+use App\Master_Atlet;
+use App\Cabang_Olahraga;
+use App\Wasit;
+use App\Kontingen;
 class HomeController extends Controller
 {
     /**
@@ -25,9 +29,13 @@ class HomeController extends Controller
 
         $data = [];
         $data['page'] = 'Dashboard';
-        return view('home',['data' => $data]);
+       // return view('home',['data' => $data]);
 
         $data['page'] = 'Dashboard';
+        $data['countAtlet'] = Master_Atlet::get()->count();
+        $data['countCabor'] = Cabang_Olahraga::get()->count();
+        $data['countWasit'] = Wasit::get()->count();
+        $data['countPelatih'] = Kontingen::where('jabatan_id','2')->get()->count();
         return view('home',$data);
         //return view('home');
         //return view('home');
@@ -46,6 +54,7 @@ class HomeController extends Controller
         {
             return "Sukses";
         }
+
     }
 }
 
