@@ -6,16 +6,32 @@ use Illuminate\Http\Request;
 use App\Kabupaten;
 use App\Wasit;
 use App\Cabang_Olahraga;
+use Yajra\Datatables\Datatables;
+
 class wasitController extends Controller
 {
     public function index()
     {
         $data['page'] = "Wasit";
     	$data['datakabupaten'] = Kabupaten::all();
-    	$data['cabang_olahraga'] = Cabang_Olahraga::all();
+    	$data['cabang_olahraga'] = Cabang_Olahraga::all();        
     	return view('wasit.wasit',$data);
     	
     }
+    public function getDataWasit(){
+        $data = Wasit::select('id_wasit','nama_wasit','nama_cabor','no_kartu_anggota')
+                ->leftJoin('cabang_olahraga','id_cabor','=','cabor_id')
+                ->get();                
+
+        return Datatables::of($data)
+      ->addColumn('aksi', function($data){
+        return "<button onclick='view(".$data->id_wasit.")' class='btn btn-xs btn-warning'> <i class='fa fa-eye'> </i> View </button>
+            <a href=".route('wasit-edit',$data->id_wasit)."><button class='btn btn-xs btn-primary'> <i class='fa fa-edit'> </i> Edit  </button> </a>
+            <button onclick='hapus(\"".$data->nama_wasit."\",".$data->id_wasit.")' class='btn btn-xs btn-danger'> <i class='fa fa-trash'> </i> Hapus  </button>";
+      })
+
+      ->make(true);
+    }    
     public function simpan(Request $request)
     {
     	$data['nama_wasit'] = $request->nama_wasit;
@@ -37,7 +53,7 @@ class wasitController extends Controller
     public function tampilData()
     {
     	$data['page'] = "wasit";
-    	$data['Wasit']= Wasit::leftJoin('cabang_olahraga','wasit.cabor_id','=','cabang_olahraga.id_cabor')->get();
+    	//$data['Wasit']= Wasit::leftJoin('cabang_olahraga','wasit.cabor_id','=','cabang_olahraga.id_cabor')->get();
     	return view('wasit.tampilData',$data);
     }
     public function editdata($id)

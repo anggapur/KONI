@@ -3,11 +3,12 @@
 <!-- Main content -->
     <section class="content">
       		
-      		@if(session('status'))
-      		<div class="alert alert-{{session('status')}}">
-      			{{session('message')}}
-      		</div>
-      		@endif
+      		@if(session('status'))        
+	        <div class="alert alert-{{session('status')}} alert-dismissible">
+	            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+	            {!! session('message') !!}
+	        </div>
+	    	@endif
 
 
             <div class="box">
@@ -21,7 +22,7 @@
             </div>
             <!-- /.box-header -->
             <div class="box-body">
-              <table id="example2" class="table table-bordered table-hover">
+              <table class="table" id="table-wasit">
                 <thead>
                 <tr>
                   <th>Nama Wasit</th>
@@ -29,25 +30,7 @@
                   <th>Cabang Olahraga</th>
                   <th>Aksi</th>
                 </tr>
-                </thead>
-                <tbody>
-                @foreach($Wasit as $val)
-                <tr>
-                  <td>{{ $val->nama_wasit}}</td>
-                  <td>{{$val->no_kartu_anggota}}</td>
-                  <td>{{$val->nama_cabor}}</td>
-                  <td> 
-                  	<button onclick="view({{$val->id_wasit}})" class="btn btn-warning btn-xs "> 
-                  		<i class=" fa fa-eye"></i>view </button>
-                  	<a href="{{url('wasit/'.$val->id_wasit.'/edit')}}" class="btn btn-primary btn-xs">
-                  		<i class="fa fa-edit"> </i> edit </a>
-                  	<a href="{{url('hapusWasit/'.$val->id_wasit)}}" class="btn btn-danger btn-xs"> 
-                  		<i class="fa fa-trash"></i>delete </a>
-                  </td>
-                </tr>
-                @endforeach
-                
-                </tbody>
+                </thead>                
               </table>
             </div>
             <!-- /.box-body -->
@@ -88,33 +71,79 @@
 	  </div>
 	</div>
 
+	<!-- Modal -->
+	<div id="delModal" class="modal fade" role="dialog">
+	  <div class="modal-dialog">
+	    <!-- Modal content-->
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        <button type="button" class="close" data-dismiss="modal">&times;</button>
+	        <h4 class="modal-title">Hapus Data</h4>
+	      </div>
+	      <div id="body-nama" class="modal-body">
+	      	
+	      </div>
+	      <div id="hapus-button" class="modal-footer">
+	        
+	      </div>
+	    </div>
+	  </div>
+	</div>
+
 <script type="text/javascript">
-		function view(id){
+	function view(id){
 
-		
-	      var dataString = "id="+id;
+	
+      var dataString = "id="+id;
 
-	      $.ajax({
-	            type: "POST",
-	            url: "{{URL('/get-data-wasit')}}",
-	            data: {
-	            	'id' : id,
-	            	'_token' : '{{csrf_token()}}',
-	            },
-	            cache: false,
-	            success: function(data){
-	            	console.log(data);
-	            	
-	            	$('#nama').val(data.nama_wasit);
-	            	$('#nkta').val(data.no_kartu_anggota);
-	            	$('#jenis_kelamin').val(data.jenis_kelamin);
-	            	$('#tempat_lahir').val(data.tempat_lahir);
-	            	$('#tgl_lahir').val(data.tgl_lahir);
-	            	$('#alamat').val(data.alamat);
-	            	$('#cabor').val(data.nama_cabor);
-	            	$('#viewModal').modal('show');
-				}
-			});
-		}
-	</script>
+      $.ajax({
+            type: "POST",
+            url: "{{URL('/get-data-wasit')}}",
+            data: {
+            	'id' : id,
+            	'_token' : '{{csrf_token()}}',
+            },
+            cache: false,
+            success: function(data){
+            	console.log(data);
+            	
+            	$('#nama').val(data.nama_wasit);
+            	$('#nkta').val(data.no_kartu_anggota);
+            	$('#jenis_kelamin').val(data.jenis_kelamin);
+            	$('#tempat_lahir').val(data.tempat_lahir);
+            	$('#tgl_lahir').val(data.tgl_lahir);
+            	$('#alamat').val(data.alamat);
+            	$('#cabor').val(data.nama_cabor);
+            	$('#viewModal').modal('show');
+			}
+		});
+	}
+</script>
+
+<script type="text/javascript">
+    $(function() {
+    var oTable = $('#table-wasit').DataTable({
+        processing: true,
+        serverSide: true,
+        ajax: {
+            url: '{{ url("data-wasit") }}'
+        },
+        columns: [
+        {data: 'nama_wasit', name: 'nama_wasit'},
+        {data: 'no_kartu_anggota', name: 'no_kartu_anggota'},
+        {data: 'nama_cabor', name: 'nama_cabor'},        
+        {data: 'aksi', name: 'aksi'},
+    ],
+    });
+});
+</script>
+
+<script type="text/javascript">
+	function hapus(nama,id){
+		var url = "{{url('hapusWasit')}}/";
+		$('#body-nama').html("<p> Yakin menghapus data "+nama+" ? </p>");
+		$('#hapus-button').html("<a href='"+url+id+"'><button type='button' class='btn btn-danger'>Hapus</button>");
+		$('#delModal').modal('show');
+	}
+</script>	
 @endsection

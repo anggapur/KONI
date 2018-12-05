@@ -55,7 +55,7 @@ class atletController extends Controller
         return "
             <button onclick='view(".$data->id_atlet.")' class='btn btn-xs btn-warning'> <i class='fa fa-eye'> </i> View </button>
             <a href=".route('edit_atlet',$data->id_atlet)."><button class='btn btn-xs btn-primary'> <i class='fa fa-edit'> </i> Edit  </button> </a>
-      		<a href=".url('hapus_atlet/'.$data->id_atlet)."<button class='btn btn-xs btn-danger'> <i class='fa fa-trash'> </i> Hapus  </button></a>";
+      		<button onclick='del(".$data->id_atlet.",\"".$data->nama_atlet."\")' class='btn btn-xs btn-danger'> <i class='fa fa-trash'> </i> Hapus  </button>";
       		})
       	->make(true);
     }
@@ -122,7 +122,7 @@ class atletController extends Controller
                 //dd($data_master);
             }
    			DB::commit();
-            return redirect()->route('view_atlet')->with('status','success');
+            return redirect()->route('view_atlet')->with(['status'=>'success' , 'message' => 'Data berhasil ditambahkan']);
    		}catch (\Exception $e) {
    			DB::rollback();            
         	return $e;
@@ -242,7 +242,7 @@ class atletController extends Controller
                 ]);
             }
             DB::commit();
-            return redirect()->route('view_atlet')->with('status','edited');  
+            return redirect()->route('view_atlet')->with(['status' =>'success','message' => 'Data berhasil dirubah']);  
         }catch(\Exception $e) {
             DB::rollback();
             return $e;
@@ -262,7 +262,7 @@ class atletController extends Controller
             $query_detail=Detail_Atlet::where('atlet_id',$id)->delete();
             // $query_foto=Foto::where('id_foto',$data->id_foto)->delete();
             DB::commit();
-            return redirect('view_atlet')->with('status','deleted');
+            return redirect('view_atlet')->with(['status' => 'success', 'message' => 'Data berhasil dihapus']);
         }catch(\Exception $e) {
             DB::rollback();
             return $e;

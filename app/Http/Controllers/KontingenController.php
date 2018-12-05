@@ -37,9 +37,7 @@ class KontingenController extends Controller
     	$save = $data->save();
         
         if($save)
-            return redirect()->route('kontingen')->with('status', 'success');
-        else
-            return redirect()->route('kontingen')->with('status', 'failed add');
+            return redirect()->route('kontingen')->with(['status' => 'success','message' => 'Data berhasil ditambahkan']);        
     }
 
     public function tambah(){
@@ -72,7 +70,7 @@ class KontingenController extends Controller
         $data = Kontingen::select('nama_kontingen','jabatan.nama_jabatan','id_kontingen','nama_cabor')
             ->leftJoin('cabang_olahraga','cabor_id','=','id_cabor')
 	        ->leftJoin('jabatan','jabatan_id','=','jabatan.id_jabatan')
-	        ->get();        
+	        ->get();
 
 
 	        
@@ -100,7 +98,7 @@ class KontingenController extends Controller
         $data = Kontingen::select('*')->where('id_kontingen',$Request->id)->first();
         $data->delete();
 
-        return "success";
+        return redirect()->route('kontingen')->with(['status' => 'success','message' => 'Data berhasil dihapus']);
     }
 
     public function update(Request $Request){        
@@ -118,7 +116,7 @@ class KontingenController extends Controller
     
                 ]);
 
-        return redirect()->route('kontingen')->with('status','edited');
+        return redirect()->route('kontingen')->with(['status' => 'success','message' => 'Data berhasil dirubah']);
     }
 
     public function cekKartu(Request $Request){
@@ -129,9 +127,5 @@ class KontingenController extends Controller
         else{
             echo "true";
         }
-    }
-
-    public function msg($msg){
-        return redirect()->route('kontingen')->with('status',$msg);
-    }
+    }    
 }

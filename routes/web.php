@@ -92,12 +92,12 @@ Route::group(['middleware' => 'auth'],function(){
 	Route::get('/tambah-kontingen','KontingenController@tambah');
 	Route::get('/edit-kontingen/{id}','KontingenController@edit')->name('kontingen-edit');
 	Route::get('/data-kontingen','KontingenController@dataKontingen');
-	Route::post('/add-kontingen','KontingenController@add');
-	Route::post('/get-data-kontingen','KontingenController@getData');
-	Route::post('/delete-data-kontingen','KontingenController@hapus');
+	Route::get('/delete-data-kontingen/{id}','KontingenController@hapus');
+
+	Route::post('/add-kontingen','KontingenController@add');	
+	Route::post('/get-data-kontingen','KontingenController@getData');	
 	Route::post('/update-kontingen','KontingenController@update');
-	Route::post('/cek-no-kartu-anggota','KontingenController@cekKartu');
-	Route::get('/kontingen/{msg}','KontingenController@msg');
+	Route::post('/cek-no-kartu-anggota','KontingenController@cekKartu');	
 
 	//Cabor
 	Route::get('/IndexCabor','CabangOlahraga@index')->name('Cabor');
@@ -105,23 +105,21 @@ Route::group(['middleware' => 'auth'],function(){
 	Route::get('edit-cabor/{id}','CabangOlahraga@edit_Cabor')->name('edit-cabor');
 	Route::get('/data-cabor','CabangOlahraga@dataCabor');
 	Route::post('/add-cabor','CabangOlahraga@add');
-	Route::post('/delete-data-cabor','CabangOlahraga@hapus');
-	Route::post('/hasiledit-cabor','CabangOlahraga@hasil_editcabor');
-	Route::get('/CabangOlahraga/{msg}','CabangOlahraga@msg');
+	Route::get('/delete-data-cabor/{id}','CabangOlahraga@hapus');
+	Route::post('/hasiledit-cabor','CabangOlahraga@hasil_editcabor');	
 
 	//Prestasi
 	Route::get('/prestasi','PrestasiController@index')->name('Prestasi');
 	Route::get('/editPrestasi/{id}','PrestasiController@edit')->name('editPrestasi');
 	Route::get('/get-data-prestasi','PrestasiController@getData');
 	Route::get('/tambahPrestasi','PrestasiController@tambah');
-	Route::get('/prestasi/{msg}','PrestasiController@msg');
+	Route::get('/delete-data-prestasi/{id}','PrestasiController@delete');
 
 	Route::post('/get-detail-prestasi','PrestasiController@getDetail');
 	Route::post('/getNP','PrestasiController@getNP');
 	Route::post('/getAtlet','PrestasiController@getAtlet');
 	Route::post('/addPrestasi','PrestasiController@addPrestasi');
-	Route::post('/editPrestasi','PrestasiController@update');
-	Route::post('/delete-data-prestasi','PrestasiController@delete');
+	Route::post('/editPrestasi','PrestasiController@update');	
 	Route::post('/getEvent','PrestasiController@getEvent');
 
 	//Rekor	
@@ -129,12 +127,12 @@ Route::group(['middleware' => 'auth'],function(){
 	Route::get('/get-data-rekor','RekorController@getData');
 	Route::get('/editRekor/{id}','RekorController@edit')->name('editRekor');
 	Route::get('/tambahRekor','RekorController@tambah');
-	Route::get('/rekor/{msg}','RekorController@msg');
+	Route::get('/delete-data-rekor/{id}','RekorController@delete');
 
 	Route::post('/get-detail-rekor','RekorController@getRekor');
 	Route::post('/addRekor','RekorController@add');
 	Route::post('/updateRekor','RekorController@update');
-	Route::post('/delete-data-rekor','RekorController@delete');
+	
 
 	//User
 	Route::get('/admin','adminController@index')->name('view');
@@ -144,6 +142,17 @@ Route::group(['middleware' => 'auth'],function(){
 	Route::get('/admin/{id_user}','adminController@edit');
 	Route::post('/admin/update/{id_user}','adminController@update');
 	Route::get('/admin/hapus/{id_user}','adminController@hapus');
+
+	//Wasit
+
+	Route::get('manajemenWasit','wasitController@index');
+	Route::post('simpanWasit','wasitController@simpan');
+	Route::get('tampilWasit', 'wasitController@tampildata');
+	Route::get('wasit/{id}/edit','wasitController@editdata')->name('wasit-edit');
+	Route::post('updateWasit','wasitController@update');
+	Route::get('hapusWasit/{id}','wasitController@hapusData');
+	Route::post('get-data-wasit','wasitController@getData');
+	Route::get('data-wasit','wasitController@getDataWasit');
 
 	//Angga Pur CRUD rentang Umur'
 	Route::group(['prefix' => 'administrator'],function(){
@@ -157,14 +166,5 @@ Route::group(['middleware' => 'auth'],function(){
 		Route::resource('juara','juaraController');
 		Route::resource('importData','importDataController');
 	});
-
-
-	Route::get('manajemenWasit','wasitController@index');
-	Route::post('simpanWasit','wasitController@simpan');
-	Route::get('tampilWasit', 'wasitController@tampildata');
-	Route::get('wasit/{id}/edit','wasitController@editdata');
-	Route::post('updateWasit','wasitController@update');
-	Route::get('hapusWasit/{id}','wasitController@hapusData');
-	Route::post('get-data-wasit','wasitController@getData');
 });
 
