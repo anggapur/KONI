@@ -12,6 +12,9 @@ use App\Master_Atlet;
 use App\Detail_Atlet;
 use App\Nomor_Pertandingan;
 use App\Foto;
+use App\Event;
+use App\Tingkat_Event;
+use App\Detail_Atlet_Event;
 
 class atletController extends Controller
 {
@@ -55,7 +58,8 @@ class atletController extends Controller
         return "
             <button onclick='view(".$data->id_atlet.")' class='btn btn-xs btn-warning'> <i class='fa fa-eye'> </i> View </button>
             <a href=".route('edit_atlet',$data->id_atlet)."><button class='btn btn-xs btn-primary'> <i class='fa fa-edit'> </i> Edit  </button> </a>
-      		<button onclick='del(".$data->id_atlet.",\"".$data->nama_atlet."\")' class='btn btn-xs btn-danger'> <i class='fa fa-trash'> </i> Hapus  </button>";
+      		<button onclick='del(".$data->id_atlet.",\"".$data->nama_atlet."\")' class='btn btn-xs btn-danger'> <i class='fa fa-trash'> </i> Hapus  </button>
+            <a href='".route('detail_atlet',$data->id_atlet)."'><button onclick='' class='btn btn-xs btn-info'> <i class='fa fa-search'> </i> Detail  </button></a>";
       		})
       	->make(true);
     }
@@ -267,5 +271,64 @@ class atletController extends Controller
             DB::rollback();
             return $e;
         }  
+    }
+
+    public function detail_atlet($id){
+        $data['page'] = 'Detail Atlet';
+        $data['atlet'] = Master_Atlet::select('nama_atlet','id_atlet')->where('id_atlet',$id)->first();
+        $data['tingkat'] = Tingkat_Event::select('id_tingkat','nama_tingkat')->get();
+        for ($i=0; $i <count($data['tingkat']) ; $i++) { 
+             
+             $data['event'][$data['tingkat'][$i]->id_tingkat] 
+             = Event::select('nama_event','id_event','id_detail_event','tingkat_id')
+             ->leftJoin('detail_atlet_event','id_event','=','event_id')
+             ->where(function($query) use ($id){
+                $query
+                ->where('atlet_id',$id)
+                ->orWhere('atlet_id',null);
+             })
+             ->where('tingkat_id',$data['tingkat'][$i]->id_tingkat)
+             ->get();
+                          
+        }
+        //dd($data['event']);
+        return view('admin_atlet.detail_atlet',$data);
+
+    }
+
+    public function update_detail_atlet(request $request){
+        $id = $request->id;        
+        $detail = Detail_Atlet_Event::select('*')->where('atlet_id',$id)->get();
+        for($j=0;$j<count($request->event);$j++){
+            if($request->event[$j] == 'on'){            
+                $status = true;        
+                for($i=0;$i<count($detail);$i++){
+                    if($request->id_event[$j] == $detail[$i]->event_id){
+                        $status = false;
+                    }
+                }
+                if($status){
+                    $data['atlet_id'] = $id;
+                    $data['event_id'] = $request->id_event[$j];
+                    Detail_Atlet_Event::create($data);
+                }
+            }
+        }
+
+        for($j=0;$j<count($detail);$j++){
+                $status = true;
+                for($i=0;$i<count($request->event);$i++){
+                    if($request->event[$i] == 'on'){
+                        if($request->id_event[$i] == $detail[$j]->event_id){
+                            $status = false;
+                        }
+                    }
+                }
+                if($status){                    
+                    Detail_Atlet_Event::where('id_detail_event',$detail[$j]->id_detail_event)->delete();
+                }            
+        }
+        //dd($request);
+        return redirect()->route('view_atlet')->with(['status' =>'success','message' => 'Data berhasil dirubah']);  
     }
 }

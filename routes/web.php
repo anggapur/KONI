@@ -84,8 +84,11 @@ Route::group(['middleware' => 'auth'],function(){
 	Route::get('/data-atlet','atletController@getData');
 	Route::post('/get-data-atlet','atletController@getDataAtlet');
 	Route::get('/edit_atlet/{id}','atletController@edit_atlet')->name('edit_atlet');
+	Route::get('/detail_atlet/{id}','atletController@detail_atlet')->name('detail_atlet');
 	Route::post('/update_atlet','atletController@update_atlet');
+	Route::post('/update_detail_atlet','atletController@update_detail_atlet');
 	Route::get('hapus_atlet/{id}','atletController@hapus_atlet');
+
 
 	//Kontingen
 	Route::get('/kontingen','KontingenController@index')->name('kontingen');
@@ -167,4 +170,5 @@ Route::group(['middleware' => 'auth'],function(){
 		Route::resource('importData','importDataController');
 	});
 });
+
 

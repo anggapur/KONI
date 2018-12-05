@@ -362,7 +362,7 @@
           </a>          
         </li>
 
-        <li class="{{GH::segment(1,['view_atlet','add_atlet','edit_atlet'])}}">
+        <li class="{{GH::segment(1,['view_atlet','add_atlet','edit_atlet','detail_atlet'])}}">
           <a href="{{url('view_atlet')}}">
             <i class="fa fa-running"></i> <span>Atlet</span>            
           </a>          
