@@ -21,28 +21,30 @@
                                 </tr>
                             </thead>
                             <tbody>                                
+                                <?php $i=0; ?>
                             @foreach($tingkat as $tevent)
                             <tr>
                                 <td colspan="2">
                                 <h4>Tingkat {{ $tevent->nama_tingkat }}</h4>
                                 </td>
-                            </tr>
-                                <?php $i=0; ?>
+                            </tr>                                
                                 @foreach($event[$tevent->id_tingkat] as $detail)
+                                @if($detail->nama_event != null)
                                 <tr>
                                     <td width="5%">
                                         <input type="hidden" name="id_event[]" value="{{$detail->id_event}}">
                                         <input id="status<?php echo $i; ?>" type="hidden" name="event[]" value="off"
-                                        @if($detail->id_detail_event != null) disabled @endif
+                                        @if($detail['true']) disabled @endif
                                         >
                                         <label class="switch"><input type="checkbox" name="event[]" onchange="disable(this.checked,<?php echo $i; $i++; ?>)" 
-                                        @if($detail->id_detail_event != null) checked @endif
+                                        @if($detail['true']) checked @endif
                                             ><div class="slider round"></div></label>
                                     </td>
                                     <td>
                                         {{$detail->nama_event}}    
                                     </td>
                                 </tr>
+                                @endif           
                                 @endforeach
                             @endforeach
                             </tbody>
@@ -55,7 +57,7 @@
     </div>
 </section>
 <script type="text/javascript">
-    function disable(val,id){         
+    function disable(val,id){        
         if(val)
             $('#status'+id).prop('disabled',true);
         else

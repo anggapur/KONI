@@ -216,27 +216,44 @@ class atletController extends Controller
             //dd($request->np_id);
             //dd($atletNP);
             for ($i=0; $i < count($request->np_id) ; $i++) { 
-                for ($j=0; $j < count($atletNP); $j++) { 
+                $status = true;
+                for ($j=0; $j < count($atletNP); $j++) {
                     if($request->np_id[$i] == $atletNP[$j]->np_id){
-                        $atletNP[$j]->np_id = null;
+                        $status = false;
+                        //$atletNP[$j]->np_id = null;
                         //$request->np_id[$i] = null;
-                    }else{
-                        $data_master['atlet_id'] = $request->id_atlet;
-                        $data_master['np_id'] = $request->np_id[$i];
-                        //dd($data_master);
-                        $detail_atlet = Detail_Atlet::create($data_master);
+
                     }
+                }
+                if($status){
+                    $data_master['atlet_id'] = $request->id_atlet;
+                    $data_master['np_id'] = $request->np_id[$i];
+                    //dd($data_master);
+                    $detail_atlet = Detail_Atlet::create($data_master);
                 }
             }
 
+            for ($j=0; $j < count($atletNP); $j++) {
+                $status = true;
+                for ($i=0; $i < count($request->np_id) ; $i++) { 
+                    if($request->np_id[$i] == $atletNP[$j]->np_id)
+                        $status = false;
+                }
+                if($status){
+                    $detail = Detail_Atlet::select('*')->where('atlet_id',$request->id_atlet)->where('np_id',$atletNP[$j]->np_id)->delete();
+                }
+            }
+
+
+
             //dd($request->np_id);
 
-            for ($j=0; $j < count($atletNP); $j++){
-                if($atletNP[$j]->np_id != null){
-                    $detail = Detail_Atlet::select('*')->where('atlet_id',$request->id_atlet)->where('np_id',$atletNP[$j]->np_id)->delete();
-                    //dd($detail);
-                }
-            }            
+            // for ($j=0; $j < count($atletNP); $j++){
+            //     if($atletNP[$j]->np_id != null){
+            //         $detail = Detail_Atlet::select('*')->where('atlet_id',$request->id_atlet)->where('np_id',$atletNP[$j]->np_id)->delete();
+            //         //dd($detail);
+            //     }
+            // }            
 
             if($request->file('gambar') == ""){} 
             else
@@ -298,16 +315,34 @@ class atletController extends Controller
         $data['tingkat'] = Tingkat_Event::select('id_tingkat','nama_tingkat')->get();
         for ($i=0; $i <count($data['tingkat']) ; $i++) { 
              
-             $data['event'][$data['tingkat'][$i]->id_tingkat] 
-             = Event::select('nama_event','id_event','id_detail_event','tingkat_id')
-             ->leftJoin('detail_atlet_event','id_event','=','event_id')
-             ->where(function($query) use ($id){
-                $query
-                ->where('atlet_id',$id)
-                ->orWhere('atlet_id',null);
-             })
-             ->where('tingkat_id',$data['tingkat'][$i]->id_tingkat)
+             $data['event'][$data['tingkat'][$i]->id_tingkat]
+             = Tingkat_Event::select('nama_event','id_event','tingkat_id')
+             ->leftJoin('event','id_tingkat','=','tingkat_id')
+             ->orderBy('id_event','ASC')
+             ->where('id_tingkat',$data['tingkat'][$i]->id_tingkat)
              ->get();
+
+             //dd($data['event']);
+
+             $data['detail'] = Detail_Atlet_Event::select('*')->where('atlet_id',$id)->get();
+
+             $arr = [];
+             foreach ($data['detail'] as $key) {
+                 array_push($arr,$key->event_id);
+             }
+
+             //dd($data['event']);
+
+
+             for($j=0;$j<count($data['event'][$data['tingkat'][$i]->id_tingkat]);$j++){
+                if(in_array($data['event'][$data['tingkat'][$i]->id_tingkat][$j]->id_event ,$arr)){
+                    $data['event'][$data['tingkat'][$i]->id_tingkat][$j]['true']= true;
+                    //dd($data['event']);
+                }
+                else{
+                    $data['event'][$data['tingkat'][$i]->id_tingkat][$j]['true'] = false;
+                }
+             }
                           
         }
         //dd($data['event']);
@@ -316,7 +351,7 @@ class atletController extends Controller
     }
 
     public function update_detail_atlet(request $request){
-        dd($request);
+        //dd($request);
         $id = $request->id;        
         $detail = Detail_Atlet_Event::select('*')->where('atlet_id',$id)->get();
         for($j=0;$j<count($request->event);$j++){
