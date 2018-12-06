@@ -80,21 +80,27 @@ class atletController extends Controller
     }
     public function simpan(Request $request)
     {        
-        //dd($request);
    		DB::beginTransaction();
    		try{
             $statement = DB::select("SHOW TABLE STATUS LIKE 'foto'");
             $nextId = $statement[0]->Auto_increment;
             //Foto atlet
-            $file = $request->file('gambar');
-            $ori_name = $file->getClientOriginalName();
-            $fileName = $nextId.$ori_name;
-            $size = $file->getSize();
-            $type = $file->getClientOriginalExtension();
-            $request->file('gambar')->move("public/upload/fotoAtlet", $fileName);
-            $data_foto['nama_foto'] = $fileName;
-            $data_foto['ukuran_foto'] = $size;
-            $data_foto['tipe_foto'] = $type;
+            if($request->file('gambar') == null){                
+                $data_foto['nama_foto'] = 'default.png';
+                $data_foto['ukuran_foto'] = '1';
+                $data_foto['tipe_foto'] = 'JPEG/PNG';
+            }
+            else{
+                $file = $request->file('gambar');
+                $ori_name = $file->getClientOriginalName();
+                $fileName = $nextId.$ori_name;
+                $size = $file->getSize();
+                $type = $file->getClientOriginalExtension();
+                $request->file('gambar')->move("public/upload/fotoAtlet", $fileName);
+                $data_foto['nama_foto'] = $fileName;
+                $data_foto['ukuran_foto'] = $size;
+                $data_foto['tipe_foto'] = $type;
+            }
             $foto = Foto::create($data_foto);
             //Master atlet
             $data['foto_id'] = $foto->id_foto;
@@ -230,8 +236,9 @@ class atletController extends Controller
             if($request->file('gambar') == ""){} 
             else
             {
-                $IdFoto = $request->id_foto;
-                File::delete('public/upload/fotoAtlet/'.$request->nama_foto);
+                $IdFoto = $request->id_foto;                
+                if($request->nama_foto != 'default.png')
+                    File::delete('public/upload/fotoAtlet/'.$request->nama_foto);
                 $file       = $request->file('gambar');
                 $ori_name = $file->getClientOriginalName();
                 $fileName = $IdFoto.$ori_name;
@@ -261,7 +268,14 @@ class atletController extends Controller
             // ->leftJoin('detail_atlet','atlet_id','=','id_atlet')
             // ->where ('id_atlet',$id)
             // ->first();
-            // File::delete('public/upload/fotoAtlet/'.$data->nama_foto);
+            $data['nama_foto'] = Master_Atlet::select('nama_foto')
+            ->leftJoin('foto','foto_id','=','id_foto')
+            ->where('id_atlet',$id)
+            ->first();
+
+            if($data['nama_foto']->nama_foto != 'default.png')                    
+                File::delete('public/upload/fotoAtlet/'.$data['nama_foto']->nama_foto);
+
             $query_master=Master_Atlet::where('id_atlet',$id)->delete();
             $query_detail=Detail_Atlet::where('atlet_id',$id)->delete();
             // $query_foto=Foto::where('id_foto',$data->id_foto)->delete();
