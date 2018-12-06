@@ -88,6 +88,7 @@ Route::group(['middleware' => 'auth'],function(){
 	Route::post('/update_atlet','atletController@update_atlet');
 	Route::post('/update_detail_atlet','atletController@update_detail_atlet');
 	Route::get('hapus_atlet/{id}','atletController@hapus_atlet');
+	Route::get('view_detail/{id}','atletController@view_detail')->name('view_detail');
 
 
 	//Kontingen

@@ -130,7 +130,7 @@
                 url: '{{ url("data-atlet") }}'
             },
             columns: [         
-            {data: 'nama_atlet', name: 'nama_atlet'},
+            {data: 'nama', name: 'nama'},
             {data: 'nama_cabor', name: 'nama_cabor'},
             {data: 'no_kartu_tanda_anggota', name: 'no_kartu_tanda_anggota'},
             {data: 'jenis_kelamin', name: 'jenis_kelamin'},

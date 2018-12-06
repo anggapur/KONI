@@ -15,6 +15,8 @@ use App\Foto;
 use App\Event;
 use App\Tingkat_Event;
 use App\Detail_Atlet_Event;
+use App\Prestasi;
+use App\Rekor_atlet;
 
 class atletController extends Controller
 {
@@ -61,6 +63,9 @@ class atletController extends Controller
       		<button onclick='del(".$data->id_atlet.",\"".$data->nama_atlet."\")' class='btn btn-xs btn-danger'> <i class='fa fa-trash'> </i> Hapus  </button>
             <a href='".route('detail_atlet',$data->id_atlet)."'><button onclick='' class='btn btn-xs btn-info'> <i class='fa fa-search'> </i> Detail  </button></a>";
       		})
+            ->addColumn('nama', function($data){
+                return "<a href=".route('view_detail',$data->id_atlet)."> ".$data->nama_atlet."</a> ";
+            })
       	->make(true);
     }
     public function getDataAtlet(Request $Request){
@@ -311,6 +316,7 @@ class atletController extends Controller
     }
 
     public function update_detail_atlet(request $request){
+        dd($request);
         $id = $request->id;        
         $detail = Detail_Atlet_Event::select('*')->where('atlet_id',$id)->get();
         for($j=0;$j<count($request->event);$j++){
@@ -344,5 +350,41 @@ class atletController extends Controller
         }
         //dd($request);
         return redirect()->route('view_atlet')->with(['status' =>'success','message' => 'Data berhasil dirubah']);  
+    }
+
+    public function view_detail($id){
+        $data['page'] = "Detail Atlet";
+        $data['atlet'] = Master_Atlet::select('*')
+                            ->leftJoin('detail_atlet','atlet_id','=','id_atlet')
+                            ->leftJoin('foto','foto_id','=','id_foto')                        
+                            ->leftJoin('cabang_olahraga','cabor_id','=','id_cabor')
+                            ->where('id_atlet',$id)
+                            ->first();
+
+        $data['np'] = Nomor_Pertandingan::select('ket_np')
+                        ->leftJoin('detail_atlet','np_id','=','id_np')
+                        ->where('atlet_id',$id)
+                        ->get();
+
+        $data['prestasi'] = Prestasi::select('ket_juara','waktu','ket_np','nama_event')
+                            ->leftJoin('juara','juara_id','=','id_juara')
+                            ->leftJoin('Nomor_Pertandingan','id_np','=','np_id')
+                            ->leftJoin('event','id_event','=','event_id')
+                            ->where('atlet_id',$id)
+                            ->get();
+
+        $data['rekor'] = Rekor_atlet::select('keterangan_rekor','waktu','ket_np','nama_event')                            
+                            ->leftJoin('Nomor_Pertandingan','id_np','=','np_id')
+                            ->leftJoin('event','id_event','=','event_id')
+                            ->where('atlet_id',$id)
+                            ->get();
+
+        $data['event'] = Detail_Atlet_Event::select('nama_event')
+                            ->leftJoin('event','event_id','=','id_event')
+                            ->where('atlet_id',$id)
+                            ->get();
+
+        //return $data['rekor'];
+        return view('admin_atlet.view_detail_atlet',$data);
     }
 }
