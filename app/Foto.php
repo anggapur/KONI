@@ -8,5 +8,6 @@ class Foto extends Model
 {
     protected $table = "foto";
 	protected $primaryKey = 'id_foto';
+	protected $fillable = ['nama_foto','ukuran_foto','tipe_foto'];
 	public $timestamps = false;
 }

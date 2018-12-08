@@ -27,7 +27,7 @@
                   <input type="radio" name="jenis_kelamin" value="L"  
                   @if($Wasit->jenis_kelamin == "L")
                   checked 
-                  @endif> Laki - Laki
+                  @endif> Laki - Laki <br>
                   <input type="radio" name="jenis_kelamin" value="P" 
                   @if($Wasit->jenis_kelamin == "P")
                   checked 
@@ -39,31 +39,30 @@
                 </div class="form-group">
                 <div class="form-group">
                 	<label for="TanggalLahir"> Tanggal Lahir </label><br>
-                	<input value="{{$Wasit->tgl_lahir}}" type="date" class="form-control" name="tgl_lahir">
+                	<input value="{{$Wasit->tgl_lahir}}" type="text" id="datepicker" class="form-control" name="tgl_lahir">
                 </div>
                 <div class="form-group">
                 	<label for="InputAlamat"> Alamat</label>
                 	<textarea class="form-control" placeholder="Alamat" name="alamat"> {{$Wasit->alamat}}</textarea>
-                </div>
-                <div class="form-group">
-                	<label for="InputKabupaten"> Kabupaten</label>
-                	<select class="form-control" name="kabupaten_id">
-                		@foreach($datakabupaten as $val)
-                		<option value="{{$val->id_kabupaten}}" 
-                      @if($Wasit->kabupaten_id == $val->id_kabupaten) selected @endif >
-                      {{$val->nama_kabupaten}}
-                    </option>
-                		@endforeach
-                	</select>
-                </div>
-              </div>
+                </div>                              
+              <div class="form-group">
+                  <label for="cabor_id"> Cabang Olahraga</label>
+                  <select class="form-control" name="cabor_id">
+                    @foreach($cabang_olahraga as $val)
+                    <option value="{{$val->id_cabor}}"
+                      @if($val->id_cabor == $Wasit->cabor_id) {{ "selected" }} @endif
+                      >{{$val->nama_cabor}}</option>
+                    @endforeach
+                  </select>
+                </div>                                            
               <!-- /.box-body -->
 
               <div class="box-footer">
                 <button type="submit" class="btn btn-primary">Simpan</button>
               </div>
-            </form>
-          </div>
+            </div>
+            </form>            
+            </div>          
           <!-- /.box -->
     </section>
     <!-- /.content -->

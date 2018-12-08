@@ -3,39 +3,12 @@
 <!-- Main content -->
 
     <section class="content">
-		@if(session('status'))
-			@if(session('status') == 'success')
-			<div class="alert alert-success alert-dismissible">
-		    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-		    <h4><i class="fa fa-check"></i> Data berhasil ditambahkan</h4>
-			</div>
-			@elseif(session('status') == 'edited')
-			<div class="alert alert-success alert-dismissible">
-		    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-		    <h4><i class="fa fa-check"></i> Data berhasil diubah</h4>
-			</div>
-			@elseif(session('status') == 'deleted')
-			<div class="alert alert-success alert-dismissible">
-		    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-		    <h4><i class="fa fa-check"></i> Data berhasil dihapus</h4>
-			</div>
-			@elseif(session('status') == 'failed add')
-			<div class="alert alert-danger alert-dismissible">
-		    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-		    <h4><i class="fa fa-times"></i> Gagal menambah data</h4>		    
-			</div>
-			@elseif(session('status') == 'failed edit')
-			<div class="alert alert-danger alert-dismissible">
-		    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-		    <h4><i class="fa fa-times"></i> Gagal mengubah data</h4>
-			</div>
-			@elseif(session('status') == 'failed delete')
-			<div class="alert alert-danger alert-dismissible">
-		    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-s		    <h4><i class="fa fa-times"></i> Gagal menghapus data</h4>
-			</div>
-			@endif
-		@endif
+		@if(session('status'))        
+	        <div class="alert alert-{{session('status')}} alert-dismissible">
+	            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+	            {!! session('message') !!}
+	        </div>
+	    @endif
 		  	          
 	    <div class="row">
 	       	<div class="col-xs-12">      	
@@ -64,6 +37,26 @@ s		    <h4><i class="fa fa-times"></i> Gagal menghapus data</h4>
 	        	</div>
 	        </div>		  
 		</div>
+
+		<!-- Modal -->
+		<div id="delModal" class="modal fade" role="dialog">
+		  <div class="modal-dialog">
+		    <!-- Modal content-->
+		    <div class="modal-content">
+		      <div class="modal-header">
+		        <button type="button" class="close" data-dismiss="modal">&times;</button>
+		        <h4 class="modal-title">Hapus Data</h4>
+		      </div>
+		      <div id="body-nama-np" class="modal-body">
+		      	
+		      </div>
+		      <div id="hapus-button" class="modal-footer">
+		        
+		      </div>
+		    </div>
+		  </div>
+		</div>
+
     </section>
     <!-- /.content -->
     <script type="text/javascript">
@@ -83,5 +76,13 @@ s		    <h4><i class="fa fa-times"></i> Gagal menghapus data</h4>
     });
 	</script>
 	
+	<script type="text/javascript">
+		function del(id,nama){
+			var url = "{{url('hapusNoPertandingan')}}/";
+			$('#body-nama-np').html("<p> Yakin menghapus data "+nama+" ? </p>");
+			$('#hapus-button').html("<a href='"+url+id+"'><button type='button' class='btn btn-danger' onclick='del("+id+")'>Hapus</button></a>");
+			$('#delModal').modal('show');
+		}
+	</script>
 
 @endsection

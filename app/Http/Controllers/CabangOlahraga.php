@@ -16,7 +16,7 @@ class CabangOlahraga extends Controller
     	$data = [];
     	$data['active'] = "Cabang_Olahraga";
     	$data['page'] = 'Cabang Olahraga';
-    	return view('IndexCabor',$data);
+    	return view('cabor.IndexCabor',$data);
     }
     public function add(Request $Request)
     {
@@ -25,14 +25,14 @@ class CabangOlahraga extends Controller
     	$data->nama_cabor = $Request->cabor;
     	$save=$data->save(); 
     	if($save)
-    		return redirect()->route('Cabor')->with('status', 'success');
+    		return redirect()->route('Cabor')->with(['status' => 'success', 'message' => 'Data berhasil ditambahkan']);
     }
     public function tambahcabor()
     {
    		$data = [];
     	$data['active'] = "Cabang_Olahraga";
     	$data['page'] = 'Cabang Olahraga';
-    	return view('TambahCabor',$data);
+    	return view('cabor.TambahCabor',$data);
     }
     public function edit_Cabor($id)
 	{
@@ -40,7 +40,7 @@ class CabangOlahraga extends Controller
 	 	$data['cabor'] = Cabang_Olahraga::select('*')->where('id_cabor',$id)->first();
 		$data['active'] = "Cabang_Olahraga";
 		$data['page'] = 'Cabang Olahraga';
-		return view('EditCabor',$data);
+		return view('cabor.EditCabor',$data);
 	}
     public function hasil_editcabor(Request $request)
 	{		
@@ -52,7 +52,7 @@ class CabangOlahraga extends Controller
 
         //dd($data);
 
-        return redirect()->route('Cabor')->with('status','edited');
+        return redirect()->route('Cabor')->with(['status' => 'success', 'message' => 'Data berhasil dirubah']);
 	}
     public function dataCabor()
     {
@@ -67,15 +67,9 @@ class CabangOlahraga extends Controller
 
       ->make(true);
     }
-   	public function hapus(Request $Request){        
-    $data = Cabang_Olahraga::select('*')->where('id_cabor',$Request->id)->first();
+   	public function hapus($id){
+    $data = Cabang_Olahraga::select('*')->where('id_cabor',$id)->first();
     $data->delete();
-
-    return "success";
-    }
-
-    public function msg($msg){
-    	//dd($msg);
-        return redirect()->route('Cabor')->with('status',$msg);
+    return redirect()->route('Cabor')->with(['status' => 'success', 'message' => 'Data berhasil dihapus']);
     }
 }

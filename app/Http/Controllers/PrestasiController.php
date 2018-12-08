@@ -41,7 +41,7 @@ class PrestasiController extends Controller
       ->addColumn('aksi', function($data){
       	return "<button onclick='view(".$data->id_prestasi.")' class='btn btn-xs btn-warning'> <i class='fa fa-eye'> </i> View </button>
       		<a href=".route('editPrestasi',$data->id_prestasi)."><button class='btn btn-xs btn-primary'> <i class='fa fa-edit'> </i> Edit  </button> </a>
-      		<button onclick='hapus(\"".$data->nama_prestasi."\",".$data->id_prestasi.")' class='btn btn-xs btn-danger'> <i class='fa fa-trash'> </i> Hapus  </button>";
+      		<button onclick='hapus(\"".$data->nama_atlet."\",".$data->id_prestasi.")' class='btn btn-xs btn-danger'> <i class='fa fa-trash'> </i> Hapus  </button>";
       })
 
       ->make(true);
@@ -150,10 +150,10 @@ class PrestasiController extends Controller
         $data->waktu            = $Request->waktu;
         $save = $data->save();
         if($save){
-            return redirect()->route('Prestasi')->with('status','success');
+            return redirect()->route('Prestasi')->with(['status' => 'success', 'message' => 'Data berhasil ditambahkan']);
         }
         else{
-            return redirect()->route('Prestasi')->with('status','failed');
+            return redirect()->route('Prestasi')->with(['status' => 'failed', 'message' => 'Data gagal ditambahkan']);
         }
     }
 
@@ -169,17 +169,15 @@ class PrestasiController extends Controller
                 'event_id'                 => $Request->event,
                 'waktu'                    => $Request->waktu ,
                 ]);
-        return redirect()->route('Prestasi')->with('status','edited');
+        return redirect()->route('Prestasi')->with(['status' => 'success' , 'message' => 'Data berhasil dirubah']);
     }
 
-    public function delete(Request $Request){
-        $data = Prestasi::select('*')->where('id_prestasi',$Request->id)->first();
+    public function delete($id){
+        $data = Prestasi::select('*')->where('id_prestasi',$id)->first();
         $data->delete();
 
-        return "success";
-    }
+        return redirect()->route('Prestasi')->with(['status'=> 'success' , 'message' => 'Data berhasil dihapus']);
 
-    public function msg($msg){
-        return redirect()->route('Prestasi')->with('status',$msg);
-    }
+        
+    }    
 }

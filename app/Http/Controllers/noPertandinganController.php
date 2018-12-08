@@ -47,16 +47,9 @@ class noPertandinganController extends Controller
         $query = Nomor_Pertandingan::create($data);
         if($query)
         {
-            return redirect()->route('nomorPertandingan')->with('status','success');
+            return redirect()->route('nomorPertandingan')->with(['status' => 'success','message' => 'Data berhasil ditambahkan']);
 
-        }
-        else
-        {
-            echo "Sukses";
-           
-        }
-
-
+        }        
     }
     public function tampil()
     {
@@ -77,7 +70,7 @@ class noPertandinganController extends Controller
       ->addColumn('aksi', function($data){
         return "
             <a href=".route('editNoPertandingan',$data->id_np)."><button class='btn btn-xs btn-primary'> <i class='fa fa-edit'> </i> Edit  </button> </a>
-            <a href=".url('hapusNoPertandingan/'.$data->id_np)."<button class='btn btn-xs btn-danger'> <i class='fa fa-trash'> </i> Hapus  </button></a>";
+            <button onclick='del(".$data->id_np.",\"".$data->ket_np."\")' class='btn btn-xs btn-danger'> <i class='fa fa-trash'> </i> Hapus  </button>";
       })
 
       ->make(true);
@@ -109,15 +102,13 @@ class noPertandinganController extends Controller
             'ket_np'=>$data['ket_np']
             ]);
 
-        return redirect()->route('nomorPertandingan')->with('status','edited');            
+        return redirect()->route('nomorPertandingan')->with(['status' => 'success','message' => 'Data berhasil dirubah']);            
     }
     public function hapus($id)
     {
         $query=Nomor_Pertandingan::where('id_np',$id)->delete();
         if($query)
-            return redirect('tampilNoPertandingan')->with('status','deleted');
-        else
-            echo "gagal";
+            return redirect('tampilNoPertandingan')->with(['status' => 'success','message' => 'Data berhasil dihapus']);        
     }
 }
 
