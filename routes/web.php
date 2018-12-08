@@ -169,6 +169,9 @@ Route::group(['middleware' => 'auth'],function(){
 		Route::get('dataJuara/getData','juaraController@getData');
 		Route::resource('juara','juaraController');
 		Route::resource('importData','importDataController');
+
+		Route::get('laporan','laporanController@index');
+		Route::post('laporanListDataAtlet','laporanController@listDataAtlet')->name('laporanListDataAtlet');
 	});
 });
 
