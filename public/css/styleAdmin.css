@@ -13,3 +13,6 @@
 section.content-header {
     min-height: 41px;
 }
+span.select2.select2-container {
+    width: 100% !important;
+}

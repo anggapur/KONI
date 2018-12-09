@@ -6,6 +6,7 @@
   <meta name="csrf_token" content="{{ csrf_token() }}">
   <title>{{ config('app.name', 'Laravel') }}</title>
   <!-- slider -->
+  <link rel="stylesheet" href="{{asset('public/adminLTE/bower_components/select2/dist/css/select2.min.css')}}">
   <link rel="stylesheet" type="text/css" href="{{asset('public/adminLTE/dist/css/slider.css')}}">
   
   <!-- Bootstrap 3.3.7 -->
@@ -39,8 +40,9 @@
   <!-- DataTables -->
   <link rel="stylesheet" href="{{asset('public/adminLTE/bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css')}}">
 
-  <link rel="stylesheet" href="{{asset('public/adminLTE/bower_components/select2/dist/css/select2.min.css')}}">
- 
+  
+
+
   <!-- Tell the browser to be responsive to screen width -->
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
    <!-- FonT Awesome -->
@@ -428,6 +430,11 @@
         <li class="{{GH::segment(2,['juara'])}}">
           <a href="{{url('administrator/juara')}}">
             <i class="fa fa-medal"></i> <span>Juara</span>            
+          </a>          
+        </li>
+         <li class="{{GH::segment(2,['laporan'])}}">
+          <a href="{{url('administrator/laporan')}}">
+            <i class="fa fa-file"></i> <span>Laporan</span>            
           </a>          
         </li>
         
