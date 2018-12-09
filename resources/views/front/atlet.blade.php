@@ -124,7 +124,7 @@
             processing: true,
             serverSide: true,
             ajax: {
-                url: '{{ url("data-atlet") }}'
+                url: '{{ url("data-atlet-front") }}'
             },
             columns: [
             {data: 'nama_atlet', name: 'nama_atlet'},

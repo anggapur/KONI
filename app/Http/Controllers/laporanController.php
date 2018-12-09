@@ -8,6 +8,7 @@ use App\Nomor_Pertandingan;
 use App\Master_Atlet;
 use App\Event;
 use App\Detail_Event;
+use App\Prestasi;
 use Datatables;
 use DB;
 class laporanController extends Controller
@@ -69,5 +70,30 @@ class laporanController extends Controller
                 ->get();
 
         return \Response::json($query);
+    }
+    public function listDataPrestasi(Request $request){
+        //dd($request);        
+        $colomSelect = ["nama_atlet","ket_juara",'nama_medali'];
+        $colomShow = ["Nama Atlet","Juara","Medali"];        
+        // foreach ($request->colom as $key => $value) {
+        //     array_push($caborIdIn,$key);
+        // }
+
+        $cabor = $request->cabor_id;
+        $event = $request->event_id;
+        $query = Prestasi::select('nama_atlet','ket_juara','nama_medali')
+        ->leftJoin('Master_Atlet','id_atlet','=','atlet_id')
+        ->leftJoin('juara','id_juara','=','juara_id')
+        ->leftJoin('medali','id_medali','=','medali_id')
+        ->where('event_id',$event)
+        ->where('prestasi.cabor_id',$cabor)
+        ->get();
+
+        //dd($query);
+                    
+        $data['content'] = $query;
+        $data['colomShow'] = $colomShow;
+        $data['colomSelect'] = $colomSelect;
+        return $data;   
     }
 }

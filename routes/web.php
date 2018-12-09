@@ -34,7 +34,7 @@ Route::get('rekor','frontController@rekor');
 
 Route::get('atlet/{id}/{nama}','frontController@detailAtlet');
 
-Route::get('data-atlet','frontController@dataAtlet');
+Route::get('data-atlet-front','frontController@dataAtlet');
 Route::get('data-prestasi','frontController@dataPrestasi');
 Route::get('data-event','frontController@dataEvent');
 Route::get('data-pelatih','frontController@dataPelatih');
@@ -173,7 +173,8 @@ Route::group(['middleware' => 'auth'],function(){
 		Route::get('laporan','laporanController@index');
 		Route::post('laporanListDataAtlet','laporanController@listDataAtlet')->name('laporanListDataAtlet');
 		Route::post('laporanRekapJumlahAtlet','laporanController@rekapJumlahAtlet')->name('laporanRekapJumlahAtlet');
-		Route::post('api/tags','laporanController@apiTags');
+		Route::post('laporanListDataPrestasi','laporanController@listDataPrestasi')->name('laporanListDataPrestasi');
+		Route::post('api/tags','laporanController@apiTags');		
 	});
 });
 

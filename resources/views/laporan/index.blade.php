@@ -168,11 +168,12 @@
           <!-- ENDRekap Jumlah Atlet -->
           <!-- LIST DATA Prestasi -->
           <form id="listDataPrestasi" style="display: none;">
+          {{csrf_field()}}
           <div class="row">
             <div class="col-md-3">
               <div class="form-group">
                 <label>Event</label>
-                <select class="select2" id="selectEvent">
+                <select class="select2" id="selectEvent" name="event_id">
                   <option></option>
                   @foreach($event as $val)
                     <option value="{{$val->id_event}}" data-cabor="{{$val->cabor_id}}">{{$val->nama_event}}</option>
@@ -183,7 +184,7 @@
             <div class="col-md-3">
               <div class="form-group">
                 <label>Cabang Olahraga</label>
-                <select class="select2 caborByEvent">
+                <select class="select2 caborByEvent" name="cabor_id">
                   <option></option>
                 </select>
               </div>
@@ -333,6 +334,39 @@
       });
       // End Rekap Data Jumlah Atlet
 
+      //Start Rekap Data Prestasi
+      $('form#listDataPrestasi').submit(function(e){
+        e.preventDefault();
+        dataForm = $(this).serializeArray();
+        console.log(dataForm);
+        $.ajax({
+          method : 'POST',
+          url : '{{route("laporanListDataPrestasi")}}',
+          data : dataForm,
+          success : function(data){
+            clearTable();
+            //head
+            thead = "<tr>";
+            $.each(data.colomShow,function(k,v){
+              thead+="<th>"+v+"</th>";
+            });
+            thead+= "</tr>";
+             $('#tableData thead').append(thead);
+             //body
+             tr="";
+            $.each(data.content,function(k,v){
+              tr+= "<tr>";
+                $.each(data.colomSelect,function(i,n){
+                  tr+="<td>"+v[n]+"</td>";
+                });
+              tr+="</tr>";                           
+            });
+            $('#tableData tbody').append(tr); 
+            initTable();
+          }
+        }); 
+      });
+
 
       // Checkbox control
       $('.allCheckbox').click(function(){
@@ -361,6 +395,8 @@
 
 
      });
+
+
 
   function clearTable()
   {
