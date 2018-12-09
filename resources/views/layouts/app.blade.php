@@ -449,7 +449,7 @@
           </a>          
         </li>
         
-        <li>
+        <!-- <li>
           <a href="#">
             <i class="fa fa-share"></i> <span>Multilevel</span>
             <span class="pull-right-container">
@@ -481,7 +481,7 @@
             </li>
             <li><a href="#"><i class="fa fa-circle-o"></i> Level One</a></li>
           </ul>
-        </li>
+        </li> -->
         <!-- <li><a href="https://adminlte.io/docs"><i class="fa fa-book"></i> <span>Documentation</span></a></li> -->
         
       </ul>

@@ -259,8 +259,8 @@ class atletController extends Controller
             else
             {
                 $IdFoto = $request->id_foto;                
-                if($request->nama_foto != 'default.png')
-                    File::delete('public/upload/fotoAtlet/'.$request->nama_foto);
+                // if($request->nama_foto != 'default.png')
+                //     File::delete('public/upload/fotoAtlet/'.$request->nama_foto);
                 $file       = $request->file('gambar');
                 $ori_name = $file->getClientOriginalName();
                 $fileName = $IdFoto.$ori_name;
@@ -295,8 +295,8 @@ class atletController extends Controller
             ->where('id_atlet',$id)
             ->first();
 
-            if($data['nama_foto']->nama_foto != 'default.png')                    
-                File::delete('public/upload/fotoAtlet/'.$data['nama_foto']->nama_foto);
+            // if($data['nama_foto']->nama_foto != 'default.png')                    
+            //     File::delete('public/upload/fotoAtlet/'.$data['nama_foto']->nama_foto);
 
             $query_master=Master_Atlet::where('id_atlet',$id)->delete();
             $query_detail=Detail_Atlet::where('atlet_id',$id)->delete();
