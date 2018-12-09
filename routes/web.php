@@ -172,6 +172,8 @@ Route::group(['middleware' => 'auth'],function(){
 
 		Route::get('laporan','laporanController@index');
 		Route::post('laporanListDataAtlet','laporanController@listDataAtlet')->name('laporanListDataAtlet');
+		Route::post('laporanRekapJumlahAtlet','laporanController@rekapJumlahAtlet')->name('laporanRekapJumlahAtlet');
+		Route::post('api/tags','laporanController@apiTags');
 	});
 });
 

@@ -67,6 +67,17 @@
 
 <!-- jQuery 3 -->
 <script src="{{asset('public/adminLTE/bower_components/jquery/dist/jquery.min.js')}}"></script>
+
+<script src="{{asset('public/adminLTE/bower_components/select2/dist/js/select2.full.min.js')}}"></script>
+<script type="text/javascript">
+  $(function () {
+    //Initialize Select2 Elements
+    $('.select2').select2({
+    placeholder: "Pilih...",
+    allowClear: true
+});
+  });
+</script>
 </head>
 <body class="hold-transition skin-blue sidebar-mini adminPart">
 <div class="wrapper">
@@ -740,14 +751,10 @@
 <script src="{{asset('public/adminLTE/bower_components/datatables.net/js/jquery.dataTables.min.js')}}"></script>
 <script src="{{asset('public/adminLTE/bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js')}}"></script>
 
-<script src="{{asset('public/adminLTE/bower_components/select2/dist/js/select2.full.min.js')}}"></script>
 
 
 <script type="text/javascript">
-  $(function () {
-    //Initialize Select2 Elements
-    $('.select2').select2()
-    })
+  
   $('#datepicker').datepicker({
       autoclose: true,      
       format: 'yyyy-mm-dd'

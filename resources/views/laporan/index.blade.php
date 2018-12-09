@@ -28,11 +28,12 @@
             <div class="col-md-3">
               <div class="form-group">
                 <label>Pilih Jenis Laporan</label>
-                <select class="form-control" id="jenisLaporan">
-                  <option value="pilhJenisLaporan">--Pilih Jenis Laporan--</option>
+                <select class="form-control select2" id="jenisLaporan">
+                 <option></option>
                   <option value="dataListAtlet">List Data Atlet</option>
-                  <option value="dataPrestasi">Data Prestasi</option>
-                  <option value="dataAtlet">Detail Atlet</option>
+                  <option value="rekapJumlahAtlet">Rekap Jumlah Atlet</option>
+                  <option value="listDataPrestasi">List Data Prestasi</option>
+                  <!-- <option value="dataAtlet">Detail Atlet</option> -->
                 </select>
               </div>
             </div>
@@ -62,49 +63,132 @@
                 </select>
               </div>
             </div>
+            <div class="col-md-12 parentCheckbox">
+              <label>Pilih Kolom</label>
+               <div class="checkbox">
+                <label>
+                  <input type="checkbox" class="allCheckbox"> <b>Semua Kolom</b>
+                </label>
+              </div>
+              <div class="checkbox">
+                <label>
+                  <input type="checkbox" name="colom[no_kartu_tanda_anggota]" value="No Kartu Tanda Anggota"> No Kartu Tanda Anggota
+                </label>
+              </div>
+               <div class="checkbox">
+                <label>
+                  <input type="checkbox" name="colom[nama_atlet]" value="Nama Atlet"> Nama Atlet
+                </label>
+              </div>
+               <div class="checkbox">
+                <label>
+                  <input type="checkbox" name="colom[jenis_kelamin]" value="Jenis Kelamin"> Jenis Kelamin
+                </label>
+              </div>
+              <div class="checkbox">
+                <label>
+                  <input type="checkbox" name="colom[tempat_lahir]" value="Tempat Lahir"> Tempat Lahir
+                </label>
+              </div>
+              <div class="checkbox">
+                <label>
+                  <input type="checkbox" name="colom[tgl_lahir]" value="Tanggal Lahir"> Tanggal Lahir
+                </label>
+              </div>
+              <div class="checkbox">
+                <label>
+                  <input type="checkbox" name="colom[alamat]" value="Alamat"> Alamat
+                </label>
+              </div>
+              <div class="checkbox">
+                <label>
+                  <input type="checkbox" name="colom[tinggi]" value="Tinggi"> Tinggi
+                </label>
+              </div>
+              <div class="checkbox">
+                <label>
+                  <input type="checkbox" name="colom[berat]" value="Berat"> Berat
+                </label>
+              </div>
+              <div class="checkbox">
+                <label>
+                  <input type="checkbox" name="colom[tgl_jadi_atlet]" value="Tanggal Jadi Atlet"> Tanggal Jadi Atlet
+                </label>
+              </div>
+              <div class="checkbox">
+                <label>
+                  <input type="checkbox" name="colom[tgl_pensiun]" value="Tanggal Pensiun"> Tanggal Pensiun
+                </label>
+              </div>
+            </div>
             <div class="col-md-12">
               <div class="form-group">
                 <button type="submit" class="btn btn-success"><i class="fa fa-file"></i>  Cetak Laporan</button>
               </div>  
-            </div>
+            </div>            
           </div>
           </form>
           <!-- END LIST DATA ATLET -->
-
-          <!-- LIST DATA Prestasi -->
-          <form id="dataPrestasi" style="display: none;">
+          <!-- Rekap Jumlah Atlet -->
+          <form id="rekapJumlahAtlet" style="display: none;">
+            {{csrf_field()}}
           <div class="row">
             <div class="col-md-3">
               <div class="form-group">
-                <label>Cabang Olahraga</label>
-                <select class="select2" required="required">
-                  <option value="">--Pilih Cabor--</option>
-                  @foreach($cabor as $val)
-                    <option value="{{$val->id_cabor}}">{{$val->nama_cabor}}</option>
-                  @endforeach
-                </select>
-              </div>
-            </div>
-            <div class="col-md-3">
-              <div class="form-group">
-                <label>Nomor Pertandingan</label>
-                <select class="select2">
-                  @foreach($nomorPertandingan as $val)
-                    <option value="{{$val->id_np}}" data-cabor="{{$val->cabor_id}}">{{$val->ket_np}}</option>
-                  @endforeach
-                </select>
-              </div>
-            </div>
-            <div class="col-md-3">
-              <div class="form-group">
-                <label>Jenis Kelamin</label>
-                <select class="select2">
+                <label>Jenis Kelamin</label><br>
+                <select class="select2" name="jenis_kelamin">
                   <option value="S">Semua</option>
                   <option value="L">Laki</option>
                   <option value="P">Perempuan</option>
                 </select>
               </div>
             </div>
+            <div class="col-md-12 parentCheckbox">
+              <label>Pilih Cabor</label>
+               <div class="checkbox">
+                <label>
+                  <input type="checkbox" class="allCheckbox"> <b>Semua Cabor</b>
+                </label>
+              </div>
+              @foreach($cabor as $val)
+              <div class="checkbox">
+                <label>
+                  <input type="checkbox" name="colom[{{$val->id_cabor}}]" value="{{$val->nama_cabor}}"> {{$val->nama_cabor}}
+                </label>
+              </div>
+              @endforeach
+            </div>
+            <div class="col-md-12">
+              <div class="form-group">
+                <button type="submit" class="btn btn-success"><i class="fa fa-file"></i>  Cetak Laporan</button>
+              </div>  
+            </div>            
+          </div>
+          </form>
+          <!-- ENDRekap Jumlah Atlet -->
+          <!-- LIST DATA Prestasi -->
+          <form id="listDataPrestasi" style="display: none;">
+          <div class="row">
+            <div class="col-md-3">
+              <div class="form-group">
+                <label>Event</label>
+                <select class="select2" id="selectEvent">
+                  <option></option>
+                  @foreach($event as $val)
+                    <option value="{{$val->id_event}}" data-cabor="{{$val->cabor_id}}">{{$val->nama_event}}</option>
+                  @endforeach
+                </select>
+              </div>
+            </div>
+            <div class="col-md-3">
+              <div class="form-group">
+                <label>Cabang Olahraga</label>
+                <select class="select2 caborByEvent">
+                  <option></option>
+                </select>
+              </div>
+            </div>
+            
             <div class="col-md-12">
               <div class="form-group">
                 <button type="submit" class="btn btn-success"><i class="fa fa-file"></i>  Cetak Laporan</button>
@@ -115,7 +199,7 @@
           <!-- END LIST DATA PRESTASI -->
 
           <!-- Detail Data Atlet -->
-          <form id="dataAtlet" style="display: none;">
+         <!--  <form id="dataAtlet" style="display: none;">
           <div class="row">
             <div class="col-md-3">
               <div class="form-group">
@@ -145,7 +229,7 @@
               </div>  
             </div>
           </div>
-          </form>
+          </form> -->
           <!-- Detail Data Atlet -->
         </div>  
     </div>
@@ -157,7 +241,7 @@
 		    <div class="box-body">
           <table id="tableData" class="table table-bordered">
             <thead>
-              <tr>
+              <tr style="display: none">
                 <th>A</th>
                 <th>B</th>
                 <th>C</th>
@@ -191,34 +275,103 @@
           url : '{{route("laporanListDataAtlet")}}',
           data : dataForm,
           success : function(data){
-            $('#tableData').DataTable().clear();
-            $('#tableData').DataTable().destroy();
-            $('#tableData tbody, #tableData thead').empty();
-            colom = ["no_kartu_tanda_anggota","nama_atlet","jenis_kelamin",""];
+            clearTable();
+            colom = ["no_kartu_tanda_anggota","nama_atlet","jenis_kelamin"];
             //head
             thead = "<tr>";
-            $.each(colom,function(k,v){
+            $.each(data.colomShow,function(k,v){
               thead+="<th>"+v+"</th>";
             });
             thead+= "</tr>";
              $('#tableData thead').append(thead);
              //body
              tr="";
-            $.each(data,function(k,v){
-              tr+= "<tr>"+
-                    "<td>"+v.no_kartu_tanda_anggota+"</td>"+
-                    "<td>"+v.nama_atlet+"</td>"+
-                    "<td>"+v.jenis_kelamin+"</td>"+
-                    "<td></td>"+
-                    "</tr>";                           
+            $.each(data.content,function(k,v){
+              tr+= "<tr>";
+                $.each(data.colomSelect,function(i,n){
+                  tr+="<td>"+((v[n] == null) ? "-" : v[n])+"</td>";
+                });
+              tr+="</tr>";                           
             });
             $('#tableData tbody').append(tr); 
-            $('#tableData').DataTable();
+           initTable();
           }
         }); 
       });
+      // End Form dataListAtlet
+      // Rekap Data Jumlah Atlet
+      $('form#rekapJumlahAtlet').submit(function(e){
+        e.preventDefault();
+        dataForm = $(this).serializeArray();
+        console.log(dataForm);
+        $.ajax({
+          method : 'POST',
+          url : '{{route("laporanRekapJumlahAtlet")}}',
+          data : dataForm,
+          success : function(data){
+            clearTable();
+            //head
+            thead = "<tr>";
+            $.each(data.colomShow,function(k,v){
+              thead+="<th>"+v+"</th>";
+            });
+            thead+= "</tr>";
+             $('#tableData thead').append(thead);
+             //body
+             tr="";
+            $.each(data.content,function(k,v){
+              tr+= "<tr>";
+                $.each(data.colomSelect,function(i,n){
+                  tr+="<td>"+v[n]+"</td>";
+                });
+              tr+="</tr>";                           
+            });
+            $('#tableData tbody').append(tr); 
+            initTable();
+          }
+        }); 
+      });
+      // End Rekap Data Jumlah Atlet
 
-      
+
+      // Checkbox control
+      $('.allCheckbox').click(function(){
+        // $('form#rekapJumlahAtlet input[type="checkbox"]').prop('checked', this.checked)
+        $(this).parents('.parentCheckbox').find('input[type="checkbox"]').prop('checked', this.checked);;
+      });
+
+        
+         $('#selectEvent').on('change',function(e){
+          id_event = $(this).val();
+          $.ajax({
+            method : 'POST',
+            url :'{{url("administrator/api/tags")}}',
+            data : {
+              'id_event' : id_event,
+              '_token' : '{{csrf_token()}}'
+            },
+            success : function(datas){
+              console.log(datas);
+              $('.caborByEvent').empty().trigger('change').select2({
+                data : datas,
+               });
+            }
+          });
+         });
+
+
      });
-   </script>
+
+  function clearTable()
+  {
+    $('#tableData').DataTable().clear();
+    $('#tableData').DataTable().destroy();
+    $('#tableData tbody, #tableData thead').empty();
+  }
+  function initTable()
+  {
+    $('#tableData').DataTable();
+  }
+  </script>
+  
 @endsection
