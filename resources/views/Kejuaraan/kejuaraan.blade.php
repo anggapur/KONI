@@ -77,14 +77,14 @@
                         <div class="input-group-addon">
                           <i class="fa fa-calendar"></i>
                         </div>
-                      <input class="form-control datepicker" type="text" name="tgl_mulai[]>"></div>
+                      <input class="form-control" type="text" name="tgl_mulai[]>"></div>
                     </td>
                     <td style="min-width: 150px">
                       <div class="input-group date">
                         <div class="input-group-addon">
                           <i class="fa fa-calendar"></i>
                         </div>
-                      <input class="form-control datepicker" type="text" name="tgl_selesai[]"></div>
+                      <input class="form-control" type="text" name="tgl_selesai[]"></div>
                     </td>
                     <td style="min-width: 150px">
                       <div class="input-group date">

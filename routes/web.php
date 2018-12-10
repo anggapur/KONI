@@ -139,11 +139,11 @@ Route::group(['middleware' => 'auth'],function(){
 	
 
 	//User
-	Route::get('/admin','adminController@index')->name('view');
+	//Route::get('/admin','adminController@index')->name('view');
 	Route::get('/admin/tambah','adminController@formTambah')->name('admin');
 	Route::post('/insert','adminController@admin');
 	Route::get('/admin/view','adminController@tampil')->name('view');
-	Route::get('/admin/{id_user}','adminController@edit');
+	Route::get('/admin/{id_user}','adminController@edit')->name('editUser');
 	Route::post('/admin/update/{id_user}','adminController@update');
 	Route::get('/admin/hapus/{id_user}','adminController@hapus');
 

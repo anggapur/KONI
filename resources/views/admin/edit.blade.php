@@ -2,6 +2,10 @@
 @section('content')
 <!-- Main content -->
     <section class="content">
+
+      @if(session('status')=='1')
+        <div class="alert alert-danger alert-dismissible">Email Sudah Ada!</div>
+      @endif 
       
       <div class="box box-primary">
             <div class="box-header with-border">
@@ -14,15 +18,15 @@
               <div class="box-body">
               	<div class="form-group">
                   <label for="id">ID</label>
-                  <input name="id" type="text" class="form-control" id="id" placeholder="Nama" disabled value="{{$user->id}}">
+                  <input name="id" type="text" class="form-control" id="id" placeholder="Nama" disabled value="{{$user->id}}" required>
                 </div>
                 <div class="form-group">
                   <label for="name">Nama</label>
-                  <input name="name" type="text" class="form-control" id="name" placeholder="Nama" value="{{$user->name}}">
+                  <input name="name" type="text" class="form-control" id="name" placeholder="Nama" value="{{$user->name}}" required>
                 </div>
                 <div class="form-group">
                   <label for="email">Email</label>
-                  <input name="email" type="email" class="form-control" id="email" placeholder="email@email.com" value="{{$user->email}}">
+                  <input name="email" type="email" class="form-control" id="email" placeholder="email@email.com" value="{{$user->email}}" required>
                 </div>
               <!-- /.box-body -->
 

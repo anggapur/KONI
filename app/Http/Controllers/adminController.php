@@ -42,13 +42,24 @@ class adminController extends Controller
         $user->name=$request->name;
         $user->email=$request->email;
 
+        $check = User::where('email','=',$user->email)
+        ->where('id','!=',$id_user)
+        ->first();
+
         $status = '5';
+        if ($check != null) {
+            $status = '1';
+        }
+
         if($status == '5'){
             if(!$user->save()) {
                 $status = 6;
             }
         }
-        return Redirect()->route('view')->with('status',$status); 
+        if($status == '5')
+            return Redirect()->route('view')->with('status',$status);
+        else if($status == '1')
+            return Redirect()->route('editUser',$id_user)->with('status',$status);
     }
 
     public function getdata($id){

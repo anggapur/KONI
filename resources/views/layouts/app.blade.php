@@ -750,30 +750,32 @@
 <!-- DataTables -->
 <script src="{{asset('public/adminLTE/bower_components/datatables.net/js/jquery.dataTables.min.js')}}"></script>
 <script src="{{asset('public/adminLTE/bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js')}}"></script>
+<script type="text/javascript" src="{{asset('public/js/date-time-picker.min.js')}}"></script>
 
 
 
 <script type="text/javascript">
   
-  $('#datepicker').datepicker({
-      autoclose: true,      
-      format: 'yyyy-mm-dd'
+  $('.datepicker').dateTimePicker({
+      autoclose: true,
+      limitMax: new Date()
+      
     });
 
-  $('#datepicker_mulai').datepicker({      
-      autoclose: true,      
-      format: 'yyyy-mm-dd'      
-    });
+  // $('#datepicker_mulai').dateTimePicker({      
+  //     autoclose: true,      
+  //     format: 'yyyy-mm-dd'      
+  //   });
 
-  $('#datepicker_selesai').datepicker({
-      autoclose: true,      
-      format: 'yyyy-mm-dd'
-    });
+  // $('#datepicker_selesai').datepicker({
+  //     autoclose: true,      
+  //     format: 'yyyy-mm-dd'
+  //   });
 
-  $('.datepicker').datepicker({
-      autoclose: true,      
-      format: 'yyyy-mm-dd'
-    });
+  // $('.datepicker').datepicker({
+  //     autoclose: true,      
+  //     format: 'yyyy-mm-dd'
+  //   });
 
   //Timepicker
     $('.timepicker').timepicker({
@@ -784,6 +786,18 @@
       useCurrent: false
 
     });
+
+      $('#datepicker_mulai').dateTimePicker({
+          autoclose: true,
+          limitMax: $('#datepicker_selesai')
+      });
+
+      $('#datepicker_selesai').dateTimePicker({
+          autoclose: true,
+          limitMin: $('#datepicker_mulai')
+      });    
+
+    $('input').prop('autocomplete','off');
 
 </script>
 

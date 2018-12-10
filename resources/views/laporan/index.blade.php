@@ -45,8 +45,9 @@
             <div class="col-md-3">
               <div class="form-group">
                 <label>Cabang Olahraga</label><br>
-                <select class="select2" required="required" name="id_cabor">
+                <select class="select2" required="required" name="id_cabor" onchange="update_np(this.value)">
                   <option value="">--Pilih Cabor--</option>
+                    <option value='0'>Semua Cabor</option>
                   @foreach($cabor as $val)
                     <option value="{{$val->id_cabor}}">{{$val->nama_cabor}}</option>
                   @endforeach
@@ -55,7 +56,15 @@
             </div>
             <div class="col-md-3">
               <div class="form-group">
-                <label>Jenis Kelamin</label><br>
+                <label>Nomor Pertandingan</label>
+                <select id="np" class="select2" name="id_np">
+                  <option value="" selected>--Pilih Cabor dulu--</option>
+                </select>
+              </div>
+            </div>            
+            <div class="col-md-3">
+              <div class="form-group">
+                <label>Jenis Kelamin</label>
                 <select class="select2" name="jenis_kelamin">
                   <option value="S">Semua</option>
                   <option value="L">Laki</option>
@@ -175,6 +184,7 @@
                 <label>Event</label>
                 <select class="select2" id="selectEvent" name="event_id">
                   <option></option>
+                  <option value="0">Semua Event</option>
                   @foreach($event as $val)
                     <option value="{{$val->id_event}}" data-cabor="{{$val->cabor_id}}">{{$val->nama_event}}</option>
                   @endforeach
@@ -184,7 +194,15 @@
             <div class="col-md-3">
               <div class="form-group">
                 <label>Cabang Olahraga</label>
-                <select class="select2 caborByEvent" name="cabor_id">
+                <select class="select2 caborByEvent" name="cabor_id" onchange="update_np(this.value)">
+                  <option></option>
+                </select>
+              </div>
+            </div>
+            <div class="col-md-3">
+              <div class="form-group">
+                <label>Nomor Pertandingan</label>
+                <select class="select2" name="np_id" id="np2">
                   <option></option>
                 </select>
               </div>
@@ -386,7 +404,7 @@
             },
             success : function(datas){
               console.log(datas);
-              $('.caborByEvent').empty().trigger('change').select2({
+              $('.caborByEvent').empty().trigger('change').select2({                
                 data : datas,
                });
             }
@@ -408,6 +426,36 @@
   {
     $('#tableData').DataTable();
   }
+
+  function update_np(id){
+        $.ajax({
+              type: "POST",
+              url: "{{URL('/getNP')}}",
+              data: {
+                'id' : id,
+                '_token' : '{{csrf_token()}}',
+              },
+              cache: false,
+              success: function(data){
+                data = JSON.parse(data);
+                
+                if(data.length > 0){
+                  var text = "<option value='0'>Semua</option>";
+                  for(var i=0;i<data.length;i++){
+                    text += "<option value='"+data[i].id_np+"'> "+data[i].ket_np+" </option>";
+                    $('#tambah-np').hide();
+                  }
+                }
+                else{
+                  text += "<option value='' hidden selected disabled> Tidak ada data Nomor Pertandingan pada Cabang Olahraga ini </option>";
+                  $('#tambah-np').show();
+                }
+                $("#np").html(text);
+                $("#np2").html(text);
+                
+        }
+      });       
+      }
   </script>
   
 @endsection

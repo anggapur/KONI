@@ -34,11 +34,18 @@ class laporanController extends Controller
             array_push($colomSelect,$key);
             array_push($colomShow,$value);
         }
-        $query = Master_Atlet::where('cabor_id',$request->id_cabor);
+        if($request->id_cabor == 0)
+            $query = Master_Atlet::leftJoin('detail_atlet','id_atlet','=','atlet_id');
+        else
+            $query = Master_Atlet::leftJoin('detail_atlet','id_atlet','=','atlet_id')->where('cabor_id',$request->id_cabor);
+
+        if($request->id_np != 0)
+            $query->where('np_id',$request->id_np);
+
         if($request->jenis_kelamin != "S")
             $query->where('jenis_kelamin',$request->jenis_kelamin);
 
-        $data['content'] = $query->select($colomSelect)->get();
+        $data['content'] = $query->select($colomSelect)->groupBy('id_atlet')->get();
         $data['colomShow'] = $colomShow;
         $data['colomSelect'] = $colomSelect;
         return $data;
@@ -64,8 +71,13 @@ class laporanController extends Controller
     }
     public function apiTags(Request $request)
     {
-       $query = Detail_Event::where('event_id',$request->id_event)
-                ->leftJoin('cabang_olahraga','cabor_id','=','id_cabor')
+        $id = $request->id_event;
+        if($id != 0)
+            $query = Detail_Event::where('event_id',$id);
+        else
+            $query = Detail_Event::where('event_id','!=',$id);
+
+        $query = $query->leftJoin('cabang_olahraga','cabor_id','=','id_cabor')
                 ->select('id_cabor as id','nama_cabor as text')
                 ->get();
 
@@ -81,12 +93,22 @@ class laporanController extends Controller
 
         $cabor = $request->cabor_id;
         $event = $request->event_id;
+        $np    = $request->np_id;
         $query = Prestasi::select('nama_atlet','ket_juara','nama_medali')
         ->leftJoin('Master_Atlet','id_atlet','=','atlet_id')
         ->leftJoin('juara','id_juara','=','juara_id')
-        ->leftJoin('medali','id_medali','=','medali_id')
-        ->where('event_id',$event)
-        ->where('prestasi.cabor_id',$cabor)
+        ->leftJoin('medali','id_medali','=','medali_id');
+
+        if($event != 0)
+            $query = $query->where('event_id',$event);
+        
+
+        if($np != 0)
+            $query = $query->where('np_id',$np);
+        
+
+
+        $query = $query->where('prestasi.cabor_id',$cabor)
         ->get();
 
         //dd($query);
