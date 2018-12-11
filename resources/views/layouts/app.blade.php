@@ -6,6 +6,7 @@
   <meta name="csrf_token" content="{{ csrf_token() }}">
   <title>{{ config('app.name', 'Laravel') }}</title>
   <!-- slider -->
+  <link rel="stylesheet" href="{{asset('public/adminLTE/bower_components/select2/dist/css/select2.min.css')}}">
   <link rel="stylesheet" type="text/css" href="{{asset('public/adminLTE/dist/css/slider.css')}}">
   
   <!-- Bootstrap 3.3.7 -->
@@ -39,8 +40,9 @@
   <!-- DataTables -->
   <link rel="stylesheet" href="{{asset('public/adminLTE/bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css')}}">
 
-  <link rel="stylesheet" href="{{asset('public/adminLTE/bower_components/select2/dist/css/select2.min.css')}}">
- 
+  
+
+
   <!-- Tell the browser to be responsive to screen width -->
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
    <!-- FonT Awesome -->
@@ -65,6 +67,17 @@
 
 <!-- jQuery 3 -->
 <script src="{{asset('public/adminLTE/bower_components/jquery/dist/jquery.min.js')}}"></script>
+
+<script src="{{asset('public/adminLTE/bower_components/select2/dist/js/select2.full.min.js')}}"></script>
+<script type="text/javascript">
+  $(function () {
+    //Initialize Select2 Elements
+    $('.select2').select2({
+    placeholder: "Pilih...",
+    allowClear: true
+});
+  });
+</script>
 </head>
 <body class="hold-transition skin-blue sidebar-mini adminPart">
 <div class="wrapper">
@@ -362,7 +375,7 @@
           </a>          
         </li>
 
-        <li class="{{GH::segment(1,['view_atlet','add_atlet','edit_atlet'])}}">
+        <li class="{{GH::segment(1,['view_atlet','add_atlet','edit_atlet','detail_atlet','view_detail'])}}">
           <a href="{{url('view_atlet')}}">
             <i class="fa fa-running"></i> <span>Atlet</span>            
           </a>          
@@ -430,8 +443,13 @@
             <i class="fa fa-medal"></i> <span>Juara</span>            
           </a>          
         </li>
+         <li class="{{GH::segment(2,['laporan'])}}">
+          <a href="{{url('administrator/laporan')}}">
+            <i class="fa fa-file"></i> <span>Laporan</span>            
+          </a>          
+        </li>
         
-        <li>
+        <!-- <li>
           <a href="#">
             <i class="fa fa-share"></i> <span>Multilevel</span>
             <span class="pull-right-container">
@@ -463,7 +481,7 @@
             </li>
             <li><a href="#"><i class="fa fa-circle-o"></i> Level One</a></li>
           </ul>
-        </li>
+        </li> -->
         <!-- <li><a href="https://adminlte.io/docs"><i class="fa fa-book"></i> <span>Documentation</span></a></li> -->
         
       </ul>
@@ -732,34 +750,32 @@
 <!-- DataTables -->
 <script src="{{asset('public/adminLTE/bower_components/datatables.net/js/jquery.dataTables.min.js')}}"></script>
 <script src="{{asset('public/adminLTE/bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js')}}"></script>
+<script type="text/javascript" src="{{asset('public/js/date-time-picker.min.js')}}"></script>
 
-<script src="{{asset('public/adminLTE/bower_components/select2/dist/js/select2.full.min.js')}}"></script>
 
 
 <script type="text/javascript">
-  $(function () {
-    //Initialize Select2 Elements
-    $('.select2').select2()
-    })
-  $('#datepicker').datepicker({
-      autoclose: true,      
-      format: 'yyyy-mm-dd'
+  
+  $('.datepicker').dateTimePicker({
+      autoclose: true,
+      limitMax: new Date()
+      
     });
 
-  $('#datepicker_mulai').datepicker({      
-      autoclose: true,      
-      format: 'yyyy-mm-dd'      
-    });
+  // $('#datepicker_mulai').dateTimePicker({      
+  //     autoclose: true,      
+  //     format: 'yyyy-mm-dd'      
+  //   });
 
-  $('#datepicker_selesai').datepicker({
-      autoclose: true,      
-      format: 'yyyy-mm-dd'
-    });
+  // $('#datepicker_selesai').datepicker({
+  //     autoclose: true,      
+  //     format: 'yyyy-mm-dd'
+  //   });
 
-  $('.datepicker').datepicker({
-      autoclose: true,      
-      format: 'yyyy-mm-dd'
-    });
+  // $('.datepicker').datepicker({
+  //     autoclose: true,      
+  //     format: 'yyyy-mm-dd'
+  //   });
 
   //Timepicker
     $('.timepicker').timepicker({
@@ -770,6 +786,18 @@
       useCurrent: false
 
     });
+
+      $('#datepicker_mulai').dateTimePicker({
+          autoclose: true,
+          limitMax: $('#datepicker_selesai')
+      });
+
+      $('#datepicker_selesai').dateTimePicker({
+          autoclose: true,
+          limitMin: $('#datepicker_mulai')
+      });    
+
+    $('input').prop('autocomplete','off');
 
 </script>
 

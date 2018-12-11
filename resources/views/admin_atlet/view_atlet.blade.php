@@ -10,38 +10,11 @@
         }
     </style>
     <section class="content">
-    @if(session('status'))
-        @if(session('status') == 'success')
-        <div class="alert alert-success alert-dismissible">
+    @if(session('status'))        
+        <div class="alert alert-{{session('status')}} alert-dismissible">
             <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-            <h4><i class="fa fa-check"></i> Data berhasil ditambahkan</h4>
+            {!! session('message') !!}
         </div>
-        @elseif(session('status') == 'edited')
-        <div class="alert alert-success alert-dismissible">
-            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-            <h4><i class="fa fa-check"></i> Data berhasil diubah</h4>
-        </div>
-        @elseif(session('status') == 'deleted')
-        <div class="alert alert-success alert-dismissible">
-            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-            <h4><i class="fa fa-check"></i> Data berhasil dihapus</h4>
-        </div>
-        @elseif(session('status') == 'failed add')
-        <div class="alert alert-danger alert-dismissible">
-            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-            <h4><i class="fa fa-times"></i> Gagal menambah data</h4>            
-        </div>
-        @elseif(session('status') == 'failed edit')
-        <div class="alert alert-danger alert-dismissible">
-            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-            <h4><i class="fa fa-times"></i> Gagal mengubah data</h4>
-        </div>
-        @elseif(session('status') == 'failed delete')
-            <div class="alert alert-danger alert-dismissible">
-            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-            <h4><i class="fa fa-times"></i> Gagal menghapus data</h4>
-        </div>
-        @endif
     @endif
     	<div class="row">
     		<div class="col-md-12">
@@ -60,8 +33,7 @@
                                         <th>No Kartu</th>
                                         <th>JK</th>
                                         <th>Tmp Lahir</th>
-                                        <th>Tgl Lahir</th>
-                                        <th>Kabupaten</th>
+                                        <th>Tgl Lahir</th>                                        
                                         <th>Status</th>
                                         <th>Aksi</th>
                                     </tr>
@@ -129,6 +101,25 @@
       </div>
     </div>
 
+    <!-- Modal -->
+    <div id="delModal" class="modal fade" role="dialog">
+      <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <h4 class="modal-title">Hapus Data</h4>
+          </div>
+          <div id="body-nama-atlet" class="modal-body">
+            
+          </div>
+          <div id="hapus-button" class="modal-footer">
+            
+          </div>
+        </div>
+      </div>
+    </div>
+
     <!-- /.content -->
     <script type="text/javascript">
         $(function() {
@@ -139,13 +130,12 @@
                 url: '{{ url("data-atlet") }}'
             },
             columns: [         
-            {data: 'nama_atlet', name: 'nama_atlet'},
+            {data: 'nama', name: 'nama'},
             {data: 'nama_cabor', name: 'nama_cabor'},
             {data: 'no_kartu_tanda_anggota', name: 'no_kartu_tanda_anggota'},
             {data: 'jenis_kelamin', name: 'jenis_kelamin'},
             {data: 'tempat_lahir', name: 'tempat_lahir'},
-            {data: 'tgl_lahir', name: 'tgl_lahir'},
-            {data: 'nama_kabupaten', name: 'nama_kabupaten'},
+            {data: 'tgl_lahir', name: 'tgl_lahir'},            
             {data: 'status', name: 'status'},
             {data: 'aksi', name: 'aksi'},
         ],
@@ -194,6 +184,15 @@
                     $("#images").html("<img src='public/upload/fotoAtlet/"+data.nama_foto+"' style='max-width:300px;max-height:300px;margin-bottom:10px;'/> ");
                 }
             });
+        }
+    </script>
+
+    <script type="text/javascript">
+        function del(id,nama){            
+            var url = "{{url('hapus_atlet')}}/";
+            $('#body-nama-atlet').html("<p> Yakin menghapus data "+nama+" ? </p>");
+            $('#hapus-button').html("<a href='"+url+id+"'><button type='button' class='btn btn-danger' >Hapus</button></a>");
+            $('#delModal').modal('show');
         }
     </script>
     

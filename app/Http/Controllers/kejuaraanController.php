@@ -95,7 +95,7 @@ class kejuaraanController extends Controller
         }
     	
     	
-        return redirect()->route('Kejuaraan')->with('status','success');
+        return redirect()->route('Kejuaraan')->with(['status' => 'success','message' => 'Data berhasil ditambahkan']);
         
     }
     public function tampil()
@@ -240,17 +240,15 @@ class kejuaraanController extends Controller
             }
         }
 
-        return redirect()->route('Kejuaraan')->with('status','edited');    
+        return redirect()->route('Kejuaraan')->with(['status' => 'success','message' => 'Data berhasil dirubah']);
     }
     public function hapus($id)
     {   
-        $query=Detail_Event::where('event_id',$id)->get();
-        $query=Event::where('id_event',$id)->get();
+        $query=Detail_Event::where('event_id',$id)->delete();
+        $query=Event::where('id_event',$id)->delete();
         //dd($query);
         if($query)
-            return redirect('tampilEvent')->with('status','deleted');
-        else
-            echo "gagal";
+            return redirect()->route('Kejuaraan')->with(['status' => 'success','message' => 'Data berhasil dihapus']);
     }
 
     public function getDataEvent(Request $Request){

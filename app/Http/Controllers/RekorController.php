@@ -37,7 +37,7 @@ class RekorController extends Controller
       ->addColumn('aksi', function($data){
       	return "<button onclick='view(".$data->id_rekor.")' class='btn btn-xs btn-warning'> <i class='fa fa-eye'> </i> View </button>
       		<a href=".route('editRekor',$data->id_rekor)."><button class='btn btn-xs btn-primary'> <i class='fa fa-edit'> </i> Edit  </button> </a>
-      		<button onclick='hapus(\"".$data->keterangan_rekor."\",".$data->id_rekor.")' class='btn btn-xs btn-danger'> <i class='fa fa-trash'> </i> Hapus  </button>";
+      		<button onclick='hapus(\"".$data->nama_atlet."\",".$data->id_rekor.")' class='btn btn-xs btn-danger'> <i class='fa fa-trash'> </i> Hapus  </button>";
       })
 
       ->make(true);
@@ -102,11 +102,8 @@ class RekorController extends Controller
         $data->waktu            = $Request->waktu;
         $save = $data->save();
         if($save){
-            return redirect()->route('tampilRekor')->with('status','success');
-        }
-        else{
-            return redirect()->route('tampilRekor')->with('status','failed');
-        }
+            return redirect()->route('tampilRekor')->with(['status' => 'success', 'message' => 'Data berhasil ditambahkan']);
+        }        
     }
 
     public function update(Request $Request){
@@ -120,7 +117,7 @@ class RekorController extends Controller
                 'event_id'                 => $Request->event,
                 'waktu'                    => $Request->waktu
                 ]);
-        return redirect()->route('tampilRekor')->with('status','edited');
+        return redirect()->route('tampilRekor')->with(['status' => 'success','message' => 'Data berhasil dirubah']);
     }
 
     public function getRekor(Request $Request){
@@ -135,14 +132,11 @@ class RekorController extends Controller
 	    echo json_encode($data);
     }
 
-    public function delete(Request $Request){
-        $data = Rekor_Atlet::select('*')->where('id_rekor',$Request->id)->first();
+    public function delete($id){
+        $data = Rekor_Atlet::select('*')->where('id_rekor',$id)->first();
         $data->delete();
 
-        return "success";
+        return redirect()->route('tampilRekor')->with(['status'=>'success','message'=>'Data berhasil dihapus']);
     }
-
-    public function msg($msg){
-        return redirect()->route('tampilRekor')->with('status',$msg);
-    }
+    
 }

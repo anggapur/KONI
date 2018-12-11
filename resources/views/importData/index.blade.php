@@ -42,10 +42,22 @@
                   </select>
                 </div>
               </div>
-              <div class="col-md-5">
+              <div class="col-md-3">
                 <div class="form-group">
                   <label>Import Data Excel</label>
                   <input type="file" name="file_data" class="form-control" required="required">
+                </div>
+              </div>
+               <div class="col-md-3">
+                <div class="form-group">
+                  <label>Baris Awal</label>
+                  <input type="number" name="baris_awal" min="0" class="form-control"  value="-">
+                </div>
+              </div>
+               <div class="col-md-3">
+                <div class="form-group">
+                  <label>Baris Akhir</label>
+                  <input type="number" name="baris_akhir" min="0" class="form-control"  value="-">
                 </div>
               </div>
               <div class="col-md-4">

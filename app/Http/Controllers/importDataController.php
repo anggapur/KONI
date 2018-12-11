@@ -43,18 +43,21 @@ class importDataController extends Controller
      */
     public function store(Request $request)
     {
-        
+        // return $request->all();
+        //init
+        $baris_awal = $request->baris_awal;
+        $baris_akhir = $request->baris_akhir;
         if($request->hasFile('file_data')){
             $path = $request->file('file_data')->getRealPath();
             $data = Excel::load($path, function($reader){})->get();
             if(!empty($data) && $data->count()){
                 //jenis data atler
                 if($request->jenis_data == "atlet")
-                    $dataReturn = $this->generateDataAtlet($data);
+                    $dataReturn = $this->generateDataAtlet($data,$baris_awal,$baris_akhir);
                 else if($request->jenis_data == "pelatih")
-                    $dataReturn = $this->generateDataPelatih($data);
+                    $dataReturn = $this->generateDataPelatih($data,$baris_awal,$baris_akhir);
                 else if($request->jenis_data == "wasit")
-                    $dataReturn = $this->generateDataWasit($data);
+                    $dataReturn = $this->generateDataWasit($data,$baris_awal,$baris_akhir);
             }
         }
 
@@ -64,12 +67,25 @@ class importDataController extends Controller
         // return $dataReturn;
         return redirect('administrator/importData')->with($dataReturn);
     }
-    public function generateDataAtlet($data)
+    public function generateDataAtlet($data,$baris_awal,$baris_akhir)
     {
         $dataListCreate= [];
         $dataListUpdate= [];
         $message = "";
+        $i = 0;
         foreach ($data as $key => $value) {
+            $i++;
+            if($baris_awal != null)
+            {
+                if($i < $baris_awal)
+                    continue;
+            }
+            if($baris_akhir != null)
+            {
+                if($i > $baris_akhir)
+                    break;
+            }
+
             $tempData['nama_atlet'] = $value->nama;   
             //cabor
             $cabor_id = Cabang_Olahraga::where('nama_cabor',$value->cabor);
@@ -141,12 +157,25 @@ class importDataController extends Controller
         return ['insert' => $dataListCreate , 'update' => $dataListUpdate ,'message' => $message];
     }
 
-    public function generateDataPelatih($data)
+    public function generateDataPelatih($data,$baris_awal,$baris_akhir)
     {
         $dataListCreate= [];
         $dataListUpdate= [];
         $message = "";
+        $i = 0;
         foreach ($data as $key => $value) {
+            $i++;
+            if($baris_awal != null)
+            {
+                if($i < $baris_awal)
+                    continue;
+            }
+            if($baris_akhir != null)
+            {
+                if($i > $baris_akhir)
+                    break;
+            }
+
             $tempData['nama_kontingen'] = $value->nama;   
             //cabor
             $cabor_id = Cabang_Olahraga::where('nama_cabor',$value->cabor);
@@ -197,12 +226,24 @@ class importDataController extends Controller
         return ['insert' => $dataListCreate , 'update' => $dataListUpdate ,'message' => $message];
     }
 
-    public function generateDataWasit($data)
+    public function generateDataWasit($data,$baris_awal,$baris_akhir)
     {
         $dataListCreate= [];
         $dataListUpdate= [];
         $message = "";
+        $i = 0;
         foreach ($data as $key => $value) {
+            $i++;
+            if($baris_awal != null)
+            {
+                if($i < $baris_awal)
+                    continue;
+            }
+            if($baris_akhir != null)
+            {
+                if($i > $baris_akhir)
+                    break;
+            }
             $tempData['nama_wasit'] = $value->nama;   
             //cabor
             $cabor_id = Cabang_Olahraga::where('nama_cabor',$value->cabor);

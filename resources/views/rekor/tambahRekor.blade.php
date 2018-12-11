@@ -64,7 +64,7 @@
 		             </div>
 
 		             <div id="tambah-atlet" style="display: none;" class="form-group">
-		             	<a target="_blank" href=""></a><button type="button" class="btn btn-success"> <i class="fa fa-plus"></i> Tambah data atlet </button>
+		             	<a target="_blank" href="{{url('add_atlet')}}"><button type="button" class="btn btn-success"> <i class="fa fa-plus"></i> Tambah data atlet </button></a>
 		             </div>
 
 		             <div class="form-group">

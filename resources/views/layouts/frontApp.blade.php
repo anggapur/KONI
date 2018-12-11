@@ -85,12 +85,11 @@
                     <div class="cardAtlet">
                         <div class="photoAtlet">
                              @php
-                                //list($width, $height) = getimagesize(url('public/upload/fotoAtlet/atletSilat.jpg'));
-                                //list($width, $height) = getimagesize('public/upload/fotoAtlet/atletSilat.jpg');
-                                //if($width < $height)
-                                //   $className = "stretchWidth"; 
-                                //else
-                                //    $className = "stretchHeight"; 
+                                list($width, $height) = getimagesize('public/upload/fotoAtlet/'.$val->nama_foto);
+                                if($width < $height)
+                                   $className = "stretchWidth"; 
+                                else
+                                    $className = "stretchHeight"; 
                             @endphp 
                             
                         </div>
