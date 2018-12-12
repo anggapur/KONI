@@ -5,6 +5,9 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="csrf_token" content="{{ csrf_token() }}">
   <title>{{ config('app.name', 'Laravel') }}</title>
+  <!-- slider -->
+  <link rel="stylesheet" href="{{asset('public/adminLTE/bower_components/select2/dist/css/select2.min.css')}}">
+  <link rel="stylesheet" type="text/css" href="{{asset('public/adminLTE/dist/css/slider.css')}}">
   
   <!-- Bootstrap 3.3.7 -->
   <link rel="stylesheet" href="{{asset('public/adminLTE/bower_components/bootstrap/dist/css/bootstrap.min.css')}}">
@@ -29,9 +32,17 @@
   <!-- bootstrap wysihtml5 - text editor -->
   <link rel="stylesheet" href="{{asset('public/adminLTE/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css')}}">
 
+  <link rel="stylesheet" href="{{asset('public/adminLTE/plugins/iCheck/alls.css')}}">
+
+  <!-- Bootstrap time Picker -->
+  <link rel="stylesheet" href="{{asset('public/adminLTE/plugins/timepicker/bootstrap-timepicker.min.css')}}">
+
   <!-- DataTables -->
   <link rel="stylesheet" href="{{asset('public/adminLTE/bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css')}}">
- 
+
+  
+
+
   <!-- Tell the browser to be responsive to screen width -->
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
    <!-- FonT Awesome -->
@@ -56,6 +67,17 @@
 
 <!-- jQuery 3 -->
 <script src="{{asset('public/adminLTE/bower_components/jquery/dist/jquery.min.js')}}"></script>
+
+<script src="{{asset('public/adminLTE/bower_components/select2/dist/js/select2.full.min.js')}}"></script>
+<script type="text/javascript">
+  $(function () {
+    //Initialize Select2 Elements
+    $('.select2').select2({
+    placeholder: "Pilih...",
+    allowClear: true
+});
+  });
+</script>
 </head>
 <body class="hold-transition skin-blue sidebar-mini adminPart">
 <div class="wrapper">
@@ -353,14 +375,14 @@
           </a>          
         </li>
 
-        <li>
-          <a href="#">
+        <li class="{{GH::segment(1,['view_atlet','add_atlet','edit_atlet','detail_atlet','view_detail'])}}">
+          <a href="{{url('view_atlet')}}">
             <i class="fa fa-running"></i> <span>Atlet</span>            
           </a>          
         </li>
 
-        <li>
-          <a href="#">
+        <li class="{{GH::segment(1,['IndexCabor','tambahCabor','edit-cabor'])}}">
+          <a href="{{URL('/IndexCabor')}}">
             <i class="fa fa-code-branch"></i> <span>Cabang Olahraga</span>            
           </a>          
         </li>
@@ -371,14 +393,14 @@
           </a>          
         </li>
 
-        <li class="{{GH::segment(1,['prestasi','addPrestasi','editPrestasi'])}}">
+        <li class="{{GH::segment(1,['prestasi','addPrestasi','editPrestasi','tambahPrestasi'])}}">
           <a href="{{url('/prestasi')}}">
             <i class="fa fa-trophy"></i> <span>Prestasi Atlet</span>
           </a>          
         </li>
 
         <li>
-          <li class="{{GH::segment(1,['rekor-atlet','addRekor','editRekor'])}}">
+          <li class="{{GH::segment(1,['rekor-atlet','addRekor','editRekor','tambahRekor'])}}">
           <a href="{{ URL('/rekor-atlet') }}">
             <i class="fa fa-medal"></i> <span>Rekor Atlet</span>
           </a>
@@ -390,14 +412,14 @@
           </a>          
         </li>
 
-        <li>
+        <li class="{{GH::segment(1,['tampilWasit','manajemenWasit','wasit'])}}">
           <a href="{{URL('tampilWasit')}}">
             <i class="fa fa-flag-checkered"></i> <span>Wasit</span>
           </a>          
         </li>
 
-        <li>
-          <a href="#">
+        <li class="{{GH::segment(1,['tampilEvent','tambahEvent','editEvent'])}}">
+          <a href="{{url('/tampilEvent')}}">
             <i class="fa fa-calendar-alt"></i> <span>Event</span>            
           </a>          
         </li>
@@ -411,8 +433,23 @@
             <i class="fa fa-file-import"></i> <span>Impor data</span>            
           </a>          
         </li>
+        <li class="{{GH::segment(2,['medali'])}}">
+          <a href="{{url('administrator/medali')}}">
+           <i class="fa fa-trophy"></i> <span>Medali</span>            
+          </a>          
+        </li>
+        <li class="{{GH::segment(2,['juara'])}}">
+          <a href="{{url('administrator/juara')}}">
+            <i class="fa fa-medal"></i> <span>Juara</span>            
+          </a>          
+        </li>
+         <li class="{{GH::segment(2,['laporan'])}}">
+          <a href="{{url('administrator/laporan')}}">
+            <i class="fa fa-file"></i> <span>Laporan</span>            
+          </a>          
+        </li>
         
-        <li>
+        <!-- <li>
           <a href="#">
             <i class="fa fa-share"></i> <span>Multilevel</span>
             <span class="pull-right-container">
@@ -444,7 +481,7 @@
             </li>
             <li><a href="#"><i class="fa fa-circle-o"></i> Level One</a></li>
           </ul>
-        </li>
+        </li> -->
         <!-- <li><a href="https://adminlte.io/docs"><i class="fa fa-book"></i> <span>Documentation</span></a></li> -->
         
       </ul>
@@ -700,6 +737,8 @@
 <script src="{{asset('public/adminLTE/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js')}}"></script>
 <!-- Slimscroll -->
 <script src="{{asset('public/adminLTE/bower_components/jquery-slimscroll/jquery.slimscroll.min.js')}}"></script>
+<!-- Timepicker -->
+<script src="{{asset('public/adminLTE/plugins/timepicker/bootstrap-timepicker.min.js')}}"></script>
 <!-- FastClick -->
 <script src="{{asset('public/adminLTE/bower_components/fastclick/lib/fastclick.js')}}"></script>
 <!-- AdminLTE App -->
@@ -711,13 +750,57 @@
 <!-- DataTables -->
 <script src="{{asset('public/adminLTE/bower_components/datatables.net/js/jquery.dataTables.min.js')}}"></script>
 <script src="{{asset('public/adminLTE/bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js')}}"></script>
+<script type="text/javascript" src="{{asset('public/js/date-time-picker.min.js')}}"></script>
+
+
 
 <script type="text/javascript">
-  $('#datepicker').datepicker({
+  
+  $('.datepicker').dateTimePicker({
       autoclose: true,
-      format: 'yyyy-mm-dd'
+      limitMax: new Date()
+      
     });
+
+  // $('#datepicker_mulai').dateTimePicker({      
+  //     autoclose: true,      
+  //     format: 'yyyy-mm-dd'      
+  //   });
+
+  // $('#datepicker_selesai').datepicker({
+  //     autoclose: true,      
+  //     format: 'yyyy-mm-dd'
+  //   });
+
+  // $('.datepicker').datepicker({
+  //     autoclose: true,      
+  //     format: 'yyyy-mm-dd'
+  //   });
+
+  //Timepicker
+    $('.timepicker').timepicker({
+      showInputs: false,
+      minuteStep: 1,
+      defaultTime: false,      
+      showMeridian: false,
+      useCurrent: false
+
+    });
+
+      $('#datepicker_mulai').dateTimePicker({
+          autoclose: true,
+          limitMax: $('#datepicker_selesai')
+      });
+
+      $('#datepicker_selesai').dateTimePicker({
+          autoclose: true,
+          limitMin: $('#datepicker_mulai')
+      });    
+
+    $('input').prop('autocomplete','off');
+
 </script>
+
 
 </body>
 </html>

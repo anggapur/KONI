@@ -67,6 +67,10 @@
 		                </div>		                
 		             </div>
 
+		             <div id="tambah-np" style="display: none;" class="form-group">
+		             	<a target="_blank" href="{{url('/nomorPertandingan')}}"><button type="button" class="btn btn-success"> <i class="fa fa-plus"></i> Tambah data nomor pertandingan </button></a>
+		             </div>
+
 		             <div class="form-group">
 		                <label>Atlet</label>
 		                <div class="input-group date">
@@ -77,6 +81,10 @@
 		                  	<option disabled selected hidden >Pilih Atlet</option>
 		                  </select>
 		                </div>		                
+		             </div>
+
+		             <div id="tambah-atlet" style="display: none;" class="form-group">
+		             	<a target="_blank" href="{{url('add_atlet')}}"><button type="button" class="btn btn-success"> <i class="fa fa-plus"></i> Tambah data atlet </button></a>
 		             </div>
 
 		             <div class="form-group">
@@ -92,7 +100,7 @@
 		                  	@endforeach
 		                  </select>
 		                </div>		                
-		             </div>
+		             </div>		            
 
 		             <div class="form-group">
 		                <label>Event</label>
@@ -101,9 +109,13 @@
 		                    <i class="fa fa-code-branch"></i>
 		                  </div>
 		                  <select class="form-control" name="event" id="event">
-		                  	<option disabled selected hidden >Pilih event</option>		                  	
+		                  	<option disabled selected hidden >Pilih Event</option>		                  	
 		                  </select>
 		                </div>		                
+		             </div>
+
+		             <div id="tambah-event" style="display: none;" class="form-group">
+		             	<a target="_blank" href="{{url('tambahEvent')}}"><button type="button" class="btn btn-success"> <i class="fa fa-plus"></i> Tambah data event </button></a>
 		             </div>
 
 		             <div class="form-group">
@@ -126,6 +138,7 @@
 
     <script>
     	function update_np(id){
+    		$('#tambah-atlet').hide();
     		$.ajaxSetup({
 			    headers: {
 			        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -145,10 +158,17 @@
 	            success: function(data){
 	            	data = JSON.parse(data);
 	            	
-	            	var text = "<option disabled selected hidden >Pilih nomor pertandingan</option>";
-	            	for(var i=0;i<data.length;i++){
-	            		text += "<option value='"+data[i].id_np+"'> "+data[i].ket_np+" </option>";
-	            	}
+	            	if(data.length > 0){
+		            	var text = "<option disabled selected hidden >Pilih nomor pertandingan</option>";
+		            	for(var i=0;i<data.length;i++){
+		            		text += "<option value='"+data[i].id_np+"'> "+data[i].ket_np+" </option>";
+		            		$('#tambah-np').hide();
+		            	}
+		            }
+		            else{
+		            	text += "<option value='' hidden selected disabled> Tidak ada data Nomor Pertandingan pada Cabang Olahraga ini </option>";
+		            	$('#tambah-np').show();
+		            }
 	            	$("#np").html(text);
 	            	$('#atlet').html("<option disabled selected hidden >Pilih Atlet</option>");
 	            	
@@ -175,11 +195,18 @@
 	            cache: false,
 	            success: function(data){
 	            	data = JSON.parse(data);
-	            	console.log(data);
-	            	var text = "<option disabled selected hidden >Pilih Atlet</option>";
-	            	for(var i=0;i<data.length;i++){
-	            		text += "<option value='"+data[i].id_atlet+"'> "+data[i].nama_atlet+" </option>";
-	            	}
+	            	console.log(data);	            	
+	            	if(data.length > 0){
+	            		var text = "<option disabled selected hidden >Pilih Atlet</option>";
+		            	for(var i=0;i<data.length;i++){
+		            		text += "<option value='"+data[i].id_atlet+"'> "+data[i].nama_atlet+" </option>";
+		            		$('#tambah-atlet').hide();
+		            	}
+		            }
+		            else{
+		            	text += "<option> Tidak ada atlet pada cabang olahraga dan nomor pertandingan ini</option>";
+		            	$('#tambah-atlet').show();
+		            }
 	            	$("#atlet").html(text);
 	            	
 				}
@@ -206,10 +233,17 @@
 	            success: function(data){
 	            	data = JSON.parse(data);
 	            	console.log(data);
-	            	var text = "<option disabled selected hidden >Pilih Event</option>";
-	            	for(var i=0;i<data.length;i++){
-	            		text += "<option value='"+data[i].id_event+"'> "+data[i].nama_event+" </option>";
-	            	}
+	            	if(data.length > 0){	            		
+		            	var text = "<option disabled selected hidden >Pilih Event</option>";
+		            	for(var i=0;i<data.length;i++){
+		            		text += "<option value='"+data[i].id_event+"'> "+data[i].nama_event+" </option>";
+		            		$('#tambah-event').hide();
+		            	}
+		            }
+		            else{
+		            	text += "<option value='' disabled selected hidden> Tidak ada data Event pada tingkat event ini</option>";
+		            	$('#tambah-event').show();
+		            }
 	            	$("#event").html(text);
 	            	
 				}

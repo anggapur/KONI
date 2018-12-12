@@ -7,7 +7,8 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <!-- <title>{{ config('app.name', 'KONI BADUNG') }}</title> -->
+    <title>KONI BADUNG</title>
 
     <!-- Scripts -->
     <!-- <script src="{{ asset('js/app.js') }}" defer></script> -->
@@ -81,18 +82,16 @@
             <div class="row">
                 @foreach(GH::getPrestasiTerbaru(8)['prestasi_terbaru'] as $val)
                 <div class="col-lg-3 col-md-6 col-sm-6">
-                    <a href="{{url('atlet/'.$val->id_atlet)}}/{{GH::normalize($val->nama_atlet)}}">
                     <div class="cardAtlet">
                         <div class="photoAtlet">
                              @php
-                                $namaFoto = GH::getImages(asset('public/upload/fotoAtlet'),$val->nama_foto);
-                                list($width, $height) = getimagesize($namaFoto);
+                                list($width, $height) = getimagesize('public/upload/fotoAtlet/'.$val->nama_foto);
                                 if($width < $height)
                                    $className = "stretchWidth"; 
                                 else
                                     $className = "stretchHeight"; 
                             @endphp 
-                            <img src="{{asset('public/upload/fotoAtlet/'.$val->nama_foto)}}" class="{{$className}}" title="Foto Atlet {{$val->nama_atlet}}">
+                            
                         </div>
                         <div class="keteranganAtlet">
                             <h5>{{$val->nama_atlet}}</h5>
@@ -106,7 +105,6 @@
                             </div>
                         </div>
                     </div>
-                    </a>
                 </div>  
                 @endforeach 
             </div>

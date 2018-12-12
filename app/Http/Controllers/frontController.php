@@ -77,8 +77,11 @@ class frontController extends Controller
         $q = Prestasi::leftJoin('master_atlet','master_atlet.id_atlet','=','prestasi.atlet_id')
                 ->leftJoin('cabang_olahraga','cabang_olahraga.id_cabor','=','prestasi.cabor_id')
                 ->leftJoin('nomor_pertandingan','nomor_pertandingan.id_np','=','prestasi.np_id')
+                ->leftJoin('juara','id_juara','=','juara_id')
+                ->leftJoin('medali','id_medali','=','medali_id')
                 ->leftJoin('event','event.id_event','=','prestasi.event_id');
         return Datatables::of($q)
+        
                 ->editColumn('nama_atlet', function($user) {
                     return '<a href="'.url('atlet').'/'.$user->id_atlet.'/'.GH::normalize($user->nama_atlet).'">' . $user->nama_atlet . '</a>';
                 })
@@ -87,6 +90,9 @@ class frontController extends Controller
                 })
                 ->editColumn('nama_event', function($user) {
                     return '<a href="'.url('event').'/'.$user->id_event.'/'.GH::normalize($user->nama_event).'">' . $user->nama_event . '</a>';
+                })
+                ->addColumn('ket_juara_medali', function($user) {
+                    return $user->ket_juara." - ".$user->nama_medali;
                 })
                 ->make(true);
     } 
