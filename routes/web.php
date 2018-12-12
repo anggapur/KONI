@@ -125,12 +125,19 @@ Route::group(['middleware' => 'auth'],function(){
 		Route::resource('importData','importDataController');
 	});
 
-
-	Route::get('manajemenWasit','wasitController@index');
+	//wasit
+	Route::get('/manajemenWasit','wasitController@index');
 	Route::post('simpanWasit','wasitController@simpan');
 	Route::get('tampilWasit', 'wasitController@tampildata');
 	Route::get('wasit/{id}/edit','wasitController@editdata');
 	Route::post('updateWasit','wasitController@update');
 	Route::get('hapusWasit/{id}','wasitController@hapusData');
 	Route::post('get-data-wasit','wasitController@getData');
+
+	//tingkat_event
+	Route::get('tambahdata_event','tingkat_eventController@tambahEvent');
+	Route::get('editdata_event/{id}','tingkat_eventController@editEvent');
+	Route::post('simpantingkat','tingkat_eventController@simpan');
+	Route::get('tampildata_event','tingkat_eventController@tampilEvent');
+	Route::post('get-data-tingkatEvent','tingkat_eventController@getdataEvent');
 });

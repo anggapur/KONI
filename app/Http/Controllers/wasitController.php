@@ -10,8 +10,10 @@ class wasitController extends Controller
 {
     public function index()
     {
-    	$data['datakabupaten'] = Kabupaten::all();
-    	$data['cabang_olahraga'] = Cabang_Olahraga::all();
+    	$data = [];
+    	$data['datakabupaten'] = Kabupaten::select('*')->get();
+    	$data['cabang_olahraga'] = Cabang_Olahraga::select('*')->get();
+    	$data['page'] = "wasit";
     	return view('wasit.wasit',$data);
     	
     }

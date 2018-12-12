@@ -14,7 +14,7 @@
             <div class="box-header">
               <h3 class="box-title">Tampil Data Wasit </h3>
               <td>
-              	<a href="{{url('manajemenWasit')}}" class="btn btn-success btn-xs">
+              	<a href="{{url('/manajemenWasit')}}" class="btn btn-success btn-xs">
               		<i class=" fa fa-plus"></i> Tambah
               	</a>
               </td>
@@ -86,6 +86,25 @@
 	  </div>
 	</div>
 
+	<!--Modal-->
+<!-- 	<div id="delModal" class="modal fade" role="dialog">
+	  <div class="modal-dialog"> -->
+	    <!-- Modal content-->
+<!-- 	    <div class="modal-content">
+	      <div class="modal-header">
+	        <button type="button" class="close" data-dismiss="modal">&times;</button>
+	        <h4 class="modal-title">Hapus Data</h4>
+	      </div>
+	      <div id="body-nama-kontingen" class="modal-body">
+	      	
+	      </div>
+	      <div id="hapus-button" class="modal-footer">
+	        
+	      </div>
+	    </div>
+	  </div>
+	</div>
+ -->
 <script type="text/javascript">
 		function view(id){
 
@@ -114,4 +133,12 @@
 			});
 		}
 	</script>
+
+<!-- 	<script type="text/javascript">
+		function hapus(nama,id){
+			$('#body-nama-kontingen').html("<p> Yakin menghapus data "+nama+" ? </p>");
+			$('#hapus-button').html("<button type='button' class='btn btn-danger' onclick='del("+id+")'>Hapus</button>");
+			$('#delModal').modal('show');
+		}
+	</script> -->
 @endsection
