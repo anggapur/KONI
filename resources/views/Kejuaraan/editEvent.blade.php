@@ -68,6 +68,7 @@
                     <td>Eksebisi</td>
                   </tr>                  
                   <?php $i=0; ?>
+                  <script type="text/javascript"> var i = 0;</script>
                   @foreach($cabor as $cabor)                  
                   <tr style="text-align: center;">  
                     <input type="hidden" name="id_detail[]" value="{{$cabor->id_detail}}">
@@ -88,14 +89,14 @@
                         <div class="input-group-addon">
                           <i class="fa fa-calendar"></i>
                         </div>
-                      <input class="form-control datepicker" type="text" name="tgl_mulai[]>" value="{{($cabor->toDetailEvent == null) ? '' : $cabor->toDetailEvent->tgl_mulai}}"></div>
+                      <input class="form-control datepicker_mulai<?php echo $i; ?>" type="text" name="tgl_mulai[]>" value="{{($cabor->toDetailEvent == null) ? '' : $cabor->toDetailEvent->tgl_mulai}}"></div>
                     </td>
                     <td style="min-width: 150px">
                       <div class="input-group date">
                         <div class="input-group-addon">
                           <i class="fa fa-calendar"></i>
                         </div>
-                      <input class="form-control datepicker" type="text" name="tgl_selesai[]" value="{{($cabor->toDetailEvent == null) ? '' : $cabor->toDetailEvent->tgl_selesai}}"></div>
+                      <input class="form-control datepicker_selesai<?php echo $i; ?>" type="text" name="tgl_selesai[]" value="{{($cabor->toDetailEvent == null) ? '' : $cabor->toDetailEvent->tgl_selesai}}"></div>
                     </td>
                     <td style="min-width: 150px">
                       <div class="input-group date">
@@ -129,6 +130,18 @@
                       @endif
                       ><div class="slider round"></div></label></td>
                   </tr>
+                  <script type="text/javascript">
+                    $('.datepicker_mulai'+i).dateTimePicker({
+                        autoclose: true,
+                        limitMax: $('.datepicker_selesai'+i)
+                    });
+
+                    $('.datepicker_selesai'+i).dateTimePicker({
+                        autoclose: true,
+                        limitMin: $('.datepicker_mulai'+i)
+                    });    
+                    i++;
+                  </script>
                   <?php  $i++; ?>    
                   @endforeach
                 </table>                

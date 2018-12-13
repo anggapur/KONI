@@ -113,7 +113,7 @@
                 				<div class="col-md-3">
                 					<div class="form-group">
                 						<label>Tanggal Jadi Atlet</label>
-                						<input type="text" class="datepicker form-control" name="tgl_jadi_atlet" placeholder="Masukkan tanggal menjadi atlet">
+                						<input type="text" class="datepicker1 form-control" name="tgl_jadi_atlet" placeholder="Masukkan tanggal menjadi atlet">
                 					</div>
                 				</div>
                                 <div class="col-md-2">
@@ -128,7 +128,7 @@
                 				<div id="tgl_pensi" class="col-md-3" style="display: none;">
                 					<div class="form-group">
                 						<label>Tanggal Pensiun</label>
-                						<input id="form_pensi" type="text" class="datepicker form-control" name="tgl_pensiun" disabled placeholder="Masukkan tanggal pensiun">
+                						<input id="form_pensi" type="text" class="datepicker2 form-control" name="tgl_pensiun" disabled placeholder="Masukkan tanggal pensiun">
                 					</div>
                 				</div>                                
                 			</div>

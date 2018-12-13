@@ -11,6 +11,7 @@ use App\Detail_Event;
 use App\Prestasi;
 use Datatables;
 use DB;
+use PDF;
 class laporanController extends Controller
 {
     //
@@ -118,4 +119,23 @@ class laporanController extends Controller
         $data['colomSelect'] = $colomSelect;
         return $data;   
     }
+    public function generate_pdf(request $request) 
+    {
+        //dd($request->data_table);
+        $mpdf = new \Mpdf\Mpdf();
+
+        // Write some HTML code:
+        
+        //$mpdf->defaultheadertextalign='center';
+        //$mpdf->setHTMLHeader("Table");
+        $mpdf->setTitle("Laporan");
+        $table = "<caption> ".$request->judul_table." </caption>";
+        $table .= "<table border='1' cellspacing='5' cellpadding='5' style='border-collapse:collapse;width:100%;text-align:center'>";
+        $mpdf->WriteHTML($table.$request->data_table."</table>");
+
+        // Output a PDF file directly to the browser
+        $mpdf->Output();
+    }
+
+
 }

@@ -174,7 +174,8 @@ Route::group(['middleware' => 'auth'],function(){
 		Route::post('laporanListDataAtlet','laporanController@listDataAtlet')->name('laporanListDataAtlet');
 		Route::post('laporanRekapJumlahAtlet','laporanController@rekapJumlahAtlet')->name('laporanRekapJumlahAtlet');
 		Route::post('laporanListDataPrestasi','laporanController@listDataPrestasi')->name('laporanListDataPrestasi');
-		Route::post('api/tags','laporanController@apiTags');		
+		Route::post('api/tags','laporanController@apiTags');
+		Route::post('generate_pdf','laporanController@generate_pdf')->name('generate_pdf');
 	});
 });
 

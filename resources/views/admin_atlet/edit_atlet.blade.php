@@ -144,7 +144,7 @@
                 				<div class="col-md-3">
                 					<div class="form-group">
                 						<label>Tanggal Jadi Atlet</label>
-                						<input type="text" class="form-control datepicker" name="tgl_jadi_atlet" value="{{ $data_atlet->tgl_jadi_atlet }}">
+                						<input type="text" class="form-control datepicker1" name="tgl_jadi_atlet" value="{{ $data_atlet->tgl_jadi_atlet }}">
                 					</div>
                 				</div>
                                 <div class="col-md-2">
@@ -168,7 +168,7 @@
                                     @endif
                                     ">
                 						<label>Tanggal Pensiun</label>
-                						<input type="text" class="form-control datepicker" name="tgl_pensiun" value="{{ $data_atlet->tgl_pensiun }}" placeholder="Masukkan tanggal pensiun">
+                						<input type="text" class="form-control datepicker2" name="tgl_pensiun" value="{{ $data_atlet->tgl_pensiun }}" placeholder="Masukkan tanggal pensiun">
                 					</div>
                 				</div>                                
                 			</div>

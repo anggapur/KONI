@@ -172,6 +172,7 @@ class atletController extends Controller
     }
     public function update_atlet(Request $request)
     {
+        //dd($request);
         DB::beginTransaction();
         try{
             $data['id_atlet'] = $request->id_atlet;
@@ -189,7 +190,7 @@ class atletController extends Controller
             $data['berat'] = $request->berat;
             // $data['kabupaten_id'] = $request->kabupaten_id;
             $data['tgl_jadi_atlet'] = $request->tgl_jadi_atlet;
-            if($request->status == 1)
+            if($request->status == 0)
                 $data['tgl_pensiun'] = $request->tgl_pensiun;
             else
                 $data['tgl_pensiun'] = null;
