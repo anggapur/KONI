@@ -6,7 +6,7 @@ use Illuminate\Support\Facades\File;
 use DB;
 use Illuminate\Http\Request;
 use App\Cabang_Olahraga;
-use App\kabupaten;
+use App\Kabupaten;
 use Yajra\Datatables\Datatables;
 use App\Master_Atlet;
 use App\Detail_Atlet;

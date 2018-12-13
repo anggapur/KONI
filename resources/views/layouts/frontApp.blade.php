@@ -91,7 +91,7 @@
                                 else
                                     $className = "stretchHeight"; 
                             @endphp 
-                            <img src="{{asset('public/upload/fotoAtlet/'.$val->nama_foto)}}" class="{{$className}}" title="Foto Atlet {{$val->nama_atlet}}">
+                            
                         </div>
                         <div class="keteranganAtlet">
                             <h5>{{$val->nama_atlet}}</h5>
