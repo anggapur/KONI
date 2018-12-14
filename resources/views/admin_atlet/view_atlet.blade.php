@@ -77,11 +77,11 @@
             <b>Alamat</b>
             <p id="alamat"></p>
             <hr>
-            <b>Tinggi Badan</b>
-            <p id="tinggi"> cm</p>
+            <b>Tinggi Badan (Cm)</b>
+            <p id="tinggi"></p>
             <hr>
-            <b>Berat Badan</b>
-            <p id="berat"> kg </p>
+            <b>Berat Badan (Kg)</b>
+            <p id="berat"></p>
             <hr>                        
             <b>Tanggal Jadi Atlet</b>
             <p id="tgl_jadi_atlet"></p>

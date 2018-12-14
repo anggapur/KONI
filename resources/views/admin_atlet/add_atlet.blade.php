@@ -68,7 +68,7 @@
     							<div class="col-md-5">
     								<div class="form-group">
                 						<label>Tanggal Lahir</label>
-                						<input type="text" class="datepicker form-control" name="tgl_lahir" placeholder="Masukkan tanggal lahir">
+                						<input type="text" class="datepicker form-control" name="tgl_lahir" placeholder="Masukkan tanggal lahir" required>
                 					</div>
     							</div>
     						</div>	
@@ -159,6 +159,10 @@
     </section>
     <!-- /.content -->    
     <script type="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+    <script type="text/javascript">
+        $('input').prop('required',true);
+        $('#inputgambar').prop('required',false);
+    </script>
 <script type="text/javascript">
     (function($){
         $(function(){
