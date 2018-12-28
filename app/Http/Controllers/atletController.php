@@ -63,7 +63,7 @@ class atletController extends Controller
       		<button onclick='del(".$data->id_atlet.",\"".$data->nama_atlet."\")' class='btn btn-xs btn-danger'> <i class='fa fa-trash'> </i> Hapus  </button>
             <a href='".route('detail_atlet',$data->id_atlet)."'><button onclick='' class='btn btn-xs btn-info'> <i class='fa fa-search'> </i> Detail  </button></a>";
       		})
-            ->addColumn('nama', function($data){
+            ->addColumn('nama_atlet', function($data){
                 return "<a href=".route('view_detail',$data->id_atlet)."> ".$data->nama_atlet."</a> ";
             })
       	->make(true);
