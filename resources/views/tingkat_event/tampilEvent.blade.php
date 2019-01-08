@@ -33,9 +33,9 @@
                 <tr>
                   <td>{{ $val->nama_tingkat}}</td>
                   <td> 
-                  	<a href="{{url('#')}}" class="btn btn-primary btn-xs">
+                  	<a href="{{url('editdata_event/'.$val->id_tingkat)}}" class="btn btn-primary btn-xs">
                   		<i class="fa fa-edit"> </i> edit </a>
-                  	<a href="{{url('#')}}" class="btn btn-danger btn-xs"> 
+                  	<a href="{{url('deletedata_event/'.$val->id_tingkat)}}" class="btn btn-danger btn-xs"> 
                   		<i class="fa fa-trash"></i>delete </a>
                   </td>
                 </tr>
@@ -111,7 +111,14 @@
 			});
 		}
 	</script>
-
+<script type="text/javascript">
+	function hapus(nama,id){
+		var url = "{{url('deletedata_event')}}/";
+		$('#body-nama').html("<p> Yakin menghapus data "+nama+" ? </p>");
+		$('#hapus-button').html("<a href='"+url+id+"'><button type='button' class='btn btn-danger'>Hapus</button>");
+		$('#delModal').modal('show');
+	}
+</script>	
 <!-- 	<script type="text/javascript">
 		function hapus(nama,id){
 			$('#body-nama-kontingen').html("<p> Yakin menghapus data "+nama+" ? </p>");
