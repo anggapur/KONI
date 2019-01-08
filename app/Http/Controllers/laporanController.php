@@ -11,6 +11,7 @@ use App\Detail_Event;
 use App\Prestasi;
 use Datatables;
 use DB;
+use PDF;
 class laporanController extends Controller
 {
     //
@@ -118,4 +119,43 @@ class laporanController extends Controller
         $data['colomSelect'] = $colomSelect;
         return $data;   
     }
+    public function generate_pdf(request $request) 
+    {
+        //dd($request->data_table);
+        $mpdf = new \Mpdf\Mpdf([
+            'mode'=>'utf-8',
+            'format' => [210, 297],
+            'default_font' => 'Times new Roman'
+        ]);
+        $mpdf->showImageErrors = true;
+
+        // Write some HTML code:
+        $setAutoTopMargin = "stretch";
+        $mpdf->setTitle("Laporan");        
+        $html = "            
+            <table cellpadding='0' cellspacing='0'align='center' style='text-align: center'>
+                <tr><td><p></p></td></tr>
+                <tr>
+                    <td rowspan='7'><img src='public/images/logo_koni.png' height='15%' width='15%' /></td>
+                    <td>KOMITE OLAHRAGA NASIONAL INDONESIA</td>
+                    <td rowspan='7'><img src='public/images/logo_badung.png' height='15%' width='15%' /></td>
+                </tr>
+                <tr><td>( KONI )</td></tr>
+                <tr><td>KABUPATEN BADUNG</td></tr>
+                <tr><td>Sekretariat : Jl.Praja Nomor 5 Kwanji Dalung Badung Telp/Fax.(0361) 4715940</td></tr>
+                <tr><td>E-mail :konibadung@yahoo.co.id</td></tr>    
+                <tr><td><p></p></td></tr>
+            </table>";
+        $mpdf->setHeader($html);
+        
+        $table = "<table> <tr><td><p></p></td></tr> </table>";
+        $table .= "<div style='margin-top:150px'><h3 style='text-align:center'>".$request->judul_table."</h3><table border='1' cellspacing='5' cellpadding='5' style='border-collapse:collapse;width:100%;text-align:center'>";       
+        $mpdf->WriteHTML($table.$request->data_table."</table></div>");
+        $mpdf->setFooter('{PAGENO}');
+
+        // Output a PDF file directly to the browser
+        $mpdf->Output();
+    }
+
+
 }

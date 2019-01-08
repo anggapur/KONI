@@ -63,7 +63,7 @@ class atletController extends Controller
       		<button onclick='del(".$data->id_atlet.",\"".$data->nama_atlet."\")' class='btn btn-xs btn-danger'> <i class='fa fa-trash'> </i> Hapus  </button>
             <a href='".route('detail_atlet',$data->id_atlet)."'><button onclick='' class='btn btn-xs btn-info'> <i class='fa fa-search'> </i> Detail  </button></a>";
       		})
-            ->addColumn('nama', function($data){
+            ->addColumn('nama_atlet', function($data){
                 return "<a href=".route('view_detail',$data->id_atlet)."> ".$data->nama_atlet."</a> ";
             })
       	->make(true);
@@ -172,6 +172,7 @@ class atletController extends Controller
     }
     public function update_atlet(Request $request)
     {
+        //dd($request);
         DB::beginTransaction();
         try{
             $data['id_atlet'] = $request->id_atlet;
@@ -189,7 +190,7 @@ class atletController extends Controller
             $data['berat'] = $request->berat;
             // $data['kabupaten_id'] = $request->kabupaten_id;
             $data['tgl_jadi_atlet'] = $request->tgl_jadi_atlet;
-            if($request->status == 1)
+            if($request->status == 0)
                 $data['tgl_pensiun'] = $request->tgl_pensiun;
             else
                 $data['tgl_pensiun'] = null;

@@ -39,7 +39,6 @@
 
   <!-- DataTables -->
   <link rel="stylesheet" href="{{asset('public/adminLTE/bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css')}}">
-
   
 
 
@@ -67,6 +66,11 @@
 
 <!-- jQuery 3 -->
 <script src="{{asset('public/adminLTE/bower_components/jquery/dist/jquery.min.js')}}"></script>
+
+  <!-- datepicker -->
+<script src="{{asset('public/adminLTE/bower_components/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js')}}"></script>
+
+<script type="text/javascript" src="{{asset('public/js/date-time-picker.min.js')}}"></script>
 
 <script src="{{asset('public/adminLTE/bower_components/select2/dist/js/select2.full.min.js')}}"></script>
 <script type="text/javascript">
@@ -731,8 +735,6 @@
 <!-- daterangepicker -->
 <script src="{{asset('public/adminLTE/bower_components/moment/min/moment.min.js')}}"></script>
 <script src="{{asset('public/adminLTE/bower_components/bootstrap-daterangepicker/daterangepicker.js')}}"></script>
-<!-- datepicker -->
-<script src="{{asset('public/adminLTE/bower_components/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js')}}"></script>
 <!-- Bootstrap WYSIHTML5 -->
 <script src="{{asset('public/adminLTE/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js')}}"></script>
 <!-- Slimscroll -->
@@ -750,7 +752,6 @@
 <!-- DataTables -->
 <script src="{{asset('public/adminLTE/bower_components/datatables.net/js/jquery.dataTables.min.js')}}"></script>
 <script src="{{asset('public/adminLTE/bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js')}}"></script>
-<script type="text/javascript" src="{{asset('public/js/date-time-picker.min.js')}}"></script>
 
 
 
@@ -762,10 +763,22 @@
       
     });
 
-  // $('#datepicker_mulai').dateTimePicker({      
-  //     autoclose: true,      
-  //     format: 'yyyy-mm-dd'      
-  //   });
+  $('.datepicker1').dateTimePicker({
+      autoclose: true,
+      limitMax: new Date()
+      
+    });
+
+  $('.datepicker2').dateTimePicker({
+      autoclose: true,
+      limitMax: new Date()
+      
+    });
+
+  $('#datepicker').dateTimePicker({      
+      autoclose: true,      
+      limitMax: new Date()
+    });
 
   // $('#datepicker_selesai').datepicker({
   //     autoclose: true,      

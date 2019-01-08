@@ -22,7 +22,8 @@
                             <table class="table" id="table-cabor">
                                 <thead>
                                     <tr>
-                                        <th>Nama Cabang Olahraga</th>
+                                        <th>Nama Cabang Olahraga</th>                                        
+                                        <th>Nomor Pertandingan</th>                                        
                                         <th>Aksi</th>
                                     </tr>
                                 </thead>                              
@@ -63,6 +64,7 @@
             },
             columns: [
             {data: 'nama_cabor', name: 'nama_cabor'},
+            {data: 'count', name: 'nomor pertandingan'},            
             {data: 'aksi', name: 'aksi'},
         ],
         });

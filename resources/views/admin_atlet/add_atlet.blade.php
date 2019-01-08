@@ -30,7 +30,7 @@
                     
                             <div class="form-group">
                                 <label>No Pertandingan</label>
-                                <select class="form-control select2" name="np_id[]" id="np" multiple="multiple"data-placeholder="Pilih nomor pertandingan">                                   
+                                <select class="form-control select2" name="np_id[]" id="np" multiple="multiple" data-placeholder="Pilih nomor pertandingan">                                   
                                 </select>
                             </div>
 
@@ -68,7 +68,7 @@
     							<div class="col-md-5">
     								<div class="form-group">
                 						<label>Tanggal Lahir</label>
-                						<input type="text" class="datepicker form-control" name="tgl_lahir" placeholder="Masukkan tanggal lahir">
+                						<input type="text" class="datepicker form-control" name="tgl_lahir" placeholder="Masukkan tanggal lahir" required>
                 					</div>
     							</div>
     						</div>	
@@ -113,7 +113,7 @@
                 				<div class="col-md-3">
                 					<div class="form-group">
                 						<label>Tanggal Jadi Atlet</label>
-                						<input type="text" class="datepicker form-control" name="tgl_jadi_atlet" placeholder="Masukkan tanggal menjadi atlet">
+                						<input type="text" class="datepicker1 form-control" name="tgl_jadi_atlet" placeholder="Masukkan tanggal menjadi atlet">
                 					</div>
                 				</div>
                                 <div class="col-md-2">
@@ -128,7 +128,7 @@
                 				<div id="tgl_pensi" class="col-md-3" style="display: none;">
                 					<div class="form-group">
                 						<label>Tanggal Pensiun</label>
-                						<input id="form_pensi" type="text" class="datepicker form-control" name="tgl_pensiun" disabled placeholder="Masukkan tanggal pensiun">
+                						<input id="form_pensi" type="text" class="datepicker2 form-control" name="tgl_pensiun" disabled placeholder="Masukkan tanggal pensiun">
                 					</div>
                 				</div>                                
                 			</div>
@@ -159,6 +159,10 @@
     </section>
     <!-- /.content -->    
     <script type="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+    <script type="text/javascript">
+        $('input').prop('required',true);
+        $('#inputgambar').prop('required',false);
+    </script>
 <script type="text/javascript">
     (function($){
         $(function(){

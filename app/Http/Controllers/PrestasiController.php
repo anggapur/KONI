@@ -125,6 +125,7 @@ class PrestasiController extends Controller
             ->leftJoin('detail_atlet','id_atlet','=','atlet_id')
             ->leftJoin('nomor_pertandingan','id_np','=','np_id')
             ->where('id_np',$Request->id)
+            ->groupBy('id_atlet')
             ->get();
 
         echo json_encode($data);

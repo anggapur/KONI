@@ -210,11 +210,11 @@
             
             <div class="col-md-12">
               <div class="form-group">
-                <button type="submit" class="btn btn-success"><i class="fa fa-file"></i>  Cetak Laporan</button>
+                <button type="submit" class="btn btn-success"><i class="fa fa-file"></i>  Cetak Laporan</button>                
               </div>  
             </div>
           </div>
-          </form>
+          </form>          
           <!-- END LIST DATA PRESTASI -->
 
           <!-- Detail Data Atlet -->
@@ -256,8 +256,9 @@
 		 <div class="box box-primary">
 		    <div class="box-header with-border">
 		    	<h3 class="box-title">Laporan</h3>
+          <button style="display: none" id="print" onclick="generate()" type="button" class="btn btn-primary"><i class="fa fa-print"></i> Print Laporan PDF</button>
 		    </div>		
-		    <div class="box-body">
+		    <div id="isiTable" class="box-body">
           <table id="tableData" class="table table-bordered">
             <thead>
               <tr style="display: none">
@@ -273,6 +274,11 @@
           </table> 
 		    </div>  
 		</div>
+    <form id="formHidden" method="POST" action="{{route('generate_pdf')}}" target="_blank">
+       {{csrf_field()}}
+      <input id="data_table" type="hidden" name="data_table">
+      <input id="judul_table" type="hidden" name="judul_table">
+    </form>
     </section>
    
    <script type="text/javascript">
@@ -312,8 +318,10 @@
                 });
               tr+="</tr>";                           
             });
-            $('#tableData tbody').append(tr); 
-           initTable();
+            $('#tableData tbody').append(tr);
+            $('#formHidden #data_table').val(thead+tr);
+            $('#formHidden #judul_table').val("List Atlet");
+           initTable();           
           }
         }); 
       });
@@ -343,10 +351,12 @@
                 $.each(data.colomSelect,function(i,n){
                   tr+="<td>"+v[n]+"</td>";
                 });
-              tr+="</tr>";                           
+              tr+="</tr>";                         
             });
-            $('#tableData tbody').append(tr); 
-            initTable();
+            $('#tableData tbody').append(tr);
+            $('#formHidden #data_table').val(thead+tr); 
+            $('#formHidden #judul_table').val("Jumlah Atlet");
+            initTable();            
           }
         }); 
       });
@@ -380,7 +390,9 @@
               tr+="</tr>";                           
             });
             $('#tableData tbody').append(tr); 
-            initTable();
+            $('#formHidden #data_table').val(thead+tr);
+            $('#formHidden #judul_table').val("Data Prestasi");
+            initTable();            
           }
         }); 
       });
@@ -424,6 +436,7 @@
   }
   function initTable()
   {
+    $('#print').show();
     $('#tableData').DataTable();
   }
 
@@ -456,6 +469,16 @@
         }
       });       
       }
+  </script>
+
+  <script type="text/javascript">
+    function generate(){
+      console.log($('#formHidden #data_table').val());
+      //var data = $('#isiTable').html();
+      //$('#formHidden #data_table').val(data);
+      //console.log(data);
+      $('#formHidden').submit();    
+  }
   </script>
   
 @endsection

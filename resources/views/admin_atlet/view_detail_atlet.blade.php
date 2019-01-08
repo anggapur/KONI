@@ -97,6 +97,7 @@
                         		<tr>
                         			<td>Event yang pernah di ikuti</td>
                         			<td> : </td>
+                                          @if(count($event) > 0)
                         			@foreach($event as $event)
                         			<td>{{$event->nama_event}}</td>
                         		</tr>
@@ -104,9 +105,27 @@
                         			<td></td>
                         			<td></td>
                         			@endforeach
-                        		</tr>                        		
+                                          @else
+                                          <td><b> - </b></td>
+                                          @endif
+                        		</tr>
+                                    @if(count($prestasi) == 0)
+                                    <tr>
+                                          <td>Prestasi</td>
+                                          <td> : </td>
+                                          <td><b> - </b></td>
+                                    </tr>
+                                    @endif
+                                    <tr>
+                                          <td>Rekor</td>
+                                          <td> : </td>
+                                          <td><b> - </b></td>
+                                    </tr>
+                                    @if(count($rekor) == 0)
+                                    @endif
                         	</tbody>
                         </table>
+                        @if(count($prestasi) > 0)
                         <table class="table">
                         <thead>
                         	<tr>
@@ -130,6 +149,8 @@
                         		@endforeach
                         	</tbody>                        	
                         </table>
+                        @endif
+                        @if(count($rekor) > 0)
                         <table class="table">
                         <thead>
                         	<tr>
@@ -152,7 +173,8 @@
                         		</tr>
                         		@endforeach
                         	</tbody>                        	
-                        </table>                        
+                        </table>
+                        @endif
                     </div>
                 </div>
 			</div>

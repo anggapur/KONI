@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Nomor_Pertandingan;
 use App\Cabang_Olahraga;
 
+use DB;
+
 use Yajra\Datatables\Datatables;
 
 
@@ -60,8 +62,10 @@ class noPertandinganController extends Controller
     }
     public function getdata()
     {
-         $data = Nomor_Pertandingan::select('nama_cabor','ket_np','id_np')
+         $data = Nomor_Pertandingan::select('nama_cabor','ket_np','id_np',DB::raw('count(atlet_id) as atlet'))
             ->leftJoin('cabang_olahraga','cabor_id','=','id_cabor')
+            ->leftJoin('detail_atlet','id_np','=','np_id')
+            ->groupBy('id_np')
             ->get();
 
             

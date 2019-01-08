@@ -25,7 +25,7 @@
 		                  <div class="input-group-addon">
 		                    <i class="fa fa-book"></i>
 		                  </div>
-		                  <input id="nkta" class="form-control" type="text" name="nkta" required minlength="0" maxlength="10" onkeyup="return validation()">
+		                  <input id="nkta" class="form-control" type="number" name="nkta" required minlength="0" maxlength="10" onkeyup="return validation()">
 		                </div>
 		                <span id="error" class="help-block" style="display: none;">No Kartu Tanda Anggota sudah terdaftar</span>
 		             </div>

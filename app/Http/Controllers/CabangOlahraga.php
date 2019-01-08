@@ -7,6 +7,7 @@ use Yajra\Datatables\Datatables;
 
 use Illuminate\Http\Request;
 use App\Cabang_Olahraga;
+use DB;
 
 class CabangOlahraga extends Controller
 {
@@ -43,7 +44,7 @@ class CabangOlahraga extends Controller
 		return view('cabor.EditCabor',$data);
 	}
     public function hasil_editcabor(Request $request)
-	{		
+	{		        
 			$data  = Cabang_Olahraga::select('*')    
             ->where('id_cabor',$request->id)
             ->update([
@@ -56,7 +57,11 @@ class CabangOlahraga extends Controller
 	}
     public function dataCabor()
     {
-    	$data= Cabang_Olahraga::select('id_cabor','nama_cabor')->get();
+    	$data= Cabang_Olahraga::select('id_cabor','nama_cabor',DB::raw('count(id_np) as count'))
+                ->leftJoin('nomor_pertandingan','id_cabor','=','cabor_id')                
+                ->groupBy('id_cabor')
+                ->get();
+        //dd($data);
 
     	  return Datatables::of($data)
       ->addColumn('aksi', function($data){

@@ -77,11 +77,11 @@
             <b>Alamat</b>
             <p id="alamat"></p>
             <hr>
-            <b>Tinggi Badan</b>
-            <p id="tinggi"> cm</p>
+            <b>Tinggi Badan (Cm)</b>
+            <p id="tinggi"></p>
             <hr>
-            <b>Berat Badan</b>
-            <p id="berat"> kg </p>
+            <b>Berat Badan (Kg)</b>
+            <p id="berat"></p>
             <hr>                        
             <b>Tanggal Jadi Atlet</b>
             <p id="tgl_jadi_atlet"></p>
@@ -130,7 +130,7 @@
                 url: '{{ url("data-atlet") }}'
             },
             columns: [         
-            {data: 'nama', name: 'nama'},
+            {data: 'nama_atlet', name: 'nama_atlet'},
             {data: 'nama_cabor', name: 'nama_cabor'},
             {data: 'no_kartu_tanda_anggota', name: 'no_kartu_tanda_anggota'},
             {data: 'jenis_kelamin', name: 'jenis_kelamin'},

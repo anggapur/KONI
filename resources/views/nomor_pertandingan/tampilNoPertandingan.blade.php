@@ -26,6 +26,7 @@
 		                                <tr>                      
 		                                   	<th>Cabang Olahraga</th>
 		                                   	<th>Nomor Pertandingan</th>
+		                                   	<th>Jumlah Atlet</th>
 		                                    <th>Aksi</th>
 		                                </tr>
 		                            </thead>	                            
@@ -70,6 +71,7 @@
             columns: [           
             {data: 'nama_cabor', name: 'nama_cabor'},
             {data: 'ket_np', name: 'ket_np'},
+            {data: 'atlet', name: 'atlet'},
             {data: 'aksi', name: 'aksi'},
         ],
         });
