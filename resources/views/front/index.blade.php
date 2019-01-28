@@ -6,7 +6,7 @@
             <div class="row">
                 <div class="col-md-6">
                     <div class="greetings">
-                        <h1>Selamat Datang di Website Koni Badung</h1>
+                        <h1>Selamat Datang di Pengumpulan dan Pengolahan Data Badung</h1>
                         <p>Dapatkan Informasi Seputar Atlet Kabupaten Badung</p>
                     </div>
                 </div>
