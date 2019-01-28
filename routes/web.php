@@ -179,4 +179,13 @@ Route::group(['middleware' => 'auth'],function(){
 	});
 });
 
+	//tingkat_event
+	Route::get('tambahdata_event','tingkat_eventController@tambahEvent');
+	Route::get('editdata_event/{id}','tingkat_eventController@editEvent');
+	Route::post('updatedata_event','tingkat_eventController@updatedata');
+	Route::post('simpantingkat','tingkat_eventController@simpan');
+	Route::get('tampildata_event','tingkat_eventController@tampilEvent');
+	Route::get('deletedata_event/{id}','tingkat_eventController@deleteEvent');
+	Route::post('get-data-tingkatEvent','tingkat_eventController@getdataEvent');
+
 
