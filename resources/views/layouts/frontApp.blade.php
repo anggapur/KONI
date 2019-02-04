@@ -84,14 +84,13 @@
                 <div class="col-lg-3 col-md-6 col-sm-6">
                     <div class="cardAtlet">
                         <div class="photoAtlet">
-                             @php
+                            @php
                                 list($width, $height) = getimagesize('public/upload/fotoAtlet/'.$val->nama_foto);
                                 if($width < $height)
                                    $className = "stretchWidth"; 
                                 else
                                     $className = "stretchHeight"; 
                             @endphp 
-                            
                         </div>
                         <div class="keteranganAtlet">
                             <h5>{{$val->nama_atlet}}</h5>
@@ -131,9 +130,9 @@
                 <div class="col-md-4">
                     <h4>Lokasi</h4>
                     <ul id="location">
-                        <li><i class="far fa-building"></i> Jalan Puspem Badung</li>
-                        <li><i class="fas fa-phone"></i> 0361 423423</li>
-                        <li><i class="far fa-envelope-open"></i> koni_badung@gmail.com</li>
+                        <li><i class="far fa-building"></i> Jl. Praja No.5 Kwanji, Dalung Bali-Indonesia</li>
+                        <li><i class="fas fa-phone"></i> (0361)-4715940</li>
+                        <li><i class="far fa-envelope-open"></i> info@konibadung.id</li>
                     </ul>   
                 </div>
             </div>  
