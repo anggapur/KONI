@@ -142,8 +142,8 @@ class laporanController extends Controller
                 </tr>
                 <tr><td>( KONI )</td></tr>
                 <tr><td>KABUPATEN BADUNG</td></tr>
-                <tr><td>Sekretariat : Jl.Praja Nomor 5 Kwanji Dalung Badung Telp/Fax.(0361) 4715940</td></tr>
-                <tr><td>E-mail :konibadung@yahoo.co.id</td></tr>    
+                <tr><td>Sekretariat : Jl. Praja No.5 Kwanji, Dalung Bali-Indonesia Telp/Fax.(0361)- 4715940</td></tr>
+                <tr><td>E-mail : info@konibadung.id</td></tr>    
                 <tr><td><p></p></td></tr>
             </table>";
         $mpdf->setHeader($html);
