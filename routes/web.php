@@ -38,7 +38,7 @@ Route::get('data-atlet-front','frontController@dataAtlet');
 Route::get('data-prestasi','frontController@dataPrestasi');
 Route::get('data-event','frontController@dataEvent');
 Route::get('data-pelatih','frontController@dataPelatih');
-Route::get('data-wasit','frontController@dataWasit');
+Route::get('data-wasit-luar','frontController@dataWasit');
 Route::post('getApiData','frontController@getApiData');
 // Cabor Detail
 Route::get('cabor/{id}/{nama}','frontController@detailCabor');
