@@ -8,6 +8,17 @@
                 </div>
                 <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
                      <div id="piechart_3d" class="chart"></div>
+                     @if(GH::getCountGender('pelatih')['laki-laki'] == 0 && GH::getCountGender('pelatih')['perempuan'] == 0)
+                      <div style="
+                        top: 50%;
+    position: absolute;
+    text-align: center;
+    left: 50%;
+    transform: translateX(-50%) translateY(-50%);
+                      " >
+                        Data Wasit Masih Kosong
+                      </div>
+                      @endif
                 </div>         
                 <div class="col-xl-4 col-lg-6 col-md-6 col-sm-12">
                   <h1 class="descRight">
