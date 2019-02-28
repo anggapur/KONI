@@ -23,6 +23,7 @@ class frontController extends Controller
     //
     public function index()
     {   
+        ini_set('allow_url_fopen',1);
     	return view('front.index');
     }
     public function atlet()
@@ -238,6 +239,7 @@ class frontController extends Controller
                                 $q->leftJoin('nomor_pertandingan','nomor_pertandingan.id_np','=','prestasi.np_id');
                             }])
                             ->first();
+        ini_set('allow_url_fopen',1);
         return view('front.detailAtlet',$data);
 
     }
