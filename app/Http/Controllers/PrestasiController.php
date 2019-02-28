@@ -22,7 +22,7 @@ class PrestasiController extends Controller
     	$data['page'] = "Prestasi";
     	$data['active'] = "Prestasi";
 
-    	return view('Prestasi.Prestasi',$data);
+    	return view('prestasi.prestasi',$data);
     }
 
     public function getData(){
@@ -79,7 +79,7 @@ class PrestasiController extends Controller
 
         $data['event'] = Event::select('id_event','nama_event')->get();
 
-    	return view('Prestasi.tambahPrestasi',$data);
+    	return view('prestasi.tambahPrestasi',$data);
     }
 
     public function edit($id){
@@ -111,7 +111,7 @@ class PrestasiController extends Controller
 
         //dd($data['medali']);
 
-        return view('Prestasi.editPrestasi',$data);
+        return view('prestasi.editPrestasi',$data);
     }
 
     public function getNP(Request $Request){

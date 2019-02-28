@@ -30,7 +30,7 @@
                     
                             <div class="form-group">
                                 <label>No Pertandingan</label>
-                                <select class="form-control select2" name="np_id[]" id="np" multiple="multiple"data-placeholder="Pilih nomor pertandingan">                                   
+                                <select class="form-control select2" name="np_id[]" id="np" multiple="multiple" data-placeholder="Pilih nomor pertandingan">                                   
                                 </select>
                             </div>
 

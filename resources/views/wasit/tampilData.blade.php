@@ -92,10 +92,8 @@
 
 <script type="text/javascript">
 	function view(id){
-
 	
       var dataString = "id="+id;
-
       $.ajax({
             type: "POST",
             url: "{{URL('/get-data-wasit')}}",
