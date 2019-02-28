@@ -404,13 +404,13 @@ class atletController extends Controller
 
         $data['prestasi'] = Prestasi::select('ket_juara','waktu','ket_np','nama_event')
                             ->leftJoin('juara','juara_id','=','id_juara')
-                            ->leftJoin('Nomor_Pertandingan','id_np','=','np_id')
+                            ->leftJoin('nomor_pertandingan','id_np','=','np_id')
                             ->leftJoin('event','id_event','=','event_id')
                             ->where('atlet_id',$id)
                             ->get();
 
         $data['rekor'] = Rekor_atlet::select('keterangan_rekor','waktu','ket_np','nama_event')                            
-                            ->leftJoin('Nomor_Pertandingan','id_np','=','np_id')
+                            ->leftJoin('nomor_pertandingan','id_np','=','np_id')
                             ->leftJoin('event','id_event','=','event_id')
                             ->where('atlet_id',$id)
                             ->get();
