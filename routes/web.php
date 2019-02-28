@@ -21,6 +21,8 @@ Route::get('angga','contohController@index');
 
 // Route By Angga Purnajiwa
 //Route::get('alit', 'isengController@index');
+Route::get('/test','frontController@test');
+
 Route::get('/','frontController@index');
 Route::get('dataGrafik','frontController@dataGrafik');
 Route::get('atlet','frontController@atlet');

@@ -21,6 +21,27 @@ use App\Nomor_Pertandingan;
 class frontController extends Controller
 {
     //
+    public function test()
+    {
+        $query = Cabang_Olahraga::withCount('getAtlet')->get()->sortByDesc(function($hackathon)
+        {
+            return $hackathon->getAtlet->count();
+        });
+        // return $query;
+        $data = [];
+        $count = 0;
+        foreach($query as $key => $val)
+        {
+            // echo $val->get_atlet_count."<br>";
+            $datas[0] = $val->nama_cabor;
+            $datas[1] = $val->get_atlet_count;
+            array_push($data, $datas);
+            $count+=$val->get_atlet_count;
+        }
+        $data['data'] = $data;
+        $data['countAtlet'] = $count;
+        return $data;
+    }
     public function index()
     {   
         ini_set('allow_url_fopen',1);
@@ -197,14 +218,39 @@ class frontController extends Controller
         }
         else if($request->name == "getAtletByCabor")
         {
+            // $data = [];
+            // $count = 0;
+            // foreach(GH::getAtletByCabor() as $key => $val)
+            // {
+            //     $datas[0] = $key;
+            //     $datas[1] = $val;
+            //     array_push($data, $datas);
+            //     $count+=$val;
+            // }
+            // $data['data'] = $data;
+            // $data['countAtlet'] = $count;
+            // return $data;
+            $limit = 10;
+            $i = 1;
+            $query = Cabang_Olahraga::withCount('getAtlet')->get()->sortByDesc(function($hackathon)
+            {
+                return $hackathon->getAtlet->count();
+            });
+            // return $query;
             $data = [];
             $count = 0;
-            foreach(GH::getAtletByCabor() as $key => $val)
+            foreach($query as $key => $val)
             {
-                $datas[0] = $key;
-                $datas[1] = $val;
-                array_push($data, $datas);
-                $count+=$val;
+                if($i <= $limit)
+                {
+                    // echo $val->get_atlet_count."<br>";
+                    $datas[0] = $val->nama_cabor;
+                    $datas[1] = $val->get_atlet_count;
+                    array_push($data, $datas);
+                }
+
+                $i++;
+                $count+=$val->get_atlet_count;
             }
             $data['data'] = $data;
             $data['countAtlet'] = $count;
