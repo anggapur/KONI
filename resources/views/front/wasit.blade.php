@@ -124,7 +124,7 @@
                 processing: true,
                 serverSide: true,
                 ajax: {
-                    url: '{{ url("data-wasit") }}'
+                    url: '{{ url("data-wasit-luar") }}'
                 },
                 columns: [
                 {data: 'nama_wasit', name: 'nama_wasit'},
