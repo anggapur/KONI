@@ -20,7 +20,7 @@ class RekorController extends Controller
     	$data['active'] = 'Rekor Atlet';
     	$data['page'] = 'Rekor Atlet';
 
-    	return view('Rekor.rekor',$data);
+    	return view('rekor.rekor',$data);
     }
 
     public function getData(){
@@ -71,7 +71,7 @@ class RekorController extends Controller
 
         //dd($data['atlet']);
 
-        return view('Rekor.editRekor',$data);
+        return view('rekor.editRekor',$data);
     }
 
     public function tambah(){
@@ -88,7 +88,7 @@ class RekorController extends Controller
         $data['event'] = Event::select('id_event','nama_event')->get();
 
 
-    	return view('Rekor.tambahRekor',$data);
+    	return view('rekor.tambahRekor',$data);
     }
 
     public function add(Request $Request){
