@@ -178,8 +178,8 @@ Route::group(['middleware' => 'auth'],function(){
 		Route::post('laporanListDataPrestasi','laporanController@listDataPrestasi')->name('laporanListDataPrestasi');
 		Route::post('api/tags','laporanController@apiTags');
 		Route::post('generate_pdf','laporanController@generate_pdf')->name('generate_pdf');
+
 	});
-});
 
 	//tingkat_event
 	Route::get('tambahdata_event','tingkat_eventController@tambahEvent');
@@ -190,4 +190,8 @@ Route::group(['middleware' => 'auth'],function(){
 	Route::get('deletedata_event/{id}','tingkat_eventController@deleteEvent');
 	Route::post('get-data-tingkatEvent','tingkat_eventController@getdataEvent');
 
+	//Level
+	Route::resource('level','LevelController');
+	Route::get('getDataLevel','LevelController@getData');
 
+});

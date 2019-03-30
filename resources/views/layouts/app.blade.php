@@ -338,7 +338,7 @@
           </li>
           <!-- Control Sidebar Toggle Button -->
           <li>
-            <a href="#" data-toggle="control-sidebar"><i class="fa fa-gears"></i></a>
+            <!-- <a href="#" data-toggle="control-sidebar"><i class="fa fa-gears"></i></a> -->
           </li>
         </ul>
       </div>
@@ -382,6 +382,12 @@
         <li class="{{GH::segment(1,['view_atlet','add_atlet','edit_atlet','detail_atlet','view_detail'])}}">
           <a href="{{url('view_atlet')}}">
             <i class="fa fa-running"></i> <span>Atlet</span>            
+          </a>          
+        </li>
+
+        <li class="">
+          <a href="{{url('level')}}">
+            <i class="fa fa-running"></i> <span>Level Atlet</span>
           </a>          
         </li>
 

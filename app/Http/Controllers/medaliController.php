@@ -46,7 +46,7 @@ class medaliController extends Controller
             'nama_medali' => 'required',
         ];
         $pesanErrorCustom = [
-            'required' => 'Kolom :attribute Harus diiisi.'
+            'required' => 'Kolom :attribute Harus diisi.'
         ];
         $request->validate($ruleValidasi,$pesanErrorCustom);
         $query = Medali::create($data);
