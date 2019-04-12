@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class LevelAtlet extends Migration
+class Setting extends Migration
 {
     /**
      * Run the migrations.
@@ -14,11 +14,14 @@ class LevelAtlet extends Migration
     public function up()
     {
         //
-        Schema::create('karir',function($table){
-            $table->engine = "MyISAM";
-            $table->increments('id_karir');
-            $table->char('nomor_induk', 10);
-            $table->integer('level_id');
+        Schema::create('setting', function (Blueprint $table) {
+            $table->increments('id_setting');
+            $table->string('attr');
+            $table->text('deskripsi');
+            $table->text('value');
+            $table->string('type');
+            $table->integer('status');            
+            $table->timestamps();
         });
     }
 

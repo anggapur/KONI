@@ -194,4 +194,7 @@ Route::group(['middleware' => 'auth'],function(){
 	Route::resource('level','LevelController');
 	Route::get('getDataLevel','LevelController@getData');
 
+	Route::resource('setting','SettingController');
+	Route::get('settingData','SettingController@getData')->name('settingData');
+	
 });

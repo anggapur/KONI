@@ -8,7 +8,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <!-- <title>{{ config('app.name', 'KONI BADUNG') }}</title> -->
-    <title>KONI BADUNG</title>
+    <title>{{ GH::getSetting('app_name') }}</title>
 
     <!-- Scripts -->
     <!-- <script src="{{ asset('js/app.js') }}" defer></script> -->
@@ -44,7 +44,7 @@
     <!-- Navigation -->
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="container">
-            <a class="navbar-brand" href="{{url('')}}">KONI BADUNG</a>
+            <a class="navbar-brand" href="{{url('')}}">{{ GH::getSetting('app_name') }}</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -114,7 +114,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-4">
-                    <h1>KONI <br><b>BADUNG</b></h1>
+                    <h1>{{ GH::getSetting('app_name') }}</h1>
                 </div>
                 <div class="col-md-4">
                     <h4>Halaman</h4>
@@ -130,9 +130,9 @@
                 <div class="col-md-4">
                     <h4>Lokasi</h4>
                     <ul id="location">
-                        <li><i class="far fa-building"></i> Jl. Praja No.5 Kwanji, Dalung Bali-Indonesia</li>
-                        <li><i class="fas fa-phone"></i> (0361)-4715940</li>
-                        <li><i class="far fa-envelope-open"></i> info@konibadung.id</li>
+                        <li><i class="far fa-building"></i> {{ GH::getSetting('alamat') }}</li>
+                        <li><i class="fas fa-phone"></i> {{ GH::getSetting('no_telp') }}</li>
+                        <li><i class="far fa-envelope-open"></i> {{ GH::getSetting('email') }}</li>
                     </ul>   
                 </div>
             </div>  
@@ -145,7 +145,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
-                    &copy; Koni Badung - 2018
+                    &copy; {{ GH::getSetting('app_name') }} - 2019
                 </div>
             </div>
         </div>

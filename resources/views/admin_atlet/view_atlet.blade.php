@@ -30,7 +30,7 @@
                                     <tr>                      
                                         <th>Nama</th>
                                         <th>Cabor</th>
-                                        <th>No Kartu</th>
+                                        <th>No Induk</th>
                                         <th>JK</th>
                                         <th>Tmp Lahir</th>
                                         <th>Tgl Lahir</th>                                        
@@ -65,7 +65,7 @@
             <b>Cabang Olahraga</b>
             <p id="cabor"></p>
             <hr>
-            <b>No Kartu Tanda Anggota</b>
+            <b>Nomor Induk</b>
             <p id="no_kartu"></p>
             <hr>
             <b>Jenis Kelamin</b>
@@ -132,7 +132,7 @@
             columns: [         
             {data: 'nama_atlet', name: 'nama_atlet'},
             {data: 'nama_cabor', name: 'nama_cabor'},
-            {data: 'no_kartu_tanda_anggota', name: 'no_kartu_tanda_anggota'},
+            {data: 'nomor_induk', name: 'nomor_induk'},
             {data: 'jenis_kelamin', name: 'jenis_kelamin'},
             {data: 'tempat_lahir', name: 'tempat_lahir'},
             {data: 'tgl_lahir', name: 'tgl_lahir'},            
@@ -167,7 +167,7 @@
                     $('#tgl_pensi').hide();
                     $("#nama_atlet").text(data.nama_atlet);
                     $("#cabor").text(data.nama_cabor);
-                    $("#no_kartu").text(data.no_kartu_tanda_anggota);
+                    $("#no_kartu").text(data.nomor_induk);
                     $("#jk").text(data.jenis_kelamin);
                     $("#tempat_lahir").text(data.tempat_lahir);
                     $("#tgl_lahir").text(data.tgl_lahir);

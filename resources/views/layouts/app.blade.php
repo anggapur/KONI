@@ -387,7 +387,7 @@
 
         <li class="">
           <a href="{{url('level')}}">
-            <i class="fa fa-running"></i> <span>Level Atlet</span>
+            <i class="fa fa-level-up-alt"></i> <span>Level Atlet</span>
           </a>          
         </li>
 
@@ -456,6 +456,11 @@
          <li class="{{GH::segment(2,['laporan'])}}">
           <a href="{{url('administrator/laporan')}}">
             <i class="fa fa-file"></i> <span>Laporan</span>            
+          </a>          
+        </li>
+        <li class="{{GH::segment(1,['setting'])}}">
+          <a href="{{url('setting')}}">
+            <i class="fa fa-gear"></i> <span>Setting</span>            
           </a>          
         </li>
         

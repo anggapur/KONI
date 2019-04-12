@@ -39,9 +39,9 @@
                              </div>
                 			<!-- No kartu tanda peserta -->
                 			<div id="nkta_error" class="form-group">
-                				<label>No Kartu Tanda Peserta</label>
-                				<input id="nkta" class="form-control" type="text" name="nkta" minlength="0" maxlength="10" onkeyup="return validation()" placeholder="Masukkan nomor kartu tanda peserta">
-                                <span id="error" class="help-block" style="display: none;">No Kartu Tanda Anggota sudah terdaftar</span>
+                				<label>No Induk</label>
+                				<input id="nkta" class="form-control" type="text" name="nkta" minlength="0" maxlength="10" onkeyup="return validation()" placeholder="Masukkan nomor induk">
+                                <span id="error" class="help-block" style="display: none;">No Induk sudah terdaftar</span>
                 			</div>
                 			<!-- Jenis kelamin -->
                 			<div class="form-group">
@@ -132,20 +132,47 @@
                 					</div>
                 				</div>                                
                 			</div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label>Level Atlet</label>
+                                    <select class="form-control" name="level_id">
+                                        <option value="" selected hidden disabled>Pilih level atlet</option>
+                                        @foreach($level as $val)
+                                        <option value="{{$val->id_level}}">{{$val->nama_level}}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                                <div class="col-md-6">
+                                    <label>No KTP</label>
+                                    <input type="text" name="no_ktp" class="form-control" placeholder="Masukkan No KTP">
+                                </div>
+                            </div>
+                            <br>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label>Asal Jodang</label>
+                                    <input type="text" name="asal_jodang" class="form-control" placeholder="Masukkan Asal Jodang">
+                                </div>
+                                <div class="col-md-6">
+                                    <label>Asal Sekolah</label>
+                                    <input type="text" name="asal_sekolah" class="form-control" placeholder="Masukkan Asal Sekolah">
+                                </div>
+                            </div>                            
                   			<!-- Foto -->
+                            <br>
                   			<div class="form-group">
                                 <div class="row">
                                     <div class="col-md-12">
                                         <label for="exampleInputFile">Foto Atlet</label><br>
                                         <img src="http://placehold.it/100x100" id="showgambar" style="max-width:200px;max-height:200px;float:left;margin-bottom:10px;" />
                                     </div>
-                                </div>
+                                </div>                                
                   				<div class="row">
                                     <div class="col-md-12">
                                         <input type="file" id="inputgambar" name="gambar" class="validate">
                                         <p class="help-block">Ukuran foto maksimal 2 MB</p>
                                     </div>
-                                </div>
+                                </div>                                
                 			</div>
                 		</div>
                         <div class="box-footer">

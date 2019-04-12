@@ -13,6 +13,8 @@ use App\Rekor_Atlet;
 use App\Detail_Atlet;
 use App\rentangUmur;
 use Request;
+use Carbon\Carbon;
+use App\Setting;
 
 class GlobalHelper{
 
@@ -390,6 +392,26 @@ class GlobalHelper{
 	public static function getImages($url,$image)
 	{
 		return $url."/".$image;
+	}
+
+	public static function dateFormat($date){
+		return Carbon::parse($date)->format('d M Y');
+	}
+
+	public static function getSetting($value){
+		$temp = Setting::select('*')->where('attr',$value)->where('status',1);
+		if($temp->count() > 0){
+			$temp = $temp->first();
+			return $temp->value;
+		}
+		else{
+			return "Data tidak ditemukan";
+		}
+	}
+
+	public static function getSettingSlider($value){
+		$temp = Setting::select('*')->where('attr',$value)->where('status',1)->get();
+		return $temp;
 	}
 }
 

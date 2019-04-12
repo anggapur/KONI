@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class LevelAtlet extends Migration
+class IdentitasAtlet extends Migration
 {
     /**
      * Run the migrations.
@@ -14,12 +14,14 @@ class LevelAtlet extends Migration
     public function up()
     {
         //
-        Schema::create('karir',function($table){
-            $table->engine = "MyISAM";
-            $table->increments('id_karir');
-            $table->char('nomor_induk', 10);
-            $table->integer('level_id');
-        });
+        Schema::table('master_atlet', function (Blueprint $table) {            
+            $table->string('asal_jodang')->nullable();
+            $table->string('asal_sekolah')->nullable();
+            $table->string('no_ktp')->nullable();
+        });        
+
+        Schema::rename('no_kartu_tanda_anggota', 'nomor_induk');
+
     }
 
     /**

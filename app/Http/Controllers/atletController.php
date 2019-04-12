@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Support\Facades\File;
 use DB;
+use GH;
 use Illuminate\Http\Request;
 use App\Cabang_Olahraga;
 use App\Kabupaten;
@@ -17,6 +18,7 @@ use App\Tingkat_Event;
 use App\Detail_Atlet_Event;
 use App\Prestasi;
 use App\Rekor_atlet;
+use App\Level;
 
 class atletController extends Controller
 {
@@ -36,6 +38,7 @@ class atletController extends Controller
         $data['listNoPertandingan'] = Nomor_Pertandingan::select('*')->get();
         $data['page'] = "Atlet";        
         $data['active'] = "Atlet";
+        $data['level'] = Level::select('*')->get();
     	return View('admin_atlet.add_atlet',$data);
     }
     public function view_atlet()
@@ -46,7 +49,7 @@ class atletController extends Controller
     }
     public function getData()
     {
-        $data = Master_Atlet::select('nama_atlet','nama_cabor','no_kartu_tanda_anggota','jenis_kelamin','tempat_lahir','tgl_lahir','alamat','tinggi','berat','tgl_jadi_atlet','tgl_pensiun','status','id_atlet')
+        $data = Master_Atlet::select('nama_atlet','nama_cabor','nomor_induk','jenis_kelamin','tempat_lahir','tgl_lahir','alamat','tinggi','berat','tgl_jadi_atlet','tgl_pensiun','status','id_atlet')
         	->leftJoin('cabang_olahraga','cabor_id','=','id_cabor')
             ->get();
         for($i=0;$i<count($data);$i++){
@@ -56,7 +59,10 @@ class atletController extends Controller
                 $data[$i]->status = 'Tidak Aktif';
         }
       	return Datatables::of($data)
-      		->addColumn('aksi', function($data){
+        ->editColumn('tgl_lahir', function($data){
+            return GH::dateFormat($data->tgl_lahir);
+        }) 
+      	->addColumn('aksi', function($data){
         return "
             <button onclick='view(".$data->id_atlet.")' class='btn btn-xs btn-warning'> <i class='fa fa-eye'> </i> View </button>
             <a href=".route('edit_atlet',$data->id_atlet)."><button class='btn btn-xs btn-primary'> <i class='fa fa-edit'> </i> Edit  </button> </a>
@@ -69,13 +75,16 @@ class atletController extends Controller
       	->make(true);
     }
     public function getDataAtlet(Request $Request){
-        $data = Master_Atlet::select('nama_atlet','nama_cabor','no_kartu_tanda_anggota','jenis_kelamin','tempat_lahir','tgl_lahir','alamat','tinggi','berat','nama_kabupaten','tgl_jadi_atlet','tgl_pensiun','status','id_atlet','nama_foto')
+        $data = Master_Atlet::select('nama_atlet','nama_cabor','nomor_induk','jenis_kelamin','tempat_lahir','tgl_lahir','alamat','tinggi','berat','nama_kabupaten','tgl_jadi_atlet','tgl_pensiun','status','id_atlet','nama_foto')
             ->leftJoin('cabang_olahraga','cabor_id','=','id_cabor')
             ->leftJoin('kabupaten','id_kabupaten','=','kabupaten_id')
             ->leftJoin('foto','foto_id','=','id_foto')
             ->leftJoin('detail_atlet','atlet_id','=','id_atlet')
             ->where('id_atlet',$Request->id)
             ->first();
+        $data->tgl_pensiun = GH::dateFormat($data->tgl_pensiun);
+        $data->tgl_lahir = GH::dateFormat($data->tgl_lahir);
+        $data->tgl_jadi_atlet = GH::dateFormat($data->tgl_jadi_atlet);
         if($data['status']==1){
             $data['status'] = 'Aktif';
         }else{
@@ -111,13 +120,17 @@ class atletController extends Controller
             $data['foto_id'] = $foto->id_foto;
    			$data['nama_atlet'] = $request->nama_atlet;
 	        $data['cabor_id'] = $request->cabor_id;
-	        $data['no_kartu_tanda_anggota'] = $request->nkta;
+	        $data['nomor_induk'] = $request->nkta;
 	        $data['jenis_kelamin'] = $request->jenis_kelamin;
 	        $data['tempat_lahir'] = $request->tempat_lahir;
 	        $data['tgl_lahir'] = $request->tgl_lahir;
 	        $data['alamat'] = $request->alamat;
 	        $data['tinggi'] = $request->tinggi;
 	        $data['berat'] = $request->berat;
+            //ini baru
+            $data['asal_jodang'] = $request->asal_jodang;
+            $data['asal_sekolah'] = $request->asal_sekolah;          
+            $data['no_ktp'] = $request->no_ktp;
 	        //$data['kabupaten_id'] = $request->kabupaten_id;
             $data['kabupaten_id'] = 1;
 	        $data['tgl_jadi_atlet'] = $request->tgl_jadi_atlet;
@@ -145,9 +158,10 @@ class atletController extends Controller
     }
     public function edit_atlet($id)
     {
+        $data['level'] = Level::select('*')->get();
     	$data['listKabupaten'] = kabupaten::select('*')->get();
     	$data['listCabangOlahraga'] = Cabang_Olahraga::select('*')->get();
-    	$data['data_atlet']=Master_Atlet::select('id_atlet','nama_atlet','cabor_id','no_kartu_tanda_anggota','jenis_kelamin','tempat_lahir','tgl_lahir','alamat','tinggi','berat','kabupaten_id','foto_id','tgl_jadi_atlet','tgl_pensiun','status','nama_foto','np_id','id_detail','id_foto','nama_foto')
+    	$data['data_atlet']=Master_Atlet::select('id_atlet','nama_atlet','cabor_id','nomor_induk','jenis_kelamin','tempat_lahir','tgl_lahir','alamat','tinggi','berat','kabupaten_id','foto_id','tgl_jadi_atlet','tgl_pensiun','status','nama_foto','np_id','id_detail','id_foto','nama_foto','no_ktp','asal_jodang','asal_sekolah')
             ->leftJoin('foto','foto_id','=','id_foto')
             ->leftJoin('detail_atlet','atlet_id','=','id_atlet')
             ->where ('id_atlet',$id)
@@ -181,13 +195,17 @@ class atletController extends Controller
             $data['nama_foto'] = $request->nama_foto;
             $data['nama_atlet'] = $request->nama_atlet;
             $data['cabor_id'] = $request->cabor_id;
-            $data['no_kartu_tanda_anggota'] = $request->no_kartu_tanda_anggota;
+            $data['nomor_induk'] = $request->nomor_induk;
             $data['jenis_kelamin'] = $request->jenis_kelamin;
             $data['tempat_lahir'] = $request->tempat_lahir;
             $data['tgl_lahir'] = $request->tgl_lahir;
             $data['alamat'] = $request->alamat;
             $data['tinggi'] = $request->tinggi;
             $data['berat'] = $request->berat;
+            //ini baru
+            $data['asal_jodang'] = $request->asal_jodang;
+            $data['asal_sekolah'] = $request->asal_sekolah;          
+            $data['no_ktp'] = $request->no_ktp;
             // $data['kabupaten_id'] = $request->kabupaten_id;
             $data['tgl_jadi_atlet'] = $request->tgl_jadi_atlet;
             if($request->status == 0)
@@ -200,7 +218,7 @@ class atletController extends Controller
             ->update([
                 'nama_atlet' => $data['nama_atlet'],
                 'cabor_id' => $data['cabor_id'],
-                'no_kartu_tanda_anggota' => $data['no_kartu_tanda_anggota'],
+                'nomor_induk' => $data['nomor_induk'],
                 'jenis_kelamin' => $data['jenis_kelamin'],
                 'tempat_lahir' => $data['tempat_lahir'],
                 'tgl_lahir' => $data['tgl_lahir'],

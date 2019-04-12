@@ -11,7 +11,7 @@ class Master_Atlet extends Model
 	protected $fillable = [
 		'nama_atlet',
 		'cabor_id',
-		'no_kartu_tanda_anggota',
+		'no_induk',
 		'jenis_kelamin',
 		'tempat_lahir',
 		'tgl_lahir',
@@ -22,7 +22,10 @@ class Master_Atlet extends Model
 		'foto_id',
 		'tgl_jadi_atlet',
 		'tgl_pensiun',
-		'status'
+		'status',
+		'asal_jodang',
+		'asal_sekolah',
+		'no_ktp'
 	];
 	public $timestamps = false;
 

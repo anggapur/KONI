@@ -54,9 +54,9 @@
                             </div>
                 			<!-- No kartu tanda peserta -->
                 			<div id="nkta_error" class="form-group">
-                				<label>No Kartu Tanda Peserta</label>
-                				<input type="text" class="form-control" name="no_kartu_tanda_anggota" placeholder="Masukkan nomor kartu tanda peserta" value="{{ $data_atlet->no_kartu_tanda_anggota }}">
-                                <span id="error" class="help-block" style="display: none;">No Kartu Tanda Anggota sudah terdaftar</span>
+                				<label>Nomor Induk</label>
+                				<input type="text" class="form-control" name="nomor_induk" placeholder="Masukkan nomor induk" value="{{ $data_atlet->nomor_induk }}">
+                                <span id="error" class="help-block" style="display: none;">Nomor Induk sudah terdaftar</span>
                 			</div>
                 			<!-- Jenis kelamin -->
                 			<div class="form-group">
@@ -172,6 +172,32 @@
                 					</div>
                 				</div>                                
                 			</div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label>Level Atlet</label>
+                                    <select class="form-control" name="level_id">
+                                        <option value="" selected hidden disabled>Pilih level atlet</option>
+                                        @foreach($level as $val)
+                                        <option value="{{$val->id_level}}" @if($val->id_level == $data_atlet->level_id) {{'selected'}} @endif>{{$val->nama_level}}</option>
+                                        @endforeach
+                                    </select>
+                                </div> 
+                                <div class="col-md-6">
+                                    <label>No KTP</label>
+                                    <input type="text" name="no_ktp" class="form-control" placeholder="Masukkan No KTP" value="{{$data_atlet->no_ktp}}">
+                                </div>
+                            </div>
+                            <br>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label>Asal Jodang</label>
+                                    <input type="text" name="asal_jodang" class="form-control" placeholder="Masukkan Asal Jodang" value="{{$data_atlet->asal_jodang}}">
+                                </div>
+                                <div class="col-md-6">
+                                    <label>Asal Sekolah</label>
+                                    <input type="text" name="asal_sekolah" class="form-control" placeholder="Masukkan Asal Sekolah" value="{{$data_atlet->asal_sekolah}}">
+                                </div>
+                            </div> 
                   			<!-- Foto -->
                   			<div class="form-group">
                                 <div class="row">

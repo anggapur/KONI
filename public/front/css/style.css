@@ -285,9 +285,9 @@ ul.navbar-nav {
 
 /*Slider*/
 #slider{
-    background: url('../../upload/slider/sliderBG.jpg');
+    /*background: url('../../upload/slider/sliderBG.jpg');
     background-size: cover;
-    background-position: center center;
+    background-position: center center;*/
 }
 .greetings {
     position: absolute;

@@ -1,23 +1,29 @@
 @extends('layouts.frontApp')
 @section('content')
 <!-- Slider -->
-    <section id="slider">
+<?php $img = "background_slider"; ?>
+    <section id="slider" style="background: url(
+        'public/upload/slider/{{GH::getSetting($img)}}');background-size: cover;
+    background-position: center center;">
         <div class="container">
             <div class="row">
                 <div class="col-md-6">
                     <div class="greetings">
-                        <h1>Selamat Datang di Pengumpulan dan Pengolahan Data Badung</h1>
-                        <p>Dapatkan Informasi Seputar Atlet Kabupaten Badung</p>
+                        <h1>{{GH::getSetting('greeting_1')}}</h1>
+                        <p>{{GH::getSetting('greeting_2')}}</p>
                     </div>
                 </div>
-                <div class="col-md-6">
+                <div id="slider_image" class="col-md-6" style="display: none">
                     <div class="sliderImage">
-                        <img src="{{asset('public/upload/slider/slider1-img.png')}}" class="sliderImages">
-                        <img src="{{asset('public/upload/slider/slider2-img.png')}}" class="sliderImages firstNone">
-                        <img src="{{asset('public/upload/slider/slider3-img.png')}}" class="sliderImages firstNone">
-                        <img src="{{asset('public/upload/slider/slider4-img.png')}}" class="sliderImages firstNone">
-                        <img src="{{asset('public/upload/slider/slider5-img.png')}}" class="sliderImages firstNone">
-                        <img src="{{asset('public/upload/slider/slider0-img.png')}}" class="sliderImages firstNone">
+                        @php($i = 0)
+                        @foreach(GH::getSettingSlider('slider') as $val)
+                        @if($i == 0)
+                        <img src="{{asset('public/upload/slider/'.$val->value)}}" class="sliderImages">
+                        @else
+                        <img src="{{asset('public/upload/slider/'.$val->value)}}" class="sliderImages firstNone">
+                        @php($i++)
+                        @endif                        
+                        @endforeach
                     </div>
                 </div>
             </div>
@@ -208,5 +214,11 @@
 
         chart.draw(data, google.charts.Bar.convertOptions(optionss));
       }
+    </script>
+
+    <script type="text/javascript">
+        $(document).ready(function(){
+            $('#slider_image').fadeIn();
+        })
     </script>
 @endsection

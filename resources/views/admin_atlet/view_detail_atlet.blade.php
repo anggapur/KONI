@@ -32,9 +32,9 @@
                         			<td>{{$atlet->nama_cabor}}</td>
                         		</tr>
                         		<tr>
-                        			<td>No Kartu Tanda Anggota</td>
+                        			<td>Nomor Induk</td>
                         			<td> : </td>
-                        			<td>{{$atlet->no_kartu_tanda_anggota}}</td>
+                        			<td>{{$atlet->nomor_induk}}</td>
                         		</tr>
                         		<tr>
                         			<td>Jenis Kelamin</td>
@@ -49,7 +49,7 @@
                         		<tr>
                         			<td>Tanggal Lahir</td>
                         			<td> : </td>
-                        			<td>{{$atlet->tgl_lahir}}</td>
+                        			<td>{{Carbon\Carbon::parse($atlet->tgl_lahir)->format('d M Y')}}</td>
                         		</tr>
                         		<tr>
                         			<td>Alamat</td>
@@ -69,7 +69,7 @@
                         		<tr>
                         			<td>Tanggal jadi Atlet</td>
                         			<td> : </td>
-                        			<td>{{$atlet->tgl_jadi_atlet}}</td>
+                        			<td>{{ Carbon\Carbon::parse($atlet->tgl_jadi_atlet)->format('d M Y')}}</td>
                         		</tr>
                         		<tr>
                         			<td>Status</td>
