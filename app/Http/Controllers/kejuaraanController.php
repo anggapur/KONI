@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 use App\Event;
 use App\Detail_Event;
 use App\Cabang_Olahraga;
-use App\TingkatEvent;
+use App\Tingkat_Event;
 use Response;
 use Yajra\Datatables\Datatables;
 
@@ -18,7 +18,7 @@ class kejuaraanController extends Controller
     {
     	$data['page'] = "Event";        
         $data['active'] = "Event";
-        $data['tingkat'] = TingkatEvent::select('*')->get();
+        $data['tingkat'] = Tingkat_Event::select('*')->get();
         $data['cabor'] = Cabang_Olahraga::select('nama_cabor','id_cabor')->get();
     	return view('Kejuaraan.kejuaraan',$data);
     }
